@@ -4,15 +4,6 @@
   <artifactId>Cinematrix</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <properties>
-	<maven.compiler.source>JRE 17</maven.compiler.source>
-	<maven.compiler.target>JRE 17</maven.compiler.target>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <build>
-	<plugins>
-		<plugin>
-        	<artifactId>maven-compiler-plugin</artifactId>
-        	<version>3.11.0</version>
-		</plugin>
-	</plugins>
-  </build>
 </project>
