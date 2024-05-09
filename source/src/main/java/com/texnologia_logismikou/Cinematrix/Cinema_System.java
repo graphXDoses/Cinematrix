@@ -34,6 +34,14 @@ public class Cinema_System {
 		}
 	}
 	
+	public void addCustomer(ArrayList<Customer> customer_list, Customer customer) {
+		customer_list.add(customer);
+	}
+	
+	public void removeCustomer(ArrayList<Customer> customer_list, Customer customer) {
+		customer_list.remove(customer);
+	}
+	
 	//Getters and Setters
 	public ArrayList<Movie> getAllMovieList() {
 		return allMovieList;
