@@ -8,4 +8,10 @@ public class Room {
 	private ArrayList<int[]> type = new ArrayList<>();
 	private ArrayList<int[]> available_seats = new ArrayList<>();
 	
+	public void showDetails() {
+		System.out.println("Your seat is: " + no);
+		System.out.println("Capacity is: " + capacity);
+
+	}
+	
 }
