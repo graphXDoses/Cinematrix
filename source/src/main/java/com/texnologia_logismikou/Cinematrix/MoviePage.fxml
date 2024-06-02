@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane layoutX="357.0" layoutY="275.0" prefHeight="702.0" prefWidth="858.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="23.0" prefWidth="858.0" BorderPane.alignment="CENTER">
+               <children>
+                  <FontAwesomeIcon glyphName="VIDEO_CAMERA" layoutX="8.0" layoutY="27.0" size="2.5em" />
+                  <Label layoutX="51.0" layoutY="1.0" text="Cinematrix">
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="963.0" layoutY="2.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="50.0">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="CLOSE" size="1.2em" />
+                     </graphic>
+                  </Button>
+                  <Button layoutX="913.0" layoutY="2.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="50.0">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="MINUS" size="1.2em" />
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </top>
+         <bottom>
+            <AnchorPane prefHeight="45.0" prefWidth="858.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="Home">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="HOME" />
+                     </graphic>
+                  </Button>
+                  <Button layoutX="86.0" layoutY="10.0" mnemonicParsing="false" text="About Us">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="INFO" />
+                     </graphic>
+                  </Button>
+                  <Button layoutX="170.0" layoutY="10.0" mnemonicParsing="false" text="Rooms" />
+                  <Button layoutX="233.0" layoutY="10.0" mnemonicParsing="false" text="Ticket Prices">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="TICKET" />
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </bottom>
+         <center>
+            <AnchorPane prefHeight="625.0" prefWidth="907.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="7.0" layoutY="14.0" mnemonicParsing="false" text="Back">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="ARROW_LEFT" />
+                     </graphic>
+                  </Button>
+                  <AnchorPane layoutX="333.0" layoutY="3.0" prefHeight="47.0" prefWidth="688.0">
+                     <children>
+                        <Button fx:id="Homepage_Home" layoutX="138.0" layoutY="11.0" mnemonicParsing="false" text="Home">
+                           <graphic>
+                              <FontAwesomeIcon glyphName="HOME" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="Homepage_nowShowing" layoutX="210.0" layoutY="11.0" mnemonicParsing="false" text="Now Showing" />
+                        <Button fx:id="Homepage_comingSoon" layoutX="308.0" layoutY="11.0" mnemonicParsing="false" text="Coming Soon" />
+                        <Button fx:id="Homepage_buyTicket" layoutX="406.0" layoutY="11.0" mnemonicParsing="false" text="Buy Ticket">
+                           <graphic>
+                              <FontAwesomeIcon glyphName="TICKET" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="Homepage_search" layoutX="499.0" layoutY="7.0" mnemonicParsing="false" text="Search">
+                           <graphic>
+                              <TextField prefHeight="25.0" prefWidth="123.0" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="38.0" layoutY="50.0" prefHeight="679.0" prefWidth="917.0">
+                     <children>
+                        <TextField layoutX="87.0" layoutY="50.0" />
+                        <TextField layoutX="87.0" layoutY="89.0" />
+                        <TextField layoutX="87.0" layoutY="125.0" />
+                        <TextField layoutX="87.0" layoutY="159.0" />
+                        <Label layoutX="23.0" layoutY="52.0" text="Title:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="23.0" layoutY="91.0" text="Genre:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="23.0" layoutY="127.0" text="Cast:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="23.0" layoutY="161.0" text="Duration:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="213.0" text="Description:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextArea layoutX="23.0" layoutY="242.0" prefHeight="323.0" prefWidth="323.0" />
+                        <Label layoutX="367.0" layoutY="213.0" text="Screenings:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TableView layoutX="367.0" layoutY="244.0" prefHeight="320.0" prefWidth="529.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Monday" />
+                            <TableColumn prefWidth="75.0" text="Tuesday" />
+                              <TableColumn prefWidth="75.0" text="Wednesday" />
+                              <TableColumn prefWidth="75.0" text="Thursday" />
+                              <TableColumn prefWidth="75.0" text="Friday" />
+                              <TableColumn prefWidth="75.0" text="Saturday" />
+                              <TableColumn prefWidth="75.0" text="Sunday" />
+                          </columns>
+                        </TableView>
+                        <ImageView fitHeight="197.0" fitWidth="250.0" layoutX="539.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+                        <Hyperlink layoutX="429.0" layoutY="613.0" text="Trailer">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Hyperlink>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.FXMLDocumentController">
    <children>
       <BorderPane layoutX="335.0" layoutY="235.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -18,12 +17,12 @@
                <children>
                   <AnchorPane layoutX="277.0" layoutY="-55.0" prefHeight="69.0" prefWidth="1000.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button layoutX="945.0" layoutY="10.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="47.0">
+                        <Button fx:id="Homepage_close" layoutX="952.0" layoutY="2.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="47.0">
                            <graphic>
                               <FontAwesomeIcon glyphName="CLOSE" size="1.2em" />
                            </graphic>
                         </Button>
-                        <Button layoutX="897.0" layoutY="10.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="47.0">
+                        <Button fx:id="Homepage_minus" layoutX="904.0" layoutY="2.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="47.0">
                            <graphic>
                               <FontAwesomeIcon glyphName="MINUS" size="1.2em" />
                            </graphic>
@@ -42,10 +41,19 @@
          <bottom>
             <AnchorPane prefHeight="43.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" text="Home" />
-                  <Button layoutX="75.0" layoutY="9.0" mnemonicParsing="false" text="About Us" />
-                  <Button layoutX="151.0" layoutY="9.0" mnemonicParsing="false" text="Rooms" />
-                  <Button layoutX="215.0" layoutY="9.0" mnemonicParsing="false" text="Ticket Prices" />
+                  <Button fx:id="Homepage_home" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" text="Home">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="HOME" />
+                     </graphic></Button>
+                  <Button fx:id="Homepage_aboutUs" layoutX="87.0" layoutY="9.0" mnemonicParsing="false" text="About Us">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="INFO" />
+                     </graphic></Button>
+                  <Button fx:id="Homepage_Rooms" layoutX="169.0" layoutY="9.0" mnemonicParsing="false" text="Rooms" />
+                  <Button fx:id="Homepage_ticketPrices" layoutX="230.0" layoutY="9.0" mnemonicParsing="false" text="Ticket Prices">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="TICKET" />
+                     </graphic></Button>
                </children>
             </AnchorPane>
          </bottom>
@@ -57,24 +65,24 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Button layoutX="219.0" layoutY="36.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="View List" />
-                  <Button layoutX="219.0" layoutY="344.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="View List" />
-                  <Button layoutX="919.0" layoutY="188.0" mnemonicParsing="false">
+                  <Button fx:id="Homepage_viewList1" layoutX="219.0" layoutY="36.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="View List" />
+                  <Button fx:id="Homepage_viewList2" layoutX="219.0" layoutY="344.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="View List" />
+                  <Button fx:id="Homepage_right1" layoutX="919.0" layoutY="188.0" mnemonicParsing="false">
                      <graphic>
                         <FontAwesomeIcon glyphName="ARROW_RIGHT" size="1.5em" />
                      </graphic>
                   </Button>
-                  <Button layoutX="41.0" layoutY="188.0" mnemonicParsing="false">
+                  <Button fx:id="Homepage_left1" layoutX="41.0" layoutY="188.0" mnemonicParsing="false">
                      <graphic>
                         <FontAwesomeIcon glyphName="ARROW_LEFT" size="1.5em" />
                      </graphic>
                   </Button>
-                  <Button layoutX="919.0" layoutY="526.0" mnemonicParsing="false">
+                  <Button fx:id="Homepage_right2" layoutX="919.0" layoutY="526.0" mnemonicParsing="false">
                      <graphic>
                         <FontAwesomeIcon glyphName="ARROW_RIGHT" size="1.5em" />
                      </graphic>
                   </Button>
-                  <Button layoutX="41.0" layoutY="526.0" mnemonicParsing="false">
+                  <Button fx:id="Homepage_left2" layoutX="41.0" layoutY="526.0" mnemonicParsing="false">
                      <graphic>
                         <FontAwesomeIcon glyphName="ARROW_LEFT" size="1.5em" />
                      </graphic>
@@ -100,19 +108,19 @@
                   </AnchorPane>
                   <AnchorPane layoutX="312.0" prefHeight="47.0" prefWidth="688.0">
                      <children>
-                        <Button layoutX="138.0" layoutY="11.0" mnemonicParsing="false" text="Home">
+                        <Button fx:id="Homepage_Home" layoutX="138.0" layoutY="11.0" mnemonicParsing="false" text="Home">
                            <graphic>
                               <FontAwesomeIcon glyphName="HOME" />
                            </graphic>
                         </Button>
-                        <Button layoutX="210.0" layoutY="11.0" mnemonicParsing="false" text="Now Showing" />
-                        <Button layoutX="308.0" layoutY="11.0" mnemonicParsing="false" text="Coming Soon" />
-                        <Button layoutX="406.0" layoutY="11.0" mnemonicParsing="false" text="Buy Ticket">
+                        <Button fx:id="Homepage_nowShowing" layoutX="210.0" layoutY="11.0" mnemonicParsing="false" text="Now Showing" />
+                        <Button fx:id="Homepage_comingSoon" layoutX="308.0" layoutY="11.0" mnemonicParsing="false" text="Coming Soon" />
+                        <Button fx:id="Homepage_buyTicket" layoutX="406.0" layoutY="11.0" mnemonicParsing="false" text="Buy Ticket">
                            <graphic>
                               <FontAwesomeIcon glyphName="TICKET" />
                            </graphic>
                         </Button>
-                        <Button layoutX="499.0" layoutY="7.0" mnemonicParsing="false" text="Search">
+                        <Button fx:id="Homepage_search" layoutX="499.0" layoutY="7.0" mnemonicParsing="false" text="Search">
                            <graphic>
                               <TextField prefHeight="25.0" prefWidth="123.0" />
                            </graphic>
