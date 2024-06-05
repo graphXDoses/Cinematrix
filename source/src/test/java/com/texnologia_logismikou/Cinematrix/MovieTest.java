@@ -60,4 +60,6 @@ public class MovieTest {
 	//The same applies to Movie.duration getter/setter.
 	//setExpireDate(): If the expiration date that is being set is smaller than the release date then
 	//an error value of 0 should be set instead. (Or some other default value)
+	//All the getter/setter methods of type String should follow the same rules as the comments mention
+	//in CustomerTest.java
 }
