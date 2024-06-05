@@ -50,7 +50,7 @@ public class MovieTest {
 		tempMovie.setExpireDate(expireDate);
 		tempMovie.setReleaseDate(releaseDate);
 		
-		assertEquals(expireDate, 0);
+		assertEquals(0, 15);
 	}
 	
 	//How can the code pass the Unit tests?
