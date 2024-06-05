@@ -10,7 +10,7 @@ public class CustomerTest {
 	//Since Customer.email and Customer.phone_number are both uninitialized strings, there is no reason to 
 	//create their tests since they would be the exact same as this one.
 	@Test
-	void getFullNameTest() {
+	void getFullNameUninitialized() {
 		
 		Customer tempCustomer = new Customer();
 		String customerName = tempCustomer.getFull_name();
@@ -23,7 +23,7 @@ public class CustomerTest {
 	//It can only receive Strings but there is a chance the String they receive is null.
 	//The other setters should follow the same example.
 	@Test
-	void setFullNameTest() {
+	void setFullNameAsNull() {
 		
 		Customer tempCustomer = new Customer();
 		String customerName = null;
@@ -31,4 +31,12 @@ public class CustomerTest {
 		
 		assertNotNull(tempCustomer.getFull_name(), "The customer's name is set, with the setter method, as null!");
 	}
+	
+	//How can the code pass the Unit tests?
+	//For the Unit tests to pass, the methods used must produce the expected result.
+	//setFullName(): The given argument must never be null. If it is, then an empty String or some other default value
+	//should be set.
+	//getFullName(): If the attribute that will be returned is null then an empty String or some other default value 
+	//should be returned.
+	//The same applies for all getter/setter methods of type String.
 }
