@@ -1,3 +1,9 @@
-.button {
-    -fx-text-fill: blue;
+.close{
+	-fx-background-color:transparent;
+	-fx-cursor:hand;
+}
+
+.minimize{
+	-fx-background-color:transparent;
+	-fx-cursor:hand;
 }
