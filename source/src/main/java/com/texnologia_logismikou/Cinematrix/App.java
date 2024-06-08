@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.v1.FirestoreClient;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.FirebaseApp;
 
@@ -54,6 +56,6 @@ public class App extends Application {
 		}
     			  
     	FirebaseApp.initializeApp(options);
-
+    	Firestore db = com.google.firebase.cloud.FirestoreClient.getFirestore();
     }
 }
