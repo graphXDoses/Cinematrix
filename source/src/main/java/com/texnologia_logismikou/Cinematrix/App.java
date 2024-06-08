@@ -72,7 +72,7 @@ public class App extends Application {
     	HashMap<String, Object> videoGames = new HashMap<String, Object>();
     	//Change the code below and add some different values to see them added in the db
     	// ([key], [value])
-    	videoGames.put("ds3", "Dark Souls 3");
+    	videoGames.put("p5", "Persona 5");
     	//I haven't searched yet what future does.
     	ApiFuture<WriteResult> future = db.collection("TestCollection").document("GoodVideoGames").update(videoGames);
     	System.out.println("Added new entry to video games document!");
