@@ -2,11 +2,17 @@ package com.texnologia_logismikou.Cinematrix;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 
+//Google Firestore & Firebase imports.
+import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.WriteResult;
 import com.google.cloud.firestore.v1.FirestoreClient;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.core.Path;
 import com.google.firebase.FirebaseApp;
 
 import javafx.application.Application;
@@ -29,6 +35,9 @@ public class App extends Application {
         var scene = new Scene(new StackPane(label), 640, 480);
         stage.setScene(scene);
         stage.show();
+        
+        //Function that 
+        initiateFirebase();
     }
 
     public static void main(String[] args) {
@@ -40,7 +49,7 @@ public class App extends Application {
     	FileInputStream serviceAccount = null;
     	
     	try {
-    		serviceAccount = new FileInputStream("C:/Users/petsi/University/TexLog/serviceAccountKey.json");
+    		serviceAccount = new FileInputStream("C:/Users/petsi/University/TexLog/fir-test-java-key.json");
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -57,5 +66,15 @@ public class App extends Application {
     			  
     	FirebaseApp.initializeApp(options);
     	Firestore db = com.google.firebase.cloud.FirestoreClient.getFirestore();
+    	
+    	//Create a hash map to store the items you want to add to the database. The type needs to be
+    	//<String, Object>
+    	HashMap<String, Object> videoGames = new HashMap<String, Object>();
+    	//Change the code below and add some different values to see them added in the db
+    	// ([key], [value])
+    	videoGames.put("ds3", "Dark Souls 3");
+    	//I haven't searched yet what future does.
+    	ApiFuture<WriteResult> future = db.collection("TestCollection").document("GoodVideoGames").update(videoGames);
+    	System.out.println("Added new entry to video games document!");
     }
 }

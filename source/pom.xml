@@ -36,7 +36,20 @@
 		    <artifactId>firebase-admin</artifactId>
 		    <version>9.3.0</version>
 		</dependency>
+		
+		<dependency>
+        	<groupId>com.google.cloud</groupId>
+        	<artifactId>google-cloud-core</artifactId>
+        	<version>2.6.1</version>
+    	</dependency>
+
+    	<dependency>
+        	<groupId>com.google.cloud</groupId>
+        	<artifactId>google-cloud-firestore</artifactId>
+        	<version>3.0.21</version>
+    	</dependency>
     </dependencies>
+    
     <build>
 		<testResources>
             <testResource>
