@@ -1,5 +1,8 @@
 package com.texnologia_logismikou.Cinematrix;
 
+import java.util.Enumeration;
+import java.util.HashMap;
+
 public class Movie {
 	private String title;
 	private int releaseDate;
@@ -10,6 +13,19 @@ public class Movie {
 	private String director;
 	private String trailerLink;
 	
+	//Empty constructor
+	public Movie() {
+		
+	}
+	
+	//Constructor with some fields initialized for testing.
+	public Movie(String title, int releaseDate, int duration, int expireDate) {
+		
+		this.title = title;
+		this.releaseDate = releaseDate;
+		this.expireDate = expireDate;
+		this.duration = duration;
+	}
 	
 	//Getters and Setters
 	public String getTitle() {
@@ -61,5 +77,14 @@ public class Movie {
 		this.trailerLink = trailerLink;
 	}
 	
-	
+	public HashMap<String, Object> setupMovie() {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("title", this.title);
+		map.put("duration", this.duration);
+		map.put("releaseDate", this.releaseDate);
+		map.put("expireDate", this.expireDate);
+		
+		return map;
+	}
 }

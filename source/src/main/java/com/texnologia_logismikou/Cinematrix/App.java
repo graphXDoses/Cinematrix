@@ -73,8 +73,13 @@ public class App extends Application {
     	//Change the code below and add some different values to see them added in the db
     	// ([key], [value])
     	videoGames.put("p5", "Persona 5");
+    	
+    	//HashMap<String, Object> newMovie = new HashMap<String, Object>();
+    	Movie temp = new Movie("Rush Hour", 12, 90, 30);
+    	//newMovie.put(temp.getTitle(), temp);
+    	
     	//I haven't searched yet what future does.
-    	ApiFuture<WriteResult> future = db.collection("TestCollection").document("GoodVideoGames").update(videoGames);
+    	ApiFuture<WriteResult> future = db.collection("TestCollection").document("GoodVideoGames").update(temp.setupMovie());
     	System.out.println("Added new entry to video games document!");
     }
 }
