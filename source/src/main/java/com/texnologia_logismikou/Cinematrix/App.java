@@ -24,8 +24,6 @@ public class App extends Application {
         
         stage.setTitle("Cinematrix");
         stage.getIcons().add(new Image(getClass().getResource("images/CinematrixIcon.png").toExternalForm()));
-        // 
-        //stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }
