@@ -33,3 +33,14 @@
     -fx-background-radius: 60;
     -fx-border-radius: 60;
 }
+
+.movie-modal
+{
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.movie-modal-gradient
+{
+    -fx-background-color: linear-gradient(to top, #676767, transparent);
+}
