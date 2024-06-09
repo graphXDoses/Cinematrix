@@ -74,12 +74,12 @@ public class App extends Application {
     	// ([key], [value])
     	videoGames.put("p5", "Persona 5");
     	
-    	//HashMap<String, Object> newMovie = new HashMap<String, Object>();
-    	Movie temp = new Movie("Rush Hour", 12, 90, 30);
-    	//newMovie.put(temp.getTitle(), temp);
+    	HashMap<String, Object> newMovieMap = new HashMap<String, Object>();
+    	Movie newMovie = new Movie("Rush Hour", 12, 120, 30);
+    	newMovieMap.put(newMovie.getTitle(), newMovie.setupMovie());
     	
     	//I haven't searched yet what future does.
-    	ApiFuture<WriteResult> future = db.collection("TestCollection").document("GoodVideoGames").update(temp.setupMovie());
+    	ApiFuture<WriteResult> future = db.collection("TestCollection").document("GoodVideoGames").update(newMovieMap);
     	System.out.println("Added new entry to video games document!");
     }
 }
