@@ -52,7 +52,7 @@ public class App extends Application {
     	
     	//Close the file and exit the method.
     	try {
-    		serviceAccount = new FileInputStream("C:/Users/petsi/University/TexLog/fir-test-java-key.json");
+    		serviceAccount = new FileInputStream("C:/Users/petsi/University/TexLog/firebase_cred_phoebus.json");
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			System.out.println("Database error. Cannot continue operation!");
