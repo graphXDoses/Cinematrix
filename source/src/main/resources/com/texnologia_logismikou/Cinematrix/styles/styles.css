@@ -1,0 +1,35 @@
+.dark-background
+{
+    -fx-background-color: #222222;
+}
+
+.border-bottom
+{
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #676767;
+}
+
+.search-bar-textfield
+{
+    -fx-text-box-border: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-prompt-text-fill: gray;
+}
+
+.search-bar-btn
+{
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-color: #337cf2;
+    -fx-border-radius: 60;
+    -fx-background-radius: 60;
+}
+
+.search-bar
+{
+    -fx-background-color: silver;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-radius: 60;
+    -fx-border-radius: 60;
+}
