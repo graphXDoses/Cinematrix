@@ -28,6 +28,8 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
+	private Cinema_System cinemaSystem = new Cinema_System();
+	
     @Override
     public void start(Stage stage) {
         var javaVersion = SystemInfo.javaVersion();
@@ -37,9 +39,8 @@ public class App extends Application {
         var scene = new Scene(new StackPane(label), 640, 480);
         stage.setScene(scene);
         stage.show();
-        
-        //Function that initializes the Firebase.
-        initiateFirebase();
+     
+        cinemaSystem.initializeFirebaseApp();
     }
 
     public static void main(String[] args) {
@@ -78,6 +79,15 @@ public class App extends Application {
 		}
     	
     	FirebaseApp.initializeApp(options);
+    	
+    	//Close the json file.
+    	try {
+			serviceAccount.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     	Firestore db = com.google.firebase.cloud.FirestoreClient.getFirestore();
     	
     	//Create a hash map to store the items you want to add to the database. The type needs to be
@@ -124,5 +134,12 @@ public class App extends Application {
     	} else {
     		System.out.println("No such document exists!");
     	}
+    	
+    	try {
+			db.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

@@ -6,12 +6,16 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.Firestore;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 
 public class Cinema_System {
 	
 	private static final String CREDENTIALS_PATH = "C:/Users/petsi/University/TexLog/firebase_cred_phoebus.json"; 
+	
+	private static FirebaseApp app = null;
+	private static Firestore db = null;
 	
 	private ArrayList<Movie> allMovieList = new ArrayList<>();
 	private ArrayList<Movie> nowMovieList = new ArrayList<>();
@@ -111,14 +115,22 @@ public class Cinema_System {
 	//Initializes the FirebaseApplication.
 	//Exceptions will be caught and messages will be printed corresponding to the place of the error.
 	//There is a chance that the FirebaseApp gets initialized but the JSON file doesn't close properly.
-	private void initializeFirebaseApp() {
+	public void initializeFirebaseApp() {
 		
 		try(InputStream serviceAccount = new FileInputStream(CREDENTIALS_PATH)) {
 			
 			try {
 				FirebaseOptions options = FirebaseOptions.builder().setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
 				
-				FirebaseApp.initializeApp(options);
+				try {
+					app = FirebaseApp.initializeApp(options, "Cinematrix");
+				} catch (Exception e) {
+					
+					System.out.println("A Firebase app already exists!");
+					System.out.println("Exception details: " + e.toString());
+					System.out.println("\n------------------------------\n");
+					return;
+				}
 			} catch (IOException e) {
 				
 				System.out.println("There was an error verifying the credentials with Google. The process will be terminated.");
@@ -135,6 +147,37 @@ public class Cinema_System {
 			System.out.println("Exception details: " + e.toString());
 			System.out.println("\n------------------------------\n");
 			return;
-		}	
+		}
+		
+		System.out.println(FirebaseApp.getApps().toString());
+	}
+	
+	//Deletes the Firebase App.
+	public void deleteFirebaseApp() {
+		
+		app.delete();
+		app = null;
+	}
+	
+	//Method that gets a Firestore isntance and stores it in the field db.
+	//Open the database connection but DO NOT FORGET to close it, using closeFirestore(), once the operation is done.
+	public void getFirestore() {
+		
+		db = com.google.firebase.cloud.FirestoreClient.getFirestore();
+	}
+	
+	//Closes the connection to the Firestore database.
+	public void closeFirestore() {
+		
+		try {
+			db.close();
+		} catch (Exception e) {
+			
+			System.out.println("There was an error closing the connection with the Database.");
+			System.out.println("Exception details: " + e.toString());
+			System.out.println("\n------------------------------\n");
+		}
+		
+		db = null;
 	}
 }
