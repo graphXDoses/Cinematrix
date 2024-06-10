@@ -10,5 +10,7 @@ module com.texnologia_logismikou.Cinematrix {
     requires google.cloud.core;
     //Google Firebase and Cloud Firestore requirements.
     
+    opens com.texnologia_logismikou.Cinematrix to google.cloud.firestore;
+    
     exports com.texnologia_logismikou.Cinematrix;
 }

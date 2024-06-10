@@ -14,6 +14,7 @@ public class Movie {
 	private String trailerLink;
 	
 	//Empty constructor
+	//MUST REMAIN!!!
 	public Movie() {
 		
 	}
@@ -75,17 +76,5 @@ public class Movie {
 	}
 	public void setTrailerLink(String trailerLink) {
 		this.trailerLink = trailerLink;
-	}
-	
-	//Generates a HashMap<String, Object> with all the information of the Movie (currently only a few fields for testing purposes).
-	public HashMap<String, Object> generateMap() {
-		
-		HashMap<String, Object> movieMap = new HashMap<String, Object>();
-		movieMap.put("Title", title);
-		movieMap.put("Duration", duration);
-		movieMap.put("Release Date", releaseDate);
-		movieMap.put("Expire Date", expireDate);
-		
-		return movieMap;
 	}
 }

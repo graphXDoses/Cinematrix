@@ -11,7 +11,11 @@ import java.util.concurrent.ExecutionException;
 
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.SetOptions;
 import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -205,12 +209,12 @@ public class Cinema_System {
 		System.out.println("\nType movie expire date: ");
 		movie.setExpireDate(input.nextInt());
 		
-		addMoviesToDb(movie.generateMap(), movie.getTitle());
+		addMoviesToDb(movie);
 	}
 	
 	//This method creates a new document, with the name Movie.title and stores all the information of 
 	//the HashMap inside it.
-	private void addMoviesToDb(HashMap<String, Object> movieMap, String title) {
+	private void addMoviesToDb(Movie movie) {
 		
 		if(db == null) {
 			
@@ -218,7 +222,7 @@ public class Cinema_System {
 			return;
 		}
 		
-		ApiFuture<WriteResult> future = db.collection("Movies").document(title).set(movieMap);
+		ApiFuture<WriteResult> future = db.collection("Movies").document(movie.getTitle()).set(movie, SetOptions.merge());
 		
 		try {
 			
@@ -244,5 +248,22 @@ public class Cinema_System {
 		
 		System.out.println("Exception details: " + e.toString());
 		System.out.println("\n----------------------------------------------------------------------------------\n");
+	}
+
+	public void updateAllMovieList() {
+		
+		CollectionReference colRef = null;
+		DocumentReference docRef = null;
+		DocumentSnapshot docSnap = null;
+		
+		if(db == null) {
+			
+			System.out.println("No instance of Firestore!");
+			return;
+		}
+		
+		colRef = db.collection("Movies");
+		
+		return;
 	}
 }
