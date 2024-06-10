@@ -64,11 +64,10 @@
          </padding>
       </HBox>
    </top>
+   <bottom>
+      <HBox prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <fx:include source="MovieDisplayArea.fxml" />
-         </children>
-      </VBox>
+      <fx:include source="MovieDisplayArea.fxml" />
    </center>
 </BorderPane>

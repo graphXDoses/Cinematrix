@@ -16,13 +16,11 @@ public class MovieController{
     @FXML
     private HBox now_featuring_modals;
     
+    @FXML
+    private HBox upcomming_modals;
+    
     private List<Movie> movies;
     private Parent root;
-
-	public void sceneGenerator(String fxml) throws IOException {
-		root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("screens/" + fxml + ".fxml")));
-		System.out.println(root.toString());
-	}
 	
 	@FXML
 	void initialize()
@@ -43,6 +41,15 @@ public class MovieController{
 				
 				now_featuring_modals.getChildren().add(root);
 			}
+			
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(getClass().getResource("screens/MovieModal.fxml"));
+			root = fxmlLoader.load();
+			
+			MovieModalController controller = fxmlLoader.getController();
+			controller.setData(new Movie("images/_Napoleon_Cover.jpg"));
+			
+			upcomming_modals.getChildren().add(root);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
