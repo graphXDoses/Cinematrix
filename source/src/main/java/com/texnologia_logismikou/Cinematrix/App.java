@@ -37,10 +37,11 @@ public class App extends Application {
 
         var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
         var scene = new Scene(new StackPane(label), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+        //stage.setScene(scene);
+        //stage.show();
      
-        cinemaSystem.initializeFirebaseApp();
+        cinemaSystem.initializeFirebase();
+        cinemaSystem.handleInput();
     }
 
     public static void main(String[] args) {
@@ -102,8 +103,6 @@ public class App extends Application {
     	HashMap<String, Object> newMovieMap = new HashMap<String, Object>();
     	Movie newMovie = new Movie("Rush Hour", 12, 120, 30);
     	Movie newMovie2 = new Movie("Perfect Blue", 15, 90, 28);
-    	newMovieMap.put(newMovie.getTitle(), newMovie.setupMovie());
-    	newMovieMap.put(newMovie2.getTitle(), newMovie2.setupMovie());
     	
     	//I haven't searched yet what future does. It has to do with asynchronous actions taking place.
     	//The update() method adds an entry to the document with name Movie, in the collection named TestCollection.

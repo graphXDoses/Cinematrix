@@ -3,6 +3,7 @@ package com.texnologia_logismikou.Cinematrix;
 import java.util.HashMap;
 
 public class Movie {
+	
 	private String title;
 	private int releaseDate;
 	private int duration;
@@ -76,14 +77,15 @@ public class Movie {
 		this.trailerLink = trailerLink;
 	}
 	
-	public HashMap<String, Object> setupMovie() {
+	//Generates a HashMap<String, Object> with all the information of the Movie (currently only a few fields for testing purposes).
+	public HashMap<String, Object> generateMap() {
 		
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("title", this.title);
-		map.put("duration", this.duration);
-		map.put("releaseDate", this.releaseDate);
-		map.put("expireDate", this.expireDate);
+		HashMap<String, Object> movieMap = new HashMap<String, Object>();
+		movieMap.put("Title", title);
+		movieMap.put("Duration", duration);
+		movieMap.put("Release Date", releaseDate);
+		movieMap.put("Expire Date", expireDate);
 		
-		return map;
+		return movieMap;
 	}
 }

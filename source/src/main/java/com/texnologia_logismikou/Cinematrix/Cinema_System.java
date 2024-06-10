@@ -4,9 +4,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.ExecutionException;
 
+import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 
@@ -115,7 +121,8 @@ public class Cinema_System {
 	//Initializes the FirebaseApplication.
 	//Exceptions will be caught and messages will be printed corresponding to the place of the error.
 	//There is a chance that the FirebaseApp gets initialized but the JSON file doesn't close properly.
-	public void initializeFirebaseApp() {
+	//This method also sets a Firestore instance.
+	public void initializeFirebase() {
 		
 		try(InputStream serviceAccount = new FileInputStream(CREDENTIALS_PATH)) {
 			
@@ -123,19 +130,17 @@ public class Cinema_System {
 				FirebaseOptions options = FirebaseOptions.builder().setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
 				
 				try {
-					app = FirebaseApp.initializeApp(options, "Cinematrix");
+					app = FirebaseApp.initializeApp(options);
 				} catch (Exception e) {
 					
 					System.out.println("A Firebase app already exists!");
-					System.out.println("Exception details: " + e.toString());
-					System.out.println("\n------------------------------\n");
+					Cinema_System.showExceptionDetails(e);
 					return;
 				}
 			} catch (IOException e) {
 				
 				System.out.println("There was an error verifying the credentials with Google. The process will be terminated.");
-				System.out.println("Exception details: " + e.toString());
-				System.out.println("\n------------------------------\n");
+				Cinema_System.showExceptionDetails(e);
 				return;
 			}
 			
@@ -144,12 +149,19 @@ public class Cinema_System {
 		} catch(IOException e) {
 			
 			System.out.println("There was an error reading/closing the JSON file. The process will be terminated.");
-			System.out.println("Exception details: " + e.toString());
-			System.out.println("\n------------------------------\n");
+			Cinema_System.showExceptionDetails(e);
 			return;
 		}
 		
+		db = com.google.firebase.cloud.FirestoreClient.getFirestore();
+		
 		System.out.println(FirebaseApp.getApps().toString());
+	}
+	
+	//Sets the field db to an instance of Firestore.
+	public void setFirestore() {
+		
+		db = com.google.firebase.cloud.FirestoreClient.getFirestore();
 	}
 	
 	//Deletes the Firebase App.
@@ -157,13 +169,6 @@ public class Cinema_System {
 		
 		app.delete();
 		app = null;
-	}
-	
-	//Method that gets a Firestore isntance and stores it in the field db.
-	//Open the database connection but DO NOT FORGET to close it, using closeFirestore(), once the operation is done.
-	public void getFirestore() {
-		
-		db = com.google.firebase.cloud.FirestoreClient.getFirestore();
 	}
 	
 	//Closes the connection to the Firestore database.
@@ -174,10 +179,70 @@ public class Cinema_System {
 		} catch (Exception e) {
 			
 			System.out.println("There was an error closing the connection with the Database.");
-			System.out.println("Exception details: " + e.toString());
-			System.out.println("\n------------------------------\n");
+			Cinema_System.showExceptionDetails(e);
 		}
 		
 		db = null;
+	}
+	
+	//Receives input for some of a movies fields.
+	//Then calls addMovieToDb while the movie instance generated a HashMap<String, Object>.
+	public void handleInput()  {
+		
+		Movie movie = new Movie();
+		
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Type movie name: ");
+		movie.setTitle(input.nextLine()); 
+		
+		System.out.println("\nType movie duration: ");
+		movie.setDuration(input.nextInt());
+		
+		System.out.println("\nType movie release date: ");
+		movie.setReleaseDate(input.nextInt());
+		
+		System.out.println("\nType movie expire date: ");
+		movie.setExpireDate(input.nextInt());
+		
+		addMoviesToDb(movie.generateMap(), movie.getTitle());
+	}
+	
+	//This method creates a new document, with the name Movie.title and stores all the information of 
+	//the HashMap inside it.
+	private void addMoviesToDb(HashMap<String, Object> movieMap, String title) {
+		
+		if(db == null) {
+			
+			System.out.println("No Firestore instance. Use initializeFirebase().");
+			return;
+		}
+		
+		ApiFuture<WriteResult> future = db.collection("Movies").document(title).set(movieMap);
+		
+		try {
+			
+			System.out.println("Database updated at: " + future.get().getUpdateTime());
+			closeFirestore();
+		} catch (CancellationException e) {
+			
+			System.out.println("The process was cancelled.");
+			Cinema_System.showExceptionDetails(e);
+		} catch(ExecutionException e) {
+			
+			System.out.println("The execution run into an error.");
+			Cinema_System.showExceptionDetails(e);
+		} catch(InterruptedException e) {
+			
+			System.out.println("The process was interrupted.");
+			Cinema_System.showExceptionDetails(e);
+		}
+	}
+	
+	//A method used to print information in the console when exceptions are caught.
+	public static void showExceptionDetails(Exception e) {
+		
+		System.out.println("Exception details: " + e.toString());
+		System.out.println("\n----------------------------------------------------------------------------------\n");
 	}
 }
