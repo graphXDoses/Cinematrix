@@ -4,10 +4,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
+import java.util.List;
 
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -15,6 +15,8 @@ import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.SetOptions;
 import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.FirebaseApp;
@@ -122,8 +124,6 @@ public class Cinema_System {
 		TicketList = ticketList;
 	}
 	
-	//Initializes the FirebaseApplication.
-	//Exceptions will be caught and messages will be printed corresponding to the place of the error.
 	//There is a chance that the FirebaseApp gets initialized but the JSON file doesn't close properly.
 	//This method also sets a Firestore instance.
 	public void initializeFirebase() {
@@ -148,7 +148,7 @@ public class Cinema_System {
 				return;
 			}
 			
-			//Close file.
+			//JSON needs to be closed.
 			serviceAccount.close();
 		} catch(IOException e) {
 			
@@ -162,20 +162,17 @@ public class Cinema_System {
 		System.out.println(FirebaseApp.getApps().toString());
 	}
 	
-	//Sets the field db to an instance of Firestore.
 	public void setFirestore() {
 		
 		db = com.google.firebase.cloud.FirestoreClient.getFirestore();
 	}
 	
-	//Deletes the Firebase App.
 	public void deleteFirebaseApp() {
 		
 		app.delete();
 		app = null;
 	}
 	
-	//Closes the connection to the Firestore database.
 	public void closeFirestore() {
 		
 		try {
@@ -212,8 +209,6 @@ public class Cinema_System {
 		addMoviesToDb(movie);
 	}
 	
-	//This method creates a new document, with the name Movie.title and stores all the information of 
-	//the HashMap inside it.
 	private void addMoviesToDb(Movie movie) {
 		
 		if(db == null) {
@@ -225,25 +220,20 @@ public class Cinema_System {
 		ApiFuture<WriteResult> future = db.collection("Movies").document(movie.getTitle()).set(movie, SetOptions.merge());
 		
 		try {
-			
 			System.out.println("Database updated at: " + future.get().getUpdateTime());
 			closeFirestore();
 		} catch (CancellationException e) {
-			
 			System.out.println("The process was cancelled.");
 			Cinema_System.showExceptionDetails(e);
 		} catch(ExecutionException e) {
-			
 			System.out.println("The execution run into an error.");
 			Cinema_System.showExceptionDetails(e);
 		} catch(InterruptedException e) {
-			
 			System.out.println("The process was interrupted.");
 			Cinema_System.showExceptionDetails(e);
 		}
 	}
 	
-	//A method used to print information in the console when exceptions are caught.
 	public static void showExceptionDetails(Exception e) {
 		
 		System.out.println("Exception details: " + e.toString());
@@ -253,17 +243,34 @@ public class Cinema_System {
 	public void updateAllMovieList() {
 		
 		CollectionReference colRef = null;
-		DocumentReference docRef = null;
-		DocumentSnapshot docSnap = null;
 		
 		if(db == null) {
 			
 			System.out.println("No instance of Firestore!");
-			return;
+			setFirestore();
 		}
 		
 		colRef = db.collection("Movies");
+		ApiFuture<QuerySnapshot> future = colRef.get();
 		
-		return;
+		try {
+			List<QueryDocumentSnapshot> docs = future.get().getDocuments();
+			for(QueryDocumentSnapshot doc : docs) {
+				//System.out.println(doc.toObject(Movie.class).toString());
+				allMovieList.add(doc.toObject(Movie.class));
+			}
+			System.out.println("The snapshot was read in: " + future.get().getReadTime());
+			System.out.println(allMovieList.toString());
+			closeFirestore();
+		} catch (CancellationException e) {
+			System.out.println("The process was cancelled.");
+			Cinema_System.showExceptionDetails(e);
+		} catch(ExecutionException e) {
+			System.out.println("The execution run into an error.");
+			Cinema_System.showExceptionDetails(e);
+		} catch(InterruptedException e) {
+			System.out.println("The process was interrupted.");
+			Cinema_System.showExceptionDetails(e);
+		}
 	}
 }

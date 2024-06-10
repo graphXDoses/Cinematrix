@@ -77,4 +77,19 @@ public class Movie {
 	public void setTrailerLink(String trailerLink) {
 		this.trailerLink = trailerLink;
 	}
+	
+	@Override
+	public String toString() {
+		
+		String string;
+		
+		string = "Movie details:"
+				+ "\n   Title: " + title
+				+ "\n   Duration: " + duration
+				+ "\n   Release Date: " + releaseDate
+				+ "\n   Expire Date: " + expireDate
+				+ "\n-------------------->";
+		
+		return string;
+	}
 }
