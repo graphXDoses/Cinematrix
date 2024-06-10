@@ -1,12 +1,35 @@
+*
+{
+    -fx-bg: #222222;
+    -fx-fg: #676767;
+    -fx-c1: #337cf2;
+    -fx-c2: #68d7e0;
+}
+
+.context-button, .context-button-flap-l, .context-button-flap-r, .context-button-container, .border-bottom
+{
+    -fx-gradColor1: -fx-c1;
+    -fx-gradColor2: -fx-bg;
+}
+
+.about-button
+{
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color: transparent;
+}
+
 .dark-background
 {
-    -fx-background-color: #222222;
+    -fx-background-color: -fx-bg;
 }
 
 .border-bottom
 {
     -fx-border-width: 0 0 2 0;
-    -fx-border-color: #676767;
+    -fx-border-color: -fx-gradColor1;
 }
 
 .search-bar-textfield
@@ -20,9 +43,14 @@
 {
     -fx-border-width: 0;
     -fx-border-color: transparent;
-    -fx-background-color: #337cf2;
+    -fx-background-color: -fx-c1;
     -fx-border-radius: 60;
     -fx-background-radius: 60;
+}
+
+.search-bar-btn:hover
+{
+    -fx-background-color: -fx-c2;
 }
 
 .search-bar
@@ -36,11 +64,85 @@
 
 .movie-modal
 {
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
 }
 
 .movie-modal-gradient
 {
-    -fx-background-color: linear-gradient(to top, #676767, transparent);
+    -fx-background-color: linear-gradient(to top, -fx-fg, transparent);
+}
+/* ////////////////////////////////////////// */
+.inactive-context-button
+{
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.inactive-context-button-flap-bg
+{
+    -fx-background-color: transparent;
+}
+
+.inactive-context-button-flap-l
+{
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.inactive-context-button-flap-r
+{
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.inactive-context-button-container
+{
+    -fx-background-color: transparent;
+}
+/* ////////////////////////////////////////// */
+.active-context-button
+{
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-radius: 15 15 0 0;
+    /* -fx-border-radius: 15 15 0 0; */
+    -fx-background-color: linear-gradient(from 50% 85% to 50% 0%, -fx-gradColor1, -fx-gradColor2);
+}
+
+.active-context-button-flap-bg
+{
+    -fx-background-color: -fx-gradColor1;
+}
+
+.active-context-button-flap-l
+{
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-color: -fx-bg;
+    -fx-background-radius: 0 0 15 0;
+    -fx-border-radius: 0 0 15 0;
+}
+
+.active-context-button-flap-r
+{
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-color: -fx-bg;
+    -fx-background-radius: 0 0 0 15;
+    -fx-border-radius: 0 0 0 15;
+}
+
+.active-context-button-container
+{
+    -fx-background-color: -fx-bg;
 }

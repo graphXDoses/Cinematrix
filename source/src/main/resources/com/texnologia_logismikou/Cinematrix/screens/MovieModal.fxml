@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 
-
-<AnchorPane prefHeight="300.0" prefWidth="220.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.MovieModalController">
+<Pane prefHeight="300.0" prefWidth="220.0" styleClass="movie-modal" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.MovieModalController">
    <children>
       <ImageView fx:id="mdl_cover" fitHeight="300.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" />
       <HBox layoutY="200.0" prefHeight="100.0" prefWidth="220.0" styleClass="movie-modal-gradient" stylesheets="@../styles/styles.css" />
    </children>
-</AnchorPane>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+</Pane>
