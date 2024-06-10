@@ -1,8 +1,17 @@
 package com.texnologia_logismikou.Cinematrix;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+
 public class Cinema_System {
+	
+	private static final String CREDENTIALS_PATH = "C:/Users/petsi/University/TexLog/firebase_cred_phoebus.json"; 
 	
 	private ArrayList<Movie> allMovieList = new ArrayList<>();
 	private ArrayList<Movie> nowMovieList = new ArrayList<>();
@@ -97,5 +106,35 @@ public class Cinema_System {
 
 	public void setTicketList(ArrayList<Ticket> ticketList) {
 		TicketList = ticketList;
+	}
+	
+	//Initializes the FirebaseApplication.
+	//Exceptions will be caught and messages will be printed corresponding to the place of the error.
+	//There is a chance that the FirebaseApp gets initialized but the JSON file doesn't close properly.
+	private void initializeFirebaseApp() {
+		
+		try(InputStream serviceAccount = new FileInputStream(CREDENTIALS_PATH)) {
+			
+			try {
+				FirebaseOptions options = FirebaseOptions.builder().setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
+				
+				FirebaseApp.initializeApp(options);
+			} catch (IOException e) {
+				
+				System.out.println("There was an error verifying the credentials with Google. The process will be terminated.");
+				System.out.println("Exception details: " + e.toString());
+				System.out.println("\n------------------------------\n");
+				return;
+			}
+			
+			//Close file.
+			serviceAccount.close();
+		} catch(IOException e) {
+			
+			System.out.println("There was an error reading/closing the JSON file. The process will be terminated.");
+			System.out.println("Exception details: " + e.toString());
+			System.out.println("\n------------------------------\n");
+			return;
+		}	
 	}
 }
