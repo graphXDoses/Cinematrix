@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -8,7 +9,8 @@
 <Pane prefHeight="300.0" prefWidth="220.0" styleClass="movie-modal" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.MovieModalController">
    <children>
       <ImageView fx:id="mdl_cover" fitHeight="300.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" />
-      <HBox layoutY="200.0" prefHeight="100.0" prefWidth="220.0" styleClass="movie-modal-gradient" stylesheets="@../styles/styles.css" />
+      <HBox fx:id="mld_halo" layoutY="200.0" prefHeight="100.0" prefWidth="220.0" styleClass="movie-modal-gradient" stylesheets="@../styles/styles.css" />
+      <Button fx:id="mdl_button" mnemonicParsing="false" prefHeight="300.0" prefWidth="220.0" styleClass="invisible-button" stylesheets="@../styles/styles.css" />
    </children>
    <cursor>
       <Cursor fx:constant="HAND" />

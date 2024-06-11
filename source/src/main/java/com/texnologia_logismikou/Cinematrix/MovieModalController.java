@@ -1,71 +1,44 @@
 package com.texnologia_logismikou.Cinematrix;
 
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcTo;
-import javafx.scene.shape.HLineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.VLineTo;
+import javafx.scene.layout.HBox;
+import javafx.util.Duration;
 
 public class MovieModalController {
 
 	@FXML
+    private Button mdl_button;
+	
+	@FXML
     private ImageView mdl_cover;
+	
+	@FXML
+    private HBox mld_halo;
 	
 	public void setData(Movie movie)
 	{
 		Image img = new Image(getClass().getResource(movie.getUrl()).toExternalForm());
 		mdl_cover.setImage(img);
-		/*
-		Rectangle clip = new Rectangle();
-		clip.setWidth(220);
-		clip.setHeight(300);
-		clip.setArcHeight(20);
-		clip.setArcWidth(20);
-		
-		mdl_cover.setClip(clip);
-		SnapshotParameters params = new SnapshotParameters();
-		params.setFill(Color.TRANSPARENT);
-		WritableImage image = mdl_cover.snapshot(params, null);
-		
-		mdl_cover.setClip(null);
-		mdl_cover.setImage(image);
-		mdl_cover.setFitWidth(220);
-		mdl_cover.setFitHeight(300);
-        mdl_cover.setClip(getClip(mdl_cover, .05, .05, .05, .05));
-		 */
 	}
 	
-	private Node getClip(ImageView imageView, double topLeft, double topRight, double bottomLeft, double bottomRight) {
-        Path clip;
+	@FXML
+	void initialize()
+	{
+		final FadeTransition fadeIn = new FadeTransition(Duration.millis(300));
+        fadeIn.setNode(mld_halo);
+        fadeIn.setToValue(1);
+        mdl_button.setOnMouseEntered(e -> fadeIn.playFromStart());
 
-        double height = imageView.getFitHeight();
-        double width = imageView.getFitWidth();
-        double radius1 = height * topLeft;
-        double radius2 = height * topRight;
-        double radius3 = height * bottomLeft;
-        double radius4 = height * bottomRight;
+        final FadeTransition fadeOut = new FadeTransition(Duration.millis(300));
+        fadeOut.setNode(mld_halo);
+        fadeOut.setToValue(0.0);
+        mdl_button.setOnMouseExited(e -> fadeOut.playFromStart());
 
-        clip = new Path(new MoveTo(0, radius1),
-                new ArcTo(radius1, radius1, 0, radius1, 0, false, true),
-                new HLineTo(width - radius2),
-                new ArcTo(radius2, radius2, 0, width, radius2, false, true),
-                new VLineTo(height - radius4),
-                new ArcTo(radius4, radius4, 0, width - radius4, height, false, true),
-                new HLineTo(radius3),
-                new ArcTo(radius3, radius3, 0, 0, height - radius3, false, true));
-
-        clip.setFill(Color.ALICEBLUE);
-
-        return clip;
-
-    }
+        mld_halo.setOpacity(0.0);
+	}
 	
 }

@@ -4,6 +4,9 @@
     -fx-fg: #676767;
     -fx-c1: #337cf2;
     -fx-c2: #68d7e0;
+
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
 .context-button, .context-button-flap-l, .context-button-flap-r, .context-button-container, .border-bottom
@@ -12,8 +15,18 @@
     -fx-gradColor2: -fx-bg;
 }
 
-.about-button
+.defButton:focused
 {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-effect: none;
+}
+
+.invisible-button
+{
+    -fx-background-insets: 0; /* Remove additional insets */
+    -fx-border-insets: 0;
+    -fx-effect: none;
     -fx-border-width: 0;
     -fx-border-color: transparent;
     -fx-focus-color: transparent;
@@ -46,6 +59,9 @@
     -fx-background-color: -fx-c1;
     -fx-border-radius: 60;
     -fx-background-radius: 60;
+    -fx-effect: none;
+    -fx-background-insets: 0; /* Remove additional insets */
+    -fx-border-insets: 0;
 }
 
 .search-bar-btn:hover
@@ -75,6 +91,9 @@
 /* ////////////////////////////////////////// */
 .inactive-context-button
 {
+    -fx-background-insets: 0; /* Remove additional insets */
+    -fx-border-insets: 0;
+    -fx-effect: none;
     -fx-border-width: 0;
     -fx-border-color: transparent;
     -fx-focus-color: transparent;
@@ -112,6 +131,9 @@
 /* ////////////////////////////////////////// */
 .active-context-button
 {
+    -fx-background-insets: 0; /* Remove additional insets */
+    -fx-border-insets: 0;
+    -fx-effect: none;
     -fx-border-width: 0;
     -fx-border-color: transparent;
     -fx-background-radius: 15 15 0 0;
@@ -147,7 +169,12 @@
     -fx-background-color: -fx-bg;
 }
 
-.scroll-pane-background, .scroll-area
-{
-    -fx-background-color: -fx-bg;
+.crank, .crank > .viewport {  //not .scrollpane but .scroll-pane
+    -fx-background-insets: 0; /* Remove additional insets */
+    -fx-border-insets: 0;
+    -fx-effect: none;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }

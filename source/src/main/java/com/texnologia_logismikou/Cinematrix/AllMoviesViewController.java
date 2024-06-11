@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.HBox;
 
 
-public class MovieController{
+public class AllMoviesViewController{
 
     @FXML
     private HBox now_featuring_modals;

@@ -4,14 +4,17 @@
     <groupId>com.texnologia_logismikou</groupId>
     <artifactId>Cinematrix</artifactId>
     <name>Cinematrix</name>
-    <version>0.8.0</version>
+    <version>0.6.3</version>
     <packaging>jar</packaging>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
         <javafx.version>21</javafx.version>
         <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
+        <AppVersion>${project.version}</AppVersion>
     </properties>
+    
     <dependencies>
 		<dependency>
 		    <groupId>org.junit.jupiter</groupId>
@@ -60,6 +63,23 @@
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-surefire-plugin</artifactId>
 			    <version>3.2.5</version>
+			</plugin>
+			
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId> 
+			    <artifactId>properties-maven-plugin</artifactId> 
+			    <version>1.0.0</version> 
+			    <executions> 
+			        <execution> 
+			            <phase>generate-resources</phase> 
+			            <goals> 
+			                <goal>write-project-properties</goal> 
+			            </goals> 
+			            <configuration> 
+			                <outputFile>${project.build.outputDirectory}/properties-from-pom.properties</outputFile> 
+			            </configuration> 
+			        </execution> 
+			    </executions> 
 			</plugin>
 			
 			<plugin>
