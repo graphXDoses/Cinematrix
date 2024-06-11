@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<SplitPane dividerPositions="0.5" prefHeight="507.0" prefWidth="664.0" style="-fx-background-color: #222222;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <items>
+      <AnchorPane maxWidth="500.0">
+         <children>
+            <VBox alignment="TOP_CENTER" minWidth="343.0" prefHeight="505.0" prefWidth="343.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Pane maxHeight="300.0" maxWidth="220.0" minHeight="300.0" minWidth="220.0" prefHeight="300.0" prefWidth="220.0" VBox.vgrow="NEVER">
+                     <children>
+                        <ImageView fitHeight="300.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/TheAssassinationofJesseJames_Cover.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Label contentDisplay="CENTER" prefHeight="60.0" prefWidth="300.0" text="The Assassination of Jesse James by the Coward Robert Ford" textAlignment="CENTER" textFill="#dedede" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Separator prefWidth="200.0" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+   </items>
+</SplitPane>

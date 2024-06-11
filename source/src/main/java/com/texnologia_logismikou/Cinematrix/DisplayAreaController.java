@@ -16,7 +16,10 @@ public class DisplayAreaController {
 	void initialize()
 	{		
 		FXMLLoader fxmlLoader = new FXMLLoader();
-		fxmlLoader.setLocation(getClass().getResource("screens/AllMoviesView.fxml"));
+		
+//		fxmlLoader.setLocation(getClass().getResource("screens/AllMoviesView.fxml"));
+		fxmlLoader.setLocation(getClass().getResource("screens/MovieDetailsView.fxml"));
+		
 		try {
 			Parent root = fxmlLoader.load();
 			scroller.getStyleClass().clear();
