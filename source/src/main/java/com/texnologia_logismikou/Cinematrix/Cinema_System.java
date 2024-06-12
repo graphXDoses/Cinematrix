@@ -128,7 +128,7 @@ public class Cinema_System {
 	
 	//Receives input for some of a movies fields.
 	//Then calls addMovieToDb while the movie instance generated a HashMap<String, Object>.
-	public void handleInput()  {
+	public void handleInputMovie()  {
 		
 		Movie movie = new Movie();
 		
@@ -149,17 +149,13 @@ public class Cinema_System {
 		addMoviesToDb(movie);
 	}
 	
-	public void handleInputUser() {
+	public void handleUserRegister() {
 		
 		Customer user = new Customer();
 		
-		System.out.println("A to add new User, S to show all Users: ");
 		Scanner input = new Scanner(System.in);
-		if(!input.nextLine().equals("A")) {
-			
-			return;
-		}
 		
+		System.out.println("Register");
 		System.out.println("Give Name: ");
 		user.setFull_name(input.nextLine());
 		System.out.println("Give email: ");
@@ -175,13 +171,14 @@ public class Cinema_System {
 		addUsersToDb(user);
 	}
 
-	public void handleLoginUser() {
+	public void handleUserLogin() {
 		
 		String name;
 		String password;
 		
 		Scanner input = new Scanner(System.in);
 		
+		System.out.println("Log In");
 		System.out.println("Give Name: ");
 		name = input.nextLine();
 		System.out.println("Give password: ");
