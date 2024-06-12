@@ -83,7 +83,7 @@ public class Movie {
 		
 		String string;
 		
-		string = "Movie details:"
+		string = "\nMovie details:"
 				+ "\n   Title: " + title
 				+ "\n   Duration: " + duration
 				+ "\n   Release Date: " + releaseDate

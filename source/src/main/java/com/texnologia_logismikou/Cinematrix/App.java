@@ -40,11 +40,11 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
      
-        cinemaSystem.initializeFirebase();
+        cinemaSystem.setupFirebase();
         //cinemaSystem.handleInput();
         //cinemaSystem.updateAllMovieList();
         //cinemaSystem.handleInputUser();
-        //cinemaSystem.handleLoginUser();
+        cinemaSystem.handleLoginUser();
     }
 
     public static void main(String[] args) {
