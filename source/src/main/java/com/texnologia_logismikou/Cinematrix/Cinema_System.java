@@ -229,6 +229,7 @@ public class Cinema_System {
 		Customer user = null;
 		
 		if(!firebase.appExists()) {
+			System.out.println("No Firebase isntance!");
 			return;
 		}
 		
