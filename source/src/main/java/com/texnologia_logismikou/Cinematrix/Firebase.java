@@ -12,13 +12,18 @@ import com.google.firebase.FirebaseOptions;
 public class Firebase {
 
 	private FirebaseApp firebaseApp = null;
-	private static final String CREDENTIALS_PATH = "C:/Users/petsi/University/TexLog/firebase_cred_phoebus.json"; 
+	private static final String CREDENTIALS_FILE = "firebase_cred_phoebus.json"; 
 	
 	//There is a chance that the FirebaseApp gets initialized but the JSON file doesn't close properly.
 	//This method also sets a Firestore instance.
+	
 	public void initializeFirebase() {
 		
-		try(InputStream serviceAccount = new FileInputStream(CREDENTIALS_PATH)) {
+		String path = getClass().getClassLoader().toString();
+		
+		assert path != null : "JSON file with DB credentials not found!";
+		
+		try(InputStream serviceAccount = new FileInputStream(path)) {
 			
 			try {
 				FirebaseOptions options = FirebaseOptions.builder()
