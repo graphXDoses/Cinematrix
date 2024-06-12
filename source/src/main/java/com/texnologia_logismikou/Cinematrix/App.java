@@ -44,7 +44,7 @@ public class App extends Application {
         //cinemaSystem.handleInput();
         //cinemaSystem.updateAllMovieList();
         //cinemaSystem.handleInputUser();
-        cinemaSystem.handleLoginUser();
+        //cinemaSystem.handleLoginUser();
     }
 
     public static void main(String[] args) {

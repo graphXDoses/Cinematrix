@@ -229,6 +229,8 @@ public class Cinema_System {
 		user.setEmail(input.nextLine());
 		System.out.println("Give phone: ");
 		user.setPhone_number(input.nextLine());
+		System.out.println("Give password: ");
+		user.setPassword(input.nextLine());
 		
 		//By default no user can be registered as admin on their own.
 		user.setAdmin(false);
@@ -367,7 +369,13 @@ public class Cinema_System {
 			}
 			
 			registredUser = doc.toObject(Customer.class);
-			System.out.println("User name: " + registredUser.getFull_name() + " ||| Name input: " + name);
+			if(password.equals(registredUser.getPassword()) && name.equals(registredUser.getFull_name())) {
+				
+				System.out.println("Logged in!");
+			} else {
+				
+				System.out.println("Wrong password");
+			}
 		} catch (Exception e) {
 			showExceptionDetails(e);
 		}
