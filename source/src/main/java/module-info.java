@@ -1,7 +1,10 @@
-module com.texnologia_logismikou.Cinematrix {
+module Cinematrix {
+//	requires javafx.graphics;
     requires javafx.controls;
-    
-    //Google Firebase and Cloud Firestore requirements.
+    requires javafx.fxml;
+	requires javafx.graphics;
+	
+	//Google Firebase and Cloud Firestore requirements.
     requires firebase.admin;
     requires com.google.auth.oauth2;
     requires com.google.auth;
@@ -10,8 +13,8 @@ module com.texnologia_logismikou.Cinematrix {
     requires google.cloud.core;
     requires com.google.api.services.storage;
     //Google Firebase and Cloud Firestore requirements.
-    
-    opens com.texnologia_logismikou.Cinematrix to google.cloud.firestore;
+
+    opens com.texnologia_logismikou.Cinematrix to javafx.fxml, google.cloud.firestore;
     
     exports com.texnologia_logismikou.Cinematrix;
 }
