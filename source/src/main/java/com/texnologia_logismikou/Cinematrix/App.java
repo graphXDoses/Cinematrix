@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -38,6 +37,15 @@ public class App extends Application {
     }
 
     public static void main(String[] args) { 
+    	PropertiesReader reader;
+		try {
+			reader = new PropertiesReader("properties-from-pom.properties");
+			String license = reader.getProperty("License");
+			System.out.println(license);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	launch();
     }
 

@@ -17,8 +17,8 @@ public class DisplayAreaController {
 	{		
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		
-//		fxmlLoader.setLocation(getClass().getResource("screens/AllMoviesView.fxml"));
-		fxmlLoader.setLocation(getClass().getResource("screens/MovieDetailsView.fxml"));
+		fxmlLoader.setLocation(getClass().getResource("screens/AllMoviesView.fxml"));
+//		fxmlLoader.setLocation(getClass().getResource("screens/MovieDetailsView.fxml"));
 		
 		try {
 			Parent root = fxmlLoader.load();
