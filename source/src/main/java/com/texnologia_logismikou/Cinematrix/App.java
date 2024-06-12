@@ -42,7 +42,9 @@ public class App extends Application {
      
         cinemaSystem.initializeFirebase();
         //cinemaSystem.handleInput();
-        cinemaSystem.updateAllMovieList();
+        //cinemaSystem.updateAllMovieList();
+        //cinemaSystem.handleInputUser();
+        cinemaSystem.handleLoginUser();
     }
 
     public static void main(String[] args) {

@@ -131,7 +131,9 @@ public class Cinema_System {
 		try(InputStream serviceAccount = new FileInputStream(CREDENTIALS_PATH)) {
 			
 			try {
-				FirebaseOptions options = FirebaseOptions.builder().setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
+				FirebaseOptions options = FirebaseOptions.builder()
+						.setCredentials(GoogleCredentials.fromStream(serviceAccount))
+						.build();
 				
 				try {
 					app = FirebaseApp.initializeApp(options);
@@ -167,6 +169,7 @@ public class Cinema_System {
 		db = com.google.firebase.cloud.FirestoreClient.getFirestore();
 	}
 	
+	//The Firebase app should be deleted before the user closes the application to ensure a smooth exit.
 	public void deleteFirebaseApp() {
 		
 		app.delete();
@@ -209,7 +212,52 @@ public class Cinema_System {
 		addMoviesToDb(movie);
 	}
 	
+	public void handleInputUser() {
+		
+		Customer user = new Customer();
+		
+		System.out.println("A to add new User, S to show all Users: ");
+		Scanner input = new Scanner(System.in);
+		if(!input.nextLine().equals("A")) {
+			
+			return;
+		}
+		
+		System.out.println("Give Name: ");
+		user.setFull_name(input.nextLine());
+		System.out.println("Give email: ");
+		user.setEmail(input.nextLine());
+		System.out.println("Give phone: ");
+		user.setPhone_number(input.nextLine());
+		
+		//By default no user can be registered as admin on their own.
+		user.setAdmin(false);
+		
+		addUsersToDb(user);
+	}
+
+	public void handleLoginUser() {
+		
+		String name;
+		String password;
+		
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Give Name: ");
+		name = input.nextLine();
+		System.out.println("Give password: ");
+		password = input.nextLine();
+
+		loginUser(name, password);
+	}	
+	
 	private void addMoviesToDb(Movie movie) {
+		
+		if(app == null) {
+			
+			System.out.println("The Firebase app hasn't been initialized properly!");
+			return;
+		}
 		
 		if(db == null) {
 			
@@ -221,16 +269,10 @@ public class Cinema_System {
 		
 		try {
 			System.out.println("Database updated at: " + future.get().getUpdateTime());
-			closeFirestore();
-		} catch (CancellationException e) {
-			System.out.println("The process was cancelled.");
-			Cinema_System.showExceptionDetails(e);
-		} catch(ExecutionException e) {
-			System.out.println("The execution run into an error.");
-			Cinema_System.showExceptionDetails(e);
-		} catch(InterruptedException e) {
-			System.out.println("The process was interrupted.");
-			Cinema_System.showExceptionDetails(e);
+			//Is Firestore closing after every action?
+			//closeFirestore();
+		} catch (Exception e) {
+			showExceptionDetails(e);
 		}
 	}
 	
@@ -241,6 +283,7 @@ public class Cinema_System {
 	}
 
 	public void updateAllMovieList() {
+
 		
 		CollectionReference colRef = null;
 		
@@ -273,4 +316,61 @@ public class Cinema_System {
 			Cinema_System.showExceptionDetails(e);
 		}
 	}
+	
+	private void addUsersToDb(Customer user) {
+		
+		if(app == null) {
+			
+			System.out.println("The Firebase app hasn't been initialized properly!");
+			return;
+		}
+		
+		if(db == null) {
+			
+			System.out.println("No Firestore instance!");
+			setFirestore();
+		}
+		
+		ApiFuture<WriteResult> future = db.collection("Users").document(user.getFull_name()).set(user, SetOptions.merge());
+		
+		try {
+			System.out.println("Firestore updated at: " + future.get().getUpdateTime());
+		} catch (Exception e) {
+			showExceptionDetails(e);
+		}
+	}
+	
+	private void loginUser(String name, String password) {
+		
+		Customer registredUser = null;
+		
+		if(app == null) {
+			
+			System.out.println("The Firebase app hasn't been initialized properly!");
+			return;
+		}
+		
+		if(db == null) {
+			
+			System.out.println("No Firestore instance!");
+			setFirestore();
+		}
+		
+		DocumentReference docRef = db.collection("Users").document(name);
+		ApiFuture<DocumentSnapshot> future = docRef.get();
+		
+		try {
+			DocumentSnapshot doc = future.get();
+			if(!doc.exists()) {
+				System.out.println("No such user exists!");
+				return;
+			}
+			
+			registredUser = doc.toObject(Customer.class);
+			System.out.println("User name: " + registredUser.getFull_name() + " ||| Name input: " + name);
+		} catch (Exception e) {
+			showExceptionDetails(e);
+		}
+	}
 }
+
