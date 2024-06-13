@@ -29,9 +29,9 @@ public class FooterBarController {
 			String version = reader.getProperty("AppVersion");
 			version_lbl.setText(version);
 			
-			String credit_team = reader.getProperty("TeamName");
-			teamname_lbl.setText(credit_team);
-			teamname_lbl.setAccessibleText("Link to Github Repository.");
+//			String credit_team = reader.getProperty("TeamNo");
+//			teamname_lbl.setText(credit_team + " Group | Software Technology(CSC402) | DAI@UOM");
+//			teamname_lbl.setAccessibleText("Link to Github Repository.");
 			
 			github_repo_link = reader.getProperty("RepoLink");
 			
