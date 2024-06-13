@@ -1,22 +1,5 @@
 package com.texnologia_logismikou.Cinematrix;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.concurrent.ExecutionException;
-
-//Google Firestore & Firebase imports.
-import com.google.api.core.ApiFuture;
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.WriteResult;
-import com.google.cloud.firestore.v1.FirestoreClient;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.database.core.Path;
-import com.google.firebase.FirebaseApp;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;

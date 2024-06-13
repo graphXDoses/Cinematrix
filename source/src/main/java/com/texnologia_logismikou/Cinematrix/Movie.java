@@ -1,7 +1,5 @@
 package com.texnologia_logismikou.Cinematrix;
 
-import java.util.HashMap;
-
 public class Movie {
 	
 	private String title;

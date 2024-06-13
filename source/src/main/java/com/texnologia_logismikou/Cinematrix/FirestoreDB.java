@@ -2,8 +2,6 @@ package com.texnologia_logismikou.Cinematrix;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.ExecutionException;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
@@ -45,7 +43,6 @@ public class FirestoreDB {
 			showExceptions(e);
 		}
 		
-		System.out.println("Entry could not be added.");
 		return false;
 	}
 
@@ -82,7 +79,6 @@ public class FirestoreDB {
 			showExceptions(e);
 		}
 		
-		System.out.println("User wans't added.");
 		return false;
 	}
 	
