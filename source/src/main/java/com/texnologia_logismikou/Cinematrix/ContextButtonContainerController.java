@@ -41,6 +41,9 @@ public class ContextButtonContainerController {
 		}
     }
     
+    public Parent getParent() { return(root); }
+    
+    /*
     List<Context> getContextButtons()
 	{
 		List<Context> ls = new ArrayList<>();
@@ -57,5 +60,6 @@ public class ContextButtonContainerController {
 		
 		return(ls);
 	}
+	*/
 
 }

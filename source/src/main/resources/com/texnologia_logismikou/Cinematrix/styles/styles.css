@@ -2,6 +2,7 @@
 {
     -fx-bg: #222222;
     -fx-fg: #676767;
+    -fx-txtColor: #dedede;
     -fx-c1: #337cf2;
     -fx-c2: #68d7e0;
 
@@ -177,4 +178,24 @@
     -fx-border-color: transparent;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+}
+
+.movie_modal_button
+{
+    -fx-background-insets: 0; /* Remove additional insets */
+    -fx-border-insets: 0;
+    -fx-effect: none;
+    -fx-border-width: 3;
+    -fx-border-radius: 40;
+    -fx-background-radius: 40;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.movie_modal_button:hover
+{
+    -fx-border-color: -fx-txtColor;
+    -fx-background-color: -fx-c1;
 }
