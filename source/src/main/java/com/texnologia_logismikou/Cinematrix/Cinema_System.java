@@ -189,11 +189,22 @@ public class Cinema_System {
 	
 	private void addMoviesToDb(Movie movie) {
 		
-		if(firebase.appExists()) {
-			if(!firestore.dbExists()) {
-				firestore.setDatabase();
-			}
-			firestore.addMovie(movie);
+		boolean movieAdded;
+		
+		if(!firebase.appExists()) {
+			System.out.println("No Firebase app found.");
+			return;
+		}
+		
+		if(!firestore.dbExists()) {
+			firestore.setDatabase();
+		}
+		
+		movieAdded = firestore.addMovie(movie);
+		if(movieAdded) {
+			System.out.println("Movie has been added.");
+		} else {
+			System.out.println("There was an error adding the movie.");
 		}
 	}
 
@@ -208,10 +219,16 @@ public class Cinema_System {
 		}
 		
 		allMovieList = firestore.fetchAllMovies();
-		System.out.println(allMovieList.toString());
+		if(allMovieList.isEmpty()) {
+			System.out.println("Couldn't fetch movies/ the database is empty.");
+		} else {
+			System.out.println(allMovieList.toString());
+		}
 	}
 	
 	private void addUsersToDb(Customer user) {
+		
+		boolean userAdded;
 		
 		if(!firebase.appExists()) {
 			return;
@@ -221,7 +238,12 @@ public class Cinema_System {
 			firestore.setDatabase();
 		}
 		
-		firestore.addUser(user);
+		userAdded = firestore.addUser(user);
+		if(userAdded) {
+			System.out.println("User succesfully added to Firestore.");
+		} else {
+			System.out.println("User hasn't been added to the Firestore.w");
+		}
 	}
 	
 	private void userLogin(String name, String password) {
