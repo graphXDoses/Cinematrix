@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
 	private Cinema_System cinemaSystem = new Cinema_System();
+	private StorageController storageController = new StorageController();
 	
     @Override
     public void start(Stage stage) {
@@ -27,7 +28,8 @@ public class App extends Application {
         //cinemaSystem.handleInputMovie();
         //cinemaSystem.updateAllMovieList();
         //cinemaSystem.handleUserRegister();
-        cinemaSystem.handleUserLogin();
+        //cinemaSystem.handleUserLogin();
+        storageController.downloadImage();
     }
 
     public static void main(String[] args) {

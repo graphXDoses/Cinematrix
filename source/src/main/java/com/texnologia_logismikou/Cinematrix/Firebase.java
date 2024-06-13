@@ -18,15 +18,16 @@ public class Firebase {
 	
 	public void initializeFirebase() {
 		
-		String path = getClass().getResource(CREDENTIALS_FILE).toExternalForm();
+		//String path = getClass().getResource(CREDENTIALS_FILE).toExternalForm();
 		
-		assert path != null : "JSON file with DB credentials not found!";
+		//assert path != null : "JSON file with DB credentials not found!";
 		
 		try(InputStream serviceAccount = new FileInputStream("C:/Users/petsi/University/TexLog/firebase_cred_phoebus.json")) {
 			
 			try {
 				FirebaseOptions options = FirebaseOptions.builder()
 						.setCredentials(GoogleCredentials.fromStream(serviceAccount))
+						.setStorageBucket("fir-test-java-1d671.appsot.com")
 						.build();
 				
 				try {
