@@ -199,3 +199,33 @@
     -fx-border-color: -fx-txtColor;
     -fx-background-color: -fx-c1;
 }
+
+.license_popup_content{
+    -fx-background-color: -fx-bg;
+}
+.license_popup_content > *.button-bar > *.container{
+    -fx-background-color: -fx-bg;
+}
+.license_popup_content > *.label.content{
+    -fx-font-size: 14px;
+    /* -fx-font-weight: bold; */
+    /* -fx-fill: red; */
+    -fx-text-fill: -fx-txtColor;
+}
+
+.license_popup_content:header *.header-panel{
+    -fx-background-color: -fx-bg;
+    -fx-border-width: 3;
+}
+.license_popup_content:header *.header-panel *.label{
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    /* -fx-fill: -fx-red; */
+    -fx-text-fill: -fx-txtColor;
+}
+.license_popup_textarea {
+    -fx-text-fill: -fx-txtColor;
+    -fx-text-inner-color: -fx-txtColor;
+}
+/*
+*/

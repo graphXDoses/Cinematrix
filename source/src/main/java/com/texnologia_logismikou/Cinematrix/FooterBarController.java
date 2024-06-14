@@ -6,13 +6,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 
 public class FooterBarController {
-	
-	@FXML
-    private Hyperlink teamname_lbl;
 
     @FXML
     private Label version_lbl;
@@ -28,11 +24,6 @@ public class FooterBarController {
 			
 			String version = reader.getProperty("AppVersion");
 			version_lbl.setText(version);
-			
-//			String credit_team = reader.getProperty("TeamNo");
-//			teamname_lbl.setText(credit_team + " Group | Software Technology(CSC402) | DAI@UOM");
-//			teamname_lbl.setAccessibleText("Link to Github Repository.");
-			
 			github_repo_link = reader.getProperty("RepoLink");
 			
 		} catch (IOException e) {
