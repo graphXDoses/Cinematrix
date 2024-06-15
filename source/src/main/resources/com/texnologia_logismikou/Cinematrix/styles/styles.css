@@ -229,3 +229,16 @@
 }
 /*
 */
+.side_menu_button {
+	-fx-background-color: transparent;
+}
+.side_menu_button_active {
+	-fx-background-color: #444444;
+}
+.side_menu_button_border {
+	-fx-background-color: -fx-c1;
+}
+.side_menu_button_text {
+	-fx-font-size: 14px;
+	-fx-text-fill: -fx-txtColor;
+}
