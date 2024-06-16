@@ -15,7 +15,7 @@ module Cinematrix {
     requires com.google.api.services.storage;
     //Google Firebase and Cloud Firestore requirements.
 
-    opens com.texnologia_logismikou.Cinematrix to javafx.fxml, google.cloud.firestore;
+    opens com.texnologia_logismikou.Cinematrix to javafx.fxml, google.cloud.firestore, google.cloud.storage;
     
     exports com.texnologia_logismikou.Cinematrix;
 }

@@ -2,22 +2,20 @@ package com.texnologia_logismikou.Cinematrix;
 
 import java.nio.file.Paths;
 
-import com.google.api.services.storage.model.Bucket;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobId;
-import com.google.cloud.storage.BucketInfo;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
 
 public class StorageController {
-
-	Storage storage = null;
+	
+	Firebase firebase = new Firebase();
 	
 	public void downloadImage() {
 		
-		storage = StorageOptions.getDefaultInstance().getService();
-		com.google.cloud.storage.Bucket bucket = storage.create(BucketInfo.of("fir-test-java-1d671"));
+		Storage storage = StorageOptions.newBuilder().setProjectId("fir-test-java-1d671").build().getService();
 		
-		System.out.println(bucket.getName());
+		Blob blob = storage.get(BlobId.of("fir-test-java-1d671.appspot.com", "rush_hour.png"));
+		blob.downloadTo(Paths.get("C:/Users/petsi/University/TexLog/rush_hour.png"));
 	}
 }

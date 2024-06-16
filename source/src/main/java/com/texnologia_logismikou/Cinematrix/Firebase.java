@@ -22,7 +22,7 @@ public class Firebase {
 		
 		//assert path != null : "JSON file with DB credentials not found!";
 		
-		try(InputStream serviceAccount = new FileInputStream("C:/Users/petsi/University/TexLog/cinematrix_creds.json")) {
+		try(InputStream serviceAccount = new FileInputStream("C:/Users/petsi/University/TexLog/firebase_creds_phoebus.json")) {
 			
 			try {
 				FirebaseOptions options = FirebaseOptions.builder()
