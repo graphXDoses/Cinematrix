@@ -38,6 +38,6 @@ public class Context implements IAppendable{
 
 	@Override
 	public void addTo(Node parent) {
-		((HBox)parent).getChildren().add(this.button.getParent());
+		//((HBox)parent).getChildren().add(this.button.getParent());
 	}
 }

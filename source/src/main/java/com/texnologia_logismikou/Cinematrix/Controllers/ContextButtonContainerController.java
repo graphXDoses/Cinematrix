@@ -1,8 +1,12 @@
-package com.texnologia_logismikou.Cinematrix;
+package com.texnologia_logismikou.Cinematrix.Controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.texnologia_logismikou.Cinematrix.App;
+import com.texnologia_logismikou.Cinematrix.Context;
+import com.texnologia_logismikou.Cinematrix.Managers.ContextButton;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,13 +19,15 @@ public class ContextButtonContainerController {
     private HBox ctx_btn_container;
     
     private List<Context> contextButtons;
-    private Parent root;
     
     @FXML
     void initialize()
     {
     	assert ctx_btn_container != null : "fx:id \'ctx_btn_container\' was not injected";
-		contextButtons = new ArrayList<Context>(getContextButtons());
+    	/*
+    	System.out.println(ctx_btn_container);
+    	while((root = ctx_btn_container.getParent()) != null) { }
+    	contextButtons = new ArrayList<Context>(getContextButtons());
 		
 		try {
 			for(Context ctx: contextButtons)
@@ -39,14 +45,13 @@ public class ContextButtonContainerController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
     }
     
-    public Parent getParent() { return(root); }
-    
-    /*
     List<Context> getContextButtons()
 	{
 		List<Context> ls = new ArrayList<>();
+		/*
 		Context ctx;
 		
 		ctx = new Context("Movies", "images/movie.png");
@@ -58,8 +63,13 @@ public class ContextButtonContainerController {
 		ctx = new Context("Account", "images/account.png");
 		ls.add(ctx);
 		
+    	 */
 		return(ls);
 	}
-	*/
+    
+    public void addContextButton(ContextButton button)
+    {
+    	ctx_btn_container.getChildren().add(button.getParent());
+    }
 
 }

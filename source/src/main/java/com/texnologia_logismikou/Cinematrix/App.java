@@ -36,16 +36,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) { 
-    	PropertiesReader reader;
-		try {
-			reader = new PropertiesReader("properties-from-pom.properties");
-			String license = reader.getProperty("License");
-			System.out.println(license);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    public static void main(String[] args) {
     	launch();
     }
 

@@ -1,6 +1,10 @@
-package com.texnologia_logismikou.Cinematrix;
+package com.texnologia_logismikou.Cinematrix.Controllers;
 
 import java.util.List;
+
+import com.texnologia_logismikou.Cinematrix.App;
+import com.texnologia_logismikou.Cinematrix.Context;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,32 +20,15 @@ import javafx.scene.layout.Pane;
 
 public class ContextButtonController {
 
-	@FXML
-	private Pane ctx_btn_root;
-
-	@FXML
-	private HBox ctx_btn_container;
-	
-	@FXML
-	private Pane ctx_btn_flap_bg_l;
-	
-	@FXML
-	private Pane ctx_btn_flap_l;
-	
-	@FXML
-	private Button ctx_btn_button;
-	
-	@FXML
-	private ImageView ctx_btn_ico;
-	
-	@FXML
-	private Label ctx_btn_lbl;
-	
-	@FXML
-	private Pane ctx_btn_flap_bg_r;
-	
-	@FXML
-	private Pane ctx_btn_flap_r;
+	@FXML private Pane ctx_btn_root;
+	@FXML private HBox ctx_btn_container;
+	@FXML private Pane ctx_btn_flap_bg_l;
+	@FXML private Pane ctx_btn_flap_l;
+	@FXML private Button ctx_btn_button;
+	@FXML private ImageView ctx_btn_ico;
+	@FXML private Label ctx_btn_lbl;
+	@FXML private Pane ctx_btn_flap_bg_r;
+	@FXML private Pane ctx_btn_flap_r;
     
     private static Button activeButton = null;
     private static List<ContextButtonHandler> buttons = new ArrayList<>();
@@ -82,7 +69,7 @@ public class ContextButtonController {
     
     public void setData(Context ctx)
 	{
-		Image img = new Image(getClass().getResource(ctx.getUrl()).toExternalForm());
+		Image img = new Image(App.class.getResource(ctx.getUrl()).toExternalForm());
 		
 		ctx_btn_ico.setImage(img);
 		ctx_btn_lbl.setText(ctx.getName());

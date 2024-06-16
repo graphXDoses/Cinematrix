@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="650.0" minWidth="800.0" prefHeight="833.0" prefWidth="1300.0" styleClass="dark-background" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="650.0" minWidth="800.0" prefHeight="833.0" prefWidth="1300.0" styleClass="dark-background" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.MainUIController">
    <top>
-      <HBox prefHeight="100.0" prefWidth="1240.0" styleClass="border-bottom" stylesheets="@../styles/styles.css" BorderPane.alignment="CENTER">
+      <HBox fx:id="header_bar" prefHeight="100.0" prefWidth="1240.0" styleClass="border-bottom" stylesheets="@../styles/styles.css" BorderPane.alignment="CENTER">
          <children>
             <fx:include source="LogoButton.fxml" />
             <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
@@ -54,17 +54,10 @@
                   </VBox>
                </children>
             </HBox>
-            <fx:include source="ContextButtonContainer.fxml" />
          </children>
          <BorderPane.margin>
             <Insets left="30.0" right="30.0" />
          </BorderPane.margin>
       </HBox>
    </top>
-   <bottom>
-      <fx:include source="FooterBar.fxml" />
-   </bottom>
-   <center>
-      <fx:include source="DisplayArea.fxml" />
-   </center>
 </BorderPane>
