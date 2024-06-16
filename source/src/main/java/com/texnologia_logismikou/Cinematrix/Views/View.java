@@ -1,4 +1,4 @@
-package com.texnologia_logismikou.Cinematrix.Managers;
+package com.texnologia_logismikou.Cinematrix.Views;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import com.texnologia_logismikou.Cinematrix.App;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
-public class Manager<T> {
+public class View<T> {
 
 	private Parent root;
 	private T controller;

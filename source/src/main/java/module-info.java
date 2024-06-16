@@ -8,8 +8,10 @@ module Cinematrix {
     opens com.texnologia_logismikou.Cinematrix to javafx.fxml;
     opens com.texnologia_logismikou.Cinematrix.Controllers to javafx.fxml;
     opens com.texnologia_logismikou.Cinematrix.Managers to javafx.fxml;
+    opens com.texnologia_logismikou.Cinematrix.Views to javafx.fxml;
     
     exports com.texnologia_logismikou.Cinematrix;
     exports com.texnologia_logismikou.Cinematrix.Controllers;
     exports com.texnologia_logismikou.Cinematrix.Managers;
+    exports com.texnologia_logismikou.Cinematrix.Views;
 }

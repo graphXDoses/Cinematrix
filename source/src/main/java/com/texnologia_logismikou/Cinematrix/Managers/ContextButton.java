@@ -1,29 +1,15 @@
 package com.texnologia_logismikou.Cinematrix.Managers;
 
-import java.io.IOException;
+import com.texnologia_logismikou.Cinematrix.Context;
+import com.texnologia_logismikou.Cinematrix.Controllers.ContextButtonController;
 
-import com.texnologia_logismikou.Cinematrix.App;
-
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-
-public class ContextButton extends Manager
+public class ContextButton extends Manager<ContextButtonController>
 {
 	
-	public ContextButton()
+	public ContextButton(Context reference)
 	{
-		/*
-		FXMLLoader fxmlLoader = new FXMLLoader();
-		fxmlLoader.setLocation(App.class.getResource("screens/ContextButton.fxml"));
-		try {
-			root = fxmlLoader.load();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
 		super.loadFXML("ContextButton");
+		getController().setData(reference);
 	}
 	
 }

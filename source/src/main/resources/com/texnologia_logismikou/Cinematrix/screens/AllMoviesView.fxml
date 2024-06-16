@@ -7,18 +7,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane styleClass="scroll-pane-background" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.AllMoviesViewController">
+<Pane styleClass="scroll-pane-background" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.AllMoviesViewController">
    <children>
-      <VBox alignment="CENTER" spacing="20.0">
+      <VBox alignment="CENTER">
          <children>
-            <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+            <VBox VBox.vgrow="ALWAYS">
                <children>
                   <Label text="Now Featuring" textFill="#dedede">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <HBox fx:id="now_featuring_modals" spacing="20.0" VBox.vgrow="ALWAYS" />
+                  <HBox fx:id="now_featuring_modals" spacing="20.0" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="100.0" />
+                     </padding></HBox>
                </children>
             </VBox>
             <VBox spacing="10.0" VBox.vgrow="ALWAYS">
@@ -28,7 +31,13 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <HBox fx:id="upcomming_modals" VBox.vgrow="ALWAYS" />
+                  <HBox fx:id="upcomming_modals" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="100.0" />
+                     </padding></HBox>
                </children>
             </VBox>
          </children>

@@ -1,35 +1,22 @@
 package com.texnologia_logismikou.Cinematrix.Managers;
 
-import java.io.IOException;
-
-import com.texnologia_logismikou.Cinematrix.App;
+import com.texnologia_logismikou.Cinematrix.Context;
 import com.texnologia_logismikou.Cinematrix.Controllers.ContextButtonContainerController;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.layout.HBox;
-
-public class ContextButtonContainer {
-	
-	private Parent root;
+public class ContextButtonContainer extends Manager<ContextButtonContainerController>{
 	
 	public ContextButtonContainer()
 	{
-		FXMLLoader fxmlLoader = new FXMLLoader();
-		fxmlLoader.setLocation(App.class.getResource("screens/ContextButtonContainer.fxml"));
-		try {
-			root = fxmlLoader.load();
-			ContextButtonContainerController controller = fxmlLoader.getController();
-			
-			controller.addContextButton(new ContextButton());
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		super.loadFXML("ContextButtonContainer");
+
+		Context Movies = new Context("Movies", "images/movie.png");
+		getController().addContextButton(Movies.getButton());
+		
+		Context Cinemas = new Context("Cinemas", "images/theater.png");
+		getController().addContextButton(Cinemas.getButton());
+		
+		Context Account = new Context("Account", "images/account.png");
+		getController().addContextButton(Account.getButton());
 	}
-	
-	@SuppressWarnings("exports")
-	public Parent getParent() { return(root); }
 	
 }

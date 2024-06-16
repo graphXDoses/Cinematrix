@@ -1,30 +1,23 @@
-package com.texnologia_logismikou.Cinematrix;
+package com.texnologia_logismikou.Cinematrix.Controllers;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import com.texnologia_logismikou.Cinematrix.Managers.Movie;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.layout.HBox;
 
 
 public class AllMoviesViewController{
 
-    @FXML
-    private HBox now_featuring_modals;
+    @FXML private HBox now_featuring_modals;
+    @FXML private HBox upcomming_modals;
     
-    @FXML
-    private HBox upcomming_modals;
-    
-    private List<Movie> movies;
-    private Parent root;
+//    private List<Movie> movies;
+//    private Parent root;
 	
 	@FXML
 	void initialize()
 	{
+		/*
 		assert now_featuring_modals != null : "fx:id \'now_featuring_modals\' was not injected";
 		movies = new ArrayList<Movie>(getMovies());
 		
@@ -54,8 +47,20 @@ public class AllMoviesViewController{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 	}
 	
+	public void appendNowFeaturing(Movie movie)
+	{
+		now_featuring_modals.getChildren().add(movie.getParent());
+	}
+	
+	public void appendUpcomming(Movie movie)
+	{
+		upcomming_modals.getChildren().add(movie.getParent());
+	}
+	
+	/*
 	List<Movie> getMovies()
 	{
 		List<Movie> ls = new ArrayList<>();
@@ -69,5 +74,6 @@ public class AllMoviesViewController{
 		
 		return(ls);
 	}
+	*/
 
 }

@@ -1,4 +1,7 @@
-package com.texnologia_logismikou.Cinematrix;
+package com.texnologia_logismikou.Cinematrix.Controllers;
+
+import com.texnologia_logismikou.Cinematrix.App;
+import com.texnologia_logismikou.Cinematrix.Managers.Movie;
 
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -10,18 +13,13 @@ import javafx.util.Duration;
 
 public class MovieModalController {
 
-	@FXML
-    private Button mdl_button;
-	
-	@FXML
-    private ImageView mdl_cover;
-	
-	@FXML
-    private HBox mld_halo;
+	@FXML private Button mdl_button;
+	@FXML private ImageView mdl_cover;
+	@FXML private HBox mld_halo;
 	
 	public void setData(Movie movie)
 	{
-		Image img = new Image(getClass().getResource(movie.getUrl()).toExternalForm());
+		Image img = new Image(App.class.getResource(movie.getUrl()).toExternalForm());
 		mdl_cover.setImage(img);
 	}
 	

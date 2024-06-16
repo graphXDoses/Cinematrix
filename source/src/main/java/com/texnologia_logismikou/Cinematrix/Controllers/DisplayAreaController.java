@@ -1,9 +1,12 @@
-package com.texnologia_logismikou.Cinematrix;
+package com.texnologia_logismikou.Cinematrix.Controllers;
 
 import java.io.IOException;
 
+import com.texnologia_logismikou.Cinematrix.App;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 
@@ -15,10 +18,11 @@ public class DisplayAreaController {
 	@FXML
 	void initialize()
 	{		
+		/*
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		
-		fxmlLoader.setLocation(getClass().getResource("screens/AllMoviesView.fxml"));
-//		fxmlLoader.setLocation(getClass().getResource("screens/MovieDetailsView.fxml"));
+//		fxmlLoader.setLocation(App.class.getResource("screens/AllMoviesView.fxml"));
+		fxmlLoader.setLocation(App.class.getResource("screens/MovieDetailsView.fxml"));
 		
 		try {
 			Parent root = fxmlLoader.load();
@@ -29,5 +33,13 @@ public class DisplayAreaController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
+		scroller.getStyleClass().clear();
+		scroller.getStyleClass().add("crank");
+	}
+	
+	public void setContent(Node content)
+	{
+		scroller.setContent(content);
 	}
 }

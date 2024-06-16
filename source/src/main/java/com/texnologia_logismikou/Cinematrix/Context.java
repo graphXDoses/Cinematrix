@@ -3,10 +3,10 @@ package com.texnologia_logismikou.Cinematrix;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.Node;
-import javafx.scene.layout.HBox;
+import com.texnologia_logismikou.Cinematrix.Managers.ContextButton;
+import com.texnologia_logismikou.Cinematrix.Views.View;
 
-public class Context implements IAppendable{
+public class Context{
 	
 	private String name;
 	private String icon_path;
@@ -17,7 +17,7 @@ public class Context implements IAppendable{
 	{
 		this.setName(name);
 		this.setUrl(icon_path);
-		button = new ContextButton(name);
+		button = new ContextButton(this);
 	}
 
 	public String getName() {
@@ -35,9 +35,9 @@ public class Context implements IAppendable{
 	public void setUrl(String icon_path) {
 		this.icon_path = icon_path;
 	}
-
-	@Override
-	public void addTo(Node parent) {
-		//((HBox)parent).getChildren().add(this.button.getParent());
+	
+	public ContextButton getButton()
+	{
+		return(button);
 	}
 }
