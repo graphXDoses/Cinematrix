@@ -29,7 +29,8 @@ public class App extends Application {
         //cinemaSystem.updateAllMovieList();
         //cinemaSystem.handleUserRegister();
         //cinemaSystem.handleUserLogin();
-        storageController.downloadImage();
+        storageController.initializeStorage();
+        storageController.downloadImage("rush_hour");
     }
 
     public static void main(String[] args) {

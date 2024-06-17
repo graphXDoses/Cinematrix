@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Cinema_System {
 	
-	private Firebase firebase = new Firebase();
-	private FirestoreDB firestore = new FirestoreDB();
+	private FirebaseController firebase = new FirebaseController();
+	private FirestoreController firestore = new FirestoreController();
 	
 	private ArrayList<Movie> allMovieList = new ArrayList<>();
 	private ArrayList<Movie> nowMovieList = new ArrayList<>();
