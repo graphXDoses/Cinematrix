@@ -76,6 +76,28 @@ public class Movie {
 		this.trailerLink = trailerLink;
 	}
 	
+	//Creates a string that can be given to CLoud Storage to fetch the image of the movie.
+	//It assumes that all the images in the database are name like so: "my_movie_name.png"
+	public String titleToDownloadable() {
+		
+		String downloadable = "";
+		String titleSplit[];
+		
+		downloadable += "/";
+		
+		titleSplit = this.title.toLowerCase().split("\\s+");
+		for(int i = 0; i < titleSplit.length; i++) {
+			downloadable += titleSplit[i];
+			if(i != titleSplit.length-1) {
+				downloadable += "_";
+			}
+		}
+		
+		downloadable += ".png";
+		
+		return downloadable;
+	}
+	
 	@Override
 	public String toString() {
 		

@@ -23,14 +23,10 @@ public class App extends Application {
         var scene = new Scene(new StackPane(label), 640, 480);
         stage.setScene(scene);
         stage.show();
-     
-        cinemaSystem.setupFirebase();
-        //cinemaSystem.handleInputMovie();
-        //cinemaSystem.updateAllMovieList();
-        //cinemaSystem.handleUserRegister();
-        //cinemaSystem.handleUserLogin();
-        storageController.initializeStorage();
-        storageController.downloadImage("rush_hour");
+        
+        Movie movie = new Movie();
+        movie.setTitle("Requiem for a Dream");
+        System.out.println(movie.titleToDownloadable());
     }
 
     public static void main(String[] args) {

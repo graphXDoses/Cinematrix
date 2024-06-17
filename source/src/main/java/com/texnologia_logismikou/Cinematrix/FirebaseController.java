@@ -65,8 +65,6 @@ public class FirebaseController {
 		firebaseApp = null;
 	}
 
-
-
 	public boolean appExists() {
 		if(firebaseApp != null) {
 			return true;

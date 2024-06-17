@@ -7,6 +7,7 @@ public class Cinema_System {
 	
 	private FirebaseController firebase = new FirebaseController();
 	private FirestoreController firestore = new FirestoreController();
+	private StorageController storage = new StorageController();
 	
 	private ArrayList<Movie> allMovieList = new ArrayList<>();
 	private ArrayList<Movie> nowMovieList = new ArrayList<>();
@@ -178,7 +179,7 @@ public class Cinema_System {
 		}
 		
 		if(!firestore.dbExists()) {
-			firestore.setDatabase();
+			firestore.initializeDatabase();
 		}
 		
 		movieAdded = firestore.addMovie(movie);
@@ -196,7 +197,7 @@ public class Cinema_System {
 		}
 		
 		if(!firestore.dbExists()) {
-			firestore.setDatabase();
+			firestore.initializeDatabase();
 		}
 		
 		allMovieList = firestore.fetchAllMovies();
@@ -216,7 +217,7 @@ public class Cinema_System {
 		}
 		
 		if(!firestore.dbExists()) {
-			firestore.setDatabase();
+			firestore.initializeDatabase();
 		}
 		
 		userAdded = firestore.addUser(user);
@@ -237,7 +238,7 @@ public class Cinema_System {
 		}
 		
 		if(!firestore.dbExists()) {
-			firestore.setDatabase();
+			firestore.initializeDatabase();
 		}
 		
 		user = firestore.fetchUser(name);
@@ -251,6 +252,15 @@ public class Cinema_System {
 		} else {
 			System.out.println("Incorrect password!");
 		}
+	}
+	
+	public void downloadMovieImage(String movieName) {
+		
+		if(!storage.storageExists()) {
+			storage.initializeStorage();
+		} 
+		
+		storage.downloadImage(movieName);
 	}
 }
 

@@ -17,12 +17,12 @@ public class FirestoreController {
 
 	private Firestore db = null;
 	
-	public void setDatabase() {
+	public void initializeDatabase() {
 		
 		db = com.google.firebase.cloud.FirestoreClient.getFirestore();
 	}
 	
-	public void deleteDatabase() {
+	public void closeDatabase() {
 		
 		try {
 			db.close();
