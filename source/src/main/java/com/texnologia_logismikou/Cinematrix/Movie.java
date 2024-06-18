@@ -83,8 +83,6 @@ public class Movie {
 		String downloadable = "";
 		String titleSplit[];
 		
-		downloadable += "/";
-		
 		titleSplit = this.title.toLowerCase().split("\\s+");
 		for(int i = 0; i < titleSplit.length; i++) {
 			downloadable += titleSplit[i];
@@ -92,8 +90,6 @@ public class Movie {
 				downloadable += "_";
 			}
 		}
-		
-		downloadable += ".png";
 		
 		return downloadable;
 	}

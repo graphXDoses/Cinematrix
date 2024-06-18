@@ -1,7 +1,15 @@
 package com.texnologia_logismikou.Cinematrix;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import java.util.List;
 import java.nio.file.Paths;
 
+import com.google.api.gax.paging.Page;
+import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.Storage;
@@ -12,12 +20,23 @@ public class StorageController {
 	
 	Storage storage = null;
 	private final String PROJECT_ID = "fir-test-java-1d671";
-	private final String BUCKET_ID = "fir-test-java-1d671.appspot.com";
+	private final String BUCKET_ID = "cinematrix_movie_images";
 	private final String DOWNLOAD_PATH = "C:/Users/petsi/University/TexLog/Cinematrix/source/src/main/resources/movie_images";
 	
 	public void initializeStorage() {
 		
-		storage = StorageOptions.newBuilder().setProjectId(PROJECT_ID).build().getService();
+		try {
+			InputStream serviceAccount = new FileInputStream("C:/Users/petsi/University/TexLog/cinematrix_creds.json");
+			try {
+				storage = StorageOptions.newBuilder().setProjectId(PROJECT_ID).setCredentials(GoogleCredentials.fromStream(serviceAccount)).build().getService();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void closeStorage() {
@@ -57,6 +76,15 @@ public class StorageController {
 			return false;
 		} else {
 			return true;
+		}
+	}
+	
+	public void printAllBucketObjects() {
+		
+		Page<Blob> blobs = storage.list(BUCKET_ID);
+		
+		for (Blob blob : blobs.iterateAll()) {
+			System.out.println(blob.getName());
 		}
 	}
 }

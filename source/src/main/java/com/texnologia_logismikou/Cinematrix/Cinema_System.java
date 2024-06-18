@@ -254,13 +254,13 @@ public class Cinema_System {
 		}
 	}
 	
-	public void downloadMovieImage(String movieName) {
+	public void downloadMovieImage(Movie movie) {
 		
 		if(!storage.storageExists()) {
 			storage.initializeStorage();
 		} 
 		
-		storage.downloadImage(movieName);
+		storage.downloadImage(movie.titleToDownloadable());
 	}
 }
 

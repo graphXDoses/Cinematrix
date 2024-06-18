@@ -25,8 +25,10 @@ public class App extends Application {
         stage.show();
         
         Movie movie = new Movie();
-        movie.setTitle("Requiem for a Dream");
-        System.out.println(movie.titleToDownloadable());
+        movie.setTitle("Rush Hour");
+        //cinemaSystem.downloadMovieImage(movie);
+        storageController.initializeStorage();
+        storageController.printAllBucketObjects();
     }
 
     public static void main(String[] args) {
