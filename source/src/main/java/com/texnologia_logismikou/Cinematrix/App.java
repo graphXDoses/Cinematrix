@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
-	private Cinema_System cinemaSystem = new Cinema_System();
+	private CinemaSystem cinemaSystem = CinemaSystem.getCinemaSystem();
 	private StorageController storageController = new StorageController();
 	
     @Override
