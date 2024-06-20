@@ -2,8 +2,16 @@ package com.texnologia_logismikou.Cinematrix;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
-public class Cinema_System {
+public class CinemaSystem {
+	
+	private static CinemaSystem instance = null;
+	
+	private boolean internetConnection = false;
 	
 	private FirebaseController firebase = new FirebaseController();
 	private FirestoreController firestore = new FirestoreController();
@@ -17,26 +25,16 @@ public class Cinema_System {
 	private ArrayList<Customer> CustomerList = new ArrayList<>();
 	private ArrayList<Ticket> TicketList = new ArrayList<>();
 	
-	public void addMovie(ArrayList<Movie> movie_list, Movie movie) {
-		movie_list.add(movie);
+	//Singleton design pattern for the CinemaSystem, ensuring that there is only one manager working at every single time.
+	private CinemaSystem() {
+		
 	}
 	
-	public void removeMovie(ArrayList<Movie> movie_list, Movie movie) {
-		movie_list.remove(movie);
-	}
-	
-	public void checkMovie(Movie movie, int date) {
-		if (date <= movie.getReleaseDate()) {
-			addMovie(futureMovieList, movie);
+	public static CinemaSystem getCinemaSystem() {
+		if(instance == null) {
+			instance = new CinemaSystem();
 		}
-		if ((movie.getReleaseDate() <= date) && (date <= movie.getExpireDate())) {
-			removeMovie(futureMovieList, movie);
-			addMovie(nowMovieList, movie);
-		}
-		if (movie.getExpireDate() <= date) {
-			removeMovie(nowMovieList, movie);
-			
-		}
+		return instance;
 	}
 	
 	public void addCustomer(ArrayList<Customer> customer_list, Customer customer) {
@@ -261,6 +259,21 @@ public class Cinema_System {
 		} 
 		
 		storage.downloadImage(movie.titleToDownloadable());
+	}
+	
+	public void checkConnection() {
+		
+		try {
+			URL url = new URL("https://cloud.google.com");
+			URLConnection connection = url.openConnection();
+			connection.connect();
+			
+			internetConnection = true;
+		} catch (Exception e) {
+			System.out.println("No Internet connection. Try again once you have established a connection to a network.");
+			System.out.println(e.toString());
+			internetConnection = false;
+		}
 	}
 }
 

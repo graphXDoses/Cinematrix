@@ -11,7 +11,7 @@ import com.google.firebase.FirebaseOptions;
 public class FirebaseController {
 
 	private FirebaseApp firebaseApp = null;
-	private static final String CREDENTIALS_FILE = "/firebase_cred_phoebus.json"; 
+	//private static final String CREDENTIALS_FILE = "/firebase_cred_phoebus.json"; 
 	
 	//There is a chance that the FirebaseApp gets initialized but the JSON file doesn't close properly.
 	//This method also sets a Firestore instance.
@@ -27,7 +27,7 @@ public class FirebaseController {
 			try {
 				FirebaseOptions options = FirebaseOptions.builder()
 						.setCredentials(GoogleCredentials.fromStream(serviceAccount))
-						.setStorageBucket("fir-test-java-1d671.appsot.com")
+						.setStorageBucket("cinematrix_movie_images")
 						.build();
 				
 				try {
