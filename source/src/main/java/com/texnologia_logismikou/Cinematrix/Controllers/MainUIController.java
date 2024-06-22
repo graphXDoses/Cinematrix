@@ -1,5 +1,7 @@
 package com.texnologia_logismikou.Cinematrix.Controllers;
 
+import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.Context;
 import com.texnologia_logismikou.Cinematrix.Managers.ContextButtonContainer;
 import com.texnologia_logismikou.Cinematrix.Managers.MainDisplay;
 import com.texnologia_logismikou.Cinematrix.Managers.FooterBar;
@@ -15,7 +17,7 @@ public class MainUIController {
 
     @FXML private HBox header_bar;
     @FXML private BorderPane root;
-    private MainDisplay mainDisplay = new MainDisplay();
+//    private MainDisplay mainDisplay = new MainDisplay();
 
     @FXML
     void initialize() {
@@ -24,18 +26,10 @@ public class MainUIController {
         header_bar.getChildren().add(0, new LogoButton().getParent());
         header_bar.getChildren().add(2, new ContextButtonContainer().getParent());
         
-        AllMoviesView view = new AllMoviesView();
+        Context movieContext = CinemaSystem.Invoke().getContexts().get(0);
+        CinemaSystem.Invoke().setActiveContext(movieContext);
         
-        // Now Featuring
-        view.getController().appendNowFeaturing(new Movie("images/_PerfectBlue_Cover.jpg"));
-        view.getController().appendNowFeaturing(new Movie("images/_RushHour_Cover.jpg"));
-        
-        // Upcomming
-        view.getController().appendUpcomming(new Movie("images/_Napoleon_Cover.jpg"));
-        
-        mainDisplay.setActiveView(view);
-        
-        root.setCenter(mainDisplay.getParent());
+        root.setCenter(CinemaSystem.Invoke().getMainDisplay().getParent());
         root.setBottom(new FooterBar().getParent());
     }
 

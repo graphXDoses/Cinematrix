@@ -25,6 +25,8 @@ public class App extends Application {
         stage.getIcons().add(new Image(getClass().getResource("images/CinematrixIcon.png").toExternalForm()));
         stage.setScene(scene);
         stage.show();
+        
+        CinemaSystem.Invoke();
     }
 
     static void setRoot(String fxml) throws IOException {

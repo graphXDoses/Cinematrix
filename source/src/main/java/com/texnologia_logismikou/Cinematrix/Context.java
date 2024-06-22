@@ -11,17 +11,28 @@ public class Context{
 	private String name;
 	private String icon_path;
 	private List<View> views = new ArrayList<>();
+	
+
 	private ContextButton button = null;
 	
-	public Context(String name, String icon_path)
+	public Context(String name, String icon_path, View ...input_views )
 	{
 		this.setName(name);
 		this.setUrl(icon_path);
 		button = new ContextButton(this);
+		
+		for(View v : input_views)
+		{
+			views.add(v);
+		}
 	}
 
 	public String getName() {
 		return name;
+	}
+	
+	public List<View> getViews() {
+		return views;
 	}
 
 	public void setName(String name) {

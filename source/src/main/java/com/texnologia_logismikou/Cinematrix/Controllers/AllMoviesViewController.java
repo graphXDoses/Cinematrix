@@ -50,6 +50,12 @@ public class AllMoviesViewController{
 		*/
 	}
 	
+	public void clearAll()
+	{
+		now_featuring_modals.getChildren().clear();
+		upcomming_modals.getChildren().clear();
+	}
+	
 	public void appendNowFeaturing(Movie movie)
 	{
 		now_featuring_modals.getChildren().add(movie.getParent());

@@ -7,7 +7,7 @@ import com.texnologia_logismikou.Cinematrix.App;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
-public class View<T> {
+public abstract class View<T> {
 
 	private Parent root;
 	private T controller;
@@ -24,6 +24,8 @@ public class View<T> {
 			e.printStackTrace();
 		}
 	}
+	
+	public abstract void prepare();
 	
 	@SuppressWarnings("exports")
 	public Parent getParent() { return(root); }

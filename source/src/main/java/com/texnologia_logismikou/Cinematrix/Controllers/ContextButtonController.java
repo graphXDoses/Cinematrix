@@ -3,6 +3,7 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 import java.util.List;
 
 import com.texnologia_logismikou.Cinematrix.App;
+import com.texnologia_logismikou.Cinematrix.CinemaSystem;
 import com.texnologia_logismikou.Cinematrix.Context;
 
 import java.util.ArrayList;
@@ -29,9 +30,9 @@ public class ContextButtonController {
 	@FXML private Label ctx_btn_lbl;
 	@FXML private Pane ctx_btn_flap_bg_r;
 	@FXML private Pane ctx_btn_flap_r;
-    
-    private static Button activeButton = null;
-    private static List<ContextButtonHandler> buttons = new ArrayList<>();
+
+    private List<Node> nodes;
+    private Context assosiateContext;
     
 //  active_css
     private static String active_context_button_container = "active-context-button-container";
@@ -48,23 +49,22 @@ public class ContextButtonController {
     private static String inactive_context_button_flap_r = "inactive-context-button-flap-r";
     
     @FXML
-    void clickEventHandler(MouseEvent event) {
-    	Button btn = (Button)(event.getSource());
-    	
-    	if(activeButton != btn)
-		{
-    		activeButton = btn;
-    		
-			for(ContextButtonHandler h: buttons)
-			{
-				if(h.checkSame(activeButton))
-					h.activate();
-				else
-					h.deactivate();
-			}
-		}
-    	
-    	
+    void clickEventHandler(MouseEvent event)
+    {
+    	CinemaSystem.Invoke().setActiveContext(assosiateContext);
+    }
+    
+    @FXML
+    void initialize()
+    {
+    	nodes = new ArrayList<>(Arrays.asList(
+        		ctx_btn_container,
+        		ctx_btn_flap_bg_l,
+        		ctx_btn_flap_l,
+        		ctx_btn_button,
+        		ctx_btn_flap_bg_r,
+        		ctx_btn_flap_r)
+        		);
     }
     
     public void setData(Context ctx)
@@ -74,64 +74,30 @@ public class ContextButtonController {
 		ctx_btn_ico.setImage(img);
 		ctx_btn_lbl.setText(ctx.getName());
 		
-		ContextButtonHandler handler = new ContextButtonHandler();
-		
-		if(ctx.getName().equals("Movies"))
-			handler.activate();
-			
-		buttons.add(handler);
+		assosiateContext = ctx;
 	}
     
-    class ContextButtonHandler
+    public void activate()
     {
-    	List<Node>   nodes        = new ArrayList<>(Arrays.asList(ctx_btn_container, ctx_btn_flap_bg_l, ctx_btn_flap_l, ctx_btn_button, ctx_btn_flap_bg_r, ctx_btn_flap_r));
-    	
-    	public void activate()
-    	{
-    		nodes.get(0).getStyleClass().clear();
-    		nodes.get(0).getStyleClass().add(active_context_button_container);
-
-    		nodes.get(1).getStyleClass().clear();
-    		nodes.get(1).getStyleClass().add(active_context_button_flap_bg);
-
-    		nodes.get(2).getStyleClass().clear();
-    		nodes.get(2).getStyleClass().add(active_context_button_flap_l);
-
-    		nodes.get(3).getStyleClass().clear();
-    		nodes.get(3).getStyleClass().add(active_context_button);
-
-    		nodes.get(4).getStyleClass().clear();
-    		nodes.get(4).getStyleClass().add(active_context_button_flap_bg);
-
-    		nodes.get(5).getStyleClass().clear();
-    		nodes.get(5).getStyleClass().add(active_context_button_flap_r);
-    	}
-    	
-    	public void deactivate()
-    	{
-    		nodes.get(0).getStyleClass().clear();
-    		nodes.get(0).getStyleClass().add(inactive_context_button_container);
-
-    		nodes.get(1).getStyleClass().clear();
-    		nodes.get(1).getStyleClass().add(inactive_context_button_flap_bg);
-
-    		nodes.get(2).getStyleClass().clear();
-    		nodes.get(2).getStyleClass().add(inactive_context_button_flap_l);
-
-    		nodes.get(3).getStyleClass().clear();
-    		nodes.get(3).getStyleClass().add(inactive_context_button);
-
-    		nodes.get(4).getStyleClass().clear();
-    		nodes.get(4).getStyleClass().add(inactive_context_button_flap_bg);
-
-    		nodes.get(5).getStyleClass().clear();
-    		nodes.get(5).getStyleClass().add(inactive_context_button_flap_r);
-    	}
-    	
-    	public boolean checkSame(Button refButton)
-    	{
-    		return(refButton.equals(nodes.get(3)));
-    	}
+        nodes.forEach((node) -> { node.getStyleClass().clear(); });
+        
+        nodes.get(0).getStyleClass().add(active_context_button_container);
+        nodes.get(1).getStyleClass().add(active_context_button_flap_bg);
+        nodes.get(2).getStyleClass().add(active_context_button_flap_l);
+        nodes.get(3).getStyleClass().add(active_context_button);
+        nodes.get(4).getStyleClass().add(active_context_button_flap_bg);
+        nodes.get(5).getStyleClass().add(active_context_button_flap_r);
     }
 
+    public void deactivate()
+    {
+    	nodes.forEach((node) -> { node.getStyleClass().clear(); });
+        
+        nodes.get(0).getStyleClass().add(inactive_context_button_container);
+        nodes.get(1).getStyleClass().add(inactive_context_button_flap_bg);
+        nodes.get(2).getStyleClass().add(inactive_context_button_flap_l);
+        nodes.get(3).getStyleClass().add(inactive_context_button);
+        nodes.get(4).getStyleClass().add(inactive_context_button_flap_bg);
+        nodes.get(5).getStyleClass().add(inactive_context_button_flap_r);
+    }
 }
