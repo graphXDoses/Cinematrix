@@ -7,6 +7,7 @@ import com.texnologia_logismikou.Cinematrix.Managers.MainDisplay;
 import com.texnologia_logismikou.Cinematrix.Managers.Movie;
 import com.texnologia_logismikou.Cinematrix.Views.AllMoviesView;
 import com.texnologia_logismikou.Cinematrix.Views.MovieDetailsView;
+import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
 
 public class CinemaSystem {
 	private static CinemaSystem instance = null;
@@ -27,7 +28,7 @@ public class CinemaSystem {
 		
 		contexts.add(new Context("Movies", "images/movie.png", new AllMoviesView()));
 		contexts.add(new Context("Cinemas", "images/theater.png", new MovieDetailsView()));
-		contexts.add(new Context("Account", "images/account.png", new AllMoviesView()));
+		contexts.add(new Context("Account", "images/account.png", new SignUpView()));
 		
 	}
 	
