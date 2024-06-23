@@ -17,13 +17,13 @@
             <Image url="@../images/_BLANK_Cover.jpg" />
          </image></ImageView>
       <HBox fx:id="mld_halo" layoutY="200.0" prefHeight="100.0" prefWidth="220.0" styleClass="movie-modal-gradient" stylesheets="@../styles/styles.css" />
-      <Button fx:id="mdl_button" mnemonicParsing="false" prefHeight="300.0" prefWidth="220.0" styleClass="invisible-button" stylesheets="@../styles/styles.css">
+      <Button fx:id="mdl_button" mnemonicParsing="false" onAction="#gotoDetailsCallback" prefHeight="300.0" prefWidth="220.0" styleClass="invisible-button" stylesheets="@../styles/styles.css">
          <graphic>
             <VBox alignment="CENTER" prefHeight="292.0" prefWidth="134.0">
                <children>
                   <HBox fx:id="edit_btn" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#addNewMovie" styleClass="movie_modal_button" stylesheets="@../styles/styles.css" textAlignment="CENTER">
+                        <Button alignment="CENTER" mnemonicParsing="false" styleClass="movie_modal_button" stylesheets="@../styles/styles.css" textAlignment="CENTER">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" rotate="45.0">
                                  <image>

@@ -13,7 +13,6 @@ public class Context{
 	private String icon_path;
 	private List<View> views = new ArrayList<>();
 	private View activeView = null;
-
 	private ContextButton button = null;
 	
 	public Context(String name, String icon_path, View ...input_views )
@@ -22,10 +21,7 @@ public class Context{
 		this.setUrl(icon_path);
 		button = new ContextButton(this);
 		
-		for(View v : input_views)
-		{
-			views.add(v);
-		}
+		for(View v : input_views) { views.add(v); }
 		
 		try {
 			goToView(input_views[0]);

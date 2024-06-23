@@ -13,7 +13,7 @@ public class MainDisplay extends Manager<DisplayAreaController>
 	
 	public void refresh()
 	{
-		View view = CinemaSystem.Invoke()
+		View view = CinemaSystem.getInstance()
 								.getActiveContext()
 								.getActiveView();
 		

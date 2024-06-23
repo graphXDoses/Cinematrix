@@ -229,3 +229,11 @@
 }
 /*
 */
+
+.cinema_modal
+{
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-color: -fx-fg;
+}

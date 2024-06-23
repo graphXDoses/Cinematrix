@@ -12,7 +12,7 @@ public class ContextButtonContainer extends Manager<ContextButtonContainerContro
 	{
 		super.loadFXML("ContextButtonContainer");
 
-		CinemaSystem.Invoke()
+		CinemaSystem.getInstance()
 					.getContexts()
 					.forEach((c)-> { getController().addContextButton(c.getButton()); });
 	}

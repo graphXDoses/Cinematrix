@@ -4,7 +4,9 @@ import java.io.FileNotFoundException;
 
 import com.texnologia_logismikou.Cinematrix.App;
 import com.texnologia_logismikou.Cinematrix.CinemaSystem;
-import com.texnologia_logismikou.Cinematrix.Managers.Movie;
+import com.texnologia_logismikou.Cinematrix.Movie;
+import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
+import com.texnologia_logismikou.Cinematrix.Views.MovieDetailsView;
 import com.texnologia_logismikou.Cinematrix.Views.View;
 
 import javafx.animation.FadeTransition;
@@ -24,18 +26,16 @@ public class MovieModalController {
 	@FXML private HBox mld_halo;
 	@FXML private HBox edit_btn;
 	
+	private Movie associateMovie = null;
+	
 	public void setData(Movie movie)
 	{
-		try
-		{			
-			Image img = new Image(App.class.getResource(movie.getUrl()).toExternalForm());
-			mdl_cover.setImage(img);
-			mdl_button.setTooltip(new Tooltip("<Movie Title>"));
-		} catch(Exception e) {
-			mdl_cover.setOpacity(.3);
-			edit_btn.setVisible(true);
-			mdl_button.setTooltip(new Tooltip("Add new movie."));
-		}
+		associateMovie = movie;
+		
+		mdl_cover.setImage(movie.getModal().getCoverImage());
+		mdl_button.setTooltip(new Tooltip(movie.getFullName()));
+		edit_btn.setVisible(false);
+		mdl_cover.setOpacity(1);
 	}
 	
 	@FXML
@@ -52,16 +52,18 @@ public class MovieModalController {
         mdl_button.setOnMouseExited(e -> fadeOut.playFromStart());
 
         mld_halo.setOpacity(0.0);
-        
-        edit_btn.setVisible(false);
+
+        mdl_button.setTooltip(new Tooltip("Add new movie."));
+        mdl_cover.setOpacity(.3);
 	}
 	
 	@FXML
-    void addNewMovie(ActionEvent event) {
-		View details = CinemaSystem.Invoke().getActiveContext().getViews().get(1);
+    void gotoDetailsCallback(ActionEvent event) {
+		MovieDetailsView details = (MovieDetailsView) CinemaSystem.getInstance().getActiveContext().getViews().get(1);
 		try {
-			CinemaSystem.Invoke().getActiveContext().goToView(details);
-			CinemaSystem.Invoke().getMainDisplay().refresh();
+			CinemaSystem.getInstance().getActiveContext().goToView(details);
+			details.setSelectedMovie(associateMovie);
+			CinemaSystem.getInstance().getMainDisplay().refresh();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

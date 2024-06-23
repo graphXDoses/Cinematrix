@@ -53,13 +53,13 @@ public class ContextButtonController {
     @FXML
     void clickEventHandler(MouseEvent event)
     {
-    	CinemaSystem.Invoke().setActiveContext(assosiateContext);
+    	CinemaSystem.getInstance().setActiveContext(assosiateContext);
     	
-    	View defaultView = CinemaSystem.Invoke().getActiveContext().getViews().get(0);
+    	View defaultView = CinemaSystem.getInstance().getActiveContext().getViews().get(0);
     	
     	try {
-			CinemaSystem.Invoke().getActiveContext().goToView(defaultView);
-			CinemaSystem.Invoke().getMainDisplay().refresh();
+			CinemaSystem.getInstance().getActiveContext().goToView(defaultView);
+			CinemaSystem.getInstance().getMainDisplay().refresh();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

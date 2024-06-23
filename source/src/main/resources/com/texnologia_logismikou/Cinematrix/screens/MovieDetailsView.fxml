@@ -11,22 +11,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5" prefHeight="507.0" prefWidth="664.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane fx:id="root" dividerPositions="0.3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="507.0" prefWidth="664.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.MovieDetailsViewController">
    <items>
-      <AnchorPane maxWidth="500.0">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="500.0">
          <children>
             <VBox alignment="TOP_CENTER" minWidth="343.0" prefHeight="505.0" prefWidth="343.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Pane maxHeight="300.0" maxWidth="220.0" minHeight="300.0" minWidth="220.0" prefHeight="300.0" prefWidth="220.0" VBox.vgrow="NEVER">
                      <children>
-                        <ImageView fitHeight="300.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="mdl_cover" fitHeight="300.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/TheAssassinationofJesseJames_Cover.jpg" />
+                              <Image url="@../images/_BLANK_Cover.jpg" />
                            </image>
                         </ImageView>
                      </children>
                   </Pane>
-                  <Label contentDisplay="CENTER" prefHeight="60.0" prefWidth="300.0" text="The Assassination of Jesse James by the Coward Robert Ford" textAlignment="CENTER" textFill="#dedede" wrapText="true">
+                  <Label fx:id="mdl_title" alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="300.0" text="&lt;Movie Title Goes Here&gt;" textAlignment="CENTER" textFill="#dedede" wrapText="true">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -39,6 +39,6 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
    </items>
 </SplitPane>

@@ -1,8 +1,12 @@
 package com.texnologia_logismikou.Cinematrix.Views;
 
+import java.util.List;
+
 import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.Movie;
 import com.texnologia_logismikou.Cinematrix.Controllers.AllMoviesViewController;
-import com.texnologia_logismikou.Cinematrix.Managers.Movie;
+import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
+import com.texnologia_logismikou.Cinematrix.Users.Admin;
 
 public class AllMoviesView extends View<AllMoviesViewController>
 {
@@ -16,10 +20,17 @@ public class AllMoviesView extends View<AllMoviesViewController>
 	{
 		getController().clearAll();
 		
-		getController().appendNowFeaturing(new Movie(null));
-		getController().appendNowFeaturing(CinemaSystem.Invoke().getMovies().get(0));
-		getController().appendNowFeaturing(CinemaSystem.Invoke().getMovies().get(1));
+		if(CinemaSystem.getInstance().getCurrentUser() instanceof Admin)
+			getController().appendNowFeaturing(new MovieModal(null));
 		
-		getController().appendUpcomming(CinemaSystem.Invoke().getMovies().get(2));
+		List<Movie> movies = CinemaSystem.getInstance().getMovies();
+		
+		if(!movies.isEmpty())
+		{
+			getController().appendNowFeaturing(movies.get(0).getModal());
+			getController().appendNowFeaturing(movies.get(1).getModal());
+			
+			getController().appendUpcomming(movies.get(2).getModal());
+		}
 	}
 }

@@ -6,7 +6,7 @@ import com.texnologia_logismikou.Cinematrix.Managers.ContextButtonContainer;
 import com.texnologia_logismikou.Cinematrix.Managers.MainDisplay;
 import com.texnologia_logismikou.Cinematrix.Managers.FooterBar;
 import com.texnologia_logismikou.Cinematrix.Managers.LogoButton;
-import com.texnologia_logismikou.Cinematrix.Managers.Movie;
+import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
 import com.texnologia_logismikou.Cinematrix.Views.AllMoviesView;
 
 import javafx.fxml.FXML;
@@ -26,10 +26,10 @@ public class MainUIController {
         header_bar.getChildren().add(0, new LogoButton().getParent());
         header_bar.getChildren().add(2, new ContextButtonContainer().getParent());
         
-        Context movieContext = CinemaSystem.Invoke().getContexts().get(0);
-        CinemaSystem.Invoke().setActiveContext(movieContext);
+        Context movieContext = CinemaSystem.getInstance().getContexts().get(0);
+        CinemaSystem.getInstance().setActiveContext(movieContext);
         
-        root.setCenter(CinemaSystem.Invoke().getMainDisplay().getParent());
+        root.setCenter(CinemaSystem.getInstance().getMainDisplay().getParent());
         root.setBottom(new FooterBar().getParent());
     }
 
