@@ -1,5 +1,6 @@
 package com.texnologia_logismikou.Cinematrix;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Context{
 	private String name;
 	private String icon_path;
 	private List<View> views = new ArrayList<>();
-	
+	private View activeView = null;
 
 	private ContextButton button = null;
 	
@@ -24,6 +25,13 @@ public class Context{
 		for(View v : input_views)
 		{
 			views.add(v);
+		}
+		
+		try {
+			goToView(input_views[0]);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -47,8 +55,13 @@ public class Context{
 		this.icon_path = icon_path;
 	}
 	
-	public ContextButton getButton()
-	{
-		return(button);
+	public ContextButton getButton() { return(button); }
+	public View getActiveView() { return(activeView);	}
+	
+	public void goToView(View view) throws FileNotFoundException {
+		if(views.indexOf(view) != -1)
+			this.activeView = view;
+		else
+			throw new FileNotFoundException();
 	}
 }

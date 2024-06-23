@@ -2,6 +2,7 @@ package com.texnologia_logismikou.Cinematrix.Views;
 
 import com.texnologia_logismikou.Cinematrix.CinemaSystem;
 import com.texnologia_logismikou.Cinematrix.Controllers.AllMoviesViewController;
+import com.texnologia_logismikou.Cinematrix.Managers.Movie;
 
 public class AllMoviesView extends View<AllMoviesViewController>
 {
@@ -15,6 +16,7 @@ public class AllMoviesView extends View<AllMoviesViewController>
 	{
 		getController().clearAll();
 		
+		getController().appendNowFeaturing(new Movie(null));
 		getController().appendNowFeaturing(CinemaSystem.Invoke().getMovies().get(0));
 		getController().appendNowFeaturing(CinemaSystem.Invoke().getMovies().get(1));
 		

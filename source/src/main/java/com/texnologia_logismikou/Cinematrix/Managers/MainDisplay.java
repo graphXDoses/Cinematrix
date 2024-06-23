@@ -15,7 +15,7 @@ public class MainDisplay extends Manager<DisplayAreaController>
 	{
 		View view = CinemaSystem.Invoke()
 								.getActiveContext()
-								.getViews().get(0);
+								.getActiveView();
 		
 		view.prepare();
 		getController().setContent(view.getParent());

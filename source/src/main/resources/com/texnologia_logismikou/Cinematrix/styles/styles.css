@@ -191,13 +191,13 @@
     -fx-border-color: transparent;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-background-color: transparent;
+    -fx-background-color: -fx-c1;
+    -fx-border-color: -fx-txtColor;
 }
 
 .movie_modal_button:hover
 {
-    -fx-border-color: -fx-txtColor;
-    -fx-background-color: -fx-c1;
+    -fx-background-color: -fx-c2;
 }
 
 .license_popup_content{
