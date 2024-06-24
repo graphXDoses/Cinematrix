@@ -230,7 +230,7 @@
 /*
 */
 
-.cinema_modal
+.cinema_modal, .movie_details_modal
 {
     -fx-border-width: 1;
     -fx-border-radius: 5;

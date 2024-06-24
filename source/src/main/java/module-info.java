@@ -5,6 +5,7 @@ module Cinematrix {
 	requires javafx.graphics;
 	requires java.desktop;
 	requires javafx.base;
+	requires javafx.web;
 
     opens com.texnologia_logismikou.Cinematrix to javafx.fxml;
     opens com.texnologia_logismikou.Cinematrix.Controllers to javafx.fxml;

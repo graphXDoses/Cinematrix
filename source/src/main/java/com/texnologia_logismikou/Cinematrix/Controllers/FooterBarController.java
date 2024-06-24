@@ -14,7 +14,7 @@ public class FooterBarController {
     @FXML
     void initialize()
     {
-    	userT_lbl.setText("[" + CinemaSystem.getInstance().getCurrentUser() + "]");
+    	userT_lbl.setText("[ " + CinemaSystem.getInstance().getCurrentUser() + " ]");
 		version_lbl.setText(PropertiesReader.getProperty("AppVersion"));
     }
 }

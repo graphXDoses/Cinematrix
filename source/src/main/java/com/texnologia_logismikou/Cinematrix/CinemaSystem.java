@@ -25,8 +25,8 @@ public class CinemaSystem {
 	
 	private CinemaSystem()
 	{
-		currentUser = new Admin();
-//		currentUser = new Guest();
+//		currentUser = new Admin();
+		currentUser = new Guest();
 		
 		mD = new MainDisplay();
 		
@@ -66,17 +66,20 @@ public class CinemaSystem {
 		movies.add(new Movie(
 			"Perfect Blue",
 			"PerfectBlue",
-			1997
+			1997,
+			"https://www.youtube.com/embed/BD8I4v9U4mw?si=3g8BfKh8nhHoXL0U"
 		));
 		movies.add(new Movie(
 			"Rush Hour",
 			"RushHour",
-			1998
+			1998,
+			"https://www.youtube.com/embed/JMiFsFQcFLE?si=2u52cDgmAiSpxO1-"
 		));
 		movies.add(new Movie(
 			"Napoleon",
 			"Napoleon",
-			2023
+			2023,
+			"https://www.youtube.com/embed/OAZWXUkrjPc?si=apRRZD9yjPYtIZQ3"
 		));
 	}
 	
