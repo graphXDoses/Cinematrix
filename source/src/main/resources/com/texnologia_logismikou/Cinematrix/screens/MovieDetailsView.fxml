@@ -14,12 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-
-<VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.MovieDetailsViewController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" spacing="30.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.MovieDetailsViewController">
    <children>
       <AnchorPane styleClass="movie_details_modal" stylesheets="@../styles/styles.css">
          <children>
-            <VBox fx:id="vbox_accordion" maxHeight="430.0" spacing="15.0">
+            <VBox fx:id="vbox_accordion" maxHeight="900.0" spacing="15.0">
                <children>
                   <HBox spacing="20.0">
                      <children>
@@ -59,7 +58,13 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label text="R, 1 hr 58 min" textFill="#dedede" />
+                                    <HBox alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label fx:id="MPArating_label" text="R" textFill="#dedede" />
+                                          <Label text=", " textFill="#dedede" />
+                                          <Label fx:id="duration_label" text="1 hr 58 min" textFill="#dedede" />
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -83,8 +88,25 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <Pane prefHeight="15.0" />
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="600.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit." textFill="#dedede" wrapText="true" />
+                  <Pane maxHeight="15.0" minHeight="15.0" prefHeight="15.0" />
+                  <Label fx:id="description_label" maxHeight="1.7976931348623157E308" maxWidth="600.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit." textFill="#dedede" wrapText="true" />
+                  <VBox fx:id="more_details_container" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox minHeight="0.0" styleClass="seat_selection_panel" stylesheets="@../styles/styles.css">
+                           <children>
+                              <Label maxHeight="1.7976931348623157E308" maxWidth="600.0" text="Director: " textFill="#dedede">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="director_label" maxHeight="1.7976931348623157E308" maxWidth="600.0" text="&lt;Directors Name&gt;" textFill="#337cf2" />
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -97,8 +119,48 @@
             </Hyperlink>
          </children>
       </AnchorPane>
+      <HBox prefHeight="80.0" prefWidth="200.0">
+         <children>
+            <Pane maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #337cf2; -fx-background-radius: 5;" HBox.hgrow="NEVER">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="17.0" prefWidth="80.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="movie_details_datepick_modal" stylesheets="@../styles/styles.css" text="TODAY" textFill="#dedede" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="Oswald" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="movie_details_datepick_modal" stylesheets="@../styles/styles.css" text="OCT" textFill="#dedede">
+                           <font>
+                              <Font name="Bodoni MT" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="movie_details_datepick_modal" stylesheets="@../styles/styles.css" text="13" textFill="#dedede">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="invisible-button" stylesheets="@../styles/styles.css">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <VBox fx:id="cinemaDisplayContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+         <padding>
+            <Insets bottom="-30.0" left="-30.0" right="-30.0" top="-30.0" />
+         </padding>
+      </VBox>
    </children>
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
    </padding>
 </VBox>

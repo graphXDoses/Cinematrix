@@ -13,12 +13,13 @@ public class NearCinemasViewController {
     @FXML
     void initialize() {
         assert cinema_modals_area != null : "fx:id=\"cinema_modals_area\" was not injected: check your FXML file 'NearCinemasView.fxml'.";
-
+//        cinema_modals_area.setVisible(false);
     }
 
 	public void appendCinemaModal(CinemaModal modal)
 	{
 		Parent parentNode = modal.getParent();
+//		cinema_modals_area.setVisible(true);
 		if(!cinema_modals_area.getChildren().contains(parentNode))
 			cinema_modals_area.getChildren().add(modal.getParent());
 	}

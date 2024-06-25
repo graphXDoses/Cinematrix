@@ -3,4 +3,4 @@
 <?import javafx.scene.control.ScrollPane?>
 
 
-<ScrollPane fx:id="scroller" fitToWidth="true" hbarPolicy="NEVER" styleClass="crank" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.DisplayAreaController" />
+<ScrollPane fx:id="scroller" fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-bar" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.DisplayAreaController" />

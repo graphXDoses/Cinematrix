@@ -1,0 +1,618 @@
+[
+    {
+        "title": "Inception",
+        "releaseYear": 2010,
+        "MPArating": "PG-13",
+        "duration": 148,
+        "ytTrailerURL": "https://www.youtube.com/embed/YoHD9XEInc0",
+        "category": ["ACTION", "ADVENTURE", "SCI-FI"],
+        "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
+        "director": "Christopher Nolan"
+    },
+    {
+        "title": "The Shawshank Redemption",
+        "releaseYear": 1994,
+        "MPArating": "R",
+        "duration": 142,
+        "ytTrailerURL": "https://www.youtube.com/embed/NmzuHjWmXOc",
+        "category": ["DRAMA"],
+        "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+        "director": "Frank Darabont"
+    },
+    {
+        "title": "The Godfather",
+        "releaseYear": 1972,
+        "MPArating": "R",
+        "duration": 175,
+        "ytTrailerURL": "https://www.youtube.com/embed/sY1S34973zA",
+        "category": ["CRIME", "DRAMA"],
+        "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+        "director": "Francis Ford Coppola"
+    },
+    {
+        "title": "The Dark Knight",
+        "releaseYear": 2008,
+        "MPArating": "PG-13",
+        "duration": 152,
+        "ytTrailerURL": "https://www.youtube.com/embed/EXeTwQWrcwY",
+        "category": ["ACTION", "CRIME", "DRAMA"],
+        "description": "When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.",
+        "director": "Christopher Nolan"
+    },
+    {
+        "title": "Pulp Fiction",
+        "releaseYear": 1994,
+        "MPArating": "R",
+        "duration": 154,
+        "ytTrailerURL": "https://www.youtube.com/embed/s7EdQ4FqbhY",
+        "category": ["CRIME", "DRAMA"],
+        "description": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+        "director": "Quentin Tarantino"
+    },
+    {
+        "title": "Forrest Gump",
+        "releaseYear": 1994,
+        "MPArating": "PG-13",
+        "duration": 142,
+        "ytTrailerURL": "https://www.youtube.com/embed/bLvqoHBptjg",
+        "category": ["DRAMA", "ROMANCE"],
+        "description": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal, and other historical events unfold through the perspective of an Alabama man with an IQ of 75.",
+        "director": "Robert Zemeckis"
+    },
+    {
+        "title": "Fight Club",
+        "releaseYear": 1999,
+        "MPArating": "R",
+        "duration": 139,
+        "ytTrailerURL": "https://www.youtube.com/embed/SUXWAEX2jlg",
+        "category": ["DRAMA"],
+        "description": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into something much, much more.",
+        "director": "David Fincher"
+    },
+    {
+        "title": "The Matrix",
+        "releaseYear": 1999,
+        "MPArating": "R",
+        "duration": 136,
+        "ytTrailerURL": "https://www.youtube.com/embed/vKQi3bBA1y8",
+        "category": ["ACTION", "SCI-FI"],
+        "description": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+        "director": "Lana Wachowski, Lilly Wachowski"
+    },
+    {
+        "title": "The Lord of the Rings: The Fellowship of the Ring",
+        "releaseYear": 2001,
+        "MPArating": "PG-13",
+        "duration": 178,
+        "ytTrailerURL": "https://www.youtube.com/embed/V75dMMIW2B4",
+        "category": ["ACTION", "ADVENTURE", "DRAMA"],
+        "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
+        "director": "Peter Jackson"
+    },
+    {
+        "title": "Star Wars: Episode IV - A New Hope",
+        "releaseYear": 1977,
+        "MPArating": "PG",
+        "duration": 121,
+        "ytTrailerURL": "https://www.youtube.com/embed/vZ734NWnAHA",
+        "category": ["ACTION", "ADVENTURE", "FANTASY"],
+        "description": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee, and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.",
+        "director": "George Lucas"
+    },
+    {
+        "title": "The Silence of the Lambs",
+        "releaseYear": 1991,
+        "MPArating": "R",
+        "duration": 118,
+        "ytTrailerURL": "https://www.youtube.com/embed/W6Mm8Sbe__o",
+        "category": ["CRIME", "DRAMA", "THRILLER"],
+        "description": "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims.",
+        "director": "Jonathan Demme"
+    },
+    {
+        "title": "Saving Private Ryan",
+        "releaseYear": 1998,
+        "MPArating": "R",
+        "duration": 169,
+        "ytTrailerURL": "https://www.youtube.com/embed/RYID71hYHzg",
+        "category": ["DRAMA", "WAR"],
+        "description": "Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper whose brothers have been killed in action.",
+        "director": "Steven Spielberg"
+    },
+    {
+        "title": "Schindler's List",
+        "releaseYear": 1993,
+        "MPArating": "R",
+        "duration": 195,
+        "ytTrailerURL": "https://www.youtube.com/embed/gG22XNhtnoY",
+        "category": ["BIOGRAPHY", "DRAMA", "HISTORY"],
+        "description": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
+        "director": "Steven Spielberg"
+    },
+    {
+        "title": "Se7en",
+        "releaseYear": 1995,
+        "MPArating": "R",
+        "duration": 127,
+        "ytTrailerURL": "https://www.youtube.com/embed/znmZoVkCjpI",
+        "category": ["CRIME", "DRAMA", "MYSTERY"],
+        "description": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
+        "director": "David Fincher"
+    },
+    {
+        "title": "The Usual Suspects",
+        "releaseYear": 1995,
+        "MPArating": "R",
+        "duration": 106,
+        "ytTrailerURL": "https://www.youtube.com/embed/oiXdPolca5w",
+        "category": ["CRIME", "DRAMA", "MYSTERY"],
+        "description": "A sole survivor tells of the twisty events leading up to a horrific gun battle on a boat, which began when five criminals met at a seemingly random police lineup.",
+        "director": "Bryan Singer"
+    },
+    {
+        "title": "The Lion King",
+        "releaseYear": 1994,
+        "MPArating": "G",
+        "duration": 88,
+        "ytTrailerURL": "https://www.youtube.com/embed/4sj1MT05lAA",
+        "category": ["ANIMATION", "ADVENTURE", "DRAMA"],
+        "description": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.",
+        "director": "Roger Allers, Rob Minkoff"
+    },
+    {
+        "title": "Interstellar",
+        "releaseYear": 2014,
+        "MPArating": "PG-13",
+        "duration": 169,
+        "ytTrailerURL": "https://www.youtube.com/embed/zSWd
+
+ZVtXT7E",
+        "category": ["ADVENTURE", "DRAMA", "SCI-FI"],
+        "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+        "director": "Christopher Nolan"
+    },
+    {
+        "title": "Parasite",
+        "releaseYear": 2019,
+        "MPArating": "R",
+        "duration": 132,
+        "ytTrailerURL": "https://www.youtube.com/embed/5xH0HfJHsaY",
+        "category": ["COMEDY", "DRAMA", "THRILLER"],
+        "description": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
+        "director": "Bong Joon Ho"
+    },
+    {
+        "title": "The Green Mile",
+        "releaseYear": 1999,
+        "MPArating": "R",
+        "duration": 189,
+        "ytTrailerURL": "https://www.youtube.com/embed/Ki4haFrqSrw",
+        "category": ["CRIME", "DRAMA", "FANTASY"],
+        "description": "The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder and rape, yet who has a mysterious gift.",
+        "director": "Frank Darabont"
+    },
+    {
+        "title": "Gladiator",
+        "releaseYear": 2000,
+        "MPArating": "R",
+        "duration": 155,
+        "ytTrailerURL": "https://www.youtube.com/embed/owK1qxDselE",
+        "category": ["ACTION", "ADVENTURE", "DRAMA"],
+        "description": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+        "director": "Ridley Scott"
+    },
+    {
+        "title": "Back to the Future",
+        "releaseYear": 1985,
+        "MPArating": "PG",
+        "duration": 116,
+        "ytTrailerURL": "https://www.youtube.com/embed/qvsgGtivCgs",
+        "category": ["ADVENTURE", "COMEDY", "SCI-FI"],
+        "description": "Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the eccentric scientist Doc Brown.",
+        "director": "Robert Zemeckis"
+    },
+    {
+        "title": "The Pianist",
+        "releaseYear": 2002,
+        "MPArating": "R",
+        "duration": 150,
+        "ytTrailerURL": "https://www.youtube.com/embed/BFwGqLa_oAo",
+        "category": ["BIOGRAPHY", "DRAMA", "MUSIC"],
+        "description": "A Polish Jewish musician struggles to survive the destruction of the Warsaw ghetto of World War II.",
+        "director": "Roman Polanski"
+    },
+    {
+        "title": "Terminator 2: Judgment Day",
+        "releaseYear": 1991,
+        "MPArating": "R",
+        "duration": 137,
+        "ytTrailerURL": "https://www.youtube.com/embed/CRRlbK5w8AE",
+        "category": ["ACTION", "SCI-FI"],
+        "description": "A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her ten-year-old son, John Connor, from a more advanced and powerful cyborg.",
+        "director": "James Cameron"
+    },
+    {
+        "title": "The Departed",
+        "releaseYear": 2006,
+        "MPArating": "R",
+        "duration": 151,
+        "ytTrailerURL": "https://www.youtube.com/embed/iojhqm0JTW4",
+        "category": ["CRIME", "DRAMA", "THRILLER"],
+        "description": "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.",
+        "director": "Martin Scorsese"
+    },
+    {
+        "title": "The Prestige",
+        "releaseYear": 2006,
+        "MPArating": "PG-13",
+        "duration": 130,
+        "ytTrailerURL": "https://www.youtube.com/embed/o4gHCmTQDVI",
+        "category": ["DRAMA", "MYSTERY", "SCI-FI"],
+        "description": "After a tragic accident, two stage magicians engage in a battle to create the ultimate illusion while sacrificing everything they have to outwit each other.",
+        "director": "Christopher Nolan"
+    },
+    {
+        "title": "The Lion King",
+        "releaseYear": 1994,
+        "MPArating": "G",
+        "duration": 88,
+        "ytTrailerURL": "https://www.youtube.com/embed/4sj1MT05lAA",
+        "category": ["ANIMATION", "ADVENTURE", "DRAMA"],
+        "description": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.",
+        "director": "Roger Allers, Rob Minkoff"
+    },
+    {
+        "title": "Memento",
+        "releaseYear": 2000,
+        "MPArating": "R",
+        "duration": 113,
+        "ytTrailerURL": "https://www.youtube.com/embed/0vS0E9bBSL0",
+        "category": ["MYSTERY", "THRILLER"],
+        "description": "A man with short-term memory loss attempts to track down his wife's murderer.",
+        "director": "Christopher Nolan"
+    },
+    {
+        "title": "Apocalypse Now",
+        "releaseYear": 1979,
+        "MPArating": "R",
+        "duration": 147,
+        "ytTrailerURL": "https://www.youtube.com/embed/IkrhkUeDCdQ",
+        "category": ["DRAMA", "WAR"],
+        "description": "A U.S. Army officer serving in Vietnam is tasked with assassinating a renegade Special Forces Colonel who sees himself as a god.",
+        "director": "Francis Ford Coppola"
+    },
+    {
+        "title": "Alien",
+        "releaseYear": 1979,
+        "MPArating": "R",
+        "duration": 117,
+        "ytTrailerURL": "https://www.youtube.com/embed/LjLamj-b0I8",
+        "category": ["HORROR", "SCI-FI"],
+        "description": "After a space merchant vessel receives an unknown transmission as a distress call, one of the crew is attacked by a mysterious life form, and they soon realize that its life cycle has merely begun.",
+        "director": "Ridley Scott"
+    },
+    {
+        "title": "The Shining",
+        "releaseYear": 1980,
+        "MPArating": "R",
+        "duration": 146,
+        "ytTrailerURL": "https://www.youtube.com/embed/S014oGZiSdI",
+        "category": ["DRAMA", "HORROR"],
+        "description": "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.",
+        "director": "Stanley Kubrick"
+    },
+    {
+        "title": "Whiplash",
+        "releaseYear": 2014,
+        "MPArating": "R",
+        "duration": 106,
+        "ytTrailerURL": "https://www.youtube.com/embed/7d_jQycdQGo",
+        "category": ["DRAMA", "MUSIC"],
+        "description": "A promising young drummer enrolls at a cutthroat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential.",
+        "director": "Damien Chazelle"
+    },
+    {
+        "title": "Django Unchained",
+        "releaseYear": 2012,
+        "MPArating": "R",
+        "duration": 165,
+        "ytTrailerURL": "https://www.youtube.com/embed/0fUCuvNlOCg",
+        "category": ["DRAMA", "WESTERN"],
+        "description": "With the help of a German bounty-hunter, a freed slave sets out to rescue his wife from a brutal plantation-owner in Mississippi.",
+        "director": "Quentin Tarantino"
+    },
+    {
+        "title": "The Great Dictator",
+        "releaseYear": 1940,
+        "MPArating": "G",
+        "duration": 125,
+        "ytTrailerURL": "https://www.youtube.com/embed/k8lKoqZyCek",
+        "category": ["COMEDY", "DRAMA", "WAR"],
+        "description": "Dictator Adenoid Hynkel tries to expand his empire while a poor Jewish barber tries to avoid persecution from Hynkel's regime.",
+        "director": "Charles Chaplin"
+    },
+    {
+        "title": "City Lights",
+        "releaseYear": 1931,
+        "MPArating": "G",
+
+
+        "duration": 87,
+        "ytTrailerURL": "https://www.youtube.com/embed/8PCkGEG1e3A",
+        "category": ["COMEDY", "DRAMA", "ROMANCE"],
+        "description": "With the aid of a wealthy errant, a dewy-eyed tramp who has fallen in love with a sightless flower girl accumulates money to be able to help her medically.",
+        "director": "Charles Chaplin"
+    },
+    {
+        "title": "The Lives of Others",
+        "releaseYear": 2006,
+        "MPArating": "R",
+        "duration": 137,
+        "ytTrailerURL": "https://www.youtube.com/embed/FppW5ml4vdw",
+        "category": ["DRAMA", "THRILLER"],
+        "description": "In 1984 East Berlin, an agent of the secret police, conducting surveillance on a writer and his lover, finds himself becoming increasingly absorbed by their lives.",
+        "director": "Florian Henckel von Donnersmarck"
+    },
+    {
+        "title": "The Wolf of Wall Street",
+        "releaseYear": 2013,
+        "MPArating": "R",
+        "duration": 180,
+        "ytTrailerURL": "https://www.youtube.com/embed/iszwuX1AK6A",
+        "category": ["BIOGRAPHY", "COMEDY", "CRIME"],
+        "description": "Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.",
+        "director": "Martin Scorsese"
+    },
+    {
+        "title": "The Intouchables",
+        "releaseYear": 2011,
+        "MPArating": "R",
+        "duration": 112,
+        "ytTrailerURL": "https://www.youtube.com/embed/34WIbmXkewU",
+        "category": ["BIOGRAPHY", "COMEDY", "DRAMA"],
+        "description": "After he becomes a quadriplegic from a paragliding accident, an aristocrat hires a young man from the projects to be his caregiver.",
+        "director": "Olivier Nakache, Éric Toledano"
+    },
+    {
+        "title": "Modern Times",
+        "releaseYear": 1936,
+        "MPArating": "G",
+        "duration": 87,
+        "ytTrailerURL": "https://www.youtube.com/embed/GLeDdzGUTq0",
+        "category": ["COMEDY", "DRAMA", "ROMANCE"],
+        "description": "The Tramp struggles to live in modern industrial society with the help of a young homeless woman.",
+        "director": "Charles Chaplin"
+    },
+    {
+        "title": "The Truman Show",
+        "releaseYear": 1998,
+        "MPArating": "PG",
+        "duration": 103,
+        "ytTrailerURL": "https://www.youtube.com/embed/dlnmQbPGuls",
+        "category": ["COMEDY", "DRAMA"],
+        "description": "An insurance salesman discovers his whole life is actually a reality TV show.",
+        "director": "Peter Weir"
+    },
+    {
+        "title": "The Sixth Sense",
+        "releaseYear": 1999,
+        "MPArating": "PG-13",
+        "duration": 107,
+        "ytTrailerURL": "https://www.youtube.com/embed/VG9AGf66tXM",
+        "category": ["DRAMA", "MYSTERY", "THRILLER"],
+        "description": "A boy who communicates with spirits seeks the help of a disheartened child psychologist.",
+        "director": "M. Night Shyamalan"
+    },
+    {
+        "title": "Casablanca",
+        "releaseYear": 1942,
+        "MPArating": "PG",
+        "duration": 102,
+        "ytTrailerURL": "https://www.youtube.com/embed/BkL9l7qovsE",
+        "category": ["DRAMA", "ROMANCE", "WAR"],
+        "description": "A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fugitive husband escape the Nazis in French Morocco.",
+        "director": "Michael Curtiz"
+    },
+    {
+        "title": "American History X",
+        "releaseYear": 1998,
+        "MPArating": "R",
+        "duration": 119,
+        "ytTrailerURL": "https://www.youtube.com/embed/XfQYHqsiN5g",
+        "category": ["CRIME", "DRAMA"],
+        "description": "A former neo-nazi skinhead tries to prevent his younger brother from going down the same wrong path that he did.",
+        "director": "Tony Kaye"
+    },
+    {
+        "title": "City of God",
+        "releaseYear": 2002,
+        "MPArating": "R",
+        "duration": 130,
+        "ytTrailerURL": "https://www.youtube.com/embed/dcUOO4Itgmw",
+        "category": ["CRIME", "DRAMA"],
+        "description": "In the slums of Rio, two kids' paths diverge as one struggles to become a photographer and the other a kingpin.",
+        "director": "Fernando Meirelles, Kátia Lund"
+    },
+    {
+        "title": "Spirited Away",
+        "releaseYear": 2001,
+        "MPArating": "PG",
+        "duration": 125,
+        "ytTrailerURL": "https://www.youtube.com/embed/ByXuk9QqQkk",
+        "category": ["ANIMATION", "ADVENTURE", "FAMILY"],
+        "description": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.",
+        "director": "Hayao Miyazaki"
+    },
+    {
+        "title": "The Lord of the Rings: The Return of the King",
+        "releaseYear": 2003,
+        "MPArating": "PG-13",
+        "duration": 201,
+        "ytTrailerURL": "https://www.youtube.com/embed/r5X-hFf6Bwo",
+        "category": ["ACTION", "ADVENTURE", "DRAMA"],
+        "description": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
+        "director": "Peter Jackson"
+    },
+    {
+        "title": "The Lord of the Rings: The Two Towers",
+        "releaseYear": 2002,
+        "MPArating": "PG-13",
+        "duration": 179,
+        "ytTrailerURL": "https://www.youtube.com/embed/LbfMDwc4azU",
+        "category": ["ACTION", "ADVENTURE", "DRAMA"],
+        "description": "While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron's new ally, Saruman, and his hordes of Isengard.",
+        "director": "Peter Jackson"
+    },
+    {
+        "title": "Braveheart",
+        "releaseYear": 1995,
+        "MPArating": "R",
+        "duration": 178,
+        "ytTrailerURL": "https://www.youtube.com/embed/wj0I8xVTV18",
+        "category": ["BIOGRAPHY", "DRAMA", "HISTORY"],
+        "description": "Scottish warrior William Wallace leads his countrymen in a rebellion to free his homeland from the tyranny of King Edward I of England.",
+        "director": "Mel Gibson"
+    },
+    {
+        "title": "Inglourious Basterds",
+        "releaseYear": 2009,
+        "MPArating": "R",
+        "duration": 153,
+        "ytTrailerURL": "https://www.youtube.com/embed/KnrRy6kSFF0",
+        "category": ["ADVENTURE", "DRAMA", "WAR"],
+        "description": "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner's vengeful plans for the same.",
+        "director": "Quentin Tarantino"
+    },
+    {
+        "title": "Goodfellas",
+        "releaseYear": 1990,
+        "MPArating": "R",
+        "duration": 145,
+        "ytTrailerURL": "https://www.youtube.com/embed/2ilzidi_J8Q",
+        "category": ["BIOGRAPHY", "CRIME", "DRAMA"],
+        "description": "The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners Jimmy Conway and Tommy DeVito.",
+        "director": "Martin Scorsese"
+    },
+    {
+        "title": "2001: A Space Odyssey",
+        "releaseYear": 1968,
+        "MPArating": "G",
+        "duration": 149,
+        "ytTrailerURL": "https://www
+
+.youtube.com/embed/oR_e9y-bka0",
+        "category": ["ADVENTURE", "SCI-FI"],
+        "description": "After uncovering a mysterious artifact buried beneath the lunar surface, mankind sets off on a quest to find its origins with help from intelligent supercomputer HAL 9000.",
+        "director": "Stanley Kubrick"
+    },
+    {
+        "title": "Amélie",
+        "releaseYear": 2001,
+        "MPArating": "R",
+        "duration": 122,
+        "ytTrailerURL": "https://www.youtube.com/embed/HUECWi5pX7o",
+        "category": ["COMEDY", "ROMANCE"],
+        "description": "Amélie is an innocent and naive girl in Paris with her own sense of justice. She decides to help those around her and, along the way, discovers love.",
+        "director": "Jean-Pierre Jeunet"
+    },
+    {
+        "title": "Toy Story",
+        "releaseYear": 1995,
+        "MPArating": "G",
+        "duration": 81,
+        "ytTrailerURL": "https://www.youtube.com/embed/wmiIUN-7qhE",
+        "category": ["ANIMATION", "ADVENTURE", "COMEDY"],
+        "description": "A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room.",
+        "director": "John Lasseter"
+    },
+    {
+        "title": "Coco",
+        "releaseYear": 2017,
+        "MPArating": "PG",
+        "duration": 105,
+        "ytTrailerURL": "https://www.youtube.com/embed/Rvr68u6k5sI",
+        "category": ["ANIMATION", "ADVENTURE", "FAMILY"],
+        "description": "Aspiring musician Miguel, confronted with his family's ancestral ban on music, enters the Land of the Dead to find his great-great-grandfather, a legendary singer.",
+        "director": "Lee Unkrich, Adrian Molina"
+    },
+    {
+        "title": "Reservoir Dogs",
+        "releaseYear": 1992,
+        "MPArating": "R",
+        "duration": 99,
+        "ytTrailerURL": "https://www.youtube.com/embed/vayksn4Y93A",
+        "category": ["CRIME", "DRAMA", "THRILLER"],
+        "description": "When a simple jewelry heist goes horribly wrong, the surviving criminals begin to suspect that one of them is a police informant.",
+        "director": "Quentin Tarantino"
+    },
+    {
+        "title": "The Usual Suspects",
+        "releaseYear": 1995,
+        "MPArating": "R",
+        "duration": 106,
+        "ytTrailerURL": "https://www.youtube.com/embed/oiXdPolca5w",
+        "category": ["CRIME", "DRAMA", "MYSTERY"],
+        "description": "A sole survivor tells of the twisty events leading up to a horrific gun battle on a boat, which begin when five criminals meet at a random police lineup.",
+        "director": "Bryan Singer"
+    },
+    {
+        "title": "Requiem for a Dream",
+        "releaseYear": 2000,
+        "MPArating": "R",
+        "duration": 102,
+        "ytTrailerURL": "https://www.youtube.com/embed/jzk-lmU4KZ4",
+        "category": ["DRAMA"],
+        "description": "The drug-induced utopias of four Coney Island individuals are shattered when their addictions run deep.",
+        "director": "Darren Aronofsky"
+    },
+    {
+        "title": "Vertigo",
+        "releaseYear": 1958,
+        "MPArating": "PG",
+        "duration": 128,
+        "ytTrailerURL": "https://www.youtube.com/embed/Z5jvQwwHQNY",
+        "category": ["MYSTERY", "ROMANCE", "THRILLER"],
+        "description": "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
+        "director": "Alfred Hitchcock"
+    },
+    {
+        "title": "Taxi Driver",
+        "releaseYear": 1976,
+        "MPArating": "R",
+        "duration": 114,
+        "ytTrailerURL": "https://www.youtube.com/embed/UUxD4-dEzn0",
+        "category": ["CRIME", "DRAMA"],
+        "description": "A mentally unstable veteran works as a nighttime taxi driver in New York City, where the perceived decadence and sleaze feed his urge for violent action by attempting to liberate a presidential campaign worker and an underage prostitute.",
+        "director": "Martin Scorsese"
+    },
+    {
+        "title": "Rear Window",
+        "releaseYear": 1954,
+        "MPArating": "PG",
+        "duration": 112,
+        "ytTrailerURL": "https://www.youtube.com/embed/m01YktiEZCw",
+        "category": ["MYSTERY", "THRILLER"],
+        "description": "A wheelchair-bound photographer spies on his neighbors from his apartment window and becomes convinced one of them has committed murder.",
+        "director": "Alfred Hitchcock"
+    },
+    {
+        "title": "Léon: The Professional",
+        "releaseYear": 1994,
+        "MPArating": "R",
+        "duration": 110,
+        "ytTrailerURL": "https://www.youtube.com/embed/jawVxq1Iyl0",
+        "category": ["ACTION", "CRIME", "DRAMA"],
+        "description": "Mathilda, a 12-year-old girl, is reluctantly taken in by Léon, a professional assassin, after her family is murdered. An unusual relationship forms as she becomes his protégée and learns the assassin's trade.",
+        "director": "Luc Besson"
+    },
+    {
+        "title": "Alien",
+        "releaseYear": 1979,
+        "MPArating": "R",
+        "duration": 117,
+        "ytTrailerURL": "https://www.youtube.com/embed/LjLamj-b0I8",
+        "category": ["HORROR", "SCI-FI"],
+        "description": "After a space merchant vessel receives an unknown transmission as a distress call, one of the crew is attacked by a mysterious life form, and they soon realize that its life cycle has merely begun.",
+        "director": "Ridley Scott"
+    }
+]

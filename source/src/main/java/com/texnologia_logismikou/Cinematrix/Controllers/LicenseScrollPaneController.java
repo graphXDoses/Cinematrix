@@ -47,8 +47,8 @@ public class LicenseScrollPaneController {
 //        permissions.setTextAlignment(TextAlignment.CENTER);
         
         scroller.getStyleClass().clear();
-		scroller.getStyleClass().add("crank");
-		scroller.setStyle("-fx-backgroud-color: -fx-fg;");
+		scroller.getStyleClass().add(".scroll-bar");
+//		scroller.setStyle("-fx-backgroud-color: -fx-fg;");
     }
     
     private static String MITLicense()
