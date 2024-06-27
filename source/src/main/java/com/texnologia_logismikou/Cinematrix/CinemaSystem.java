@@ -25,6 +25,12 @@ public class CinemaSystem {
 	private static List<Context> contexts = new ArrayList<>();
 	private static Context activeContext;
 	
+	private boolean internetConnection = false;
+	
+	private FirebaseController firebase = new FirebaseController();
+	private FirestoreController firestore = new FirestoreController();
+	private StorageController storage = new StorageController();
+	
 	private CinemaSystem()
 	{
 		currentUser = new Admin();
@@ -123,5 +129,50 @@ public class CinemaSystem {
 			"Michail Ioannou 8, Thessaloniki 546 22",
 			1.2f
 		));
+	}
+	
+	public void setupFirebase() {
+		firebase.initializeFirebase();
+	}
+	
+	private void addMoviesToDb(Movie movie) {
+		
+		boolean movieAdded;
+		
+		if(!firebase.appExists()) {
+			System.out.println("No Firebase app found.");
+			return;
+		}
+		
+		if(!firestore.dbExists()) {
+			firestore.initializeDatabase();
+		}
+		
+		movieAdded = firestore.addMovie(movie);
+		if(movieAdded) {
+			System.out.println("Movie has been added.");
+		} else {
+			System.out.println("There was an error adding the movie.");
+		}
+	}
+	
+	private void addUsersToDb(Customer user) {
+		
+		boolean userAdded;
+		
+		if(!firebase.appExists()) {
+			return;
+		}
+		
+		if(!firestore.dbExists()) {
+			firestore.initializeDatabase();
+		}
+		
+		userAdded = firestore.addUser(user);
+		if(userAdded) {
+			System.out.println("User succesfully added to Firestore.");
+		} else {
+			System.out.println("User hasn't been added to the Firestore.w");
+		}
 	}
 }

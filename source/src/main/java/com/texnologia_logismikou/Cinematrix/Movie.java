@@ -13,6 +13,13 @@ public class Movie {
 	private String director;
 	private final MovieModal modal;
 	
+	//Empty constructor
+	//MUST REMAIN!!!
+	public Movie() {
+		this.modal = new MovieModal("BLANK");
+		this.modal.getController().setData(this);
+	}
+
 	public Movie(String title,
 				 String cover_img_path,
 				 int    year,
@@ -62,5 +69,27 @@ public class Movie {
 
 	public String getDirector() {
 		return director;
+	}
+
+	public void setDirector(String director) {
+		this.director = director;
+	}
+	
+	//Creates a string that can be given to Cloud Storage to fetch the image of the movie.
+	//It assumes that all the images in the database are name like so: "my_movie_name.png"
+	public String titleToDownloadable() {
+		
+		String downloadable = "";
+		String titleSplit[];
+		
+		titleSplit = this.title.toLowerCase().split("\\s+");
+		for(int i = 0; i < titleSplit.length; i++) {
+			downloadable += titleSplit[i];
+			if(i != titleSplit.length-1) {
+				downloadable += "_";
+			}
+		}
+		
+		return downloadable;
 	}
 }
