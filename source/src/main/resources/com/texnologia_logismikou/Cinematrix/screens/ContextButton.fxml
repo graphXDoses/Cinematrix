@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane fx:id="ctx_btn_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.ContextButtonController">
+   <children>
+      <HBox fx:id="ctx_btn_container" alignment="CENTER" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" prefHeight="100.0" prefWidth="100.0" styleClass="inactive-context-button-container" stylesheets="@../styles/styles.css">
+         <children>
+            <Pane fx:id="ctx_btn_flap_bg_l" maxWidth="15.0" minHeight="100.0" minWidth="15.0" prefHeight="100.0" prefWidth="15.0" styleClass="inactive-context-button-flap-bg" stylesheets="@../styles/styles.css">
+               <children>
+                  <Pane fx:id="ctx_btn_flap_l" prefHeight="100.0" prefWidth="16.0" styleClass="inactive-context-button-flap-l" stylesheets="@../styles/styles.css" />
+               </children>
+            </Pane>
+            <Button fx:id="ctx_btn_button" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMousePressed="#clickEventHandler" prefHeight="100.0" prefWidth="100.0" styleClass="inactive-context-button" stylesheets="@../styles/styles.css" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                        <ImageView fx:id="ctx_btn_ico" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="ctx_btn_lbl" alignment="CENTER" prefHeight="17.0" prefWidth="51.0" text="Theaters" textAlignment="CENTER" textFill="#dedede" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+               </graphic>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Pane fx:id="ctx_btn_flap_bg_r" maxWidth="15.0" minHeight="100.0" minWidth="15.0" prefHeight="100.0" prefWidth="15.0" styleClass="inactive-context-button-flap-bg" stylesheets="@../styles/styles.css">
+               <children>
+                  <Pane fx:id="ctx_btn_flap_r" prefHeight="100.0" prefWidth="16.0" styleClass="inactive-context-button-flap-r" stylesheets="@../styles/styles.css" />
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+   </children>
+</Pane>

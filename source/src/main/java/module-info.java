@@ -16,7 +16,19 @@ module Cinematrix {
 	requires gax;
     //Google Firebase and Cloud Firestore requirements.
 
+	requires java.desktop;
+	requires javafx.base;
+	requires javafx.web;
+
     opens com.texnologia_logismikou.Cinematrix to javafx.fxml, google.cloud.firestore, google.cloud.storage;
+    opens com.texnologia_logismikou.Cinematrix.Controllers to javafx.fxml;
+    opens com.texnologia_logismikou.Cinematrix.Managers to javafx.fxml;
+    opens com.texnologia_logismikou.Cinematrix.Views to javafx.fxml;
+    opens com.texnologia_logismikou.Cinematrix.Users to javafx.fxml;
     
     exports com.texnologia_logismikou.Cinematrix;
+    exports com.texnologia_logismikou.Cinematrix.Controllers;
+    exports com.texnologia_logismikou.Cinematrix.Managers;
+    exports com.texnologia_logismikou.Cinematrix.Views;
+    exports com.texnologia_logismikou.Cinematrix.Users;
 }

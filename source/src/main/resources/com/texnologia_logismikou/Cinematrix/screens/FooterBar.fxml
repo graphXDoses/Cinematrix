@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.FooterBarController">
+   <children>
+      <Separator />
+      <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label contentDisplay="CENTER" prefHeight="60.0" text="Browsing as: " textFill="#dedede" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="userT_lbl" contentDisplay="CENTER" prefHeight="60.0" text="[  ]" textFill="#dedede" />
+               </children>
+            </HBox>
+            <Pane HBox.hgrow="ALWAYS" />
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <HBox prefHeight="30.0" prefWidth="61.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="158.0" prefWidth="295.0" text="V " textFill="#dedede">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label fx:id="version_lbl" contentDisplay="CENTER" prefHeight="158.0" prefWidth="295.0" text="0.0.0" textFill="#dedede" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

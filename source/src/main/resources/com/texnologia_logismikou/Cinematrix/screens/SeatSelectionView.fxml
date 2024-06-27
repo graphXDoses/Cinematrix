@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.SeatSelectionViewController">
+   <children>
+      <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="seat_selection_panel" stylesheets="@../styles/styles.css">
+         <children>
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" styleClass="invisible-button" stylesheets="@../styles/styles.css">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/back.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <HBox spacing="20.0">
+               <children>
+                  <ImageView fx:id="cover_image" fitHeight="150.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/_BLANK_Cover.jpg" />
+                     </image>
+                  </ImageView>
+                  <VBox>
+                     <children>
+                        <Label fx:id="movie_title" text="&lt;Movie Title&gt;" textFill="#dedede">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <Label text="Sunday, Oct 15 at 6:15 PM" textFill="#dedede">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="cinema_name" text="&lt;Cinema Title&gt;" textFill="#dedede">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <Pane maxWidth="30.0" minWidth="30.0" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="30.0" right="30.0" top="15.0" />
+         </padding>
+      </HBox>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" styleClass="seat_selection_panel" stylesheets="@../styles/styles.css" />
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="seat_selection_panel" stylesheets="@../styles/styles.css" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="1" textFill="#dedede">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label text=" Selected: " textFill="#dedede">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label text="109" textFill="#dedede">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Button maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" styleClass="cinema_modal_reservation_button" stylesheets="@../styles/styles.css" text="SELECT UP TO 9 SEATS" textFill="#dedede">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="30.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </HBox>
+   </children>
+   <padding>
+      <Insets top="60.0" />
+   </padding>
+</VBox>

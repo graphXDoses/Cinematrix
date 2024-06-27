@@ -1,82 +1,81 @@
 package com.texnologia_logismikou.Cinematrix;
 
+import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
+
 public class Movie {
 	
 	private String title;
-	private int releaseDate;
-	private int duration;
-	private int expireDate;
-	private String movieType;
+	private int    year;
+	private String MPArating;
+	private int    duration;
+	private String ytTrailerURL;
 	private String description;
 	private String director;
-	private String trailerLink;
+	private final MovieModal modal;
 	
 	//Empty constructor
 	//MUST REMAIN!!!
 	public Movie() {
-		
+		this.modal = new MovieModal("BLANK");
+		this.modal.getController().setData(this);
 	}
-	
-	//Constructor with some fields initialized for testing.
-	public Movie(String title, int releaseDate, int duration, int expireDate) {
-		
+
+	public Movie(String title,
+				 String cover_img_path,
+				 int    year,
+				 String MPArating,
+				 int    duration,
+				 String ytTrailerURL,
+				 String description,
+				 String director)
+	{
 		this.title = title;
-		this.releaseDate = releaseDate;
-		this.expireDate = expireDate;
+		this.year = year;
+		this.MPArating = MPArating;
 		this.duration = duration;
+		this.ytTrailerURL = ytTrailerURL;
+		this.description = description;
+		this.director = director;
+		
+		this.modal = new MovieModal(cover_img_path);
+		this.modal.getController().setData(this);
 	}
-	
-	//Getters and Setters
-	public String getTitle() {
-		return title;
+
+	public String getTitle() { return(title); }
+	public int    getYear() { return(year); }
+	public String getFullName() { return( getTitle() + " (" + getYear() + ")"); }
+	public String getDuration()
+	{
+		String result = "";
+		
+		result += duration / 60 > 0 ? duration / 60 + " hr " + duration % 60 + " min"
+				: duration + " min";
+		
+		return(result);
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public MovieModal getModal() { return(modal); }
+
+	public String getYtTrailerURL() {
+		return ytTrailerURL;
 	}
-	public int getReleaseDate() {
-		return releaseDate;
+
+	public String getMPArating() {
+		return MPArating;
 	}
-	public void setReleaseDate(int releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-	public int getDuration() {
-		return duration;
-	}
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
-	public int getExpireDate() {
-		return expireDate;
-	}
-	public void setExpireDate(int expireDate) {
-		this.expireDate = expireDate;
-	}
-	public String getMovieType() {
-		return movieType;
-	}
-	public void setMovieType(String movieType) {
-		this.movieType = movieType;
-	}
+
 	public String getDescription() {
 		return description;
 	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+
 	public String getDirector() {
 		return director;
 	}
+
 	public void setDirector(String director) {
 		this.director = director;
 	}
-	public String getTrailerLink() {
-		return trailerLink;
-	}
-	public void setTrailerLink(String trailerLink) {
-		this.trailerLink = trailerLink;
-	}
 	
-	//Creates a string that can be given to CLoud Storage to fetch the image of the movie.
+	//Creates a string that can be given to Cloud Storage to fetch the image of the movie.
 	//It assumes that all the images in the database are name like so: "my_movie_name.png"
 	public String titleToDownloadable() {
 		
@@ -92,20 +91,5 @@ public class Movie {
 		}
 		
 		return downloadable;
-	}
-	
-	@Override
-	public String toString() {
-		
-		String string;
-		
-		string = "\nMovie details:"
-				+ "\n   Title: " + title
-				+ "\n   Duration: " + duration
-				+ "\n   Release Date: " + releaseDate
-				+ "\n   Expire Date: " + expireDate
-				+ "\n-------------------->";
-		
-		return string;
 	}
 }

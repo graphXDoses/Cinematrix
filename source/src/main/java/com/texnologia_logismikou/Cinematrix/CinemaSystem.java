@@ -1,15 +1,29 @@
 package com.texnologia_logismikou.Cinematrix;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.util.Arrays;
+import java.util.List;
+
+import com.texnologia_logismikou.Cinematrix.Managers.MainDisplay;
+import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
+import com.texnologia_logismikou.Cinematrix.Users.Admin;
+import com.texnologia_logismikou.Cinematrix.Users.Guest;
+import com.texnologia_logismikou.Cinematrix.Users.User;
+import com.texnologia_logismikou.Cinematrix.Views.AllMoviesView;
+import com.texnologia_logismikou.Cinematrix.Views.MovieDetailsView;
+import com.texnologia_logismikou.Cinematrix.Views.NearCinemasView;
+import com.texnologia_logismikou.Cinematrix.Views.SeatSelectionView;
+import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
 
 public class CinemaSystem {
-	
 	private static CinemaSystem instance = null;
+	
+	private static User currentUser;
+	private static MainDisplay mD;
+	private static List<Movie>   movies   = new ArrayList<>();
+	private static List<Cinema>  cinemas  = new ArrayList<>();
+	private static List<Context> contexts = new ArrayList<>();
+	private static Context activeContext;
 	
 	private boolean internetConnection = false;
 	
@@ -17,155 +31,109 @@ public class CinemaSystem {
 	private FirestoreController firestore = new FirestoreController();
 	private StorageController storage = new StorageController();
 	
-	private ArrayList<Movie> allMovieList = new ArrayList<>();
-	private ArrayList<Movie> nowMovieList = new ArrayList<>();
-	private ArrayList<Movie> futureMovieList = new ArrayList<>();
-	private ArrayList<Room> RoomList = new ArrayList<>();
-	private ArrayList<Screening> ScreeningList = new ArrayList<>();
-	private ArrayList<Customer> CustomerList = new ArrayList<>();
-	private ArrayList<Ticket> TicketList = new ArrayList<>();
-	
-	//Singleton design pattern for the CinemaSystem, ensuring that there is only one manager working at every single time.
-	private CinemaSystem() {
+	private CinemaSystem()
+	{
+		currentUser = new Admin();
+//		currentUser = new Guest();
+		
+		mD = new MainDisplay();
+		
+		contexts.add(new Context("Movies", "images/movie.png", new AllMoviesView(), new MovieDetailsView(), new SeatSelectionView()));
+		contexts.add(new Context("Cinemas", "images/theater.png", new NearCinemasView()));
+		contexts.add(new Context("Account", "images/account.png", new SignUpView()));
 		
 	}
 	
-	public static CinemaSystem getCinemaSystem() {
-		if(instance == null) {
+	public MainDisplay getMainDisplay() { return(instance.mD); }
+	public List<Movie> getMovies() { return(instance.movies); }
+	public List<Cinema> getCinemas() { return(instance.cinemas); }
+	public List<Context> getContexts() { return(instance.contexts); }
+	public Context     getActiveContext() { return(instance.activeContext); }
+	
+	public void setActiveContext(Context ctx)
+	{
+		activeContext = ctx;
+		
+		contexts.forEach(context->{ context.getButton().getController().deactivate(); });
+		activeContext.getButton().getController().activate();
+		
+		getMainDisplay().refresh();
+	}
+	
+	public static CinemaSystem getInstance()
+	{
+		if(instance == null)
 			instance = new CinemaSystem();
-		}
-		return instance;
+		return(instance);
+	}
+
+	public User getCurrentUser() { return(currentUser); }
+	
+	public void fetchMoviesFromDatabase()
+	{
+		movies.add(new Movie(
+			"Perfect Blue",
+			"PerfectBlue",
+			1997,
+			"R",
+			81,
+			"https://www.youtube.com/embed/BD8I4v9U4mw?si=3g8BfKh8nhHoXL0U",
+			"A pop singer gives up her career to become an actress, but she slowly goes insane when she starts being stalked by an obsessed fan and what seems to be a ghost of her past.",
+			"Satoshi Kon"
+		));
+		movies.add(new Movie(
+			"Rush Hour",
+			"RushHour",
+			1998,
+			"PG-13",
+			98,
+			"https://www.youtube.com/embed/JMiFsFQcFLE?si=2u52cDgmAiSpxO1-",
+			"A loyal and dedicated Hong Kong Inspector teams up with a reckless and loudmouthed L.A.P.D. detective to rescue the Chinese Consul's kidnapped daughter, while trying to arrest a dangerous crime lord along the way.",
+			"Brett Ratner"
+		));
+		movies.add(new Movie(
+			"Napoleon",
+			"Napoleon",
+			2023,
+			"R",
+			158,
+			"https://www.youtube.com/embed/OAZWXUkrjPc?si=apRRZD9yjPYtIZQ3",
+			"An epic that details the chequered rise and fall of French Emperor Napoleon Bonaparte and his relentless journey to power through the prism of his addictive, volatile relationship with his wife, Josephine.",
+			"Ridley Scott"
+		));
+		
+		// Screenings
+		cinemas.get(0).setMovieScreening(
+				movies.get(0),
+				null,
+				null,
+				new ArrayList<>(Arrays.asList("10:25p", "9:30a"))
+		);
+		cinemas.get(1).setMovieScreening(
+				movies.get(1),
+				null,
+				null,
+				new ArrayList<>(Arrays.asList("6:30p", "9:00p", "10:00p", "11:00p"))
+		);
 	}
 	
-	public void addCustomer(ArrayList<Customer> customer_list, Customer customer) {
-		customer_list.add(customer);
-	}
-	
-	public void removeCustomer(ArrayList<Customer> customer_list, Customer customer) {
-		customer_list.remove(customer);
-	}
-	
-	//Getters and Setters
-	public ArrayList<Movie> getAllMovieList() {
-		return allMovieList;
-	}
-
-	public void setAllMovieList(ArrayList<Movie> allMovieList) {
-		this.allMovieList = allMovieList;
-	}
-
-	public ArrayList<Movie> getNowMovieList() {
-		return nowMovieList;
-	}
-
-	public void setNowMovieList(ArrayList<Movie> nowMovieList) {
-		this.nowMovieList = nowMovieList;
-	}
-
-	public ArrayList<Movie> getFutureMovieList() {
-		return futureMovieList;
-	}
-
-	public void setFutureMovieList(ArrayList<Movie> futureMovieList) {
-		this.futureMovieList = futureMovieList;
-	}
-
-	public ArrayList<Room> getRoomList() {
-		return RoomList;
-	}
-
-	public void setRoomList(ArrayList<Room> roomList) {
-		RoomList = roomList;
-	}
-
-	public ArrayList<Screening> getScreeningList() {
-		return ScreeningList;
-	}
-
-	public void setScreeningList(ArrayList<Screening> screeningList) {
-		ScreeningList = screeningList;
-	}
-
-	public ArrayList<Customer> getCustomerList() {
-		return CustomerList;
-	}
-
-	public void setCustomerList(ArrayList<Customer> customerList) {
-		CustomerList = customerList;
-	}
-
-	public ArrayList<Ticket> getTicketList() {
-		return TicketList;
-	}
-
-	public void setTicketList(ArrayList<Ticket> ticketList) {
-		TicketList = ticketList;
+	public void fetchCinemasFromDatabase()
+	{
+		cinemas.add(new Cinema(
+			"Regal Gallery Place & 4DX",
+			"701 Seventh Street NW, Washington, DC 20001",
+			0.81f
+		));
+		cinemas.add(new Cinema(
+			"Cinema Vakoura",
+			"Michail Ioannou 8, Thessaloniki 546 22",
+			1.2f
+		));
 	}
 	
 	public void setupFirebase() {
 		firebase.initializeFirebase();
 	}
-	
-	//Receives input for some of a movies fields.
-	//Then calls addMovieToDb while the movie instance generated a HashMap<String, Object>.
-	public void handleInputMovie()  {
-		
-		Movie movie = new Movie();
-		
-		Scanner input = new Scanner(System.in);
-		
-		System.out.println("Type movie name: ");
-		movie.setTitle(input.nextLine()); 
-		
-		System.out.println("\nType movie duration: ");
-		movie.setDuration(input.nextInt());
-		
-		System.out.println("\nType movie release date: ");
-		movie.setReleaseDate(input.nextInt());
-		
-		System.out.println("\nType movie expire date: ");
-		movie.setExpireDate(input.nextInt());
-		
-		addMoviesToDb(movie);
-	}
-	
-	public void handleUserRegister() {
-		
-		Customer user = new Customer();
-		
-		Scanner input = new Scanner(System.in);
-		
-		System.out.println("Register");
-		System.out.println("Give Name: ");
-		user.setFull_name(input.nextLine());
-		System.out.println("Give email: ");
-		user.setEmail(input.nextLine());
-		System.out.println("Give phone: ");
-		user.setPhone_number(input.nextLine());
-		System.out.println("Give password: ");
-		user.setPassword(input.nextLine());
-		
-		//By default no user can be registered as admin on their own.
-		user.setAdmin(false);
-		
-		addUsersToDb(user);
-	}
-
-	public void handleUserLogin() {
-		
-		String name;
-		String password;
-		
-		Scanner input = new Scanner(System.in);
-		
-		System.out.println("Log In");
-		System.out.println("Give Name: ");
-		name = input.nextLine();
-		System.out.println("Give password: ");
-		password = input.nextLine();
-
-		userLogin(name, password);
-	}	
 	
 	private void addMoviesToDb(Movie movie) {
 		
@@ -185,24 +153,6 @@ public class CinemaSystem {
 			System.out.println("Movie has been added.");
 		} else {
 			System.out.println("There was an error adding the movie.");
-		}
-	}
-
-	public void updateAllMovieList() {
-
-		if(!firebase.appExists()) {
-			return;
-		}
-		
-		if(!firestore.dbExists()) {
-			firestore.initializeDatabase();
-		}
-		
-		allMovieList = firestore.fetchAllMovies();
-		if(allMovieList.isEmpty()) {
-			System.out.println("Couldn't fetch movies/ the database is empty.");
-		} else {
-			System.out.println(allMovieList.toString());
 		}
 	}
 	
@@ -225,55 +175,4 @@ public class CinemaSystem {
 			System.out.println("User hasn't been added to the Firestore.w");
 		}
 	}
-	
-	private void userLogin(String name, String password) {
-		
-		Customer user = null;
-		
-		if(!firebase.appExists()) {
-			System.out.println("No Firebase isntance!");
-			return;
-		}
-		
-		if(!firestore.dbExists()) {
-			firestore.initializeDatabase();
-		}
-		
-		user = firestore.fetchUser(name);
-		if(user == null) {
-			System.out.println("User doesn't exist!");
-			return;
-		}
-		
-		if(user.getPassword().equals(password)) {
-			System.out.println("Log in successful!");
-		} else {
-			System.out.println("Incorrect password!");
-		}
-	}
-	
-	public void downloadMovieImage(Movie movie) {
-		
-		if(!storage.storageExists()) {
-			storage.initializeStorage();
-		} 
-		
-		storage.downloadImage(movie.titleToDownloadable());
-	}
-	
-	public void checkConnection() {
-		
-		try {
-			URL url = new URL("https://cloud.google.com");
-			URLConnection connection = url.openConnection();
-			connection.connect();
-			
-			internetConnection = true;
-		} catch (Exception e) {
-			System.out.println("No Internet connection. Try again once you have established a connection to a network.");
-			System.out.println(e.toString());
-			internetConnection = false;
-		}
-	}
 }
-
