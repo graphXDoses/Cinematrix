@@ -25,6 +25,8 @@ public class CinemaSystem {
 	private static List<Context> contexts = new ArrayList<>();
 	private static Context activeContext;
 	
+	public static final String webKey = "AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU";
+	
 	private boolean internetConnection = false;
 	
 	private FirebaseController firebase = new FirebaseController();
