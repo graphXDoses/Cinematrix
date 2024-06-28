@@ -14,6 +14,9 @@ import com.texnologia_logismikou.Cinematrix.Views.MovieDetailsView;
 import com.texnologia_logismikou.Cinematrix.Views.NearCinemasView;
 import com.texnologia_logismikou.Cinematrix.Views.SeatSelectionView;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
+import com.texnologia_logismikou.Cinematrix.Views.UserDashboardView;
+import com.texnologia_logismikou.Cinematrix.Views.View;
+import com.texnologia_logismikou.Cinematrix.Views.LoginView;
 
 public class CinemaSystem {
 	private static CinemaSystem instance = null;
@@ -33,14 +36,14 @@ public class CinemaSystem {
 	
 	private CinemaSystem()
 	{
-		currentUser = new Admin();
-//		currentUser = new Guest();
+//		currentUser = new Admin();
+		currentUser = new Guest();
 		
 		mD = new MainDisplay();
 		
 		contexts.add(new Context("Movies", "images/movie.png", new AllMoviesView(), new MovieDetailsView(), new SeatSelectionView()));
 		contexts.add(new Context("Cinemas", "images/theater.png", new NearCinemasView()));
-		contexts.add(new Context("Account", "images/account.png", new SignUpView()));
+		contexts.add(new Context("Account", "images/account.png", new LoginView(), new SignUpView(), new UserDashboardView()));
 		
 	}
 	
@@ -129,50 +132,5 @@ public class CinemaSystem {
 			"Michail Ioannou 8, Thessaloniki 546 22",
 			1.2f
 		));
-	}
-	
-	public void setupFirebase() {
-		firebase.initializeFirebase();
-	}
-	
-	private void addMoviesToDb(Movie movie) {
-		
-		boolean movieAdded;
-		
-		if(!firebase.appExists()) {
-			System.out.println("No Firebase app found.");
-			return;
-		}
-		
-		if(!firestore.dbExists()) {
-			firestore.initializeDatabase();
-		}
-		
-		movieAdded = firestore.addMovie(movie);
-		if(movieAdded) {
-			System.out.println("Movie has been added.");
-		} else {
-			System.out.println("There was an error adding the movie.");
-		}
-	}
-	
-	private void addUsersToDb(Customer user) {
-		
-		boolean userAdded;
-		
-		if(!firebase.appExists()) {
-			return;
-		}
-		
-		if(!firestore.dbExists()) {
-			firestore.initializeDatabase();
-		}
-		
-		userAdded = firestore.addUser(user);
-		if(userAdded) {
-			System.out.println("User succesfully added to Firestore.");
-		} else {
-			System.out.println("User hasn't been added to the Firestore.w");
-		}
 	}
 }

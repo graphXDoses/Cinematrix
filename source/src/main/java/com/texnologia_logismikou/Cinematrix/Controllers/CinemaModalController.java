@@ -21,8 +21,16 @@ public class CinemaModalController {
 	private Cinema associateCinema = null;
 	private Movie  associateMovie  = null;
 	
+	@FXML
+	void initialize()
+	{
+		System.out.println("INIT");
+		hoursContainer.setVisible(false);
+	}
+	
     public void setData(Cinema cinema)
     {
+    	System.out.println("SET DATA");
     	associateCinema = cinema;
     	
     	cinema_name.setText(cinema.getName());
@@ -33,6 +41,7 @@ public class CinemaModalController {
 
     public void setScreeningData(Movie movie, String soundSystem, List<Date> dates, List<String> hours)
     {
+    	System.out.println("SCREEN");
     	associateMovie = movie;
     	
     	for(String h: hours)
@@ -41,6 +50,7 @@ public class CinemaModalController {
 
 	public void addReservationButton(ReservationButton reservationButton)
 	{
+		System.out.println("RESERVE");
 		hoursContainer.setVisible(true);
 		hoursContainer.getChildren().add(reservationButton.getParent());
 	}
