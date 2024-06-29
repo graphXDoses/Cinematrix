@@ -1,7 +1,9 @@
-package com.texnologia_logismikou.Cinematrix;
+package com.texnologia_logismikou.Cinematrix.Responses;
 
 public class Error {
 
+	// Sign In error class.
+	
 	private String message;
 	private int code;
 	

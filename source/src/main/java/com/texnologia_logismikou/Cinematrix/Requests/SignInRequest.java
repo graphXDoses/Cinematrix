@@ -1,6 +1,4 @@
-package com.texnologia_logismikou.Cinematrix;
-
-import java.util.ArrayList;
+package com.texnologia_logismikou.Cinematrix.Requests;
 
 public class SignInRequest {
 
@@ -8,14 +6,11 @@ public class SignInRequest {
 	private boolean returnSecureToken;
 	private String email;
 	private String password;
-
-	//For response
-	private Error error;
 	
-	public SignInRequest(TemporaryUser user) {
+	public SignInRequest(String email, String password) {
 		
-		this.email = user.getEmail();
-		this.password = user.getPassword();
+		this.email = email;
+		this.password = password;
 		this.returnSecureToken = true;
 	}
 
@@ -41,13 +36,5 @@ public class SignInRequest {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Error getError() {
-		return error;
-	}
-
-	public void setError(Error error) {
-		this.error = error;
 	}
 }

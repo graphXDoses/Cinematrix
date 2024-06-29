@@ -31,7 +31,7 @@ public class App extends Application {
         //CinemaSystem.getInstance().fetchMoviesFromDatabase();
         //CinemaSystem.getInstance().getMainDisplay().refresh();
         
-        RequestHandler temp = new RequestHandler();
+        RequestController temp = new RequestController();
         try {
 			temp.signInRequest();
 		} catch (URISyntaxException e) {

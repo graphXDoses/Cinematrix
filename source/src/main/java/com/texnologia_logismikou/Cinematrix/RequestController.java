@@ -10,35 +10,38 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.texnologia_logismikou.Cinematrix.Requests.SignInRequest;
+import com.texnologia_logismikou.Cinematrix.Responses.SignInResponse;
 
-public class RequestHandler {
+public class RequestController {
 
 	public static final String webKey = "AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU";
 	
 	public void signInRequest() throws URISyntaxException, IOException, InterruptedException {
 		
-		TemporaryUser user = new TemporaryUser();
-		user.setEmail("phoebuspetsi@gmail.com");
-		user.setPassword("myPassword321");
-		SignInRequest signIn = new SignInRequest(user);
+		SignInRequest request = new SignInRequest("phoebuspetsi@gmail.com", "myPassword133");
+		SignInResponse response = new SignInResponse();
 		
+		// Request ---> JSON
 		Gson gson = new Gson();
-		String jsonRequest = gson.toJson(signIn);
-		
-		System.out.println(jsonRequest);
+		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest postRequest = HttpRequest.newBuilder()
 				.uri(new URI("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + webKey))
 				.POST(BodyPublishers.ofString(jsonRequest))
 				.build();
 		
-		//The client send the request, the response stores it.
+		//The client sends the request, the response stores it.
 		HttpClient httpClient = HttpClient.newHttpClient();
 		HttpResponse<String> postResponse = httpClient.send(postRequest, BodyHandlers.ofString());
 		
-		signIn = gson.fromJson(postResponse.body(), SignInRequest.class);
+		// JSON ---> Response
+		response = gson.fromJson(postResponse.body(), SignInResponse.class);
 		
-		System.out.println(signIn.getError().getMessage());
+		if(response.getError() == null) {
+			System.out.println("Succesful sign in!");
+		} else {
+			System.out.println(response.getError().getMessage());
+		}
 	}
 }
