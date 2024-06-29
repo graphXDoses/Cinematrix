@@ -16,6 +16,8 @@ module Cinematrix {
 	requires gax;
     //Google Firebase and Cloud Firestore requirements.
 
+	requires java.net.http;
+	
 	requires java.desktop;
 	requires javafx.base;
 	requires javafx.web;
