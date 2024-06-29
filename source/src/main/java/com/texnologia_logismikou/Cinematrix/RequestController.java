@@ -29,7 +29,6 @@ public class RequestController {
 	     *	USER_DISABLED: The user account has been disabled by an administrator.
 		 */
 		
-		
 		SignInRequest request = new SignInRequest("phoebuspetsi@gmail.com", "myPassword133");
 		SignInResponse response = new SignInResponse();
 		

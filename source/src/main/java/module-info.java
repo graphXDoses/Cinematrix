@@ -17,7 +17,6 @@ module Cinematrix {
     requires google.cloud.storage;
     requires com.google.api.services.storage;
 	requires gax;
-    //Google Firebase and Cloud Firestore requirements.
 	
 	// Requirements for HttpRequests.
 	requires java.desktop;
