@@ -15,6 +15,8 @@ public class SignInResponse {
 	private String refreshToken;
 	private String epxiresIn;
 	
+	public SignInResponse() {}
+	
 	public Error getError() {
 		return error;
 	}

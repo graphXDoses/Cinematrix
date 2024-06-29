@@ -33,14 +33,14 @@ public class App extends Application {
         
         RequestController temp = new RequestController();
         try {
-			temp.signInRequest();
+			temp.SignUpRequest();
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (InterruptedException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
