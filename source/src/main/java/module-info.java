@@ -4,6 +4,9 @@ module Cinematrix {
     requires javafx.fxml;
 	requires javafx.graphics;
 	
+	requires java.net.http;
+	requires com.google.gson;
+	
 	//Google Firebase and Cloud Firestore requirements.
     requires firebase.admin;
     requires com.google.auth.oauth2;
@@ -15,14 +18,12 @@ module Cinematrix {
     requires com.google.api.services.storage;
 	requires gax;
     //Google Firebase and Cloud Firestore requirements.
-
-	requires java.net.http;
 	
 	requires java.desktop;
 	requires javafx.base;
 	requires javafx.web;
 
-    opens com.texnologia_logismikou.Cinematrix to javafx.fxml, google.cloud.firestore, google.cloud.storage;
+    opens com.texnologia_logismikou.Cinematrix to javafx.fxml, google.cloud.firestore, google.cloud.storage, com.google.gson;
     opens com.texnologia_logismikou.Cinematrix.Controllers to javafx.fxml;
     opens com.texnologia_logismikou.Cinematrix.Managers to javafx.fxml;
     opens com.texnologia_logismikou.Cinematrix.Views to javafx.fxml;

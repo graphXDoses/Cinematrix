@@ -1,7 +1,7 @@
 package com.texnologia_logismikou.Cinematrix;
 
-public class TempUser {
-	
+public class TemporaryUser {
+
 	private String email;
 	private String password;
 	
