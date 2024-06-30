@@ -229,16 +229,22 @@
 }
 /*
 */
+.side_menu {
+	-fx-background-color: #1f1f1f
+}
 .side_menu_button {
 	-fx-background-color: transparent;
+	-fx-border-width: 0 0 1 0;
+    -fx-border-color: -fx-c1;
 }
 .side_menu_button_active {
 	-fx-background-color: #444444;
 }
-.side_menu_button_border {
-	-fx-background-color: -fx-c1;
-}
 .side_menu_button_text {
 	-fx-font-size: 14px;
 	-fx-text-fill: -fx-txtColor;
+}
+.hbox_center_properties {
+	-fx-background-color: #202020;
+	-fx-padding-left: 50px;
 }

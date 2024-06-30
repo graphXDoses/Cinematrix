@@ -3,43 +3,88 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #222222;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #222222;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-         <children>
-            <VBox prefHeight="398.0" prefWidth="175.0">
+      <BorderPane>
+         <left>
+            <VBox prefHeight="400.0" prefWidth="175.0" styleClass="side_menu" stylesheets="@../styles/styles.css" BorderPane.alignment="CENTER">
                <children>
                   <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="175.0" styleClass="side_menu_button" stylesheets="@../styles/styles.css">
                      <graphic>
                         <Label styleClass="side_menu_button_text" stylesheets="@../styles/styles.css" text="Account information" />
                      </graphic>
                   </Button>
-                  <Pane prefHeight="2.0" prefWidth="175.0" styleClass="side_menu_button_border" stylesheets="@../styles/styles.css" />
                   <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="175.0" styleClass="side_menu_button" stylesheets="@../styles/styles.css">
                      <graphic>
                         <Label styleClass="side_menu_button_text" stylesheets="@../styles/styles.css" text="Liked movies" />
                      </graphic>
                   </Button>
-                  <Pane prefHeight="2.0" prefWidth="175.0" styleClass="side_menu_button_border" stylesheets="@../styles/styles.css" />
                   <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="175.0" styleClass="side_menu_button" stylesheets="@../styles/styles.css">
                      <graphic>
                         <Label styleClass="side_menu_button_text" stylesheets="@../styles/styles.css" text="Purchased tickets" />
                      </graphic>
                   </Button>
-                  <Pane prefHeight="2.0" prefWidth="175.0" styleClass="side_menu_button_border" stylesheets="@../styles/styles.css" />
                   <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="175.0" styleClass="side_menu_button" stylesheets="@../styles/styles.css">
                      <graphic>
                         <Label styleClass="side_menu_button_text" stylesheets="@../styles/styles.css" text="Logout" />
                      </graphic>
                   </Button>
-                  <Pane prefHeight="2.0" prefWidth="175.0" styleClass="side_menu_button_border" stylesheets="@../styles/styles.css" />
                </children>
             </VBox>
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+         </left>
+         <center>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="82.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/account.png" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="40.0" prefWidth="423.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="425.0" styleClass="hbox_center_properties" stylesheets="@../styles/styles.css">
+                     <children>
+                        <Pane prefHeight="20.0" prefWidth="30.0" />
+                        <Label stylesheets="@../styles/styles.css" text="Username:" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="20.0" prefWidth="30.0" />
+                        <Label text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Pane prefHeight="20.0" prefWidth="425.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="425.0" styleClass="hbox_center_properties" stylesheets="@../styles/styles.css">
+                     <children>
+                        <Pane prefHeight="20.0" prefWidth="30.0" />
+                        <Label stylesheets="@../styles/styles.css" text="E-mail:" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="20.0" prefWidth="55.0" />
+                        <Label text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
   </items>
 </SplitPane>
