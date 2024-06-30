@@ -5,9 +5,15 @@
     -fx-txtColor: #dedede;
     -fx-c1: #337cf2;
     -fx-c2: #68d7e0;
+    -fx-c3: #f28033;
+    -fx-subtleBorderColor: #444444;
 
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+}
+
+@font-face {
+    src: url('Oswald-VariableFont_wght.ttf');
 }
 
 .context-button, .context-button-flap-l, .context-button-flap-r, .context-button-container, .border-bottom
@@ -170,7 +176,8 @@
     -fx-background-color: -fx-bg;
 }
 
-.crank, .crank > .viewport {  //not .scrollpane but .scroll-pane
+.scroll-bar, .scroll-bar > .viewport
+{
     -fx-background-insets: 0; /* Remove additional insets */
     -fx-border-insets: 0;
     -fx-effect: none;
@@ -178,6 +185,58 @@
     -fx-border-color: transparent;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+    -fx-background-color: -fx-bg;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color :transparent;
+    -fx-border-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+}
+
+
+.scroll-bar:horizontal .increment-button ,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 0.0 10.0 0.0;
+
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+
+}
+
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.15em 0.0;
+}
+
+ .scroll-bar:vertical .increment-arrow,
+ .scroll-bar:vertical .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.0 0.15em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color :derive(black,90.0%);
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}
+
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color :derive(#4D4C4F,10.0%);
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
 }
 
 .movie_modal_button
@@ -191,13 +250,13 @@
     -fx-border-color: transparent;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-background-color: transparent;
+    -fx-background-color: -fx-c1;
+    -fx-border-color: -fx-txtColor;
 }
 
 .movie_modal_button:hover
 {
-    -fx-border-color: -fx-txtColor;
-    -fx-background-color: -fx-c1;
+    -fx-background-color: -fx-c2;
 }
 
 .license_popup_content{
@@ -229,3 +288,74 @@
 }
 /*
 */
+
+.cinema_modal, .movie_details_modal
+{
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-color: -fx-fg;
+}
+
+.movie_details_datepick_modal
+{
+    -fx-font-family: 'Oswald';
+}
+
+.register_decision_button
+{
+    -fx-background-insets: 0; /* Remove additional insets */
+    -fx-border-insets: 0;
+    -fx-effect: none;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color: -fx-c3;
+    -fx-text-fill: -fx-txtColor;
+}
+
+.seat_selection_panel
+{
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: -fx-subtleBorderColor;
+}
+
+.form_input_box
+{
+    -fx-background-insets: 0; /* Remove additional insets */
+    -fx-border-insets: 0;
+    -fx-effect: none;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-color: -fx-c1;
+    -fx-focus-color: -fx-c2;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-fg;
+}
+
+.tab-pane *.tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab .tab-container > .tab-close-button {
+    -fx-background-color: transparent;
+}
+
+.tab{
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-padding: 0 15 0 15;
+    -fx-cursor: hand;
+}
+
+.tab:selected .tab-label
+{
+    -fx-text-fill: -fx-txtColor;
+}
+
+.tab-label {
+    -fx-text-fill: -fx-fg;
+}

@@ -10,34 +10,22 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane prefHeight="300.0" prefWidth="220.0" styleClass="movie-modal" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.MovieModalController">
+<Pane prefHeight="300.0" prefWidth="220.0" styleClass="movie-modal" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.MovieModalController">
    <children>
-      <ImageView fx:id="mdl_cover" fitHeight="300.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="mdl_cover" fitHeight="300.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/_BLANK_Cover.jpg" />
+         </image></ImageView>
       <HBox fx:id="mld_halo" layoutY="200.0" prefHeight="100.0" prefWidth="220.0" styleClass="movie-modal-gradient" stylesheets="@../styles/styles.css" />
-      <Button fx:id="mdl_button" mnemonicParsing="false" prefHeight="300.0" prefWidth="220.0" styleClass="invisible-button" stylesheets="@../styles/styles.css">
+      <Button fx:id="mdl_button" mnemonicParsing="false" onAction="#gotoDetailsCallback" prefHeight="300.0" prefWidth="220.0" styleClass="invisible-button" stylesheets="@../styles/styles.css">
          <graphic>
             <VBox alignment="CENTER" prefHeight="292.0" prefWidth="134.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                  <HBox fx:id="edit_btn" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Button alignment="CENTER" mnemonicParsing="false" styleClass="movie_modal_button" stylesheets="@../styles/styles.css" textAlignment="CENTER">
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/edit.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                           </padding>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" styleClass="movie_modal_button" stylesheets="@../styles/styles.css" textAlignment="CENTER">
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" rotate="45.0">
                                  <image>
                                     <Image url="@../images/remove.png" />
                                  </image>
