@@ -10,13 +10,10 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
 import com.google.gson.Gson;
-import com.texnologia_logismikou.Cinematrix.DocumentObjects.UserDocument;
-import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.NameField;
-import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.UserFields;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.*;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.*;
 import com.texnologia_logismikou.Cinematrix.RequestBodies.*;
 import com.texnologia_logismikou.Cinematrix.ResponseBodies.*;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class RequestController {
 
@@ -98,7 +95,7 @@ public class RequestController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public CreateDocumentResponseBody createUserDocumentRequest(String uid, String firebaseToken) throws URISyntaxException, InterruptedException, IOException {
+	public CreateDocumentResponseBody createUserDocumentRequest(String uid, String firebaseId) throws URISyntaxException, InterruptedException, IOException {
 		
 		CreateDocumentResponseBody response = new CreateDocumentResponseBody();
 		
@@ -107,7 +104,7 @@ public class RequestController {
 		HttpRequest postRequest = HttpRequest.newBuilder()
 				.uri(new URI("https://firestore.googleapis.com/v1beta1/projects/fir-test-java-1d671/databases/(default)/documents/Users?documentId=" + uid))
 				.POST(BodyPublishers.ofString(""))
-				.setHeader("Authorization", "Bearer " + firebaseToken)
+				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
 		
 		HttpClient client = HttpClient.newHttpClient();
@@ -124,24 +121,20 @@ public class RequestController {
 		return response;
 	}
 	
-	public void updateDocumentRequest(String token) throws URISyntaxException, InterruptedException, IOException {
+	public UserDocument initializeUserDocumentRequest(String firebaseId, UserFields fields) throws URISyntaxException, InterruptedException, IOException {
 		
 		UserDocument request = new UserDocument();
 		UserDocument response = new UserDocument();
 		
-		UserFields fields = new UserFields();
-		NameField nameField = new NameField();
-		nameField.setStringValue("FOIVOS!!!");
-		fields.setName(nameField);
 		request.setFields(fields);
 		
 		Gson gson = new Gson();
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1beta1/projects/fir-test-java-1d671/databases/(default)/documents/Users/Dg3SViArdWgyijYzzvmjXhMcAc32?updateMask.fieldPaths=name"))
+				.uri(new URI("https://firestore.googleapis.com/v1beta1/projects/fir-test-java-1d671/databases/(default)/documents/Users/Dg3SViArdWgyijYzzvmjXhMcAc32?updateMask.fieldPaths=name&updateMask.fieldPaths=email"))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
-				.setHeader("Authorization", "Bearer " + token)
+				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
 		
 		HttpClient client = HttpClient.newHttpClient();
@@ -149,6 +142,7 @@ public class RequestController {
 		
 		response = gson.fromJson(patchResponse.body(), UserDocument.class);
 		
-		System.out.println(response);
+		System.out.println("Document initialized at: " + response.getUpdateTime());
+		return response;
 	}
 }
