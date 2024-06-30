@@ -30,6 +30,8 @@ module Cinematrix {
     opens com.texnologia_logismikou.Cinematrix.Users to javafx.fxml;
     opens com.texnologia_logismikou.Cinematrix.RequestBodies to com.google.gson;
     opens com.texnologia_logismikou.Cinematrix.ResponseBodies to com.google.gson;
+    opens com.texnologia_logismikou.Cinematrix.DocumentObjects to com.google.gson;
+    opens com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields to com.google.gson;
     
     exports com.texnologia_logismikou.Cinematrix;
     exports com.texnologia_logismikou.Cinematrix.Controllers;
@@ -38,4 +40,6 @@ module Cinematrix {
     exports com.texnologia_logismikou.Cinematrix.Users;
     exports com.texnologia_logismikou.Cinematrix.RequestBodies;
     exports com.texnologia_logismikou.Cinematrix.ResponseBodies;
+    exports com.texnologia_logismikou.Cinematrix.DocumentObjects;
+    exports com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 }

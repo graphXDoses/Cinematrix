@@ -10,8 +10,13 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
 import com.google.gson.Gson;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.UserDocument;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.NameField;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.UserFields;
 import com.texnologia_logismikou.Cinematrix.RequestBodies.*;
 import com.texnologia_logismikou.Cinematrix.ResponseBodies.*;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class RequestController {
 
@@ -19,7 +24,7 @@ public class RequestController {
 	// It only references our Firebase project and that's all.
 	private static final String webKey = "AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU";
 	
-	public SignInResponseBody signInRequest() throws URISyntaxException, IOException, InterruptedException {
+	public SignInResponseBody signInRequest(String email, String password) throws URISyntaxException, IOException, InterruptedException {
 		
 		/*
 		 *  Common Errors
@@ -29,7 +34,7 @@ public class RequestController {
 	     *	USER_DISABLED: The user account has been disabled by an administrator.
 		 */
 		
-		SignInRequestBody request = new SignInRequestBody("phoebuspetsi@gmail.com", "myPassword133");
+		SignInRequestBody request = new SignInRequestBody(email, password);
 		SignInResponseBody response = new SignInResponseBody();
 		
 		// Request ---> JSON
@@ -117,5 +122,33 @@ public class RequestController {
 		}
 		
 		return response;
+	}
+	
+	public void updateDocumentRequest(String token) throws URISyntaxException, InterruptedException, IOException {
+		
+		UserDocument request = new UserDocument();
+		UserDocument response = new UserDocument();
+		
+		UserFields fields = new UserFields();
+		NameField nameField = new NameField();
+		nameField.setStringValue("FOIVOS!!!");
+		fields.setName(nameField);
+		request.setFields(fields);
+		
+		Gson gson = new Gson();
+		String jsonRequest = gson.toJson(request);
+		
+		HttpRequest patchRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1beta1/projects/fir-test-java-1d671/databases/(default)/documents/Users/Dg3SViArdWgyijYzzvmjXhMcAc32?updateMask.fieldPaths=name"))
+				.method("PATCH", BodyPublishers.ofString(jsonRequest))
+				.setHeader("Authorization", "Bearer " + token)
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> patchResponse = client.send(patchRequest, BodyHandlers.ofString());
+		
+		response = gson.fromJson(patchResponse.body(), UserDocument.class);
+		
+		System.out.println(response);
 	}
 }

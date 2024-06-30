@@ -7,7 +7,7 @@ public class SignInResponseBody {
 	
 	private ErrorResponseBody error;
 	private String kind;
-	private String localid;
+	private String localId;
 	private String email;
 	private String displayName;
 	private String idToken;
@@ -29,11 +29,11 @@ public class SignInResponseBody {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
-	public String getLocalid() {
-		return localid;
+	public String getLocalId() {
+		return localId;
 	}
-	public void setLocalid(String localid) {
-		this.localid = localid;
+	public void setLocalId(String localid) {
+		this.localId = localid;
 	}
 	public String getEmail() {
 		return email;
