@@ -1,11 +1,11 @@
-package com.texnologia_logismikou.Cinematrix.Responses;
+package com.texnologia_logismikou.Cinematrix.ResponseBodies;
 
-public class SignInResponse {
+public class SignInResponseBody {
 
 	// Base class for the response after a Sign-In request.
 	// Check com.texnologia_logismikou.Cinematrix.Requests.SignInRequest for the request body.
 	
-	private Error error;
+	private ErrorResponseBody error;
 	private String kind;
 	private String localid;
 	private String email;
@@ -15,12 +15,12 @@ public class SignInResponse {
 	private String refreshToken;
 	private String epxiresIn;
 	
-	public SignInResponse() {}
+	public SignInResponseBody() {}
 	
-	public Error getError() {
+	public ErrorResponseBody getError() {
 		return error;
 	}
-	public void setError(Error error) {
+	public void setError(ErrorResponseBody error) {
 		this.error = error;
 	}
 	public String getKind() {

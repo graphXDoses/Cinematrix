@@ -1,15 +1,15 @@
-package com.texnologia_logismikou.Cinematrix.Requests;
+package com.texnologia_logismikou.Cinematrix.RequestBodies;
 
-public class SignInRequest {
+public class SignInRequestBody {
 
 	//For request
 	private boolean returnSecureToken = true;
 	private String email;
 	private String password;
 	
-	public SignInRequest() {}
+	public SignInRequestBody() {}
 	
-	public SignInRequest(String email, String password) {
+	public SignInRequestBody(String email, String password) {
 		
 		this.email = email;
 		this.password = password;

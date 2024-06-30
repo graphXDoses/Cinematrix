@@ -1,20 +1,20 @@
-package com.texnologia_logismikou.Cinematrix.Responses;
+package com.texnologia_logismikou.Cinematrix.ResponseBodies;
 
-public class SignUpResponse {
+public class SignUpResponseBody {
 
-	private Error error;
+	private ErrorResponseBody error;
 	private String idToken;
 	private String email;
 	private String refreshToken;
 	private String expiresIn;
-	private String localid;
+	private String localId;
 	
-	public SignUpResponse() {}
+	public SignUpResponseBody() {}
 	
-	public Error getError() {
+	public ErrorResponseBody getError() {
 		return error;
 	}
-	public void setError(Error error) {
+	public void setError(ErrorResponseBody error) {
 		this.error = error;
 	}
 	public String getIdToken() {
@@ -41,10 +41,10 @@ public class SignUpResponse {
 	public void setExpiresIn(String expiresIn) {
 		this.expiresIn = expiresIn;
 	}
-	public String getLocalid() {
-		return localid;
+	public String getLocalId() {
+		return localId;
 	}
-	public void setLocalid(String localid) {
-		this.localid = localid;
+	public void setLocalId(String localId) {
+		this.localId = localId;
 	}
 }

@@ -10,6 +10,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import com.texnologia_logismikou.Cinematrix.RequestBodies.SignUpRequestBody;
+import com.texnologia_logismikou.Cinematrix.RequestBodies.UserDocumentBody;
+import com.texnologia_logismikou.Cinematrix.ResponseBodies.CreateDocumentResponseBody;
+import com.texnologia_logismikou.Cinematrix.ResponseBodies.SignUpResponseBody;
+
 /**
  * JavaFX App
  */
@@ -32,8 +37,13 @@ public class App extends Application {
         //CinemaSystem.getInstance().getMainDisplay().refresh();
         
         RequestController temp = new RequestController();
+        CreateDocumentResponseBody response2;
+        SignUpResponseBody response1;
         try {
-			temp.SignUpRequest();
+			response1 = temp.SignUpRequest("phoebusmail@gmail.com", "anotherPassword123");
+			if(response1.getError() == null) {
+				response2 = temp.createUserDocumentRequest(response1.getLocalId(), response1.getIdToken());
+			}
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

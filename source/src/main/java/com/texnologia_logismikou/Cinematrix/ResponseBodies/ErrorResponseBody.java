@@ -1,6 +1,6 @@
-package com.texnologia_logismikou.Cinematrix.Responses;
+package com.texnologia_logismikou.Cinematrix.ResponseBodies;
 
-public class Error {
+public class ErrorResponseBody {
 
 	// Sign In error class.
 	
