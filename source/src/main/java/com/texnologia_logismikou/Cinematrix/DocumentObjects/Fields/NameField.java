@@ -4,6 +4,10 @@ public class NameField {
 
 	private String stringValue;
 
+	public NameField() {
+		
+	}
+	
 	public NameField(String name) {
 		
 		this.stringValue = name;

@@ -119,7 +119,7 @@ public class RequestHandler {
 		return response;
 	}
 	
-	public UserDocument initializeUserDocumentRequest(String uid, String firebaseId, UserFields fields) throws URISyntaxException, InterruptedException, IOException {
+	public UserDocument updateUserDocumentRequest(String uid, String firebaseId, UserFields fields) throws URISyntaxException, InterruptedException, IOException {
 		
 		UserDocument request = new UserDocument();
 		UserDocument response = new UserDocument();
@@ -187,4 +187,49 @@ public class RequestHandler {
 		return response;
 	}
 	
+	public MovieDocument createMovieDocumentRequest(String name) throws URISyntaxException, IOException, InterruptedException {
+		
+		MovieDocument response = new MovieDocument();
+		
+		Gson gson = new Gson();
+		
+		HttpRequest postRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies?documentId=" + name))
+				.POST(BodyPublishers.ofString(""))
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> postResponse = client.send(postRequest, BodyHandlers.ofString());
+		
+		response = gson.fromJson(postResponse.body(), MovieDocument.class);
+		
+		System.out.println(postResponse.body());
+		
+		return response;
+	}
+	
+	public MovieDocument updateMovieDocumentRequest(MovieFields fields) throws URISyntaxException, IOException, InterruptedException {
+		
+		MovieDocument request = new MovieDocument();
+		MovieDocument response = new MovieDocument();
+		request.setFields(fields);
+		
+		Gson gson = new Gson();
+		String jsonRequest = gson.toJson(request);
+		
+		HttpRequest patchRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getName().getStringValue() + "?updateMask.fieldPaths=name&updateMask.fieldPaths=cinemas&updateMask.fieldPaths=duration"))
+				.method("PATCH", BodyPublishers.ofString(jsonRequest))
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> patchResponse = client.send(patchRequest, BodyHandlers.ofString());
+		
+		response = gson.fromJson(patchResponse.body(), MovieDocument.class);
+		
+		System.out.println(patchResponse.body());
+		System.out.println(response.getFields().getDuration().getDoubleValue());
+		
+		return null;
+	}
 }

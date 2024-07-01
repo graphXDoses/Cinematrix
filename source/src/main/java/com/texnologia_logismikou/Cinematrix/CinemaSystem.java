@@ -196,7 +196,7 @@ public class CinemaSystem {
 		System.out.println("User admin field is: " + fields.getAdmin().getBooleanValue());
 		
 		try {
-			initializeDocResponse = RequestHandler.getInstance(webKey).initializeUserDocumentRequest(signUpResponse.getLocalId(), signUpResponse.getIdToken(), fields);
+			initializeDocResponse = RequestHandler.getInstance(webKey).updateUserDocumentRequest(signUpResponse.getLocalId(), signUpResponse.getIdToken(), fields);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			// return;
