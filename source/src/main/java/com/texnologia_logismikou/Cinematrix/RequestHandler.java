@@ -140,4 +140,27 @@ public class RequestHandler {
 
 		return response;
 	}
+	
+	public void deleteUserAccount(String firebaseId) throws URISyntaxException, IOException, InterruptedException {
+		
+		DeleteAccountRequestBody request = new DeleteAccountRequestBody();
+		request.setIdToken(firebaseId);
+		
+		Gson gson = new Gson();
+		String jsonRequest = gson.toJson(request);
+		
+		HttpRequest postRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://identitytoolkit.googleapis.com/v1/accounts:delete?key=" + webKey))
+				.POST(BodyPublishers.ofString(jsonRequest))
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> response = client.send(postRequest, BodyHandlers.ofString());
+		
+		System.out.println("STATUS CODE: " + response.statusCode());
+		
+		/*
+		 *  Doesn't return anything.
+		 */
+	}
 }
