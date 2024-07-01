@@ -179,6 +179,12 @@ public class CinemaSystem {
 		
 		if(createDocResponse.getError() != null) {
 			System.out.println("Error creating user document. Details: " + createDocResponse.getError().getMessage());
+			try {
+				// Delete the user account.
+				RequestHandler.getInstance(webKey).deleteUserAccount(signUpResponse.getIdToken());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			// return;
 		} else {
 			System.out.println("User document succefully created at: " + createDocResponse.getCreateTime());
@@ -204,6 +210,12 @@ public class CinemaSystem {
 		
 		if(initializeDocResponse.getError() != null) {
 			System.out.println("Error initializing user document. Details: " + initializeDocResponse.getError().getMessage());
+			try {
+				// Delete the user account.
+				RequestHandler.getInstance(webKey).deleteUserAccount(signUpResponse.getIdToken());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			// return;
 		} else {
 			System.out.println("User document succesfully initialized at: " + initializeDocResponse.getUpdateTime());
