@@ -250,4 +250,54 @@ public class CinemaSystem {
 		 *  Store the Firebase ID, User ID and other useful information for later use.
 		 */
 	}
+	
+	public void createMovieDocument(String name) {
+		
+		name = name.replaceAll("\\s+", "-");
+		MovieDocument createResponse = new MovieDocument();
+		
+		try {
+			createResponse = RequestHandler.getInstance(webKey).createMovieDocumentRequest(name);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			// return;
+		} catch (IOException e) {
+			e.printStackTrace();
+			// return;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			// return;
+		}
+		
+		if(createResponse.getError() != null) {
+			System.out.println(createResponse.getError().getMessage());
+			// return;
+		} else {
+			System.out.println("Movie Document succesfully created at: " + createResponse.getCreateTime());
+		}
+	}
+	
+	public void updateMovieDocument(MovieFields fields) {
+		
+		MovieDocument updateResponse = new MovieDocument();
+		
+		try {
+			updateResponse = RequestHandler.getInstance(webKey).updateMovieDocumentRequest(fields);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			// return;
+		} catch (IOException e) {
+			e.printStackTrace();
+			// return;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			// return;
+		}
+		
+		if(updateResponse.getError() != null) {
+			System.out.println(updateResponse.getError().getMessage());
+		} else {
+			System.out.println("Movie Document succesfully updated at: " + updateResponse.getUpdateTime());
+		}
+	}
 }

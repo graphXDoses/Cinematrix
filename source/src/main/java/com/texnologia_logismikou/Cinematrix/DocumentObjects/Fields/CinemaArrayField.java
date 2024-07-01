@@ -4,6 +4,12 @@ public class CinemaArrayField {
 
 	private ArrayField<NameField> arrayValue;
 
+	public CinemaArrayField(NameField[] arrayValues) {
+		
+		ArrayField<NameField> arrayField = new ArrayField<NameField>(arrayValues);
+		this.arrayValue = arrayField;
+	}
+	
 	public ArrayField<NameField> getArrayValue() {
 		return arrayValue;
 	}

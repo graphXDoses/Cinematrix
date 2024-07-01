@@ -6,10 +6,16 @@ public class MovieFields {
 	private CinemaArrayField cinemas;
 	private DoubleField duration;
 	
-	public MovieFields(NameField name, CinemaArrayField cinemas, DoubleField duration) {
-		this.name = name;
-		this.cinemas = cinemas;
-		this.duration = duration;
+	public MovieFields(String name, NameField[] cinemas, double duration) {
+		
+		NameField nameField = new NameField(name);
+		this.name = nameField;
+		
+		CinemaArrayField cinemasField = new CinemaArrayField(cinemas);
+		this.cinemas = cinemasField;
+		
+		DoubleField doubleField = new DoubleField(duration);
+		this.duration = doubleField;
 	}
 	
 	public NameField getName() {
