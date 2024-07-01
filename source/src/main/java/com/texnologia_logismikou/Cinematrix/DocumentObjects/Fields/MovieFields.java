@@ -3,7 +3,7 @@ package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 public class MovieFields {
 
 	private NameField name;
-	private CinemaArrayField cinemas;
+	private NameFieldArrayField cinemas;
 	private DoubleField duration;
 	
 	public MovieFields(String name, NameField[] cinemas, double duration) {
@@ -11,7 +11,7 @@ public class MovieFields {
 		NameField nameField = new NameField(name);
 		this.name = nameField;
 		
-		CinemaArrayField cinemasField = new CinemaArrayField(cinemas);
+		NameFieldArrayField cinemasField = new NameFieldArrayField(cinemas);
 		this.cinemas = cinemasField;
 		
 		DoubleField doubleField = new DoubleField(duration);
@@ -24,10 +24,10 @@ public class MovieFields {
 	public void setName(NameField name) {
 		this.name = name;
 	}
-	public CinemaArrayField getCinemas() {
+	public NameFieldArrayField getCinemas() {
 		return cinemas;
 	}
-	public void setCinemas(CinemaArrayField cinemas) {
+	public void setCinemas(NameFieldArrayField cinemas) {
 		this.cinemas = cinemas;
 	}
 	public DoubleField getDuration() {

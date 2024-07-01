@@ -1,10 +1,10 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
-public class CinemaArrayField {
+public class NameFieldArrayField {
 
 	private ArrayField<NameField> arrayValue;
 
-	public CinemaArrayField(NameField[] arrayValues) {
+	public NameFieldArrayField(NameField[] arrayValues) {
 		
 		ArrayField<NameField> arrayField = new ArrayField<NameField>(arrayValues);
 		this.arrayValue = arrayField;
