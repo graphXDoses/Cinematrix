@@ -132,7 +132,7 @@ public class CinemaSystem {
 		));
 	}
 	
-	public void userSignUp(String name, String email, String password, boolean isAdmin) {
+	public void userSignUp(String name, String email, String password) {
 		
 		SignUpResponseBody signUpResponse = new SignUpResponseBody();
 		
@@ -179,12 +179,13 @@ public class CinemaSystem {
 		
 		if(createDocResponse.getError() != null) {
 			System.out.println("Error creating user document. Details: " + createDocResponse.getError().getMessage());
+			// return;
 		} else {
 			System.out.println("User document succefully created at: " + createDocResponse.getCreateTime());
 		}
 		
 		UserDocument initializeDocResponse = new UserDocument();
-		UserFields fields = new UserFields(name , signUpResponse.getEmail(), isAdmin); // <--- Email and Name goes here, but it can be expanded to receive more user fields like admin.
+		UserFields fields = new UserFields(name , signUpResponse.getEmail(), false); // <--- Email and Name goes here, but it can be expanded to receive more user fields like admin.
 		
 		System.out.println("User admin field is: " + fields.getAdmin().getBooleanValue());
 		
@@ -203,8 +204,38 @@ public class CinemaSystem {
 		
 		if(initializeDocResponse.getError() != null) {
 			System.out.println("Error initializing user document. Details: " + initializeDocResponse.getError().getMessage());
+			// return;
 		} else {
 			System.out.println("User document succesfully initialized at: " + initializeDocResponse.getUpdateTime());
 		}
+	}
+	
+	public void userSignIn(String email, String password) {
+		
+		SignInResponseBody signInResponse = new SignInResponseBody();
+		
+		try {
+			signInResponse = RequestHandler.getInstance(webKey).signInRequest(email, password);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			// return;
+		} catch (IOException e) {
+			e.printStackTrace();
+			// return;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			// return;
+		}
+		
+		if(signInResponse.getError() != null) {
+			System.out.println("Error signin in. Details: " + signInResponse.getError().getMessage());
+			// return / refresh the login page and let user retry login.
+		} else {
+			System.out.println("Succesfuly signed in!");
+		}
+		
+		/*
+		 *  Store the Firebase ID, User ID and other useful information for later use.
+		 */
 	}
 }
