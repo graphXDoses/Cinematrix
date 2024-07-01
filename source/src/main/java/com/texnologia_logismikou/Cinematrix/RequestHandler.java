@@ -98,7 +98,6 @@ public class RequestHandler {
 		return response;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public UserDocument createUserDocumentRequest(String uid, String firebaseId) throws URISyntaxException, InterruptedException, IOException {
 		
 		UserDocument response = new UserDocument();
