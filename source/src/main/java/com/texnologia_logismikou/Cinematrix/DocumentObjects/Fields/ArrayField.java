@@ -2,18 +2,19 @@ package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
 public class ArrayField<T> {
 
-	private T[] values;
+	private ArrayValuesField<T> arrayValue;
 
 	public ArrayField(T[] arrayValues) {
 		
-		this.values = arrayValues;
+		ArrayValuesField<T> arrayField = new ArrayValuesField<T>(arrayValues);
+		this.arrayValue = arrayField;
 	}
 	
-	public T[] getValues() {
-		return values;
+	public ArrayValuesField<T> getArrayValue() {
+		return arrayValue;
 	}
 
-	public void setValues(T[] values) {
-		this.values = values;
+	public void setArrayValue(ArrayValuesField<T> arrayValue) {
+		this.arrayValue = arrayValue;
 	}
 }

@@ -251,13 +251,13 @@ public class CinemaSystem {
 		 */
 	}
 	
-	public void createMovieDocument(String name) {
+	public void createMovieDocument(String name, String firebaseId) {
 		
 		name = name.replaceAll("\\s+", "-");
 		MovieDocument createResponse = new MovieDocument();
 		
 		try {
-			createResponse = RequestHandler.getInstance(webKey).createMovieDocumentRequest(name);
+			createResponse = RequestHandler.getInstance(webKey).createMovieDocumentRequest(name, firebaseId);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			// return;
@@ -277,12 +277,12 @@ public class CinemaSystem {
 		}
 	}
 	
-	public void updateMovieDocument(MovieFields fields) {
+	public void updateMovieDocument(MovieFields fields, String firebaseId) {
 		
 		MovieDocument updateResponse = new MovieDocument();
 		
 		try {
-			updateResponse = RequestHandler.getInstance(webKey).updateMovieDocumentRequest(fields);
+			updateResponse = RequestHandler.getInstance(webKey).updateMovieDocumentRequest(fields, firebaseId);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			// return;

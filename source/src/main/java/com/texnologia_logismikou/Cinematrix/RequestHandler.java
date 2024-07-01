@@ -187,7 +187,7 @@ public class RequestHandler {
 		return response;
 	}
 	
-	public MovieDocument createMovieDocumentRequest(String name) throws URISyntaxException, IOException, InterruptedException {
+	public MovieDocument createMovieDocumentRequest(String name, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
 		MovieDocument response = new MovieDocument();
 		
@@ -196,6 +196,7 @@ public class RequestHandler {
 		HttpRequest postRequest = HttpRequest.newBuilder()
 				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies?documentId=" + name))
 				.POST(BodyPublishers.ofString(""))
+				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
 		
 		HttpClient client = HttpClient.newHttpClient();
@@ -208,7 +209,7 @@ public class RequestHandler {
 		return response;
 	}
 	
-	public MovieDocument updateMovieDocumentRequest(MovieFields fields) throws URISyntaxException, IOException, InterruptedException {
+	public MovieDocument updateMovieDocumentRequest(MovieFields fields, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
 		MovieDocument request = new MovieDocument();
 		MovieDocument response = new MovieDocument();
@@ -220,6 +221,7 @@ public class RequestHandler {
 		HttpRequest patchRequest = HttpRequest.newBuilder()
 				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getName().getStringValue() + "?updateMask.fieldPaths=name&updateMask.fieldPaths=cinemas&updateMask.fieldPaths=duration"))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
+				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
 		
 		HttpClient client = HttpClient.newHttpClient();
@@ -232,4 +234,6 @@ public class RequestHandler {
 		
 		return null;
 	}
+	
+	
 }
