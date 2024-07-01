@@ -1,11 +1,16 @@
 package com.texnologia_logismikou.Cinematrix;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.*;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.*;
 import com.texnologia_logismikou.Cinematrix.Managers.MainDisplay;
 import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
+import com.texnologia_logismikou.Cinematrix.ResponseBodies.*;
 import com.texnologia_logismikou.Cinematrix.Users.Admin;
 import com.texnologia_logismikou.Cinematrix.Users.Guest;
 import com.texnologia_logismikou.Cinematrix.Users.User;
@@ -25,11 +30,7 @@ public class CinemaSystem {
 	private static List<Context> contexts = new ArrayList<>();
 	private static Context activeContext;
 	
-	private boolean internetConnection = false;
-	
-	private FirebaseController firebase = new FirebaseController();
-	private FirestoreController firestore = new FirestoreController();
-	private StorageController storage = new StorageController();
+	private final String webKey = "AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU";
 	
 	private CinemaSystem()
 	{
@@ -131,48 +132,79 @@ public class CinemaSystem {
 		));
 	}
 	
-	public void setupFirebase() {
-		firebase.initializeFirebase();
-	}
-	
-	private void addMoviesToDb(Movie movie) {
+	public void userSignUp(String name, String email, String password, boolean isAdmin) {
 		
-		boolean movieAdded;
+		SignUpResponseBody signUpResponse = new SignUpResponseBody();
 		
-		if(!firebase.appExists()) {
-			System.out.println("No Firebase app found.");
-			return;
+		// Return on exception and send user back to home screen?
+		try {
+			signUpResponse = RequestHandler.getInstance(webKey).SignUpRequest(email, password);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			// return;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			// return;
+		} catch (IOException e) {
+			e.printStackTrace();
+			// return;
 		}
 		
-		if(!firestore.dbExists()) {
-			firestore.initializeDatabase();
-		}
-		
-		movieAdded = firestore.addMovie(movie);
-		if(movieAdded) {
-			System.out.println("Movie has been added.");
+		// If error occurs show appropriate message and return?
+		if(signUpResponse.getError() != null) {
+			System.out.println("Error signing up. Details: " + signUpResponse.getError().getMessage());
+			// return;
 		} else {
-			System.out.println("There was an error adding the movie.");
-		}
-	}
-	
-	private void addUsersToDb(Customer user) {
-		
-		boolean userAdded;
-		
-		if(!firebase.appExists()) {
-			return;
+			System.out.println("User succesfully signed up with uid: " + signUpResponse.getLocalId());
 		}
 		
-		if(!firestore.dbExists()) {
-			firestore.initializeDatabase();
+		/*
+		 *  After the sign up process store locally some useful information like Firebase ID, User ID, Name, Email etc.
+		 */
+		
+		UserDocument createDocResponse = new UserDocument();
+		
+		try {
+			createDocResponse = RequestHandler.getInstance(webKey).createUserDocumentRequest(signUpResponse.getLocalId(), signUpResponse.getIdToken());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			// return;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			// return;
+		} catch (IOException e) {
+			e.printStackTrace();
+			// return;
 		}
 		
-		userAdded = firestore.addUser(user);
-		if(userAdded) {
-			System.out.println("User succesfully added to Firestore.");
+		if(createDocResponse.getError() != null) {
+			System.out.println("Error creating user document. Details: " + createDocResponse.getError().getMessage());
 		} else {
-			System.out.println("User hasn't been added to the Firestore.w");
+			System.out.println("User document succefully created at: " + createDocResponse.getCreateTime());
+		}
+		
+		UserDocument initializeDocResponse = new UserDocument();
+		UserFields fields = new UserFields(name , signUpResponse.getEmail(), isAdmin); // <--- Email and Name goes here, but it can be expanded to receive more user fields like admin.
+		
+		System.out.println("User admin field is: " + fields.getAdmin().getBooleanValue());
+		
+		try {
+			initializeDocResponse = RequestHandler.getInstance(webKey).initializeUserDocumentRequest(signUpResponse.getLocalId(), signUpResponse.getIdToken(), fields);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			// return;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			// return;
+		} catch (IOException e) {
+			e.printStackTrace();
+			// return;
+		}
+		
+		if(initializeDocResponse.getError() != null) {
+			System.out.println("Error initializing user document. Details: " + initializeDocResponse.getError().getMessage());
+		} else {
+			System.out.println("User document succesfully initialized at: " + initializeDocResponse.getUpdateTime());
 		}
 	}
 }

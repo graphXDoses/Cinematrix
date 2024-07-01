@@ -4,6 +4,11 @@ public class EmailField {
 
 	private String stringValue;
 
+	public EmailField(String email) {
+		
+		this.stringValue = email;
+	}
+	
 	public String getStringValue() {
 		return stringValue;
 	}

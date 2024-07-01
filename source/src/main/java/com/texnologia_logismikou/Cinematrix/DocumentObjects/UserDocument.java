@@ -1,9 +1,12 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects;
 
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.UserFields;
+import com.texnologia_logismikou.Cinematrix.ResponseBodies.ErrorResponseBody;
 
 public class UserDocument {
 
+	private ErrorResponseBody error;
+	
 	private String name;
 	private String createTime;
 	private String updateTime;
@@ -32,5 +35,11 @@ public class UserDocument {
 	}
 	public void setFields(UserFields fields) {
 		this.fields = fields;
+	}
+	public ErrorResponseBody getError() {
+		return error;
+	}
+	public void setError(ErrorResponseBody error) {
+		this.error = error;
 	}
 }

@@ -29,6 +29,7 @@ public class App extends Application {
         //CinemaSystem.getInstance().fetchCinemasFromDatabase();
         //CinemaSystem.getInstance().fetchMoviesFromDatabase();
         //CinemaSystem.getInstance().getMainDisplay().refresh();
+        CinemaSystem.getInstance().userSignUp("Hawkwood", "hawkwoodthedeserter@gmail.com", "darksouls123", false);
     }
 
     static void setRoot(String fxml) throws IOException {
