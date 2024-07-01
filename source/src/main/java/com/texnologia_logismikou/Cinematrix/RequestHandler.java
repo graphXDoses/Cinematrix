@@ -21,6 +21,8 @@ public class RequestHandler {
 	
 	private final String webKey;
 	
+	private final String documentsPath = "projects/fir-test-java-1d671/databases/(default)/documents";
+	
 	private RequestHandler(String webKey) {
 		
 		this.webKey = webKey;
@@ -104,7 +106,7 @@ public class RequestHandler {
 		Gson gson = new Gson();
 		
 		HttpRequest postRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1beta1/projects/fir-test-java-1d671/databases/(default)/documents/Users?documentId=" + uid))
+				.uri(new URI("https://firestore.googleapis.com/v1beta1/" + documentsPath + "/Users?documentId=" + uid))
 				.POST(BodyPublishers.ofString(""))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -128,7 +130,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1beta1/projects/fir-test-java-1d671/databases/(default)/documents/Users/" + uid + "?updateMask.fieldPaths=name&updateMask.fieldPaths=email&updateMask.fieldPaths=admin"))
+				.uri(new URI("https://firestore.googleapis.com/v1beta1/" + documentsPath +"/Users/" + uid + "?updateMask.fieldPaths=name&updateMask.fieldPaths=email&updateMask.fieldPaths=admin"))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -163,4 +165,26 @@ public class RequestHandler {
 		 *  Doesn't return anything.
 		 */
 	}
+	
+	public UserDocument getUserDocument(String uid, String firebaseId) throws URISyntaxException, IOException, InterruptedException  {
+		
+		UserDocument response = new UserDocument();
+		
+		Gson gson = new Gson();
+		
+		HttpRequest getRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Users/" + uid))
+				.GET()
+				.setHeader("Authorization", "Bearer " + firebaseId)
+				.setHeader("Content-Type", "application/json")
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
+		
+		response = gson.fromJson(getResponse.body(), UserDocument.class);
+		
+		return response;
+	}
+	
 }
