@@ -2,7 +2,9 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 
 import java.io.FileNotFoundException;
 
-import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
+import com.texnologia_logismikou.Cinematrix.Users.User;
+import com.texnologia_logismikou.Cinematrix.Views.ForgotPasswordView;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
 import com.texnologia_logismikou.Cinematrix.Views.UserDashboardView;
 
@@ -14,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 public class LoginViewController
@@ -25,6 +28,7 @@ public class LoginViewController
 	@FXML private PasswordField pass_inputfield;
 	@FXML private Label pass_label;
 	@FXML private Pane pass_label_obs;
+	@FXML private HBox forgot_password_link;
 	
 	@FXML private Button login_button;
 	
@@ -75,29 +79,38 @@ public class LoginViewController
     @FXML
     void loginCallback(ActionEvent event)
     {
-    	UserDashboardView view = (UserDashboardView)CinemaSystem.getInstance().getActiveContext().getViews().get(2);
-    	
-    	try {
-			CinemaSystem.getInstance().getActiveContext().goToView(view);
-			CinemaSystem.getInstance().getMainDisplay().refresh();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		if(CinematrixAPI.getInstance().userAuthenticate(email_inputfield.getText(), pass_inputfield.getText()))
+    	{
+    		CinematrixAPI.getInstance().setCurrentUser(new User());
+    		
+    		CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW = new UserDashboardView();
+    		CinematrixAPI.getInstance()
+    					.getActiveContext()
+    					.goToView(CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW);
+    		CinematrixAPI.getInstance().getMainDisplay().refresh();
+    	}
+    	else
+    		System.out.println("Failed to authenticate user.");
     }
     
     @FXML
     void switchToSignupCallback(ActionEvent event)
     {
-    	SignUpView view = (SignUpView)CinemaSystem.getInstance().getActiveContext().getViews().get(1);
-    	
-    	try {
-			CinemaSystem.getInstance().getActiveContext().goToView(view);
-			CinemaSystem.getInstance().getMainDisplay().refresh();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	CinematrixAPI.ACCOUNT_CONTEXT.SIGNUP_VIEW = new SignUpView();
+		CinematrixAPI.getInstance()
+    				.getActiveContext()
+    				.goToView(CinematrixAPI.ACCOUNT_CONTEXT.SIGNUP_VIEW);
+    	CinematrixAPI.getInstance().getMainDisplay().refresh();
+    }
+    
+    @FXML
+    void forgotPasswordCallback(ActionEvent event)
+    {	
+    	CinematrixAPI.ACCOUNT_CONTEXT.FORGOT_PASSWORD_VIEW = new ForgotPasswordView();
+    	CinematrixAPI.getInstance()
+    				.getActiveContext()
+    				.goToView(CinematrixAPI.ACCOUNT_CONTEXT.FORGOT_PASSWORD_VIEW);
+    	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
 
 }

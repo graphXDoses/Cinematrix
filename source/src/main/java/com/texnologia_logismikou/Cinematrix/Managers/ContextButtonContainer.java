@@ -1,7 +1,7 @@
 package com.texnologia_logismikou.Cinematrix.Managers;
 
-import com.texnologia_logismikou.Cinematrix.CinemaSystem;
-import com.texnologia_logismikou.Cinematrix.Context;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
+import com.texnologia_logismikou.Cinematrix.Contexts.Context;
 import com.texnologia_logismikou.Cinematrix.Controllers.ContextButtonContainerController;
 
 public class ContextButtonContainer extends Manager<ContextButtonContainerController>{
@@ -12,7 +12,7 @@ public class ContextButtonContainer extends Manager<ContextButtonContainerContro
 	{
 		super.loadFXML("ContextButtonContainer");
 
-		CinemaSystem.getInstance()
+		CinematrixAPI.getInstance()
 					.getContexts()
 					.forEach((c)-> { getController().addContextButton(c.getButton()); });
 	}

@@ -6,49 +6,63 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.texnologia_logismikou.Cinematrix.Contexts.AccountContext;
+import com.texnologia_logismikou.Cinematrix.Contexts.CinemaContext;
+import com.texnologia_logismikou.Cinematrix.Contexts.Context;
+import com.texnologia_logismikou.Cinematrix.Contexts.MovieContext;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.*;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.*;
 import com.texnologia_logismikou.Cinematrix.ResponseBodies.*;
 import com.texnologia_logismikou.Cinematrix.Managers.MainDisplay;
+import com.texnologia_logismikou.Cinematrix.Managers.MainUI;
 import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
 import com.texnologia_logismikou.Cinematrix.Users.Admin;
 import com.texnologia_logismikou.Cinematrix.Users.Guest;
+import com.texnologia_logismikou.Cinematrix.Users.User;
 import com.texnologia_logismikou.Cinematrix.Users.UserCore;
 import com.texnologia_logismikou.Cinematrix.Views.AllMoviesView;
+import com.texnologia_logismikou.Cinematrix.Views.ForgotPasswordView;
 import com.texnologia_logismikou.Cinematrix.Views.MovieDetailsView;
 import com.texnologia_logismikou.Cinematrix.Views.NearCinemasView;
 import com.texnologia_logismikou.Cinematrix.Views.SeatSelectionView;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
 import com.texnologia_logismikou.Cinematrix.Views.UserDashboardView;
 import com.texnologia_logismikou.Cinematrix.Views.View;
+
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
 import com.texnologia_logismikou.Cinematrix.Views.LoginView;
 
-public class CinemaSystem {
-	private static CinemaSystem instance = null;
+public class CinematrixAPI {
+	private static CinematrixAPI instance = null;
 	
 	private final String webKey = "AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU";
 
 	private static UserCore currentUser;
-	private static MainDisplay mD;
+	private static MainUI   UI;
+//	private static MainDisplay mD;
 	private static List<Movie>   movies   = new ArrayList<>();
 	private static List<Cinema>  cinemas  = new ArrayList<>();
 	private static List<Context> contexts = new ArrayList<>();
 	private static Context activeContext;
 	
-	private CinemaSystem()
+	public static final MovieContext   MOVIE_CONTEXT   = new MovieContext();
+	public static final CinemaContext  CINEMA_CONTEXT  = new CinemaContext();
+	public static final AccountContext ACCOUNT_CONTEXT = new AccountContext();
+	
+	private CinematrixAPI()
 	{
-//		currentUser = new Admin();
-		currentUser = new Guest();
+		currentUser = new Admin();
+//		currentUser = new Guest();
 		
-		mD = new MainDisplay();
-		
-		contexts.add(new Context("Movies", "images/movie.png", new AllMoviesView(), new MovieDetailsView(), new SeatSelectionView()));
-		contexts.add(new Context("Cinemas", "images/theater.png", new NearCinemasView()));
-		contexts.add(new Context("Account", "images/account.png", new LoginView(), new SignUpView(), new UserDashboardView()));
+		contexts.add(MOVIE_CONTEXT);
+		contexts.add(CINEMA_CONTEXT);
+		contexts.add(ACCOUNT_CONTEXT);
 		
 	}
 	
-	public MainDisplay getMainDisplay() { return(instance.mD); }
+	public MainDisplay getMainDisplay() { return(instance.UI.MAIN_DISPLAY); }
 	public List<Movie> getMovies() { return(instance.movies); }
 	public List<Cinema> getCinemas() { return(instance.cinemas); }
 	public List<Context> getContexts() { return(instance.contexts); }
@@ -64,10 +78,10 @@ public class CinemaSystem {
 		getMainDisplay().refresh();
 	}
 	
-	public static CinemaSystem getInstance()
+	public static CinematrixAPI getInstance()
 	{
 		if(instance == null)
-			instance = new CinemaSystem();
+			instance = new CinematrixAPI();
 		return(instance);
 	}
 
@@ -228,30 +242,31 @@ public class CinemaSystem {
 		return initializeDocResponse.getError();
 	}
 	
-	public void userSignIn(String email, String password) {
+	public boolean userAuthenticate(String email, String password) {
 		
-		SignInResponseBody signInResponse = new SignInResponseBody();
+		AuthResponseBody signInResponse = new AuthResponseBody();
 		
 		try {
 			signInResponse = RequestHandler.getInstance(webKey).signInRequest(email, password);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-			// return;
+			 return false;
 		} catch (IOException e) {
 			e.printStackTrace();
-			// return;
+			 return false;
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-			// return;
+			 return false;
 		}
 		
 		if(signInResponse.getError() != null) {
 			System.out.println("Error signin in. Details: " + signInResponse.getError().getMessage());
-			// return / refresh the login page and let user retry login.
+			 return false;
 		} else {
 			System.out.println("Succesfuly signed in!");
 		}
 		
+		return true;
 		/*
 		 *  Store the Firebase ID, User ID and other useful information for later use.
 		 */
@@ -305,6 +320,23 @@ public class CinemaSystem {
 		} else {
 			System.out.println("Movie Document succesfully updated at: " + updateResponse.getUpdateTime());
 		}
+	}
+
+	public void setCurrentUser(UserCore user)
+	{
+		if(user != null)
+		{
+			currentUser = user;
+			UI.FOOTERBAR.updateUserTypeDisplay();
+		}
+	}
+
+	public void placeUIOnStage(Stage stage) {
+		UI = new MainUI();
+		stage.setTitle("Cinematrix");
+        stage.getIcons().add(new Image(getClass().getResource("images/CinematrixIcon.png").toExternalForm()));
+        stage.setScene(UI.getScene());
+        stage.show();
 	}
 
 }

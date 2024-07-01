@@ -37,7 +37,7 @@ public class RequestHandler {
 		return instance;
 	}
 	
-	public SignInResponseBody signInRequest(String email, String password) throws URISyntaxException, IOException, InterruptedException {
+	public AuthResponseBody signInRequest(String email, String password) throws URISyntaxException, IOException, InterruptedException {
 		
 		/*
 		 *  Common Errors
@@ -48,7 +48,7 @@ public class RequestHandler {
 		 */
 		
 		SignInRequestBody request = new SignInRequestBody(email, password);
-		SignInResponseBody response = new SignInResponseBody();
+		AuthResponseBody response = new AuthResponseBody();
 		
 		// Request ---> JSON
 		Gson gson = new Gson();
@@ -64,7 +64,7 @@ public class RequestHandler {
 		HttpResponse<String> postResponse = httpClient.send(postRequest, BodyHandlers.ofString());
 		
 		// JSON ---> Response
-		response = gson.fromJson(postResponse.body(), SignInResponseBody.class);
+		response = gson.fromJson(postResponse.body(), AuthResponseBody.class);
 		
 		return response;
 	}

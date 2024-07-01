@@ -336,6 +336,11 @@
     -fx-text-fill: -fx-fg;
 }
 
+.form_input_box:focused
+{
+    -fx-border-color: -fx-c2;
+}
+
 .tab-pane *.tab-header-background {
     -fx-background-color: transparent;
 }

@@ -2,7 +2,7 @@ package com.texnologia_logismikou.Cinematrix.Views;
 
 import java.util.List;
 
-import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.Movie;
 import com.texnologia_logismikou.Cinematrix.Controllers.AllMoviesViewController;
 import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
@@ -20,10 +20,10 @@ public class AllMoviesView extends View<AllMoviesViewController>
 	{
 		getController().clearAll();
 		
-		if(CinemaSystem.getInstance().getCurrentUser() instanceof Admin)
+		if(CinematrixAPI.getInstance().getCurrentUser() instanceof Admin)
 			getController().appendNowFeaturing(new MovieModal(null));
 		
-		List<Movie> movies = CinemaSystem.getInstance().getMovies();
+		List<Movie> movies = CinematrixAPI.getInstance().getMovies();
 		
 		if(!movies.isEmpty())
 		{

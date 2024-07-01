@@ -1,6 +1,6 @@
 package com.texnologia_logismikou.Cinematrix.ResponseBodies;
 
-public class SignInResponseBody {
+public class AuthResponseBody {
 
 	// Base class for the response after a Sign-In request.
 	// Check com.texnologia_logismikou.Cinematrix.Requests.SignInRequest for the request body.
@@ -15,7 +15,7 @@ public class SignInResponseBody {
 	private String refreshToken;
 	private String epxiresIn;
 	
-	public SignInResponseBody() {}
+	public AuthResponseBody() {}
 	
 	public ErrorResponseBody getError() {
 		return error;

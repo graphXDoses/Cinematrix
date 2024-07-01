@@ -3,8 +3,8 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 import java.util.List;
 
 import com.texnologia_logismikou.Cinematrix.App;
-import com.texnologia_logismikou.Cinematrix.CinemaSystem;
-import com.texnologia_logismikou.Cinematrix.Context;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
+import com.texnologia_logismikou.Cinematrix.Contexts.Context;
 import com.texnologia_logismikou.Cinematrix.Views.View;
 
 import java.io.FileNotFoundException;
@@ -53,17 +53,10 @@ public class ContextButtonController {
     @FXML
     void clickEventHandler(MouseEvent event)
     {
-    	CinemaSystem.getInstance().setActiveContext(assosiateContext);
+    	CinematrixAPI.getInstance().setActiveContext(assosiateContext);
     	
-    	View defaultView = CinemaSystem.getInstance().getActiveContext().getViews().get(0);
-    	
-    	try {
-			CinemaSystem.getInstance().getActiveContext().goToView(defaultView);
-			CinemaSystem.getInstance().getMainDisplay().refresh();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	CinematrixAPI.getInstance().getActiveContext().goToView(null);
+    	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
     
     @FXML

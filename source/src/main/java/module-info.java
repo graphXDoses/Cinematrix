@@ -13,6 +13,7 @@ module Cinematrix {
 	requires javafx.web;
 
     opens com.texnologia_logismikou.Cinematrix to javafx.fxml, google.cloud.firestore, google.cloud.storage, com.google.gson;
+    opens com.texnologia_logismikou.Cinematrix.Contexts to javafx.fxml;
     opens com.texnologia_logismikou.Cinematrix.Controllers to javafx.fxml;
     opens com.texnologia_logismikou.Cinematrix.Managers to javafx.fxml;
     opens com.texnologia_logismikou.Cinematrix.Views to javafx.fxml;
@@ -23,6 +24,7 @@ module Cinematrix {
     opens com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields to com.google.gson;
     
     exports com.texnologia_logismikou.Cinematrix;
+    exports com.texnologia_logismikou.Cinematrix.Contexts;
     exports com.texnologia_logismikou.Cinematrix.Controllers;
     exports com.texnologia_logismikou.Cinematrix.Managers;
     exports com.texnologia_logismikou.Cinematrix.Views;

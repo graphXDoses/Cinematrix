@@ -2,7 +2,7 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 
 import java.io.FileNotFoundException;
 
-import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.ResponseBodies.ErrorResponseBody;
 import com.texnologia_logismikou.Cinematrix.Views.LoginView;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
@@ -92,40 +92,31 @@ public class SignUpViewController
     @FXML
     void signupCallback(ActionEvent event)
     {
-    	UserDashboardView view = (UserDashboardView)CinemaSystem.getInstance().getActiveContext().getViews().get(2);
     	ErrorResponseBody error = new ErrorResponseBody();
     	
     	/*
     	 *  Add checks for inputs.
     	 */
     	
-    	error = CinemaSystem.getInstance().userSignUp(name_inputfield.getText(), email_inputfield.getText(), pass_inputfield.getText());
+    	error = CinematrixAPI.getInstance().userSignUp(name_inputfield.getText(), email_inputfield.getText(), pass_inputfield.getText());
     	if(error != null) {
     		// Display the error in a textbox and refresh page?
     		System.out.println(error.getMessage());
     		return;
     	}
-    	try {
-			CinemaSystem.getInstance().getActiveContext().goToView(view);
-			CinemaSystem.getInstance().getMainDisplay().refresh();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	CinematrixAPI.getInstance()
+    				.getActiveContext()
+    				.goToView(CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW);
+    	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
     
     @FXML
     void switchToLoginCallback(ActionEvent event)
     {
-    	LoginView view = (LoginView)CinemaSystem.getInstance().getActiveContext().getViews().get(0);
-    	
-    	try {
-			CinemaSystem.getInstance().getActiveContext().goToView(view);
-			CinemaSystem.getInstance().getMainDisplay().refresh();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	CinematrixAPI.getInstance()
+    				.getActiveContext()
+    				.goToView(null);
+    	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
 
 }
