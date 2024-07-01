@@ -8,9 +8,9 @@ import java.util.List;
 
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.*;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.*;
+import com.texnologia_logismikou.Cinematrix.ResponseBodies.*;
 import com.texnologia_logismikou.Cinematrix.Managers.MainDisplay;
 import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
-import com.texnologia_logismikou.Cinematrix.ResponseBodies.*;
 import com.texnologia_logismikou.Cinematrix.Users.Admin;
 import com.texnologia_logismikou.Cinematrix.Users.Guest;
 import com.texnologia_logismikou.Cinematrix.Users.User;
@@ -19,10 +19,15 @@ import com.texnologia_logismikou.Cinematrix.Views.MovieDetailsView;
 import com.texnologia_logismikou.Cinematrix.Views.NearCinemasView;
 import com.texnologia_logismikou.Cinematrix.Views.SeatSelectionView;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
+import com.texnologia_logismikou.Cinematrix.Views.UserDashboardView;
+import com.texnologia_logismikou.Cinematrix.Views.View;
+import com.texnologia_logismikou.Cinematrix.Views.LoginView;
 
 public class CinemaSystem {
 	private static CinemaSystem instance = null;
 	
+	private final String webKey = "AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU";
+
 	private static User currentUser;
 	private static MainDisplay mD;
 	private static List<Movie>   movies   = new ArrayList<>();
@@ -30,18 +35,16 @@ public class CinemaSystem {
 	private static List<Context> contexts = new ArrayList<>();
 	private static Context activeContext;
 	
-	private final String webKey = "AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU";
-	
 	private CinemaSystem()
 	{
-		currentUser = new Admin();
-//		currentUser = new Guest();
+//		currentUser = new Admin();
+		currentUser = new Guest();
 		
 		mD = new MainDisplay();
 		
 		contexts.add(new Context("Movies", "images/movie.png", new AllMoviesView(), new MovieDetailsView(), new SeatSelectionView()));
 		contexts.add(new Context("Cinemas", "images/theater.png", new NearCinemasView()));
-		contexts.add(new Context("Account", "images/account.png", new SignUpView()));
+		contexts.add(new Context("Account", "images/account.png", new LoginView(), new SignUpView(), new UserDashboardView()));
 		
 	}
 	
@@ -131,7 +134,7 @@ public class CinemaSystem {
 			1.2f
 		));
 	}
-	
+
 	public void userSignUp(String name, String email, String password) {
 		
 		SignUpResponseBody signUpResponse = new SignUpResponseBody();
@@ -300,4 +303,5 @@ public class CinemaSystem {
 			System.out.println("Movie Document succesfully updated at: " + updateResponse.getUpdateTime());
 		}
 	}
+
 }

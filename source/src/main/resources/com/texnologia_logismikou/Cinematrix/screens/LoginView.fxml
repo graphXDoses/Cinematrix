@@ -17,13 +17,13 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.SignUpViewController">
+<VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.LoginViewController">
    <children>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
          <children>
             <ImageView fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/SIGNUP.png" />
+                  <Image url="@../images/LOGIN.png" />
                </image>
             </ImageView>
          </children>
@@ -37,20 +37,11 @@
                <children>
                   <VBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <VBox alignment="CENTER">
-                           <children>
-                              <Label text="Join for free" textAlignment="CENTER" textFill="#dedede">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label text="All the movies. All the rewards." textAlignment="CENTER" textFill="#676767">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
+                        <Label text="Login to Cinematrix" textAlignment="CENTER" textFill="#dedede">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
                         <HBox>
                            <children>
                               <Label text="* Indicates a required field" textFill="#676767" />
@@ -58,27 +49,6 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <AnchorPane maxHeight="40.0" prefHeight="40.0">
-                     <children>
-                        <TextField fx:id="name_inputfield" styleClass="form_input_box" stylesheets="@../styles/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <opaqueInsets>
-                              <Insets left="6.0" />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets left="13.0" />
-                           </padding>
-                        </TextField>
-                        <Pane fx:id="name_label_obs" style="-fx-background-color: #222222;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="-9.0">
-                           <children>
-                              <Label fx:id="name_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="10.0" stylesheets="@../styles/styles.css" text="Name" textAlignment="CENTER" textFill="#444444" translateY="20.0">
-                                 <padding>
-                                    <Insets left="5.0" right="5.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
                   <AnchorPane maxHeight="40.0" prefHeight="40.0">
                      <children>
                         <TextField fx:id="email_inputfield" styleClass="form_input_box" stylesheets="@../styles/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -118,7 +88,7 @@
                         </Pane>
                      </children>
                   </AnchorPane>
-                  <Button fx:id="signup_button" maxHeight="30.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#signupCallback" prefHeight="30.0" styleClass="register_decision_button" stylesheets="@../styles/styles.css" text="JOIN NOW FOR FREE" VBox.vgrow="ALWAYS">
+                  <Button fx:id="login_button" maxHeight="30.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginCallback" prefHeight="30.0" styleClass="register_decision_button" stylesheets="@../styles/styles.css" text="LOGIN" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -127,8 +97,8 @@
                      </cursor></Button>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label text="Already a member?" textAlignment="CENTER" textFill="#676767" HBox.hgrow="ALWAYS" />
-                        <Hyperlink onAction="#switchToLoginCallback" text="LOGIN NOW" textAlignment="CENTER" textFill="#337cf2" HBox.hgrow="ALWAYS">
+                        <Label text="New to Cinematrix?" textAlignment="CENTER" textFill="#676767" HBox.hgrow="ALWAYS" />
+                        <Hyperlink onAction="#switchToSignupCallback" text="JOIN NOW" textAlignment="CENTER" textFill="#337cf2" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Hyperlink>

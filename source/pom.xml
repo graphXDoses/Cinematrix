@@ -4,7 +4,7 @@
     <groupId>com.texnologia_logismikou</groupId>
     <artifactId>Cinematrix</artifactId>
     <name>Cinematrix</name>
-    <version>0.7.0</version>
+    <version>0.7.1</version>
     <packaging>jar</packaging>
     
     <properties>
@@ -63,6 +63,36 @@
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
         </dependency>
+        
+        <dependency>
+		    <groupId>org.controlsfx</groupId>
+		    <artifactId>controlsfx</artifactId>
+		    <version>9.0.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.firebase/firebase-admin -->
+		<dependency>
+		    <groupId>com.google.firebase</groupId>
+		    <artifactId>firebase-admin</artifactId>
+		    <version>9.3.0</version>
+		</dependency>
+		
+		<dependency>
+        	<groupId>com.google.cloud</groupId>
+        	<artifactId>google-cloud-core</artifactId>
+    	</dependency>
+
+    	<dependency>
+        	<groupId>com.google.cloud</groupId>
+        	<artifactId>google-cloud-firestore</artifactId>
+    	</dependency>
+    	
+    	<!-- https://mvnrepository.com/artifact/com.google.cloud/google-cloud-storage -->
+		<dependency>
+		    <groupId>com.google.cloud</groupId>
+		    <artifactId>google-cloud-storage</artifactId>
+		</dependency>
+
         
         <dependency>
 		    <groupId>org.controlsfx</groupId>

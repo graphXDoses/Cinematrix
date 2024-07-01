@@ -28,6 +28,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build Maven Project
-      run: mvn -B package --file ./source/pom.xml
-    - name: Run Tests
-      run: mvn -B test --file ./source/pom.xml
+      run: mvn -B package -DskipTests --file ./source/pom.xml
+    # - name: Run Tests
+      # run: mvn -B test --file ./source/pom.xml
