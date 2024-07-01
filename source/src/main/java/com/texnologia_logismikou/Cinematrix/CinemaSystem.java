@@ -13,7 +13,7 @@ import com.texnologia_logismikou.Cinematrix.Managers.MainDisplay;
 import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
 import com.texnologia_logismikou.Cinematrix.Users.Admin;
 import com.texnologia_logismikou.Cinematrix.Users.Guest;
-import com.texnologia_logismikou.Cinematrix.Users.User;
+import com.texnologia_logismikou.Cinematrix.Users.UserCore;
 import com.texnologia_logismikou.Cinematrix.Views.AllMoviesView;
 import com.texnologia_logismikou.Cinematrix.Views.MovieDetailsView;
 import com.texnologia_logismikou.Cinematrix.Views.NearCinemasView;
@@ -28,7 +28,7 @@ public class CinemaSystem {
 	
 	private final String webKey = "AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU";
 
-	private static User currentUser;
+	private static UserCore currentUser;
 	private static MainDisplay mD;
 	private static List<Movie>   movies   = new ArrayList<>();
 	private static List<Cinema>  cinemas  = new ArrayList<>();
@@ -71,7 +71,7 @@ public class CinemaSystem {
 		return(instance);
 	}
 
-	public User getCurrentUser() { return(currentUser); }
+	public UserCore getCurrentUser() { return(currentUser); }
 	
 	public void fetchMoviesFromDatabase()
 	{

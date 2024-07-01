@@ -7,17 +7,6 @@ module Cinematrix {
 	requires java.net.http;
 	requires com.google.gson;
 	
-	//Google Firebase and Cloud Firestore requirements.
-    requires firebase.admin;
-    requires com.google.auth.oauth2;
-    requires com.google.auth;
-    requires google.cloud.firestore;
-    requires com.google.api.apicommon;
-    requires google.cloud.core;
-    requires google.cloud.storage;
-    requires com.google.api.services.storage;
-	requires gax;
-	
 	// Requirements for HttpRequests.
 	requires java.desktop;
 	requires javafx.base;

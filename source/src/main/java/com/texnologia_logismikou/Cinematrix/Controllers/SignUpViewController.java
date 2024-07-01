@@ -92,6 +92,7 @@ public class SignUpViewController
     void signupCallback(ActionEvent event)
     {
     	UserDashboardView view = (UserDashboardView)CinemaSystem.getInstance().getActiveContext().getViews().get(2);
+    	CinemaSystem.getInstance().userSignUp(null, null, null);
     	try {
 			CinemaSystem.getInstance().getActiveContext().goToView(view);
 			CinemaSystem.getInstance().getMainDisplay().refresh();
