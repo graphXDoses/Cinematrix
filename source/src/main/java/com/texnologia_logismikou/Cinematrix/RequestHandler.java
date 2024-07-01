@@ -142,7 +142,7 @@ public class RequestHandler {
 		return response;
 	}
 	
-	public void deleteUserAccount(String firebaseId) throws URISyntaxException, IOException, InterruptedException {
+	public void deleteUserAccountRequest(String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
 		DeleteAccountRequestBody request = new DeleteAccountRequestBody();
 		request.setIdToken(firebaseId);
@@ -156,9 +156,9 @@ public class RequestHandler {
 				.build();
 		
 		HttpClient client = HttpClient.newHttpClient();
-		HttpResponse<String> response = client.send(postRequest, BodyHandlers.ofString());
+		HttpResponse<String> postResponse = client.send(postRequest, BodyHandlers.ofString());
 		
-		System.out.println("STATUS CODE: " + response.statusCode());
+		System.out.println("STATUS CODE: " + postResponse.statusCode());
 		
 		/*
 		 *  Doesn't return anything.
@@ -234,5 +234,16 @@ public class RequestHandler {
 		return null;
 	}
 	
-	
+	public void deleteUserDocumentRequest(String uid, String firebaseId) throws IOException, URISyntaxException, InterruptedException {
+		
+		HttpRequest deleteRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Users/" + uid))
+				.DELETE()
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> deleteResponse = client.send(deleteRequest, BodyHandlers.ofString());
+		
+		System.out.println("STATUS CODE: " + deleteResponse.statusCode());
+	}
 }

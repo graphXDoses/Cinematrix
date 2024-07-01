@@ -3,6 +3,7 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 import java.io.FileNotFoundException;
 
 import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.ResponseBodies.ErrorResponseBody;
 import com.texnologia_logismikou.Cinematrix.Views.LoginView;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
 import com.texnologia_logismikou.Cinematrix.Views.UserDashboardView;
@@ -92,7 +93,18 @@ public class SignUpViewController
     void signupCallback(ActionEvent event)
     {
     	UserDashboardView view = (UserDashboardView)CinemaSystem.getInstance().getActiveContext().getViews().get(2);
-    	CinemaSystem.getInstance().userSignUp(null, null, null);
+    	ErrorResponseBody error = new ErrorResponseBody();
+    	
+    	/*
+    	 *  Add checks for inputs.
+    	 */
+    	
+    	error = CinemaSystem.getInstance().userSignUp(name_inputfield.getText(), email_inputfield.getText(), pass_inputfield.getText());
+    	if(error != null) {
+    		// Display the error in a textbox and refresh page?
+    		System.out.println(error.getMessage());
+    		return;
+    	}
     	try {
 			CinemaSystem.getInstance().getActiveContext().goToView(view);
 			CinemaSystem.getInstance().getMainDisplay().refresh();

@@ -135,7 +135,7 @@ public class CinemaSystem {
 		));
 	}
 
-	public void userSignUp(String name, String email, String password) {
+	public ErrorResponseBody userSignUp(String name, String email, String password) {
 		
 		SignUpResponseBody signUpResponse = new SignUpResponseBody();
 		
@@ -156,7 +156,7 @@ public class CinemaSystem {
 		// If error occurs show appropriate message and return?
 		if(signUpResponse.getError() != null) {
 			System.out.println("Error signing up. Details: " + signUpResponse.getError().getMessage());
-			// return;
+			return signUpResponse.getError();
 		} else {
 			System.out.println("User succesfully signed up with uid: " + signUpResponse.getLocalId());
 		}
@@ -184,11 +184,11 @@ public class CinemaSystem {
 			System.out.println("Error creating user document. Details: " + createDocResponse.getError().getMessage());
 			try {
 				// Delete the user account.
-				RequestHandler.getInstance(webKey).deleteUserAccount(signUpResponse.getIdToken());
+				RequestHandler.getInstance(webKey).deleteUserAccountRequest(signUpResponse.getIdToken());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			// return;
+			return createDocResponse.getError();
 		} else {
 			System.out.println("User document succefully created at: " + createDocResponse.getCreateTime());
 		}
@@ -215,14 +215,17 @@ public class CinemaSystem {
 			System.out.println("Error initializing user document. Details: " + initializeDocResponse.getError().getMessage());
 			try {
 				// Delete the user account.
-				RequestHandler.getInstance(webKey).deleteUserAccount(signUpResponse.getIdToken());
+				RequestHandler.getInstance(webKey).deleteUserAccountRequest(signUpResponse.getIdToken());
+				RequestHandler.getInstance(webKey).deleteUserDocumentRequest(signUpResponse.getIdToken(), signUpResponse.getLocalId());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			// return;
+			return initializeDocResponse.getError();
 		} else {
 			System.out.println("User document succesfully initialized at: " + initializeDocResponse.getUpdateTime());
 		}
+		
+		return initializeDocResponse.getError();
 	}
 	
 	public void userSignIn(String email, String password) {
