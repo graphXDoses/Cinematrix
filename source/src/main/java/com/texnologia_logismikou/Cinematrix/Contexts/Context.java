@@ -18,6 +18,14 @@ public class Context{
 	protected View activeView = null;
 	protected View defaultView;
 	
+	public View getDefaultView() {
+		return defaultView;
+	}
+
+	public void setDefaultView(View defaultView) {
+		this.defaultView = defaultView;
+	}
+
 	protected Context(String name, String icon_path)
 	{
 		this.setName(name);

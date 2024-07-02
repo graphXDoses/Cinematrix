@@ -3,7 +3,12 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 import java.io.FileNotFoundException;
 
 import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
+import com.texnologia_logismikou.Cinematrix.RequestHandler;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.UserDocument;
+import com.texnologia_logismikou.Cinematrix.ResponseBodies.AuthResponseBody;
+import com.texnologia_logismikou.Cinematrix.Users.Admin;
 import com.texnologia_logismikou.Cinematrix.Users.User;
+import com.texnologia_logismikou.Cinematrix.Users.UserCore;
 import com.texnologia_logismikou.Cinematrix.Views.ForgotPasswordView;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
 import com.texnologia_logismikou.Cinematrix.Views.UserDashboardView;
@@ -79,15 +84,17 @@ public class LoginViewController
     @FXML
     void loginCallback(ActionEvent event)
     {
-		if(CinematrixAPI.getInstance().userAuthenticate(email_inputfield.getText(), pass_inputfield.getText()))
+    	UserDocument userDocument = CinematrixAPI.getInstance()
+    											 .userLogin(email_inputfield.getText(), pass_inputfield.getText());
+		if(userDocument != null)
     	{
-    		CinematrixAPI.getInstance().setCurrentUser(new User());
-    		
-    		CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW = new UserDashboardView();
-    		CinematrixAPI.getInstance()
-    					.getActiveContext()
-    					.promiseRedirectTo(CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW);
-    		CinematrixAPI.getInstance().getMainDisplay().refresh();
+			CinematrixAPI.getInstance().setCurrentUser(UserCore.createUser(userDocument));
+			
+			CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW = new UserDashboardView();
+			CinematrixAPI.getInstance()
+			.getActiveContext()
+			.promiseRedirectTo(CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW);
+			CinematrixAPI.getInstance().getMainDisplay().refresh();
     	}
     	else
     		System.out.println("Failed to authenticate user.");

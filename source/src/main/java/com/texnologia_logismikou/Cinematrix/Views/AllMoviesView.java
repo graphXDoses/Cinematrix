@@ -24,9 +24,6 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 	{
 		getController().clearAll();
 		
-		if(CinematrixAPI.getInstance().getCurrentUser() instanceof Admin)
-			getController().appendNowFeaturing(new MovieModal(null));
-		
 		List<Movie> movies = CinematrixAPI.getInstance().getMovies();
 		
 		if(!movies.isEmpty())
@@ -41,7 +38,18 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 	@Override
 	public void showToAdmin()
 	{
-		standardPrepare();
+		getController().clearAll();
+		getController().appendNowFeaturing(new MovieModal(null));
+		
+		List<Movie> movies = CinematrixAPI.getInstance().getMovies();
+		
+		if(!movies.isEmpty())
+		{
+			getController().appendNowFeaturing(movies.get(0).getModal());
+			getController().appendNowFeaturing(movies.get(1).getModal());
+			
+			getController().appendUpcomming(movies.get(2).getModal());
+		}
 	}
 
 	@Override

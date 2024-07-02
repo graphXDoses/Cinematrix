@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import com.texnologia_logismikou.Cinematrix.Contexts.AccountContext;
@@ -75,6 +76,8 @@ public class CinematrixAPI {
 		contexts.forEach(context->{ context.getButton().getController().deactivate(); });
 		activeContext.getButton().getController().activate();
 		
+		if(UI != null)
+			UI.reemplaceSearchBar();
 		getMainDisplay().refresh();
 	}
 	
@@ -242,34 +245,57 @@ public class CinematrixAPI {
 		return initializeDocResponse.getError();
 	}
 	
-	public boolean userAuthenticate(String email, String password) {
+	private AuthResponseBody userAuthenticate(String email, String password) {
 		
-		AuthResponseBody signInResponse = new AuthResponseBody();
+		AuthResponseBody loginResponse = new AuthResponseBody();
 		
 		try {
-			signInResponse = RequestHandler.getInstance(webKey).signInRequest(email, password);
+			loginResponse = RequestHandler.getInstance(webKey).signInRequest(email, password);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-			 return false;
+			 return null;
 		} catch (IOException e) {
 			e.printStackTrace();
-			 return false;
+			 return null;
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-			 return false;
+			 return null;
 		}
 		
-		if(signInResponse.getError() != null) {
-			System.out.println("Error signin in. Details: " + signInResponse.getError().getMessage());
-			 return false;
+		/*
+		if(loginResponse.getError() != null) {
+			System.out.println("Error signin in. Details: " + loginResponse.getError().getMessage());
+			 return null;
 		} else {
 			System.out.println("Succesfuly signed in!");
 		}
+		*/
 		
-		return true;
+		return(loginResponse);
 		/*
 		 *  Store the Firebase ID, User ID and other useful information for later use.
 		 */
+	}
+	
+	public UserDocument userLogin(String email, String password)
+	{
+		AuthResponseBody response = userAuthenticate(email, password);
+		UserDocument userDocument = null;
+		
+		try {
+			userDocument = RequestHandler.getInstance(webKey).getUserDocument(response.getLocalId(), response.getIdToken());
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return(userDocument);
 	}
 	
 	public void createMovieDocument(String name, String firebaseId) {
