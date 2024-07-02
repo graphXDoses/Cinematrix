@@ -55,7 +55,7 @@ public class ContextButtonController {
     {
     	CinematrixAPI.getInstance().setActiveContext(assosiateContext);
     	
-    	CinematrixAPI.getInstance().getActiveContext().goToView(null);
+    	CinematrixAPI.getInstance().getActiveContext().promiseRedirectTo(null);
     	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
     

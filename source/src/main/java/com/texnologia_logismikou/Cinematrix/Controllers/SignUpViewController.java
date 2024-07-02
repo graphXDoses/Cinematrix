@@ -106,7 +106,7 @@ public class SignUpViewController
     	}
     	CinematrixAPI.getInstance()
     				.getActiveContext()
-    				.goToView(CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW);
+    				.promiseRedirectTo(CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW);
     	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
     
@@ -115,7 +115,7 @@ public class SignUpViewController
     {
     	CinematrixAPI.getInstance()
     				.getActiveContext()
-    				.goToView(null);
+    				.promiseRedirectTo(null);
     	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
 

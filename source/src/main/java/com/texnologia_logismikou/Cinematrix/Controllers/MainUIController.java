@@ -1,13 +1,10 @@
 package com.texnologia_logismikou.Cinematrix.Controllers;
 
 import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
-import com.texnologia_logismikou.Cinematrix.Contexts.Context;
 import com.texnologia_logismikou.Cinematrix.Managers.ContextButtonContainer;
 import com.texnologia_logismikou.Cinematrix.Managers.MainDisplay;
 import com.texnologia_logismikou.Cinematrix.Managers.FooterBar;
 import com.texnologia_logismikou.Cinematrix.Managers.LogoButton;
-import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
-import com.texnologia_logismikou.Cinematrix.Views.AllMoviesView;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;

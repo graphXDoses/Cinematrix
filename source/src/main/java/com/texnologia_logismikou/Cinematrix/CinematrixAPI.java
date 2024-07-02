@@ -53,8 +53,8 @@ public class CinematrixAPI {
 	
 	private CinematrixAPI()
 	{
-		currentUser = new Admin();
-//		currentUser = new Guest();
+//		currentUser = new Admin();
+		currentUser = new Guest();
 		
 		contexts.add(MOVIE_CONTEXT);
 		contexts.add(CINEMA_CONTEXT);

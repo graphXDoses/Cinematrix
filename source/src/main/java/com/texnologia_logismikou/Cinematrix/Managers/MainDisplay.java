@@ -12,7 +12,13 @@ public class MainDisplay extends DisplayManager
 								.getActiveContext()
 								.getActiveView();
 		
-		view.prepare();
-		getController().setContent(view.getParent());
+		try {
+			view.prepare();
+			getController().setContent(view.getParent());
+		} catch (ClassNotFoundException e) {
+			CinematrixAPI.getInstance()
+						 .getActiveContext()
+						 .promiseRedirectTo(null);
+		}
 	}
 }

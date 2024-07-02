@@ -7,16 +7,20 @@ import com.texnologia_logismikou.Cinematrix.Movie;
 import com.texnologia_logismikou.Cinematrix.Controllers.AllMoviesViewController;
 import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
 import com.texnologia_logismikou.Cinematrix.Users.Admin;
+import com.texnologia_logismikou.Cinematrix.Users.VisibilityPolicies.VisibleUnderAdmin;
+import com.texnologia_logismikou.Cinematrix.Users.VisibilityPolicies.VisibleUnderGuest;
+import com.texnologia_logismikou.Cinematrix.Users.VisibilityPolicies.VisibleUnderUser;
 
-public class AllMoviesView extends View<AllMoviesViewController>
+public class AllMoviesView
+extends View<AllMoviesViewController>
+implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 {
 	public AllMoviesView()
 	{
 		super.loadFXML("AllMoviesView");
 	}
 
-	@Override
-	public void prepare()
+	void standardPrepare()
 	{
 		getController().clearAll();
 		
@@ -32,5 +36,23 @@ public class AllMoviesView extends View<AllMoviesViewController>
 			
 			getController().appendUpcomming(movies.get(2).getModal());
 		}
+	}
+
+	@Override
+	public void showToAdmin()
+	{
+		standardPrepare();
+	}
+
+	@Override
+	public void showToUser()
+	{
+		standardPrepare();
+	}
+
+	@Override
+	public void showToGuest()
+	{
+		standardPrepare();
 	}
 }

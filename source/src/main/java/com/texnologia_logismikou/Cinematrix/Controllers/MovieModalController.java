@@ -64,7 +64,7 @@ public class MovieModalController {
 		CinematrixAPI.MOVIE_CONTEXT.MOVIE_DETAILS_VIEW.setSelectedMovie(associateMovie);
 		CinematrixAPI.getInstance()
 					.getActiveContext()
-					.goToView(CinematrixAPI.MOVIE_CONTEXT.MOVIE_DETAILS_VIEW);
+					.promiseRedirectTo(CinematrixAPI.MOVIE_CONTEXT.MOVIE_DETAILS_VIEW);
 		CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
 	

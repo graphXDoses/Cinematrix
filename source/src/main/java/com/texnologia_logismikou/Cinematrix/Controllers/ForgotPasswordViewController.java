@@ -66,7 +66,7 @@ public class ForgotPasswordViewController {
     {	
     	CinematrixAPI.getInstance()
     				.getActiveContext()
-    				.goToView(null);
+    				.promiseRedirectTo(null);
     	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
 

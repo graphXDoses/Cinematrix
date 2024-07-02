@@ -3,6 +3,7 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 import java.io.FileNotFoundException;
 
 import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
+import com.texnologia_logismikou.Cinematrix.Users.Guest;
 import com.texnologia_logismikou.Cinematrix.Views.LoginView;
 
 import javafx.event.Event;
@@ -23,10 +24,11 @@ public class UserDashboardViewController
     @FXML
     void signOutCallback(Event event)
     {
+    	CinematrixAPI.getInstance().setCurrentUser(new Guest());
     	CinematrixAPI.ACCOUNT_CONTEXT.LOGIN_VIEW = new LoginView();
     	CinematrixAPI.getInstance()
     				.getActiveContext()
-    				.goToView(CinematrixAPI.ACCOUNT_CONTEXT.LOGIN_VIEW);
+    				.promiseRedirectTo(CinematrixAPI.ACCOUNT_CONTEXT.LOGIN_VIEW);
     	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
 

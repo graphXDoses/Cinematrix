@@ -86,7 +86,7 @@ public class LoginViewController
     		CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW = new UserDashboardView();
     		CinematrixAPI.getInstance()
     					.getActiveContext()
-    					.goToView(CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW);
+    					.promiseRedirectTo(CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW);
     		CinematrixAPI.getInstance().getMainDisplay().refresh();
     	}
     	else
@@ -99,7 +99,7 @@ public class LoginViewController
     	CinematrixAPI.ACCOUNT_CONTEXT.SIGNUP_VIEW = new SignUpView();
 		CinematrixAPI.getInstance()
     				.getActiveContext()
-    				.goToView(CinematrixAPI.ACCOUNT_CONTEXT.SIGNUP_VIEW);
+    				.promiseRedirectTo(CinematrixAPI.ACCOUNT_CONTEXT.SIGNUP_VIEW);
     	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
     
@@ -109,7 +109,7 @@ public class LoginViewController
     	CinematrixAPI.ACCOUNT_CONTEXT.FORGOT_PASSWORD_VIEW = new ForgotPasswordView();
     	CinematrixAPI.getInstance()
     				.getActiveContext()
-    				.goToView(CinematrixAPI.ACCOUNT_CONTEXT.FORGOT_PASSWORD_VIEW);
+    				.promiseRedirectTo(CinematrixAPI.ACCOUNT_CONTEXT.FORGOT_PASSWORD_VIEW);
     	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
 

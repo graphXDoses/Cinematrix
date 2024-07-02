@@ -11,6 +11,7 @@ module Cinematrix {
 	requires java.desktop;
 	requires javafx.base;
 	requires javafx.web;
+	requires org.reflections;
 
     opens com.texnologia_logismikou.Cinematrix to javafx.fxml, google.cloud.firestore, google.cloud.storage, com.google.gson;
     opens com.texnologia_logismikou.Cinematrix.Contexts to javafx.fxml;

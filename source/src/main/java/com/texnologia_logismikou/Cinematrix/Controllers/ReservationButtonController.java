@@ -19,7 +19,7 @@ public class ReservationButtonController {
     {
     	CinematrixAPI.getInstance()
     				.getActiveContext()
-    				.goToView(CinematrixAPI.MOVIE_CONTEXT.SEAT_SELECTION_VIEW);
+    				.promiseRedirectTo(CinematrixAPI.MOVIE_CONTEXT.SEAT_SELECTION_VIEW);
     	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
     

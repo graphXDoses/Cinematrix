@@ -1,8 +1,11 @@
 package com.texnologia_logismikou.Cinematrix.Views;
 
 import com.texnologia_logismikou.Cinematrix.Controllers.ForgotPasswordViewController;
+import com.texnologia_logismikou.Cinematrix.Users.VisibilityPolicies.VisibleUnderGuest;
 
-public class ForgotPasswordView extends View<ForgotPasswordViewController>
+public class ForgotPasswordView
+extends View<ForgotPasswordViewController>
+implements VisibleUnderGuest
 {
 	public ForgotPasswordView()
 	{
@@ -10,7 +13,8 @@ public class ForgotPasswordView extends View<ForgotPasswordViewController>
 	}
 
 	@Override
-	public void prepare() {
+	public void showToGuest()
+	{
 		// TODO Auto-generated method stub
 		
 	}

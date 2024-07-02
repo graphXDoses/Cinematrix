@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.texnologia_logismikou.Cinematrix.Managers.ContextButton;
+import com.texnologia_logismikou.Cinematrix.Views.LoginView;
 import com.texnologia_logismikou.Cinematrix.Views.View;
 
 public class Context{
@@ -17,40 +18,12 @@ public class Context{
 	protected View activeView = null;
 	protected View defaultView;
 	
-	protected Context(String name, String icon_path, View defaultView)
-	{
-		this.setName(name);
-		this.setUrl(icon_path);
-		button = new ContextButton(this);
-		
-		this.defaultView = defaultView;
-		this.activeView = defaultView;
-	}
-	
 	protected Context(String name, String icon_path)
 	{
 		this.setName(name);
 		this.setUrl(icon_path);
 		button = new ContextButton(this);
 	}
-	
-	/*
-	public Context(String name, String icon_path, View ...input_views )
-	{
-		this.setName(name);
-		this.setUrl(icon_path);
-		button = new ContextButton(this);
-		
-		for(View v : input_views) { views.add(v); }
-		
-		try {
-			goToView(input_views[0]);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	*/
 
 	public String getName() {
 		return name;
@@ -74,19 +47,16 @@ public class Context{
 	
 	public ContextButton getButton() { return(button); }
 	public View getActiveView() { return(activeView);	}
-	/*
-	public void goToView(View view) throws FileNotFoundException {
-		if(views.indexOf(view) != -1)
-			this.activeView = view;
-		else
-			throw new FileNotFoundException();
-	}
-	*/
-	public void goToView(View view)
+
+	public void promiseRedirectTo(View view)
 	{
 		if(view == null)
 			this.activeView = this.defaultView;
 		else
+		{
 			this.activeView = view;
+			if(view.getClass().equals(this.defaultView.getClass()))
+				this.defaultView = view;
+		}
 	}
 }
