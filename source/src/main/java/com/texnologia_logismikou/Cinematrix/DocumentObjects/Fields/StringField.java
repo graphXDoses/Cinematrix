@@ -4,9 +4,9 @@ public class StringField {
 
 	private String stringValue;
 
-	public StringField(String email) {
+	public StringField(String string) {
 		
-		this.stringValue = email;
+		this.stringValue = string;
 	}
 	
 	public String getStringValue() {

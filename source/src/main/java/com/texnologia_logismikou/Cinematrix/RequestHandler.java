@@ -231,7 +231,7 @@ public class RequestHandler {
 	
 	public MovieDocument updateMovieDocumentRequest(MovieFields fields, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
-		String queryParameter = UpdateMaskQuery.createUpdateAllFieldsQuery(fields);
+		String queryParameter = UpdateMaskQuery.createUpdateAllMovieFieldsQuery();
 		
 		MovieDocument request = new MovieDocument();
 		MovieDocument response = new MovieDocument();
@@ -241,7 +241,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getName() + "?" + queryParameter))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getTitle().getStringValue() + "?" + queryParameter))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -252,9 +252,8 @@ public class RequestHandler {
 		response = gson.fromJson(patchResponse.body(), MovieDocument.class);
 		
 		System.out.println(patchResponse.body());
-		System.out.println(response.getFields().getDuration());
 		
-		return null;
+		return response;
 	}
 	
 	public void resetPasswordRequest(String email) throws IOException, URISyntaxException, InterruptedException {
