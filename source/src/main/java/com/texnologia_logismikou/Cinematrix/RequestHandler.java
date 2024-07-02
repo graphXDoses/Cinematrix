@@ -98,6 +98,33 @@ public class RequestHandler {
 		return response;
 	}
 	
+	public void deleteUserAccountRequest(String firebaseId) throws URISyntaxException, IOException, InterruptedException {
+		
+		DeleteAccountRequestBody request = new DeleteAccountRequestBody();
+		request.setIdToken(firebaseId);
+		
+		Gson gson = new Gson();
+		String jsonRequest = gson.toJson(request);
+		
+		HttpRequest postRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://identitytoolkit.googleapis.com/v1/accounts:delete?key=" + webKey))
+				.POST(BodyPublishers.ofString(jsonRequest))
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> postResponse = client.send(postRequest, BodyHandlers.ofString());
+		
+		System.out.println("STATUS CODE: " + postResponse.statusCode());
+		switch(postResponse.statusCode()) {
+		case 200: System.out.println("Account deleted succsefully."); break;
+		default: System.out.println("Couldn't delete account.");
+		}
+		
+		/*
+		 *  Doesn't return anything.
+		 */
+	}
+
 	public UserDocument createUserDocumentRequest(String uid, String firebaseId) throws URISyntaxException, InterruptedException, IOException {
 		
 		UserDocument response = new UserDocument();
@@ -142,33 +169,6 @@ public class RequestHandler {
 		return response;
 	}
 	
-	public void deleteUserAccountRequest(String firebaseId) throws URISyntaxException, IOException, InterruptedException {
-		
-		DeleteAccountRequestBody request = new DeleteAccountRequestBody();
-		request.setIdToken(firebaseId);
-		
-		Gson gson = new Gson();
-		String jsonRequest = gson.toJson(request);
-		
-		HttpRequest postRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://identitytoolkit.googleapis.com/v1/accounts:delete?key=" + webKey))
-				.POST(BodyPublishers.ofString(jsonRequest))
-				.build();
-		
-		HttpClient client = HttpClient.newHttpClient();
-		HttpResponse<String> postResponse = client.send(postRequest, BodyHandlers.ofString());
-		
-		System.out.println("STATUS CODE: " + postResponse.statusCode());
-		switch(postResponse.statusCode()) {
-		case 200: System.out.println("Account deleted succsefully."); break;
-		default: System.out.println("Couldn't delete account.");
-		}
-		
-		/*
-		 *  Doesn't return anything.
-		 */
-	}
-	
 	public UserDocument getUserDocument(String uid, String firebaseId) throws URISyntaxException, IOException, InterruptedException  {
 		
 		UserDocument response = new UserDocument();
@@ -189,7 +189,24 @@ public class RequestHandler {
 		
 		return response;
 	}
-	
+
+	public void deleteUserDocumentRequest(String uid, String firebaseId) throws IOException, URISyntaxException, InterruptedException {
+		
+		HttpRequest deleteRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Users/" + uid))
+				.DELETE()
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> deleteResponse = client.send(deleteRequest, BodyHandlers.ofString());
+		
+		System.out.println("STATUS CODE: " + deleteResponse.statusCode());
+		switch(deleteResponse.statusCode()) {
+		case 200: System.out.println("Account document deleted succsefully."); break;
+		default: System.out.println("Couldn't delete account document.");
+		}
+	}
+
 	public MovieDocument createMovieDocumentRequest(String name, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
 		MovieDocument response = new MovieDocument();
@@ -214,6 +231,8 @@ public class RequestHandler {
 	
 	public MovieDocument updateMovieDocumentRequest(MovieFields fields, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
+		String queryParameter = UpdateMaskQuery.createUpdateAllFieldsQuery(fields);
+		
 		MovieDocument request = new MovieDocument();
 		MovieDocument response = new MovieDocument();
 		request.setFields(fields);
@@ -222,7 +241,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getName() + "?updateMask.fieldPaths=name&updateMask.fieldPaths=cinemas&updateMask.fieldPaths=duration"))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getName() + "?" + queryParameter))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -236,23 +255,6 @@ public class RequestHandler {
 		System.out.println(response.getFields().getDuration());
 		
 		return null;
-	}
-	
-	public void deleteUserDocumentRequest(String uid, String firebaseId) throws IOException, URISyntaxException, InterruptedException {
-		
-		HttpRequest deleteRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Users/" + uid))
-				.DELETE()
-				.build();
-		
-		HttpClient client = HttpClient.newHttpClient();
-		HttpResponse<String> deleteResponse = client.send(deleteRequest, BodyHandlers.ofString());
-		
-		System.out.println("STATUS CODE: " + deleteResponse.statusCode());
-		switch(deleteResponse.statusCode()) {
-		case 200: System.out.println("Account document deleted succsefully."); break;
-		default: System.out.println("Couldn't delete account document.");
-		}
 	}
 	
 	public void resetPasswordRequest(String email) throws IOException, URISyntaxException, InterruptedException {
