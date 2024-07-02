@@ -199,7 +199,7 @@ public class CinemaSystem {
 		UserDocument initializeDocResponse = new UserDocument();
 		UserFields fields = new UserFields(name , signUpResponse.getEmail(), false); // <--- Email and Name goes here, but it can be expanded to receive more user fields like admin.
 		
-		System.out.println("User admin field is: " + fields.isAdmin());
+		System.out.println("User admin field is: " + fields.getAdmin().getBooleanValue());
 		
 		try {
 			initializeDocResponse = RequestHandler.getInstance(webKey).updateUserDocumentRequest(signUpResponse.getLocalId(), signUpResponse.getIdToken(), fields);
@@ -258,7 +258,6 @@ public class CinemaSystem {
 	
 	public void createMovieDocument(String name, String firebaseId) {
 		
-		name = name.replaceAll("\\s+", "-");
 		MovieDocument createResponse = new MovieDocument();
 		
 		try {
@@ -284,7 +283,6 @@ public class CinemaSystem {
 	
 	public void updateMovieDocument(MovieFields fields, String firebaseId) {
 		
-		fields.getTitle().setStringValue(fields.getTitle().getStringValue().replaceAll("\\s+", "-"));
 		MovieDocument updateResponse = new MovieDocument();
 		
 		try {

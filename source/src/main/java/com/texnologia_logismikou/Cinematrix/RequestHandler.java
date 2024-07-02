@@ -168,6 +168,8 @@ public class RequestHandler {
 
 	public UserDocument updateUserDocumentRequest(String uid, String firebaseId, UserFields fields) throws URISyntaxException, InterruptedException, IOException {
 		
+		String queryParameters = UpdateMaskQuery.createUpdateAllUserFields();
+		
 		UserDocument request = new UserDocument();
 		UserDocument response = new UserDocument();
 		
@@ -177,7 +179,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1beta1/" + documentsPath +"/Users/" + uid + "?updateMask.fieldPaths=name&updateMask.fieldPaths=email&updateMask.fieldPaths=admin"))
+				.uri(new URI("https://firestore.googleapis.com/v1beta1/" + documentsPath +"/Users/" + uid + "?" + queryParameters))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
