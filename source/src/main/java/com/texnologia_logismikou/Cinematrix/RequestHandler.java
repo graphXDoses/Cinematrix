@@ -222,7 +222,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getName().getStringValue() + "?updateMask.fieldPaths=name&updateMask.fieldPaths=cinemas&updateMask.fieldPaths=duration"))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getName() + "?updateMask.fieldPaths=name&updateMask.fieldPaths=cinemas&updateMask.fieldPaths=duration"))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -233,7 +233,7 @@ public class RequestHandler {
 		response = gson.fromJson(patchResponse.body(), MovieDocument.class);
 		
 		System.out.println(patchResponse.body());
-		System.out.println(response.getFields().getDuration().getDoubleValue());
+		System.out.println(response.getFields().getDuration());
 		
 		return null;
 	}

@@ -199,7 +199,7 @@ public class CinemaSystem {
 		UserDocument initializeDocResponse = new UserDocument();
 		UserFields fields = new UserFields(name , signUpResponse.getEmail(), false); // <--- Email and Name goes here, but it can be expanded to receive more user fields like admin.
 		
-		System.out.println("User admin field is: " + fields.getAdmin().getBooleanValue());
+		System.out.println("User admin field is: " + fields.isAdmin());
 		
 		try {
 			initializeDocResponse = RequestHandler.getInstance(webKey).updateUserDocumentRequest(signUpResponse.getLocalId(), signUpResponse.getIdToken(), fields);
