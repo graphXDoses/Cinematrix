@@ -104,7 +104,7 @@ public class SignUpViewController
 		} catch (SignUpException e) {
 			// e.printStackTrace();
 			switch(e.getMessage()) {
-			case "INVALID_EMAIL": System.out.println("The email you have selected is invalid!"); break;
+			case "INVALID_EMAIL": System.out.println("Please provide a valid email address."); break;
 			case "EMPTY_NAME": System.out.println("The name cannot be empty!"); break;
 			case "EMAIL_EXISTS": System.out.println("There is already an account with this email!"); break;
 			case "MISSING_PASSWORD": System.out.println("A password is required for the creation of the account!"); break;

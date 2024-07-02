@@ -230,7 +230,7 @@ public class CinemaSystem {
 		
 	}
 	
-	public void userSignIn(String email, String password) {
+	public void userSignIn(String email, String password) throws SignInException {
 		
 		SignInResponseBody signInResponse = new SignInResponseBody();
 		
@@ -238,20 +238,17 @@ public class CinemaSystem {
 			signInResponse = RequestHandler.getInstance(webKey).signInRequest(email, password);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-			// return;
+			throw new SignInException("Internal error occured. Please try again later.", e);
 		} catch (IOException e) {
 			e.printStackTrace();
-			// return;
+			throw new SignInException("Internal error occured. Please try again later.", e);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-			// return;
+			throw new SignInException("Internal error occured. Please try again later.", e);
 		}
 		
 		if(signInResponse.getError() != null) {
-			System.out.println("Error signin in. Details: " + signInResponse.getError().getMessage());
-			// return / refresh the login page and let user retry login.
-		} else {
-			System.out.println("Succesfuly signed in!");
+			throw new SignInException(signInResponse.getError().getMessage(), null);
 		}
 		
 		/*

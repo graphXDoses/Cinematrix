@@ -3,6 +3,7 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 import java.io.FileNotFoundException;
 
 import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.SignInException;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
 import com.texnologia_logismikou.Cinematrix.Views.UserDashboardView;
 
@@ -76,6 +77,19 @@ public class LoginViewController
     void loginCallback(ActionEvent event)
     {
     	UserDashboardView view = (UserDashboardView)CinemaSystem.getInstance().getActiveContext().getViews().get(2);
+    	
+    	try {
+			CinemaSystem.getInstance().userSignIn(email_inputfield.getText(), pass_inputfield.getText());
+		} catch (SignInException e) {
+			// e.printStackTrace();
+			switch(e.getMessage()) {
+			case "INVALID_LOGIN_CREDENTIALS": System.out.println("Email or Password are incorrect!"); break;
+			case "MISSING_PASSWORD": System.out.println("Password cannot be empty!"); break;
+			case "INVALID_EMAIL": System.out.println("Please provide a valid email address."); break;
+			default: System.out.println("Internal error occured. Please try again!");
+			}
+			return;
+		}
     	
     	try {
 			CinemaSystem.getInstance().getActiveContext().goToView(view);
