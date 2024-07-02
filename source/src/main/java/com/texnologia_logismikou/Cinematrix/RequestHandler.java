@@ -159,6 +159,10 @@ public class RequestHandler {
 		HttpResponse<String> postResponse = client.send(postRequest, BodyHandlers.ofString());
 		
 		System.out.println("STATUS CODE: " + postResponse.statusCode());
+		switch(postResponse.statusCode()) {
+		case 200: System.out.println("Account deleted succsefully."); break;
+		default: System.out.println("Couldn't delete account.");
+		}
 		
 		/*
 		 *  Doesn't return anything.
@@ -245,5 +249,9 @@ public class RequestHandler {
 		HttpResponse<String> deleteResponse = client.send(deleteRequest, BodyHandlers.ofString());
 		
 		System.out.println("STATUS CODE: " + deleteResponse.statusCode());
+		switch(deleteResponse.statusCode()) {
+		case 200: System.out.println("Account document deleted succsefully."); break;
+		default: System.out.println("Couldn't delete account document.");
+		}
 	}
 }

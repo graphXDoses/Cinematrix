@@ -135,7 +135,11 @@ public class CinemaSystem {
 		));
 	}
 
-	public ErrorResponseBody userSignUp(String name, String email, String password) {
+	public void userSignUp(String name, String email, String password) throws SignUpException {
+		
+		if(name.isEmpty()) {
+			throw new SignUpException("EMPTY_NAME", null);
+		}
 		
 		SignUpResponseBody signUpResponse = new SignUpResponseBody();
 		
@@ -144,19 +148,18 @@ public class CinemaSystem {
 			signUpResponse = RequestHandler.getInstance(webKey).SignUpRequest(email, password);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-			// return;
+			throw new SignUpException("Internal error occured. Please try again later.", e);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-			// return;
+			throw new SignUpException("Internal error occured. Please try again later.", e);
 		} catch (IOException e) {
 			e.printStackTrace();
-			// return;
+			throw new SignUpException("Internal error occured. Please try again later.", e);
 		}
 		
 		// If error occurs show appropriate message and return?
 		if(signUpResponse.getError() != null) {
-			System.out.println("Error signing up. Details: " + signUpResponse.getError().getMessage());
-			return signUpResponse.getError();
+			throw new SignUpException(signUpResponse.getError().getMessage(), null);
 		} else {
 			System.out.println("User succesfully signed up with uid: " + signUpResponse.getLocalId());
 		}
@@ -171,24 +174,24 @@ public class CinemaSystem {
 			createDocResponse = RequestHandler.getInstance(webKey).createUserDocumentRequest(signUpResponse.getLocalId(), signUpResponse.getIdToken());
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-			// return;
+			throw new SignUpException("Internal error occured. Please try again later.", e);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-			// return;
+			throw new SignUpException("Internal error occured. Please try again later.", e);
 		} catch (IOException e) {
 			e.printStackTrace();
-			// return;
+			throw new SignUpException("Internal error occured. Please try again later.", e);
 		}
 		
 		if(createDocResponse.getError() != null) {
-			System.out.println("Error creating user document. Details: " + createDocResponse.getError().getMessage());
 			try {
 				// Delete the user account.
 				RequestHandler.getInstance(webKey).deleteUserAccountRequest(signUpResponse.getIdToken());
 			} catch (Exception e) {
 				e.printStackTrace();
+				throw new SignUpException("Internal error occured. Please try again later.", e);
 			}
-			return createDocResponse.getError();
+			throw new SignUpException(createDocResponse.getError().getMessage(), null);
 		} else {
 			System.out.println("User document succefully created at: " + createDocResponse.getCreateTime());
 		}
@@ -202,30 +205,29 @@ public class CinemaSystem {
 			initializeDocResponse = RequestHandler.getInstance(webKey).updateUserDocumentRequest(signUpResponse.getLocalId(), signUpResponse.getIdToken(), fields);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-			// return;
+			throw new SignUpException("Internal error occured. Please try again later.", e);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-			// return;
+			throw new SignUpException("Internal error occured. Please try again later.", e);
 		} catch (IOException e) {
 			e.printStackTrace();
-			// return;
+			throw new SignUpException("Internal error occured. Please try again later.", e);
 		}
 		
 		if(initializeDocResponse.getError() != null) {
-			System.out.println("Error initializing user document. Details: " + initializeDocResponse.getError().getMessage());
 			try {
 				// Delete the user account.
 				RequestHandler.getInstance(webKey).deleteUserAccountRequest(signUpResponse.getIdToken());
 				RequestHandler.getInstance(webKey).deleteUserDocumentRequest(signUpResponse.getIdToken(), signUpResponse.getLocalId());
 			} catch (Exception e) {
 				e.printStackTrace();
+				throw new SignUpException("Internal error occured. Please try again later.", e);
 			}
-			return initializeDocResponse.getError();
+			throw new SignUpException(initializeDocResponse.getError().getMessage(), null);
 		} else {
 			System.out.println("User document succesfully initialized at: " + initializeDocResponse.getUpdateTime());
 		}
 		
-		return initializeDocResponse.getError();
 	}
 	
 	public void userSignIn(String email, String password) {

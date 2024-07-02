@@ -3,6 +3,7 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 import java.io.FileNotFoundException;
 
 import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.SignUpException;
 import com.texnologia_logismikou.Cinematrix.ResponseBodies.ErrorResponseBody;
 import com.texnologia_logismikou.Cinematrix.Views.LoginView;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
@@ -93,18 +94,25 @@ public class SignUpViewController
     void signupCallback(ActionEvent event)
     {
     	UserDashboardView view = (UserDashboardView)CinemaSystem.getInstance().getActiveContext().getViews().get(2);
-    	ErrorResponseBody error = new ErrorResponseBody();
     	
     	/*
-    	 *  Add checks for inputs.
+    	 * 	For each error case instead of printing the message to the console create a small box to display the message to the user.
+    	 * 	Also we can clear the fields (or the fields that produced the error) so that the user can re-enter them.
     	 */
-    	
-    	error = CinemaSystem.getInstance().userSignUp(name_inputfield.getText(), email_inputfield.getText(), pass_inputfield.getText());
-    	if(error != null) {
-    		// Display the error in a textbox and refresh page?
-    		System.out.println(error.getMessage());
-    		return;
-    	}
+    	try {
+			CinemaSystem.getInstance().userSignUp(name_inputfield.getText(), email_inputfield.getText(), pass_inputfield.getText());
+		} catch (SignUpException e) {
+			// e.printStackTrace();
+			switch(e.getMessage()) {
+			case "INVALID_EMAIL": System.out.println("The email you have selected is invalid!"); break;
+			case "EMPTY_NAME": System.out.println("The name cannot be empty!"); break;
+			case "EMAIL_EXISTS": System.out.println("There is already an account with this email!"); break;
+			case "MISSING_PASSWORD": System.out.println("A password is required for the creation of the account!"); break;
+			case "WEAK_PASSWORD : Password should be at least 6 characters": System.out.println("The password must be at least 7 characters long!"); break;
+			default: System.out.println("There was an error during sign up. Please try again!");
+			}
+			return;
+		}
     	try {
 			CinemaSystem.getInstance().getActiveContext().goToView(view);
 			CinemaSystem.getInstance().getMainDisplay().refresh();
