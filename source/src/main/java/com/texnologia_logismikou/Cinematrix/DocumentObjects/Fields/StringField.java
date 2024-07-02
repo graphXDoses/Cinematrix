@@ -1,10 +1,10 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
-public class EmailField {
+public class StringField {
 
 	private String stringValue;
 
-	public EmailField(String email) {
+	public StringField(String email) {
 		
 		this.stringValue = email;
 	}

@@ -2,32 +2,25 @@ package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
 public class MovieFields {
 
-	private NameField name;
-	private ArrayField<NameField> cinemas;
+	private StringField name;
+	private ArrayField<StringField> cinemas;
 	private DoubleField duration;
 	
-	public MovieFields(String name, NameField[] cinemas, double duration) {
+	public MovieFields(String name, StringField[] cinemas, double duration) {
 		
-		NameField nameField = new NameField(name);
-		this.name = nameField;
+		StringField stringField = new StringField(name);
+		this.name = stringField;
 		
-		ArrayField<NameField> cinemasField = new ArrayField<NameField>(cinemas);
+		ArrayField<StringField> cinemasField = new ArrayField<StringField>(cinemas);
 		this.cinemas = cinemasField;
 		
 		DoubleField doubleField = new DoubleField(duration);
 		this.duration = doubleField;
 	}
-	
-	public NameField getName() {
-		return name;
-	}
-	public void setName(NameField name) {
-		this.name = name;
-	}
-	public ArrayField<NameField> getCinemas() {
+	public ArrayField<StringField> getCinemas() {
 		return cinemas;
 	}
-	public void setCinemas(ArrayField<NameField> cinemas) {
+	public void setCinemas(ArrayField<StringField> cinemas) {
 		this.cinemas = cinemas;
 	}
 	public DoubleField getDuration() {
@@ -35,5 +28,11 @@ public class MovieFields {
 	}
 	public void setDuration(DoubleField duration) {
 		this.duration = duration;
+	}
+	public StringField getName() {
+		return name;
+	}
+	public void setName(StringField name) {
+		this.name = name;
 	}
 }

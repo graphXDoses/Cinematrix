@@ -1,10 +1,10 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
-public class AdminField {
+public class BooleanField {
 	
 	private boolean booleanValue;
 
-	public AdminField(boolean booleanValue) {
+	public BooleanField(boolean booleanValue) {
 		
 		this.booleanValue = booleanValue;
 	}

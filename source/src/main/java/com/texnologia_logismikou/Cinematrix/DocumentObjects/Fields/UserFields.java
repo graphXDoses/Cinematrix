@@ -2,39 +2,40 @@ package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
 public class UserFields {
 
-	private EmailField email;
-	private NameField name;
-	private AdminField admin;
+	private StringField email;
+	private StringField name;
+	private BooleanField admin;
 	
 	public UserFields(String name, String email, boolean isAdmin) {
 		
-		EmailField anEmail = new EmailField(email);
-		NameField aName = new NameField(name);
-		AdminField anAdmin = new AdminField(isAdmin);
+		StringField anEmail = new StringField(email);
+		StringField aName = new StringField(name);
+		BooleanField anAdmin = new BooleanField(isAdmin);
 		this.email = anEmail;
 		this.name = aName;
 		this.admin = anAdmin;
 	}
 	
-	public EmailField getEmail() {
+	public StringField getEmail() {
 		return email;
 	}
-	public void setEmail(EmailField email) {
+	public void setEmail(StringField email) {
 		this.email = email;
 	}
-	public NameField getName() {
-		return name;
-	}
-	public void setName(NameField name) {
-		
-		this.name = name;
-	}
 
-	public AdminField getAdmin() {
+	public BooleanField getAdmin() {
 		return admin;
 	}
 
-	public void setAdmin(AdminField admin) {
+	public void setAdmin(BooleanField admin) {
 		this.admin = admin;
+	}
+
+	public StringField getName() {
+		return name;
+	}
+
+	public void setName(StringField name) {
+		this.name = name;
 	}
 }

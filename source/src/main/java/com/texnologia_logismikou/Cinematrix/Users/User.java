@@ -1,5 +1,10 @@
 package com.texnologia_logismikou.Cinematrix.Users;
 
-public class User {
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.UserFields;
 
+public class User extends UserCore {
+
+	public User(UserFields fields) {
+		super(fields);
+	}
 }
