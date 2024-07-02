@@ -78,6 +78,11 @@ public class LoginViewController
     {
     	UserDashboardView view = (UserDashboardView)CinemaSystem.getInstance().getActiveContext().getViews().get(2);
     	
+    	/*
+    	 * 	Add a text box that shows the error message to the user.
+    	 * 	We could also clear the fields so that the users can retry immediately.
+    	 */
+    	
     	try {
 			CinemaSystem.getInstance().userSignIn(email_inputfield.getText(), pass_inputfield.getText());
 		} catch (SignInException e) {

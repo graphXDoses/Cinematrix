@@ -254,4 +254,27 @@ public class RequestHandler {
 		default: System.out.println("Couldn't delete account document.");
 		}
 	}
+	
+	public void resetPasswordRequest(String email) throws IOException, URISyntaxException, InterruptedException {
+		
+		ResetPasswordRequestBody request = new ResetPasswordRequestBody(email);
+		
+		Gson gson = new Gson();
+		String jsonRequest = gson.toJson(request);
+		
+		HttpRequest postRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + webKey))
+				.setHeader("Content-Type", "application/json")
+				.POST(BodyPublishers.ofString(jsonRequest))
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> postResponse = client.send(postRequest, BodyHandlers.ofString());
+		
+		System.out.println("STATUS CODE: " + postResponse.statusCode());
+		switch(postResponse.statusCode()) {
+		case 200: System.out.println("Reset password email sent succesfully."); break;
+		default: System.out.println("Couldn't send reset password email.");
+		}
+	}
 }
