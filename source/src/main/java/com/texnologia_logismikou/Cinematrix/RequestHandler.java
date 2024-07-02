@@ -145,6 +145,27 @@ public class RequestHandler {
 		return response;
 	}
 	
+	public UserDocument getUserDocumentRequest(String uid, String firebaseId) throws URISyntaxException, IOException, InterruptedException  {
+		
+		UserDocument response = new UserDocument();
+		
+		Gson gson = new Gson();
+		
+		HttpRequest getRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Users/" + uid))
+				.GET()
+				.setHeader("Authorization", "Bearer " + firebaseId)
+				.setHeader("Content-Type", "application/json")
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
+		
+		response = gson.fromJson(getResponse.body(), UserDocument.class);
+		
+		return response;
+	}
+
 	public UserDocument updateUserDocumentRequest(String uid, String firebaseId, UserFields fields) throws URISyntaxException, InterruptedException, IOException {
 		
 		UserDocument request = new UserDocument();
@@ -169,27 +190,6 @@ public class RequestHandler {
 		return response;
 	}
 	
-	public UserDocument getUserDocument(String uid, String firebaseId) throws URISyntaxException, IOException, InterruptedException  {
-		
-		UserDocument response = new UserDocument();
-		
-		Gson gson = new Gson();
-		
-		HttpRequest getRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Users/" + uid))
-				.GET()
-				.setHeader("Authorization", "Bearer " + firebaseId)
-				.setHeader("Content-Type", "application/json")
-				.build();
-		
-		HttpClient client = HttpClient.newHttpClient();
-		HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
-		
-		response = gson.fromJson(getResponse.body(), UserDocument.class);
-		
-		return response;
-	}
-
 	public void deleteUserDocumentRequest(String uid, String firebaseId) throws IOException, URISyntaxException, InterruptedException {
 		
 		HttpRequest deleteRequest = HttpRequest.newBuilder()
@@ -209,6 +209,7 @@ public class RequestHandler {
 
 	public MovieDocument createMovieDocumentRequest(String name, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
+		name = name.replaceAll("\\s+", "-");
 		MovieDocument response = new MovieDocument();
 		
 		Gson gson = new Gson();
@@ -229,8 +230,30 @@ public class RequestHandler {
 		return response;
 	}
 	
+	public MovieDocument getMovieDocumentRequest(String name) throws IOException, InterruptedException, URISyntaxException {
+		
+		name = name.replaceAll("\\s+", "-");
+		
+		MovieDocument response = new MovieDocument();
+		Gson gson = new Gson();
+		
+		HttpRequest getRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + name))
+				.GET()
+				.setHeader("Content-Type", "application/json")
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
+		
+		response = gson.fromJson(getResponse.body(), MovieDocument.class);
+				
+		return response;
+	}
+
 	public MovieDocument updateMovieDocumentRequest(MovieFields fields, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
+		fields.getTitle().setStringValue(fields.getTitle().getStringValue().replaceAll("\\s+", "-"));
 		String queryParameter = UpdateMaskQuery.createUpdateAllMovieFieldsQuery();
 		
 		MovieDocument request = new MovieDocument();
@@ -276,6 +299,23 @@ public class RequestHandler {
 		switch(postResponse.statusCode()) {
 		case 200: System.out.println("Reset password email sent succesfully."); break;
 		default: System.out.println("Couldn't send reset password email.");
+		}
+	}
+	
+	public void deleteMovieDocumentRequest(String name) throws URISyntaxException, IOException, InterruptedException {
+		
+		HttpRequest deleteRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + name))
+				.DELETE()
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> deleteResponse = client.send(deleteRequest, BodyHandlers.ofString());
+		
+		System.out.println("STATUS CODE: " + deleteResponse.statusCode());
+		switch(deleteResponse.statusCode()) {
+		case 200: System.out.println("Movie document deleted succsefully."); break;
+		default: System.out.println("Couldn't delete movie document.");
 		}
 	}
 }

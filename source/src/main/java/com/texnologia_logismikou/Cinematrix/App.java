@@ -34,19 +34,14 @@ public class App extends Application {
         CinemaSystem.getInstance().getMainDisplay().refresh();
         
         String idToken;
-		try {
-			idToken = CinemaSystem.getInstance().userSignIn("phoebuspetsi@gmail.com", "myPassword123");
-			CinemaSystem.getInstance().createMovieDocument("Knives Out", idToken);
+		idToken = "";
+		CinemaSystem.getInstance().createMovieDocument("Knives Out", idToken);
 	        
-	        StringField[] cinemas = {new StringField("Cineplex"), new StringField("Village"), new StringField("Athineon")};
-	        StringField[] categories = {new StringField("Comedy"), new StringField("Crime"), new StringField("Drama"), new StringField("Thriller"), new StringField("Mystery")};
-	        MovieFields fields = new MovieFields("Knives Out", 2019, "PG-13", 130, "hhttps://www.imdb.com/video/vi2464857881/?playlistId=tt8946378&ref_=tt_ov_vi", categories, cinemas, "A detective investigates the death of the patriarch of an eccentric, combative family.", "Rian Johnson");
+	    StringField[] cinemas = {new StringField("Cineplex"), new StringField("Village"), new StringField("Athineon")};
+	    StringField[] categories = {new StringField("Comedy"), new StringField("Crime"), new StringField("Drama"), new StringField("Thriller"), new StringField("Mystery")};
+	    MovieFields fields = new MovieFields("Knives Out", 2019, "PG-13", 130, "hhttps://www.imdb.com/video/vi2464857881/?playlistId=tt8946378&ref_=tt_ov_vi", categories, cinemas, "A detective investigates the death of the patriarch of an eccentric, combative family.", "Rian Johnson");
 	        
-	        CinemaSystem.getInstance().updateMovieDocument(fields, idToken);
-		} catch (SignInException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    CinemaSystem.getInstance().updateMovieDocument(fields, idToken);
     }
 
     static void setRoot(String fxml) throws IOException {
