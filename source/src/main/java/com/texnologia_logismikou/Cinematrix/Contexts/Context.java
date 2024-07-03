@@ -1,44 +1,46 @@
-package com.texnologia_logismikou.Cinematrix;
+package com.texnologia_logismikou.Cinematrix.Contexts;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.texnologia_logismikou.Cinematrix.Managers.ContextButton;
+import com.texnologia_logismikou.Cinematrix.Views.LoginView;
 import com.texnologia_logismikou.Cinematrix.Views.View;
 
 public class Context{
 	
 	private String name;
 	private String icon_path;
-	private List<View> views = new ArrayList<>();
-	private View activeView = null;
+//	private List<View> views = new ArrayList<>();
 	private ContextButton button = null;
 	
-	public Context(String name, String icon_path, View ...input_views )
+	protected View activeView = null;
+	protected View defaultView;
+	
+	public View getDefaultView() {
+		return defaultView;
+	}
+
+	public void setDefaultView(View defaultView) {
+		this.defaultView = defaultView;
+	}
+
+	protected Context(String name, String icon_path)
 	{
 		this.setName(name);
 		this.setUrl(icon_path);
 		button = new ContextButton(this);
-		
-		for(View v : input_views) { views.add(v); }
-		
-		try {
-			goToView(input_views[0]);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	public String getName() {
 		return name;
 	}
-	
+	/*
 	public List<View> getViews() {
 		return views;
 	}
-
+	*/
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -53,11 +55,16 @@ public class Context{
 	
 	public ContextButton getButton() { return(button); }
 	public View getActiveView() { return(activeView);	}
-	
-	public void goToView(View view) throws FileNotFoundException {
-		if(views.indexOf(view) != -1)
-			this.activeView = view;
+
+	public void promiseRedirectTo(View view)
+	{
+		if(view == null)
+			this.activeView = this.defaultView;
 		else
-			throw new FileNotFoundException();
+		{
+			this.activeView = view;
+			if(view.getClass().equals(this.defaultView.getClass()))
+				this.defaultView = view;
+		}
 	}
 }

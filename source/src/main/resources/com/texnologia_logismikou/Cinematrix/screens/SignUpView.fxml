@@ -70,7 +70,7 @@
                         </TextField>
                         <Pane fx:id="name_label_obs" style="-fx-background-color: #222222;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="-9.0">
                            <children>
-                              <Label fx:id="name_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="10.0" stylesheets="@../styles/styles.css" text="Name" textAlignment="CENTER" textFill="#444444" translateY="20.0">
+                              <Label fx:id="name_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="10.0" stylesheets="@../styles/styles.css" text="Name*" textAlignment="CENTER" textFill="#444444" translateY="20.0">
                                  <padding>
                                     <Insets left="5.0" right="5.0" />
                                  </padding>
@@ -91,7 +91,7 @@
                         </TextField>
                         <Pane fx:id="email_label_obs" style="-fx-background-color: #222222;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="-9.0">
                            <children>
-                              <Label fx:id="email_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="10.0" stylesheets="@../styles/styles.css" text="Email" textAlignment="CENTER" textFill="#444444" translateY="20.0">
+                              <Label fx:id="email_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="10.0" stylesheets="@../styles/styles.css" text="Email*" textAlignment="CENTER" textFill="#444444" translateY="20.0">
                                  <padding>
                                     <Insets left="5.0" right="5.0" />
                                  </padding>
@@ -109,7 +109,7 @@
                         </PasswordField>
                         <Pane fx:id="pass_label_obs" style="-fx-background-color: #222222;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="-9.0">
                            <children>
-                              <Label fx:id="pass_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="10.0" stylesheets="@../styles/styles.css" text="Password" textAlignment="CENTER" textFill="#444444" translateY="20.0">
+                              <Label fx:id="pass_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="10.0" stylesheets="@../styles/styles.css" text="Password*" textAlignment="CENTER" textFill="#444444" translateY="20.0">
                                  <padding>
                                     <Insets left="5.0" right="5.0" />
                                  </padding>

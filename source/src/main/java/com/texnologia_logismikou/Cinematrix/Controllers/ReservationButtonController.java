@@ -2,7 +2,7 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 
 import java.io.FileNotFoundException;
 
-import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.Views.SeatSelectionView;
 
 import javafx.event.ActionEvent;
@@ -17,14 +17,10 @@ public class ReservationButtonController {
     @FXML
     void makeReservationCallback(ActionEvent event)
     {
-    	SeatSelectionView seatSelection = (SeatSelectionView) CinemaSystem.getInstance().getActiveContext().getViews().get(2);
-		try {
-			CinemaSystem.getInstance().getActiveContext().goToView(seatSelection);
-			CinemaSystem.getInstance().getMainDisplay().refresh();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	CinematrixAPI.getInstance()
+    				.getActiveContext()
+    				.promiseRedirectTo(CinematrixAPI.MOVIE_CONTEXT.SEAT_SELECTION_VIEW);
+    	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
     
     public void setHour(String hour)

@@ -1,6 +1,6 @@
 package com.texnologia_logismikou.Cinematrix.Managers;
 
-import com.texnologia_logismikou.Cinematrix.Context;
+import com.texnologia_logismikou.Cinematrix.Contexts.Context;
 import com.texnologia_logismikou.Cinematrix.Controllers.ContextButtonController;
 
 public class ContextButton extends Manager<ContextButtonController>

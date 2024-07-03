@@ -3,7 +3,7 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 import java.io.FileNotFoundException;
 
 import com.texnologia_logismikou.Cinematrix.App;
-import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.Movie;
 import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
 import com.texnologia_logismikou.Cinematrix.Views.MovieDetailsView;
@@ -58,16 +58,14 @@ public class MovieModalController {
 	}
 	
 	@FXML
-    void gotoDetailsCallback(ActionEvent event) {
-		MovieDetailsView details = (MovieDetailsView) CinemaSystem.getInstance().getActiveContext().getViews().get(1);
-		try {
-			CinemaSystem.getInstance().getActiveContext().goToView(details);
-			details.setSelectedMovie(associateMovie);
-			CinemaSystem.getInstance().getMainDisplay().refresh();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    void gotoDetailsCallback(ActionEvent event)
+	{
+		CinematrixAPI.MOVIE_CONTEXT.MOVIE_DETAILS_VIEW = new MovieDetailsView();
+		CinematrixAPI.MOVIE_CONTEXT.MOVIE_DETAILS_VIEW.setSelectedMovie(associateMovie);
+		CinematrixAPI.getInstance()
+					.getActiveContext()
+					.promiseRedirectTo(CinematrixAPI.MOVIE_CONTEXT.MOVIE_DETAILS_VIEW);
+		CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
 	
 }

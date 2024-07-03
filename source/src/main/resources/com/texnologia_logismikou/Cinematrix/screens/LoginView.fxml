@@ -61,7 +61,7 @@
                         </TextField>
                         <Pane fx:id="email_label_obs" style="-fx-background-color: #222222;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="-9.0">
                            <children>
-                              <Label fx:id="email_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="10.0" stylesheets="@../styles/styles.css" text="Email" textAlignment="CENTER" textFill="#444444" translateY="20.0">
+                              <Label fx:id="email_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="10.0" stylesheets="@../styles/styles.css" text="Email*" textAlignment="CENTER" textFill="#444444" translateY="20.0">
                                  <padding>
                                     <Insets left="5.0" right="5.0" />
                                  </padding>
@@ -79,7 +79,7 @@
                         </PasswordField>
                         <Pane fx:id="pass_label_obs" style="-fx-background-color: #222222;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="-9.0">
                            <children>
-                              <Label fx:id="pass_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="10.0" stylesheets="@../styles/styles.css" text="Password" textAlignment="CENTER" textFill="#444444" translateY="20.0">
+                              <Label fx:id="pass_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="10.0" stylesheets="@../styles/styles.css" text="Password*" textAlignment="CENTER" textFill="#444444" translateY="20.0">
                                  <padding>
                                     <Insets left="5.0" right="5.0" />
                                  </padding>
@@ -88,6 +88,11 @@
                         </Pane>
                      </children>
                   </AnchorPane>
+                  <HBox fx:id="forgot_password_link">
+                     <children>
+                        <Hyperlink onAction="#forgotPasswordCallback" text="Forgot your password?" textFill="#0070e0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
                   <Button fx:id="login_button" maxHeight="30.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginCallback" prefHeight="30.0" styleClass="register_decision_button" stylesheets="@../styles/styles.css" text="LOGIN" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="12.0" />
