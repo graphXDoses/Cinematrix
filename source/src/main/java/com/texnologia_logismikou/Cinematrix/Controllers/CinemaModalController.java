@@ -13,10 +13,10 @@ import javafx.scene.layout.HBox;
 
 public class CinemaModalController {
 
-	@FXML private Label cinema_address;
-	@FXML private Label cinema_name;
-	@FXML private Label cinema_rel_distance;
-	@FXML private HBox  hoursContainer;
+	@FXML private Label cinema_address_label;
+	@FXML private Label cinema_name_label;
+	@FXML private Label cinema_rel_distance_label;
+	@FXML private HBox  hours_container;
 	
 	private Cinema associateCinema = null;
 	private Movie  associateMovie  = null;
@@ -24,24 +24,24 @@ public class CinemaModalController {
 	@FXML
 	void initialize()
 	{
-		System.out.println("INIT");
-		hoursContainer.setVisible(false);
+//		System.out.println("INIT");
+		hours_container.setVisible(false);
 	}
 	
     public void setData(Cinema cinema)
     {
-    	System.out.println("SET DATA");
+//    	System.out.println("SET DATA");
     	associateCinema = cinema;
     	
-    	cinema_name.setText(cinema.getName());
-    	cinema_address.setText(cinema.getAddress());
-    	cinema_rel_distance.setText(cinema.getDistance() + " km");
-    	hoursContainer.setVisible(false);
+    	cinema_name_label.setText(cinema.getName());
+    	cinema_address_label.setText(cinema.getAddress());
+    	cinema_rel_distance_label.setText(cinema.getDistance() + " km");
+    	hours_container.setVisible(false);
     }
 
     public void setScreeningData(Movie movie, String soundSystem, List<Date> dates, List<String> hours)
     {
-    	System.out.println("SCREEN");
+//    	System.out.println("SCREEN");
     	associateMovie = movie;
     	
     	for(String h: hours)
@@ -50,8 +50,8 @@ public class CinemaModalController {
 
 	public void addReservationButton(ReservationButton reservationButton)
 	{
-		System.out.println("RESERVE");
-		hoursContainer.setVisible(true);
-		hoursContainer.getChildren().add(reservationButton.getParent());
+//		System.out.println("RESERVE");
+		hours_container.setVisible(true);
+		hours_container.getChildren().add(reservationButton.getParent());
 	}
 }

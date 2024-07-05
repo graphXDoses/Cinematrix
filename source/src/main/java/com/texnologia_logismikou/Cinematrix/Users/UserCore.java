@@ -24,14 +24,15 @@ public class UserCore {
 
 	public static UserCore createUser(UserDocument userDocument) {
 		// TODO Auto-generated method stub
+		User user;
+		
 		if(userDocument.getFields().getAdmin().getBooleanValue())
-			return(new Admin());
+			user = new Admin();
 		else
-		{
-			User user = new User();
-			user.setUserFields(userDocument.getFields());
-			user.setAccountCreationDate(userDocument.getCreateTime());
-			return(user);
-		}
+			user = new User();
+		
+		user.setUserFields(userDocument.getFields());
+		user.setAccountCreationDate(userDocument.getCreateTime());
+		return(user);
 	}
 }

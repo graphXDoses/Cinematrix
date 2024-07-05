@@ -23,7 +23,7 @@ implements VisibleUnderUser, VisibleUnderAdmin
 	@Override
 	public void showToAdmin()
 	{
-		
+		getController().setData();
 	}
 
 }

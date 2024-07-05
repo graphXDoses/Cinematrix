@@ -8,18 +8,18 @@ import javafx.scene.control.Label;
 
 public class FooterBarController {
 
-    @FXML private Label version_lbl;
-    @FXML private Label userT_lbl;
+    @FXML private Label version_label;
+    @FXML private Label user_privilages_label;
     
     @FXML
     void initialize()
     {
-		version_lbl.setText(PropertiesReader.getProperty("AppVersion"));
+		version_label.setText(PropertiesReader.getProperty("AppVersion"));
     }
     
     public void setData()
     {
-    	System.out.println(CinematrixAPI.getInstance().getCurrentUser());
-    	userT_lbl.setText("[ " + CinematrixAPI.getInstance().getCurrentUser() + " ]");
+//    	System.out.println(CinematrixAPI.getInstance().getCurrentUser());
+    	user_privilages_label.setText("[ " + CinematrixAPI.getInstance().getCurrentUser() + " ]");
     }
 }

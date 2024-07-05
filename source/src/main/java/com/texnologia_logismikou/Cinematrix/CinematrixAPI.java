@@ -42,7 +42,6 @@ public class CinematrixAPI {
 
 	private static UserCore currentUser;
 	private static MainUI   UI;
-//	private static MainDisplay mD;
 	private static List<Movie>   movies   = new ArrayList<>();
 	private static List<Cinema>  cinemas  = new ArrayList<>();
 	private static List<Context> contexts = new ArrayList<>();
@@ -54,7 +53,6 @@ public class CinematrixAPI {
 	
 	private CinematrixAPI()
 	{
-//		currentUser = new Admin();
 		currentUser = new Guest();
 		
 		contexts.add(MOVIE_CONTEXT);
@@ -172,11 +170,14 @@ public class CinematrixAPI {
 		
 		// If error occurs show appropriate message and return?
 		if(signUpResponse.getError() != null) {
-			System.out.println("Error signing up. Details: " + signUpResponse.getError().getMessage());
+//			System.out.println("Error signing up. Details: " + signUpResponse.getError().getMessage());
 			return signUpResponse.getError();
-		} else {
+		}
+		/*
+		else {
 			System.out.println("User succesfully signed up with uid: " + signUpResponse.getLocalId());
 		}
+		*/
 		
 		/*
 		 *  After the sign up process store locally some useful information like Firebase ID, User ID, Name, Email etc.
@@ -242,7 +243,7 @@ public class CinematrixAPI {
 			System.out.println("User document succesfully initialized at: " + initializeDocResponse.getUpdateTime());
 		}
 		
-		return initializeDocResponse.getError();
+		return null;
 	}
 	
 	private AuthResponseBody userAuthenticate(String email, String password) {
@@ -261,15 +262,6 @@ public class CinematrixAPI {
 			e.printStackTrace();
 			 return null;
 		}
-		
-		/*
-		if(loginResponse.getError() != null) {
-			System.out.println("Error signin in. Details: " + loginResponse.getError().getMessage());
-			 return null;
-		} else {
-			System.out.println("Succesfuly signed in!");
-		}
-		*/
 		
 		return(loginResponse);
 		/*

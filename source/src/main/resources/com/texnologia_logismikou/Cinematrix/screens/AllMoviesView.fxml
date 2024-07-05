@@ -11,14 +11,14 @@
    <children>
       <VBox alignment="CENTER">
          <children>
-            <VBox VBox.vgrow="ALWAYS">
+            <VBox spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label text="Now Featuring" textFill="#dedede">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <HBox fx:id="now_featuring_modals" spacing="20.0" VBox.vgrow="ALWAYS">
+                  <HBox fx:id="now_featuring_container" spacing="20.0" VBox.vgrow="ALWAYS">
                      <padding>
                         <Insets bottom="100.0" />
                      </padding></HBox>
@@ -31,7 +31,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <HBox fx:id="upcomming_modals" VBox.vgrow="ALWAYS">
+                  <HBox fx:id="upcomming_container" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

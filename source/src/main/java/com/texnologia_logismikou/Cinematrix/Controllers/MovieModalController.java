@@ -21,10 +21,10 @@ import javafx.util.Duration;
 
 public class MovieModalController {
 
-	@FXML private Button mdl_button;
-	@FXML private ImageView mdl_cover;
-	@FXML private HBox mld_halo;
-	@FXML private HBox edit_btn;
+	@FXML private Button modal_button;
+	@FXML private ImageView modal_cover;
+	@FXML private HBox modal_halo;
+	@FXML private HBox edit_button;
 	
 	private Movie associateMovie = null;
 	
@@ -32,29 +32,29 @@ public class MovieModalController {
 	{
 		associateMovie = movie;
 		
-		mdl_cover.setImage(movie.getModal().getCoverImage());
-		mdl_button.setTooltip(new Tooltip(movie.getFullName()));
-		edit_btn.setVisible(false);
-		mdl_cover.setOpacity(1);
+		modal_cover.setImage(movie.getModal().getCoverImage());
+		modal_button.setTooltip(new Tooltip(movie.getFullName()));
+		edit_button.setVisible(false);
+		modal_cover.setOpacity(1);
 	}
 	
 	@FXML
 	void initialize()
 	{
 		final FadeTransition fadeIn = new FadeTransition(Duration.millis(300));
-        fadeIn.setNode(mld_halo);
+        fadeIn.setNode(modal_halo);
         fadeIn.setToValue(1);
-        mdl_button.setOnMouseEntered(e -> fadeIn.playFromStart());
+        modal_button.setOnMouseEntered(e -> fadeIn.playFromStart());
 
         final FadeTransition fadeOut = new FadeTransition(Duration.millis(300));
-        fadeOut.setNode(mld_halo);
+        fadeOut.setNode(modal_halo);
         fadeOut.setToValue(0.0);
-        mdl_button.setOnMouseExited(e -> fadeOut.playFromStart());
+        modal_button.setOnMouseExited(e -> fadeOut.playFromStart());
 
-        mld_halo.setOpacity(0.0);
+        modal_halo.setOpacity(0.0);
 
-        mdl_button.setTooltip(new Tooltip("Add new movie."));
-        mdl_cover.setOpacity(.3);
+        modal_button.setTooltip(new Tooltip("Add new movie."));
+        modal_cover.setOpacity(.3);
 	}
 	
 	@FXML

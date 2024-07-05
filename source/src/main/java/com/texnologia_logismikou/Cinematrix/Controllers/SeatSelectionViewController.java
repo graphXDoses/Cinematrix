@@ -7,10 +7,10 @@ import javafx.scene.layout.HBox;
 
 public class SeatSelectionViewController
 {
-	@FXML private Label cinema_name;
+	@FXML private Label cinema_name_label;
 	@FXML private ImageView cover_image;
-	@FXML private Label movie_title;
-	@FXML private HBox topdownarea;
+	@FXML private Label movie_title_label;
+	@FXML private HBox topdown_area_container;
 	
 	public void setData()
 	{

@@ -16,20 +16,20 @@
                <children>
                   <HBox alignment="TOP_CENTER">
                      <children>
-                        <Label fx:id="cinema_name" text="Regal Gallery Place &amp; 4DX" textFill="#dedede">
+                        <Label fx:id="cinema_name_label" text="Regal Gallery Place &amp; 4DX" textFill="#dedede">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <Pane HBox.hgrow="ALWAYS" />
-                        <Label fx:id="cinema_rel_distance" text="0.81 km" textFill="#676767" HBox.hgrow="ALWAYS">
+                        <Label fx:id="cinema_rel_distance_label" text="0.81 km" textFill="#676767" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <Label fx:id="cinema_address" text="701 Seventh Street NW, Washington, DC 20001" textFill="#337cf2" VBox.vgrow="ALWAYS">
+                  <Label fx:id="cinema_address_label" text="701 Seventh Street NW, Washington, DC 20001" textFill="#337cf2" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -48,7 +48,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <HBox fx:id="hoursContainer" spacing="5.0" VBox.vgrow="ALWAYS" />
+                  <HBox fx:id="hours_container" spacing="5.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </children>

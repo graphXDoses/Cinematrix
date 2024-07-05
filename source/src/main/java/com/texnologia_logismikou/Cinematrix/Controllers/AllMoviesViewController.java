@@ -8,25 +8,25 @@ import javafx.scene.layout.HBox;
 
 public class AllMoviesViewController{
 
-    @FXML private HBox now_featuring_modals;
-    @FXML private HBox upcomming_modals;
+    @FXML private HBox now_featuring_container;
+    @FXML private HBox upcomming_container;
 	
 	@FXML void initialize() { }
 	
 	public void clearAll()
 	{
-		now_featuring_modals.getChildren().clear();
-		upcomming_modals.getChildren().clear();
+		now_featuring_container.getChildren().clear();
+		upcomming_container.getChildren().clear();
 	}
 	
 	public void appendNowFeaturing(MovieModal movie)
 	{
-		now_featuring_modals.getChildren().add(movie.getParent());
+		now_featuring_container.getChildren().add(movie.getParent());
 	}
 	
 	public void appendUpcomming(MovieModal movie)
 	{
-		upcomming_modals.getChildren().add(movie.getParent());
+		upcomming_container.getChildren().add(movie.getParent());
 	}
 
 }
