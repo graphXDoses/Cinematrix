@@ -31,15 +31,7 @@ public class App extends Application {
         
         CinemaSystem.getInstance().fetchCinemasFromDatabase();
         CinemaSystem.getInstance().fetchMoviesFromDatabase();
-        CinemaSystem.getInstance().getMainDisplay().refresh();
-        
-        String idToken;
-		idToken = "";
-	    
-		String[] categories = {"Drama", "Horror", "Thriller"};
-		String[] cinemas = {"Vakoura", "Cineplex"};
-	    MovieFields fields = new MovieFields("Pearl", 2022, "R", 103, "https://www.imdb.com/video/vi3608199705/?playlistId=tt18925334&ref_=tt_ov_vi", categories, cinemas, "In 1918, a young woman on the brink of madness pursues stardom in a desperate attempt to escape the drudgery, isolation, and lovelessness of life on her parents' farm.", "Ti West");     
-	    CinemaSystem.getInstance().updateMovieDocument(fields, idToken); // <--- The id token is missing now so this doesn't work. Normally an admin has to sign in and use their FirebaseID.
+        CinemaSystem.getInstance().getMainDisplay().refresh();	    
     }
 
     static void setRoot(String fxml) throws IOException {

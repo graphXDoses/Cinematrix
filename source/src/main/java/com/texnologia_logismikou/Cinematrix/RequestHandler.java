@@ -281,6 +281,23 @@ public class RequestHandler {
 		return response;
 	}
 	
+	public void deleteMovieDocumentRequest(String name) throws URISyntaxException, IOException, InterruptedException {
+		
+		HttpRequest deleteRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + name))
+				.DELETE()
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> deleteResponse = client.send(deleteRequest, BodyHandlers.ofString());
+		
+		System.out.println("STATUS CODE: " + deleteResponse.statusCode());
+		switch(deleteResponse.statusCode()) {
+		case 200: System.out.println("Movie document deleted succsefully."); break;
+		default: System.out.println("Couldn't delete movie document.");
+		}
+	}
+
 	public void resetPasswordRequest(String email) throws IOException, URISyntaxException, InterruptedException {
 		
 		ResetPasswordRequestBody request = new ResetPasswordRequestBody(email);
@@ -301,23 +318,6 @@ public class RequestHandler {
 		switch(postResponse.statusCode()) {
 		case 200: System.out.println("Reset password email sent succesfully."); break;
 		default: System.out.println("Couldn't send reset password email.");
-		}
-	}
-	
-	public void deleteMovieDocumentRequest(String name) throws URISyntaxException, IOException, InterruptedException {
-		
-		HttpRequest deleteRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + name))
-				.DELETE()
-				.build();
-		
-		HttpClient client = HttpClient.newHttpClient();
-		HttpResponse<String> deleteResponse = client.send(deleteRequest, BodyHandlers.ofString());
-		
-		System.out.println("STATUS CODE: " + deleteResponse.statusCode());
-		switch(deleteResponse.statusCode()) {
-		case 200: System.out.println("Movie document deleted succsefully."); break;
-		default: System.out.println("Couldn't delete movie document.");
 		}
 	}
 }
