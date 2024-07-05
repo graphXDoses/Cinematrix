@@ -230,7 +230,7 @@ public class CinemaSystem {
 		
 	}
 	
-	public void userSignIn(String email, String password) throws SignInException {
+	public String userSignIn(String email, String password) throws SignInException {
 		
 		SignInResponseBody signInResponse = new SignInResponseBody();
 		
@@ -254,6 +254,8 @@ public class CinemaSystem {
 		/*
 		 *  Store the Firebase ID, User ID and other useful information for later use.
 		 */
+		
+		return signInResponse.getIdToken();
 	}
 	
 	public void createMovieDocument(String name, String firebaseId) {

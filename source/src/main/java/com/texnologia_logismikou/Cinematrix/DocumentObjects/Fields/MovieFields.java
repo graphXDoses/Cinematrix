@@ -86,10 +86,6 @@ public class MovieFields extends Fields {
 		this.director = director;
 	}
 	
-	@Override
-	public String[] getFieldNames() {
-		return null;
-	}
 	public ErrorResponseBody getError() {
 		return error;
 	}

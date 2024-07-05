@@ -255,6 +255,10 @@ public class RequestHandler {
 
 	public MovieDocument updateMovieDocumentRequest(MovieFields fields, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
+		/*
+		 * 	If a value doesn't get updated upon request and no errors occur check the UpdateMaskQuery.java class. 
+		 */
+		
 		fields.getTitle().setStringValue(fields.getTitle().getStringValue().replaceAll("\\s+", "-"));
 		String queryParameter = UpdateMaskQuery.createUpdateAllMovieFieldsQuery();
 		
