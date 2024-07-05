@@ -1,6 +1,6 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
-public class UserFields {
+public class UserFields extends Fields {
 
 	private StringField email;
 	private BooleanField admin;

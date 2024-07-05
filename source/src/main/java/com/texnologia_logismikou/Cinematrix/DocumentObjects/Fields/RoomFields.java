@@ -5,10 +5,10 @@ public class RoomFields extends Fields {
 	private StringField roomId;
 	private MapField screenings;
 	
-	public RoomFields(String roomId, Fields fields) {
+	public RoomFields(String roomId, Fields screeningFields) {
 		
 		this.roomId = new StringField(roomId);
-		this.screenings = new MapField(fields);
+		this.screenings = new MapField(screeningFields);
 	}
 	
 	public StringField getRoomId() {

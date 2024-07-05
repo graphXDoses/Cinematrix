@@ -168,7 +168,7 @@ public class RequestHandler {
 
 	public UserDocument updateUserDocumentRequest(String uid, String firebaseId, UserFields fields) throws URISyntaxException, InterruptedException, IOException {
 		
-		String queryParameters = UpdateMaskQuery.createUpdateAllUserFields();
+		String queryParameters = UpdateMaskQuery.createUpdateAllFieldsQuery(UpdateMaskQuery.userFieldNames);
 		
 		UserDocument request = new UserDocument();
 		UserDocument response = new UserDocument();
@@ -260,7 +260,7 @@ public class RequestHandler {
 		 */
 		
 		fields.getTitle().setStringValue(fields.getTitle().getStringValue().replaceAll("\\s+", "-"));
-		String queryParameter = UpdateMaskQuery.createUpdateAllMovieFieldsQuery();
+		String queryParameter = UpdateMaskQuery.createUpdateAllFieldsQuery(UpdateMaskQuery.movieFieldNames);
 		
 		MovieDocument request = new MovieDocument();
 		MovieDocument response = new MovieDocument();
@@ -323,5 +323,32 @@ public class RequestHandler {
 		case 200: System.out.println("Reset password email sent succesfully."); break;
 		default: System.out.println("Couldn't send reset password email.");
 		}
+	}
+	
+	public void updateRoomDocumentRequest(String firebaseId, RoomFields fields) throws URISyntaxException, IOException, InterruptedException {
+		
+		String queryParameter = UpdateMaskQuery.createUpdateAllFieldsQuery(UpdateMaskQuery.roomFieldNames);
+		
+		RoomDocument request = new RoomDocument();
+		RoomDocument response = new RoomDocument();
+		request.setFields(fields);
+		
+		Gson gson = new Gson();
+		String jsonRequest = gson.toJson(request);
+		
+		HttpRequest patchRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/Vakoura/Venues/Room1?" + queryParameter))
+				.method("PATCH", BodyPublishers.ofString(jsonRequest))
+				.setHeader("Authorization", "Bearer " + firebaseId)
+				.build();
+			
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> patchResponse = client.send(patchRequest, BodyHandlers.ofString());
+		
+		//System.out.println(patchResponse.body());
+		
+		response = gson.fromJson(patchResponse.body(), RoomDocument.class);
+		
+		System.out.println(patchResponse.body());
 	}
 }
