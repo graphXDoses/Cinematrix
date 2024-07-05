@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER">
+         <children>
+            <SVGPath content="m 0 19 c 44 -8 96 -10 144 -10 c 48 0 100.5 1.5 144 10 l 0 -9 c -44 -9 -123 -10 -144 -10 c -21 0 -100.5 1.5 -144 10 Z" fill="#676767" stroke="#676767" />
+            <Label text="SCREEN" textFill="#dedede" translateY="-24.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label text="FRONT OF CINEMA" textFill="#dedede">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Label>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <Label text="BACK OF CINEMA" textFill="#dedede">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="30.0" top="30.0" />
+   </padding>
+</VBox>

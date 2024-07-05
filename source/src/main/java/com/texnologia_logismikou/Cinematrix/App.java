@@ -12,28 +12,16 @@ import java.io.IOException;
 /**
  * JavaFX App
  */
-public class App extends Application {
-
-    private static Scene scene;
+public class App extends Application
+{
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Main"));
-        scene.getStylesheets().add(getClass().getResource("styles/styles.css").toExternalForm());
-        
-        stage.setTitle("Cinematrix");
-        stage.getIcons().add(new Image(getClass().getResource("images/CinematrixIcon.png").toExternalForm()));
-        stage.setScene(scene);
-        stage.show();
-    }
+    	CinematrixAPI.getInstance().fetchCinemasFromDatabase();
+    	CinematrixAPI.getInstance().fetchMoviesFromDatabase();
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("screens/" + fxml + ".fxml"));
-        return fxmlLoader.load();
+    	CinematrixAPI.getInstance().placeUIOnStage(stage);
+        CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
 
     public static void main(String[] args) {

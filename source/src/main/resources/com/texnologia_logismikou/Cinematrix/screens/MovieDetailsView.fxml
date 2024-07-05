@@ -1,45 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-
-<SplitPane dividerPositions="0.5" prefHeight="507.0" prefWidth="664.0" style="-fx-background-color: #222222;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <items>
-      <AnchorPane maxWidth="500.0">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" spacing="30.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.MovieDetailsViewController">
+   <children>
+      <AnchorPane styleClass="movie_details_modal" stylesheets="@../styles/styles.css">
          <children>
-            <VBox alignment="TOP_CENTER" minWidth="343.0" prefHeight="505.0" prefWidth="343.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox fx:id="vbox_accordion" maxHeight="900.0" spacing="15.0">
                <children>
-                  <Pane maxHeight="300.0" maxWidth="220.0" minHeight="300.0" minWidth="220.0" prefHeight="300.0" prefWidth="220.0" VBox.vgrow="NEVER">
+                  <HBox spacing="20.0">
                      <children>
-                        <ImageView fitHeight="300.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="mdl_cover" fitHeight="300.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/TheAssassinationofJesseJames_Cover.jpg" />
+                              <Image url="@../images/_BLANK_Cover.jpg" />
                            </image>
                         </ImageView>
+                        <WebView fx:id="ytTrailerPlayerArea" prefHeight="-1.0" prefWidth="565.0" />
                      </children>
-                  </Pane>
-                  <Label contentDisplay="CENTER" prefHeight="60.0" prefWidth="300.0" text="The Assassination of Jesse James by the Coward Robert Ford" textAlignment="CENTER" textFill="#dedede" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Separator prefWidth="200.0" />
+                  </HBox>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <HBox spacing="10.0" HBox.hgrow="NEVER">
+                           <children>
+                              <AnchorPane maxHeight="25.0" maxWidth="25.0" prefHeight="25.0" prefWidth="25.0">
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/heart.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Button mnemonicParsing="false" onAction="#likeMovieCallback" styleClass="invisible-button" stylesheets="@../styles/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <VBox>
+                                 <children>
+                                    <Label fx:id="mdl_title" alignment="TOP_CENTER" contentDisplay="TOP" text="&lt;Movie Title Goes Here&gt;" textAlignment="CENTER" textFill="#dedede" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label fx:id="MPArating_label" text="R" textFill="#dedede" />
+                                          <Label text=", " textFill="#dedede" />
+                                          <Label fx:id="duration_label" text="1 hr 58 min" textFill="#dedede" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="40.0" HBox.hgrow="ALWAYS" />
+                        <HBox alignment="TOP_RIGHT" spacing="3.0" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/tomato.png" />
+                                 </image>
+                              </ImageView>
+                              <Label prefHeight="25.0" text="80%" textFill="#dedede" />
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/popcorn.png" />
+                                 </image>
+                              </ImageView>
+                              <Label prefHeight="25.0" text="90%" textFill="#dedede" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <Pane maxHeight="15.0" minHeight="15.0" prefHeight="15.0" />
+                  <Label fx:id="description_label" maxHeight="1.7976931348623157E308" maxWidth="600.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit." textFill="#dedede" wrapText="true" />
+                  <VBox fx:id="more_details_container" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox minHeight="0.0" styleClass="seat_selection_panel" stylesheets="@../styles/styles.css">
+                           <children>
+                              <Label maxHeight="1.7976931348623157E308" maxWidth="600.0" text="Director: " textFill="#dedede">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="director_label" maxHeight="1.7976931348623157E308" maxWidth="600.0" text="&lt;Directors Name&gt;" textFill="#337cf2" />
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </VBox>
+            <Hyperlink fx:id="moreDetailsLink" onAction="#toggleDetailsCallback" text="MORE DETAILS" textFill="#337cf2" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Hyperlink>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-   </items>
-</SplitPane>
+      <HBox prefHeight="80.0" prefWidth="200.0">
+         <children>
+            <Pane maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #337cf2; -fx-background-radius: 5;" HBox.hgrow="NEVER">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="17.0" prefWidth="80.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="movie_details_datepick_modal" stylesheets="@../styles/styles.css" text="TODAY" textFill="#dedede" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="Oswald" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="movie_details_datepick_modal" stylesheets="@../styles/styles.css" text="OCT" textFill="#dedede">
+                           <font>
+                              <Font name="Bodoni MT" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="movie_details_datepick_modal" stylesheets="@../styles/styles.css" text="13" textFill="#dedede">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="invisible-button" stylesheets="@../styles/styles.css">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <VBox fx:id="cinemaDisplayContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+         <padding>
+            <Insets bottom="-30.0" left="-30.0" right="-30.0" top="-30.0" />
+         </padding>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+</VBox>
