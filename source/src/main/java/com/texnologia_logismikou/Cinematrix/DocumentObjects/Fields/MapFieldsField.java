@@ -1,19 +1,19 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
-public class MapFieldsField {
+public class MapFieldsField<T extends Fields> extends Field {
 
-	private Fields fields;
+	private T fields;
 	
-	public MapFieldsField(Fields fields) {
+	public MapFieldsField(T fields) {
 		
 		this.fields = fields;
 	}
 
-	public Fields getFields() {
+	public T getFields() {
 		return fields;
 	}
 
-	public void setFields(Fields fields) {
+	public void setFields(T fields) {
 		this.fields = fields;
 	}
 }

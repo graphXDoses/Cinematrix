@@ -1,19 +1,19 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
-public class MapField {
+public class MapField<T extends Fields> extends Field {
 
-	private MapFieldsField mapValue;
+	private MapFieldsField<T> mapValue;
 
-	public MapField(Fields fields) {
+	public MapField(T fields) {
 		
-		this.mapValue = new MapFieldsField(fields);
+		this.mapValue = new MapFieldsField<T>(fields);
 	}
-	
-	public MapFieldsField getMapValue() {
+
+	public MapFieldsField<T> getMapValue() {
 		return mapValue;
 	}
 
-	public void setMapValue(MapFieldsField mapValue) {
+	public void setMapValue(MapFieldsField<T> mapValue) {
 		this.mapValue = mapValue;
 	}
 }

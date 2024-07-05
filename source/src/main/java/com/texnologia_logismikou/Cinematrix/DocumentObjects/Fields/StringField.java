@@ -1,6 +1,6 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
-public class StringField {
+public class StringField extends Field {
 
 	private String stringValue;
 

@@ -3,12 +3,12 @@ package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 public class RoomFields extends Fields {
 
 	private StringField roomId;
-	private MapField screenings;
+	private MapField<ScreeningFields> screenings;
 	
-	public RoomFields(String roomId, Fields screeningFields) {
+	public RoomFields(String roomId, ScreeningFields screeningFields) {
 		
 		this.roomId = new StringField(roomId);
-		this.screenings = new MapField(screeningFields);
+		this.screenings = new MapField<ScreeningFields>(screeningFields);
 	}
 	
 	public StringField getRoomId() {
@@ -17,10 +17,10 @@ public class RoomFields extends Fields {
 	public void setRoomId(StringField roomId) {
 		this.roomId = roomId;
 	}
-	public MapField getScreenings() {
+	public MapField<ScreeningFields> getScreenings() {
 		return screenings;
 	}
-	public void setScreenings(MapField screenings) {
+	public void setScreenings(MapField<ScreeningFields> screenings) {
 		this.screenings = screenings;
 	}
 }
