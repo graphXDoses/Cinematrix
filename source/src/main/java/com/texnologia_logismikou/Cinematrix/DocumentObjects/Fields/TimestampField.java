@@ -9,9 +9,27 @@ public class TimestampField {
 		this.timestampValue = timestamp;
 	}
 	
-	public static String toTimestamp(String year, String month, String day, String hour, String minute) {
-		String timestampValue = year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":00" + "Z";
-		return timestampValue;
+	public static String toTimestamp(String timestamp) {
+		
+		String regex = "[\\s]";
+		String[] array = timestamp.split(regex);
+		String timestampFormatted = "";
+		
+		int i = 0;
+		for(String field: array) {
+			timestampFormatted += field;
+			switch(i) {
+			case 0, 1: timestampFormatted += "-"; break;
+			case 2: timestampFormatted += "T"; break;
+			case 3, 4: timestampFormatted += ":"; break;
+			case 5: timestampFormatted += "Z"; break;
+			}
+			i++;
+		}
+		
+		System.out.println(timestampFormatted);
+		
+		return timestampFormatted;
 	}
 	
 	public String getTimestampValue() {
