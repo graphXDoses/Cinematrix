@@ -98,6 +98,29 @@ public class RequestHandler {
 		return response;
 	}
 	
+	public void resetPasswordRequest(String email) throws IOException, URISyntaxException, InterruptedException {
+		
+		ResetPasswordRequestBody request = new ResetPasswordRequestBody(email);
+		
+		Gson gson = new Gson();
+		String jsonRequest = gson.toJson(request);
+		
+		HttpRequest postRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + webKey))
+				.setHeader("Content-Type", "application/json")
+				.POST(BodyPublishers.ofString(jsonRequest))
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> postResponse = client.send(postRequest, BodyHandlers.ofString());
+		
+		System.out.println("STATUS CODE: " + postResponse.statusCode());
+		switch(postResponse.statusCode()) {
+		case 200: System.out.println("Reset password email sent succesfully."); break;
+		default: System.out.println("Couldn't send reset password email.");
+		}
+	}
+
 	public void deleteUserAccountRequest(String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
 		DeleteAccountRequestBody request = new DeleteAccountRequestBody();
@@ -302,27 +325,42 @@ public class RequestHandler {
 		}
 	}
 
-	public void resetPasswordRequest(String email) throws IOException, URISyntaxException, InterruptedException {
+	public RoomDocument createRoomDocumentRequest(String firebaseId, String roomId, String cinemaName) throws IOException, URISyntaxException, InterruptedException {
 		
-		ResetPasswordRequestBody request = new ResetPasswordRequestBody(email);
+		RoomDocument response = new RoomDocument();
 		
 		Gson gson = new Gson();
-		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest postRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + webKey))
-				.setHeader("Content-Type", "application/json")
-				.POST(BodyPublishers.ofString(jsonRequest))
+				.uri(new URI("https://firestore.googleapis.com/v1beta1/" + documentsPath + "/Cinemas/" + cinemaName + "/Venues?documentId=" + roomId))
+				.POST(BodyPublishers.ofString(""))
+				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
 		
 		HttpClient client = HttpClient.newHttpClient();
 		HttpResponse<String> postResponse = client.send(postRequest, BodyHandlers.ofString());
 		
-		System.out.println("STATUS CODE: " + postResponse.statusCode());
-		switch(postResponse.statusCode()) {
-		case 200: System.out.println("Reset password email sent succesfully."); break;
-		default: System.out.println("Couldn't send reset password email.");
-		}
+		response = gson.fromJson(postResponse.body(), RoomDocument.class);
+		
+		return response;
+	}
+	
+	public RoomDocument getRoomDocumentRequest(String roomId, String cinemaName) throws IOException, URISyntaxException, InterruptedException {
+		
+		RoomDocument response = new RoomDocument();
+		Gson gson = new Gson();
+		
+		HttpRequest getRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + cinemaName + "/Venues/" + roomId))
+				.GET()
+				.setHeader("Content-Type", "application/json")
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
+		
+		response = gson.fromJson(getResponse.body(), RoomDocument.class);
+		return response;
 	}
 	
 	public RoomDocument updateRoomDocumentRequest(String firebaseId, RoomFields fields) throws URISyntaxException, IOException, InterruptedException {
@@ -352,5 +390,22 @@ public class RequestHandler {
 		System.out.println(patchResponse.body());
 		
 		return response;
+	}
+	
+	public void deleteRoomDocumentRequest(String cinemaName, String roomId) throws URISyntaxException, IOException, InterruptedException {
+		
+		HttpRequest deleteRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + cinemaName + "/Venues/" + roomId))
+				.DELETE()
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> deleteResponse = client.send(deleteRequest, BodyHandlers.ofString());
+		
+		System.out.println("STATUS CODE: " + deleteResponse.statusCode());
+		switch(deleteResponse.statusCode()) {
+		case 200: System.out.println("Room document deleted succsefully."); break;
+		default: System.out.println("Couldn't delete room document.");
+		}
 	}
 }

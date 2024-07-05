@@ -17,6 +17,7 @@ import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.MovieFields;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.RoomFields;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.ScreeningFields;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.StringField;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.TimestampField;
 
 /**
  * JavaFX App
@@ -44,13 +45,17 @@ public class App extends Application {
         try {
 			id = CinemaSystem.getInstance().userSignIn("phoebuspetsi@gmail.com", "myPassword123");
 			
-			ScreeningFields screenFields = new ScreeningFields("Interstellar", 2100, 000);
-			ScreeningFields screenFields2 = new ScreeningFields("Rush-Hour", 1600, 000);
-			ScreeningFields screenFields3 = new ScreeningFields("Spiritied-Away", 2400, 000);
+			String time1 = TimestampField.toTimestamp("2024", "07", "05", "21", "00");
+			String time2 = TimestampField.toTimestamp("2024", "07", "05", "16", "30");
+			String time3 = TimestampField.toTimestamp("2024", "07", "06", "15", "00");
+			
+			ScreeningFields screenFields = new ScreeningFields("Interstellar", time1);
+			ScreeningFields screenFields2 = new ScreeningFields("Rush-Hour", time2);
+			ScreeningFields screenFields3 = new ScreeningFields("Spiritied-Away", time3);
 			
 			ScreeningFields[] array = {screenFields, screenFields2, screenFields3};
 			
-			RoomFields fields = new RoomFields("room1", array);
+			RoomFields fields = new RoomFields("room1", array, 50);
 			try {
 				RequestHandler.getInstance("AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU").updateRoomDocumentRequest(id, fields);
 			} catch (URISyntaxException e) {

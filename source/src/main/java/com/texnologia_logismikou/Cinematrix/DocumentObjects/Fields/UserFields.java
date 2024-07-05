@@ -2,6 +2,10 @@ package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
 public class UserFields extends Fields {
 
+	/*
+	 * 	If you add a new field remember to update the QueryParameter.
+	 */
+	
 	private StringField email;
 	private BooleanField admin;
 	private StringField name;

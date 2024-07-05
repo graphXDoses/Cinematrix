@@ -2,13 +2,18 @@ package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
 public class RoomFields extends Fields {
 
-	private StringField roomId;
-	private ArrayField<MapField> screenings;
+	/*
+	 * 	If you add a new field remember to update the QueryParameter.
+	 */
 	
-	public RoomFields(String roomId, ScreeningFields[] screeningFields) {
+	private StringField id;
+	private ArrayField<MapField> screenings;
+	private DoubleField seats;
+	
+	public RoomFields(String roomId, ScreeningFields[] screeningFields, int seats) {
 		
-		this.roomId = new StringField(roomId);
-		
+		this.id = new StringField(roomId);
+		this.seats = new DoubleField(seats);
 		this.screenings = new ArrayField<MapField>(MapField.toMapFieldArray(screeningFields));
 	}
 	
@@ -21,9 +26,25 @@ public class RoomFields extends Fields {
 	}
 
 	public StringField getRoomId() {
-		return roomId;
+		return id;
 	}
 	public void setRoomId(StringField roomId) {
-		this.roomId = roomId;
+		this.id = roomId;
+	}
+
+	public StringField getId() {
+		return id;
+	}
+
+	public void setId(StringField id) {
+		this.id = id;
+	}
+
+	public DoubleField getSeats() {
+		return seats;
+	}
+
+	public void setSeats(DoubleField seats) {
+		this.seats = seats;
 	}
 }

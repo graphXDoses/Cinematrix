@@ -2,15 +2,18 @@ package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
 public class ScreeningFields extends Fields {
 
-	private StringField movie;
-	private DoubleField time;
-	private DoubleField date;
+	/*
+	 * 	If you add a new field remember to update the QueryParameter.
+	 */
 	
-	public ScreeningFields(String movie, int time, long date) {
+	private StringField movie;
+	private TimestampField timestamp;
+	private DoubleField reservedSeats;
+	
+	public ScreeningFields(String movie, String timestamp) {
 		
 		this.movie = new StringField(movie);
-		this.time = new DoubleField(time);
-		this.date = new DoubleField(date);
+		this.timestamp = new TimestampField(timestamp);
 	}
 	
 	public StringField getMovie() {
@@ -19,16 +22,19 @@ public class ScreeningFields extends Fields {
 	public void setMovie(StringField movie) {
 		this.movie = movie;
 	}
-	public DoubleField getTime() {
-		return time;
+	public TimestampField getTimestamp() {
+		return timestamp;
 	}
-	public void setTime(DoubleField time) {
-		this.time = time;
+
+	public void setTimestamp(TimestampField timestamp) {
+		this.timestamp = timestamp;
 	}
-	public DoubleField getDate() {
-		return date;
+
+	public DoubleField getAvailableSeats() {
+		return reservedSeats;
 	}
-	public void setDate(DoubleField date) {
-		this.date = date;
+
+	public void setAvailableSeats(DoubleField availableSeats) {
+		this.reservedSeats = availableSeats;
 	}
 }

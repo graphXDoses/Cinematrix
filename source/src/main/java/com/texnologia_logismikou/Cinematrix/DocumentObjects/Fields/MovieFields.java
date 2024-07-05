@@ -4,8 +4,11 @@ import com.texnologia_logismikou.Cinematrix.ResponseBodies.ErrorResponseBody;
 
 public class MovieFields extends Fields {
 
-	private ErrorResponseBody error;
+	/*
+	 * 	If you add a new field remember to update the QueryParameter.
+	 */
 	
+	private StringField id;
 	private StringField title;
 	private DoubleField releaseYear;
 	private StringField mpRating;
@@ -18,8 +21,9 @@ public class MovieFields extends Fields {
 	
 	public MovieFields(String title, double releaseYear, String mpRating, double duration,
 			String ytTrailerUrl, String[] categories, String[] cinemas,
-			String description, String director) {
+			String description, String director, String id) {
 		
+		this.id = new StringField(id);
 		this.title = new StringField(title);
 		this.releaseYear = new DoubleField(releaseYear);
 		this.mpRating = new StringField(mpRating);
@@ -85,11 +89,10 @@ public class MovieFields extends Fields {
 	public void setDirector(StringField director) {
 		this.director = director;
 	}
-	
-	public ErrorResponseBody getError() {
-		return error;
+	public StringField getId() {
+		return id;
 	}
-	public void setError(ErrorResponseBody error) {
-		this.error = error;
+	public void setId(StringField id) {
+		this.id = id;
 	}
 }
