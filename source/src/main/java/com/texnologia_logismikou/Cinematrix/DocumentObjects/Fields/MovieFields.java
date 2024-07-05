@@ -17,7 +17,7 @@ public class MovieFields extends Fields {
 	private StringField director;
 	
 	public MovieFields(String title, double releaseYear, String mpRating, double duration,
-			String ytTrailerUrl, StringField[] categories, StringField[] cinemas,
+			String ytTrailerUrl, String[] categories, String[] cinemas,
 			String description, String director) {
 		
 		this.title = new StringField(title);
@@ -25,8 +25,9 @@ public class MovieFields extends Fields {
 		this.mpRating = new StringField(mpRating);
 		this.duration = new DoubleField(duration);
 		this.ytTrailerUrl = new StringField(ytTrailerUrl);
-		this.categories = new ArrayField<StringField>(categories);
-		this.cinemas = new ArrayField<StringField>(cinemas);
+		
+		this.categories = new ArrayField<StringField>(StringField.toStringFieldArray(categories));
+		this.cinemas = new ArrayField<StringField>(StringField.toStringFieldArray(cinemas));
 		this.description = new StringField(description);
 		this.director = new StringField(director);
 	}

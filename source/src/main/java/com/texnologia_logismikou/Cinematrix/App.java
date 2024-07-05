@@ -35,13 +35,11 @@ public class App extends Application {
         
         String idToken;
 		idToken = "";
-		CinemaSystem.getInstance().createMovieDocument("Knives Out", idToken);
-	        
-	    StringField[] cinemas = {new StringField("Cineplex"), new StringField("Village"), new StringField("Athineon")};
-	    StringField[] categories = {new StringField("Comedy"), new StringField("Crime"), new StringField("Drama"), new StringField("Thriller"), new StringField("Mystery")};
-	    MovieFields fields = new MovieFields("Knives Out", 2019, "PG-13", 130, "hhttps://www.imdb.com/video/vi2464857881/?playlistId=tt8946378&ref_=tt_ov_vi", categories, cinemas, "A detective investigates the death of the patriarch of an eccentric, combative family.", "Rian Johnson");
-	        
-	    CinemaSystem.getInstance().updateMovieDocument(fields, idToken);
+	    
+		String[] categories = {"Drama", "Horror", "Thriller"};
+		String[] cinemas = {"Vakoura", "Cineplex"};
+	    MovieFields fields = new MovieFields("Pearl", 2022, "R", 103, "https://www.imdb.com/video/vi3608199705/?playlistId=tt18925334&ref_=tt_ov_vi", categories, cinemas, "In 1918, a young woman on the brink of madness pursues stardom in a desperate attempt to escape the drudgery, isolation, and lovelessness of life on her parents' farm.", "Ti West");     
+	    CinemaSystem.getInstance().updateMovieDocument(fields, idToken); // <--- The id token is missing now so this doesn't work. Normally an admin has to sign in and use their FirebaseID.
     }
 
     static void setRoot(String fxml) throws IOException {
