@@ -6,7 +6,7 @@ public class ScreeningFields extends Fields {
 	private DoubleField time;
 	private DoubleField date;
 	
-	public ScreeningFields(String movie, Double time, Double date) {
+	public ScreeningFields(String movie, int time, long date) {
 		
 		this.movie = new StringField(movie);
 		this.time = new DoubleField(time);

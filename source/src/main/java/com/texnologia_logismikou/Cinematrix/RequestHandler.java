@@ -325,7 +325,7 @@ public class RequestHandler {
 		}
 	}
 	
-	public void updateRoomDocumentRequest(String firebaseId, RoomFields fields) throws URISyntaxException, IOException, InterruptedException {
+	public RoomDocument updateRoomDocumentRequest(String firebaseId, RoomFields fields) throws URISyntaxException, IOException, InterruptedException {
 		
 		String queryParameter = UpdateMaskQuery.createUpdateAllFieldsQuery(UpdateMaskQuery.roomFieldNames);
 		
@@ -350,5 +350,7 @@ public class RequestHandler {
 		response = gson.fromJson(patchResponse.body(), RoomDocument.class);
 		
 		System.out.println(patchResponse.body());
+		
+		return response;
 	}
 }

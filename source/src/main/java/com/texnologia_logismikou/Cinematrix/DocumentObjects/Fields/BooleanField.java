@@ -1,6 +1,6 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
-public class BooleanField extends Field {
+public class BooleanField {
 	
 	private boolean booleanValue;
 

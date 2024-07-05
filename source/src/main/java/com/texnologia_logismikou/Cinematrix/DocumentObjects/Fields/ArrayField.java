@@ -1,6 +1,6 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
-public class ArrayField<T> extends Field {
+public class ArrayField<T> {
 
 	private ArrayValuesField<T> arrayValue;
 

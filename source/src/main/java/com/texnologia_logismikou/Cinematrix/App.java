@@ -8,8 +8,11 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URISyntaxException;
 
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.ArrayField;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.MapField;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.MovieFields;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.RoomFields;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.ScreeningFields;
@@ -40,8 +43,14 @@ public class App extends Application {
         
         try {
 			id = CinemaSystem.getInstance().userSignIn("phoebuspetsi@gmail.com", "myPassword123");
-			ScreeningFields screenFields = new ScreeningFields("Interstellar", 2100.0, 07052024.0);
-			RoomFields fields = new RoomFields("room1", screenFields);
+			
+			ScreeningFields screenFields = new ScreeningFields("Interstellar", 2100, 000);
+			ScreeningFields screenFields2 = new ScreeningFields("Rush-Hour", 1600, 000);
+			ScreeningFields screenFields3 = new ScreeningFields("Spiritied-Away", 2400, 000);
+			
+			ScreeningFields[] array = {screenFields, screenFields2, screenFields3};
+			
+			RoomFields fields = new RoomFields("room1", array);
 			try {
 				RequestHandler.getInstance("AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU").updateRoomDocumentRequest(id, fields);
 			} catch (URISyntaxException e) {
