@@ -1,12 +1,11 @@
 package com.texnologia_logismikou.Cinematrix.ResponseBodies;
 
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.MovieDocument;
-import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.ArrayValuesField;
 
-public class ListMoviesResponse {
+public class ListMoviesResponseBody {
 
 	private String nextPageToken;
-	private ArrayValuesField<MovieDocument> documents;
+	private MovieDocument[] documents;
 	
 	public String getNextPageToken() {
 		return nextPageToken;
@@ -14,10 +13,10 @@ public class ListMoviesResponse {
 	public void setNextPageToken(String nextPageToken) {
 		this.nextPageToken = nextPageToken;
 	}
-	public ArrayValuesField<MovieDocument> getDocuments() {
+	public MovieDocument[] getDocuments() {
 		return documents;
 	}
-	public void setDocuments(ArrayValuesField<MovieDocument> documents) {
+	public void setDocuments(MovieDocument[] documents) {
 		this.documents = documents;
 	}
 }

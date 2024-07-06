@@ -10,6 +10,8 @@ public class UpdateMaskQuery {
 	
 	public static final String[] roomFieldNames = {"screenings", "id", "seats"};
 	
+	public static final String[] cinemaFieldNames = {"name", "id", "address", "openHours"};
+	
 	public static String createUpdateAllFieldsQuery(String[] fieldNames) {
 		
 		String queryParameter = "";

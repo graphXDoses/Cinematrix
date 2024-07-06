@@ -2,6 +2,10 @@ package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
 public class CinemaFields {
 
+	/*
+	 *  If you ever change the fields remember to update the QueryParameter!
+	 */
+	
 	private StringField name;
 	private StringField id;
 	private StringField address;

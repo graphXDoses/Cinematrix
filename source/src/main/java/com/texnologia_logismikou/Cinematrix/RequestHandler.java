@@ -425,4 +425,52 @@ public class RequestHandler {
 		
 		return response;
 	}
+	
+	public CinemaDocument updateCinemaDocumentRequest(CinemaFields fields, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
+		
+		String queryParameter = UpdateMaskQuery.createUpdateAllFieldsQuery(UpdateMaskQuery.cinemaFieldNames);
+		
+		CinemaDocument request = new CinemaDocument();
+		CinemaDocument response = new CinemaDocument();
+		request.setFields(fields);
+		
+		Gson gson = new Gson();
+		String jsonRequest = gson.toJson(request);
+		
+		HttpRequest patchRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + fields.getName().getStringValue() + "?" + queryParameter))
+				.method("PATCH", BodyPublishers.ofString(jsonRequest))
+				.setHeader("Authorization", "Bearer " + firebaseId)
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> patchResponse = client.send(patchRequest, BodyHandlers.ofString());
+		
+		response = gson.fromJson(patchResponse.body(), CinemaDocument.class);
+		
+		System.out.println(patchResponse.body());
+		
+		return response;
+	}
+	
+	public ListRoomsResponseBody fetchAllCinemaRooms(String cinemaName) throws URISyntaxException, IOException, InterruptedException {
+		
+		ListRoomsResponseBody response = new ListRoomsResponseBody();
+		Gson gson = new Gson();
+		
+		HttpRequest getRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + cinemaName + "/Venues"))
+				.GET()
+				.setHeader("Content-Type", "application/json")
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
+		
+		response = gson.fromJson(getResponse.body(), ListRoomsResponseBody.class);
+		
+		System.out.println(getResponse.body());
+		
+		return response;
+	}
 }

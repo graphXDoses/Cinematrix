@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  * JavaFX App
@@ -31,9 +32,15 @@ public class App extends Application {
         CinemaSystem.getInstance().getMainDisplay().refresh();
         
         try {
-			String id = CinemaSystem.getInstance().userSignIn("phoebuspetsi@gmail.com", "myPassword123");
-	        CinemaSystem.getInstance().createCinemaDocument("Village", id, 5);
-		} catch (SignInException e) {
+			RequestHandler.getInstance().fetchAllCinemaRooms("Village");
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
