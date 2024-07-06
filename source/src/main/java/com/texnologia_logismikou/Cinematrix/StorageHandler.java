@@ -1,11 +1,11 @@
 package com.texnologia_logismikou.Cinematrix;
 
-import com.google.auth.Credentials;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.StringField;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,7 +13,11 @@ import java.nio.file.Paths;
 
 public class StorageHandler {
 	
-	public static void downloadObject() throws FileNotFoundException, Exception {
+	private final String bucketName = "cinematrix_movie_images";
+	private final String projectId = "fir-test-java-1d671";
+	private final String credentialsPath = "C:/Users/petsi/University/TexLog/cinematrix_creds.json";
+	
+	public void downloadMovieImage(String movieName) throws FileNotFoundException, Exception {
 		// The ID of your GCP project
 		// String projectId = "your-project-id";
 
@@ -26,15 +30,18 @@ public class StorageHandler {
 		// The path to which the file should be downloaded
 		// String destFilePath = "/local/path/to/file.txt";
 
-		FileInputStream creds = new FileInputStream("C:/Users/petsi/University/TexLog/cinematrix_creds.json");
+		movieName = StringField.toPascalCase(movieName);
+		String imageName = "_" + movieName + "_Cover.jpg";
+		
+		FileInputStream creds = new FileInputStream(credentialsPath); // <--- Path to credentials.
 		
 		Storage storage = StorageOptions.newBuilder()
-				.setProjectId("fir-test-java-1d671")
+				.setProjectId(projectId)
 				.setCredentials(GoogleCredentials.fromStream(creds))
 				.build()
 				.getService();
 
-		Blob blob = storage.get(BlobId.of("cinematrix_movie_images", "bullet_train.png"));
-		blob.downloadTo(Paths.get("src/main/resources/com/texnologia_logismikou/Cinematrix/images/bullet_train.png"));
+		Blob blob = storage.get(BlobId.of(bucketName, imageName));
+		blob.downloadTo(Paths.get("src/main/resources/com/texnologia_logismikou/Cinematrix/images/" + imageName));
 	}
 }

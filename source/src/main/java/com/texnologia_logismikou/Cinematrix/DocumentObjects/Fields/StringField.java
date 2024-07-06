@@ -35,4 +35,10 @@ public class StringField {
 		
 		return fieldArray;
 	}
+	
+	public static String toPascalCase(String string) {
+		
+		string = string.replaceAll("[^A-Za-z]+", "");
+		return string;
+	}
 }

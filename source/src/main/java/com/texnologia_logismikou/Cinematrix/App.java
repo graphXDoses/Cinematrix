@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URISyntaxException;
 
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.MovieDocument;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.ArrayField;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.MapField;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.MovieFields;
@@ -41,13 +42,29 @@ public class App extends Application {
         CinemaSystem.getInstance().fetchMoviesFromDatabase();
         CinemaSystem.getInstance().getMainDisplay().refresh();
         
-        StorageHandler temp = new StorageHandler();
-        try {
-			temp.downloadObject();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
+        String id;
+		try {
+			id = CinemaSystem.getInstance().userSignIn("phoebuspetsi@gmail.com", "myPassword123");
+			MovieDocument response = new MovieDocument();
+			//CinemaSystem.getInstance().createMovieDocument("Spirited Away", id);
+			
+			String[] categories = {"Animation", "Adventure", "Family", "Fantasy", "Mystery"};
+			String[] cinemas = {"Village", "Cineplex"};
+			MovieFields fields = new MovieFields("Spirited Away", 2001, "PG", 125, "https://youtu.be/ByXuk9QqQkk?si=r6es_Sx50h5RZe6F", categories, cinemas, "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches and spirits, and where humans are changed into beasts.", "Hayao Miyazaki", "SpritedAway");
+			
+			//CinemaSystem.getInstance().updateMovieDocument(fields, id);
+			response = CinemaSystem.getInstance().getMovieDocument("Spirited Away");
+			StorageHandler temp = new StorageHandler();
+			try {
+				temp.downloadMovieImage(response.getFields().getTitle().getStringValue());
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (SignInException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

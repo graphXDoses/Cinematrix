@@ -27,7 +27,7 @@ public class CinemaSystem {
 	private static CinemaSystem instance = null;
 	
 	private final String webKey = "AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU";
-
+	
 	private static UserCore currentUser;
 	private static MainDisplay mD;
 	private static List<Movie>   movies   = new ArrayList<>();
@@ -306,5 +306,46 @@ public class CinemaSystem {
 			System.out.println("Movie Document succesfully updated at: " + updateResponse.getUpdateTime());
 		}
 	}
-
+	
+	public MovieDocument getMovieDocument(String name) {
+		
+		MovieDocument response = new MovieDocument();
+		
+		try {
+			response = RequestHandler.getInstance(webKey).getMovieDocumentRequest(name);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		
+		if(response.getError() != null) {
+			System.out.println("Error retrieving movie doc. Error details: " + response.getError().getMessage());
+			return null;
+		} 
+		
+		return response;
+	}
+	
+	public void deleteMovieDocument(String name) {
+		
+		int statusCode;
+		
+		try {
+			statusCode = RequestHandler.getInstance(webKey).deleteMovieDocumentRequest(name);
+			System.out.println("STATUS CODE: " + statusCode);
+			switch(statusCode) {
+			case 200: System.out.println("Movie document deleted succsefully."); break;
+			default: System.out.println("Couldn't delete movie document.");
+			}
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }

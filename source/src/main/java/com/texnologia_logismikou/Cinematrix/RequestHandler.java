@@ -234,7 +234,7 @@ public class RequestHandler {
 
 	public MovieDocument createMovieDocumentRequest(String name, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
-		name = name.replaceAll("\\s+", "-");
+		name = StringField.toPascalCase(name);
 		MovieDocument response = new MovieDocument();
 		
 		Gson gson = new Gson();
@@ -257,7 +257,7 @@ public class RequestHandler {
 	
 	public MovieDocument getMovieDocumentRequest(String name) throws IOException, InterruptedException, URISyntaxException {
 		
-		name = name.replaceAll("\\s+", "-");
+		name = StringField.toPascalCase(name);
 		
 		MovieDocument response = new MovieDocument();
 		Gson gson = new Gson();
@@ -282,7 +282,7 @@ public class RequestHandler {
 		 * 	If a value doesn't get updated upon request and no errors occur check the UpdateMaskQuery.java class. 
 		 */
 		
-		fields.getTitle().setStringValue(fields.getTitle().getStringValue().replaceAll("\\s+", "-"));
+		String name = StringField.toPascalCase(fields.getTitle().getStringValue());
 		String queryParameter = UpdateMaskQuery.createUpdateAllFieldsQuery(UpdateMaskQuery.movieFieldNames);
 		
 		MovieDocument request = new MovieDocument();
@@ -293,7 +293,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getTitle().getStringValue() + "?" + queryParameter))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + name + "?" + queryParameter))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -308,7 +308,9 @@ public class RequestHandler {
 		return response;
 	}
 	
-	public void deleteMovieDocumentRequest(String name) throws URISyntaxException, IOException, InterruptedException {
+	public int deleteMovieDocumentRequest(String name) throws URISyntaxException, IOException, InterruptedException {
+		
+		name = StringField.toPascalCase(name);
 		
 		HttpRequest deleteRequest = HttpRequest.newBuilder()
 				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + name))
@@ -318,11 +320,7 @@ public class RequestHandler {
 		HttpClient client = HttpClient.newHttpClient();
 		HttpResponse<String> deleteResponse = client.send(deleteRequest, BodyHandlers.ofString());
 		
-		System.out.println("STATUS CODE: " + deleteResponse.statusCode());
-		switch(deleteResponse.statusCode()) {
-		case 200: System.out.println("Movie document deleted succsefully."); break;
-		default: System.out.println("Couldn't delete movie document.");
-		}
+		return deleteResponse.statusCode();
 	}
 
 	public RoomDocument createRoomDocumentRequest(String firebaseId, String roomId, String cinemaName) throws IOException, URISyntaxException, InterruptedException {
