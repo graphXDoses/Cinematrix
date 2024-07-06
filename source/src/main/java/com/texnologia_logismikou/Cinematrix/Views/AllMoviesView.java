@@ -33,6 +33,8 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 			
 			getController().appendUpcomming(movies.get(2).getModal());
 		}
+		for(int i=0; i<5; i++)
+			getController().appendNowFeaturing(new MovieModal(null));
 	}
 
 	@Override

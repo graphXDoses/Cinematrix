@@ -10,6 +10,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
@@ -27,6 +28,11 @@ public class MovieDetailsViewController {
 	@FXML private VBox more_details_container;
 	@FXML private VBox vbox_accordion_container;
 	@FXML private WebView yt_trailer_player_area;
+	@FXML private AnchorPane like_movie_container;
+
+    @FXML private Button filter_all_button;
+    @FXML private Button filter_dolby_button;
+    @FXML private Button filter_standard_button;
 	
 	private static Image     blankCover;
 	private static String    defaultText;
@@ -73,6 +79,11 @@ public class MovieDetailsViewController {
     		cinema_display_container.getChildren().add(cinemaDisplayRootNode);
     }
     
+    public void setLikable(boolean value)
+    {
+    	like_movie_container.setVisible(value);
+    }
+    
     @FXML
     void likeMovieCallback(ActionEvent event) {
 		System.out.println((Node)event.getSource());
@@ -86,6 +97,21 @@ public class MovieDetailsViewController {
     	vbox_accordion_container.setMaxHeight(modalMaxSize[expantionState]);
     	
     	more_details_container.setVisible(expantionState == 1);
+    }
+    
+    @FXML
+    void filterAllCallback(ActionEvent event) {
+
+    }
+
+    @FXML
+    void filterDolbyCallback(ActionEvent event) {
+
+    }
+
+    @FXML
+    void filterStandardCallback(ActionEvent event) {
+
     }
 
 }

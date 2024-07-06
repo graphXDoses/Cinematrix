@@ -23,6 +23,7 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 
 	void standardPrepare()
 	{
+		getController().setLikable(false);
 		getController().setMovieDetailData(selectedMovie);
 		getController().setCinemaDisplay(cinemasDisplay.getParent());
 		
@@ -49,6 +50,7 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 	public void showToUser()
 	{
 		standardPrepare();
+		getController().setLikable(true);
 	}
 
 	@Override

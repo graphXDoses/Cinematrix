@@ -1,5 +1,7 @@
 package com.texnologia_logismikou.Cinematrix;
 
+import java.util.ArrayList;
+
 import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
 
 public class Movie {
@@ -12,6 +14,8 @@ public class Movie {
 	private String description;
 	private String director;
 	private final MovieModal modal;
+	
+	private ArrayList<Screening> screenings = new ArrayList<Screening>();
 	
 	//Empty constructor
 	//MUST REMAIN!!!
@@ -91,5 +95,15 @@ public class Movie {
 		}
 		
 		return downloadable;
+	}
+
+	public void associateScreening(Screening screening) {
+		if(!this.screenings.contains(screening))
+			this.screenings.add(screening);
+	}
+	
+	public ArrayList<Screening> getAssociateScreenings()
+	{
+		return(this.screenings);
 	}
 }

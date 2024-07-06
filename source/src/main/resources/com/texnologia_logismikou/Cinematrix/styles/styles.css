@@ -304,6 +304,24 @@
     -fx-font-family: 'Oswald';
 }
 
+.movie_details_button_active
+{
+    -fx-text-fill: -fx-txtColor;
+    -fx-background-color: -fx-c1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.movie_details_button_inactive
+{
+    -fx-text-fill: -fx-txtColor;
+    -fx-background-color: transparent;
+    -fx-border-width: 1;
+    -fx-border-color: -fx-fg;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
 .register_decision_button
 {
     -fx-background-insets: 0; /* Remove additional insets */

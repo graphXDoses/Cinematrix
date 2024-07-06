@@ -1,5 +1,6 @@
 package com.texnologia_logismikou.Cinematrix.Managers;
 
+import com.texnologia_logismikou.Cinematrix.Screening;
 import com.texnologia_logismikou.Cinematrix.Controllers.ReservationButtonController;
 
 public class ReservationButton extends Manager<ReservationButtonController>

@@ -9,7 +9,7 @@ public class MovieContext extends Context
 {
 	public static AllMoviesView ALL_MOVIES_VIEW = new AllMoviesView();
 	public static MovieDetailsView MOVIE_DETAILS_VIEW = new MovieDetailsView();
-	public static SeatSelectionView SEAT_SELECTION_VIEW = new SeatSelectionView();
+	public static SeatSelectionView SEAT_SELECTION_VIEW = null;//new SeatSelectionView();
 	
 	public MovieContext()
 	{

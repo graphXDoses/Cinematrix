@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.texnologia_logismikou.Cinematrix.Cinema;
 import com.texnologia_logismikou.Cinematrix.Movie;
+import com.texnologia_logismikou.Cinematrix.Screening;
 import com.texnologia_logismikou.Cinematrix.Managers.ReservationButton;
 
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ public class CinemaModalController {
 	@FXML private Label cinema_address_label;
 	@FXML private Label cinema_name_label;
 	@FXML private Label cinema_rel_distance_label;
+	@FXML private Label sound_system_label;
 	@FXML private HBox  hours_container;
 	
 	private Cinema associateCinema = null;
@@ -39,12 +41,12 @@ public class CinemaModalController {
     	hours_container.setVisible(false);
     }
 
-    public void setScreeningData(Movie movie, String soundSystem, List<Date> dates, List<String> hours)
+    public void setScreeningData(Screening screening)
     {
 //    	System.out.println("SCREEN");
-    	associateMovie = movie;
+    	associateMovie = screening.getMovie();
     	
-    	for(String h: hours)
+    	for(String h: screening.getHours())
     		addReservationButton(new ReservationButton(h));
     }
 

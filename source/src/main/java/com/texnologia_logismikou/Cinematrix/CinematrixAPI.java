@@ -44,6 +44,7 @@ public class CinematrixAPI {
 	private static MainUI   UI;
 	private static List<Movie>   movies   = new ArrayList<>();
 	private static List<Cinema>  cinemas  = new ArrayList<>();
+	private static List<Screening>  screenings  = new ArrayList<>();
 	private static List<Context> contexts = new ArrayList<>();
 	private static Context activeContext;
 	
@@ -64,6 +65,7 @@ public class CinematrixAPI {
 	public MainDisplay getMainDisplay() { return(instance.UI.MAIN_DISPLAY); }
 	public List<Movie> getMovies() { return(instance.movies); }
 	public List<Cinema> getCinemas() { return(instance.cinemas); }
+	public List<Screening> getScreenings() { return(instance.screenings); }
 	public List<Context> getContexts() { return(instance.contexts); }
 	public Context     getActiveContext() { return(instance.activeContext); }
 	
@@ -122,6 +124,7 @@ public class CinematrixAPI {
 		));
 		
 		// Screenings
+		/*
 		cinemas.get(0).setMovieScreening(
 				movies.get(0),
 				null,
@@ -134,6 +137,19 @@ public class CinematrixAPI {
 				null,
 				new ArrayList<>(Arrays.asList("6:30p", "9:00p", "10:00p", "11:00p"))
 		);
+		*/
+		screenings.add(new Screening(
+				movies.get(0),
+				cinemas.get(1),
+				new Venue(VenueTopdownType.TYPE_A, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.ACCESSIBILLITY_DEVICES_AVAILABLE),
+				new ArrayList<>(Arrays.asList("10:25p", "9:30a"))
+		));
+		screenings.add(new Screening(
+				movies.get(1),
+				cinemas.get(1),
+				new Venue(VenueTopdownType.TYPE_B, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
+				new ArrayList<>(Arrays.asList("6:30p", "9:00p", "10:00p", "11:00p"))
+		));
 	}
 	
 	public void fetchCinemasFromDatabase()

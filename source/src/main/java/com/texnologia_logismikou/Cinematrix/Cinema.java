@@ -12,7 +12,7 @@ public class Cinema {
 	private String address;
 	private float  distance;
 	private CinemaModal modal;
-	private List<Movie> screening = new ArrayList<>();
+//	private List<Movie> screening = new ArrayList<>();
 	
 	public Cinema(String name, String address, float distance)
 	{
@@ -23,7 +23,7 @@ public class Cinema {
 		this.modal = new CinemaModal();
 		this.modal.getController().setData(this);
 	}
-	
+	/*
 	public void setMovieScreening(Movie movie,
 									String soundSystem,
 									List<Date> dates,
@@ -37,6 +37,7 @@ public class Cinema {
 	{
 		return(screening.contains(movie));
 	}
+	 */
 
 	public String getName() {
 		return name;
