@@ -10,6 +10,16 @@ public class CinemaFields {
 	private StringField id;
 	private StringField address;
 	private StringField openHours;
+	private DoubleField distance;
+	
+	public CinemaFields(String name, String id, String address, String openHours, int distance) {
+		
+		this.name = new StringField(name);
+		this.id = new StringField(id);
+		this.address = new StringField(address);
+		this.openHours = new StringField(openHours);
+		this.distance = new DoubleField(distance);
+	}
 	
 	public StringField getName() {
 		return name;
@@ -34,5 +44,11 @@ public class CinemaFields {
 	}
 	public void setOpenHours(StringField openHours) {
 		this.openHours = openHours;
+	}
+	public DoubleField getDistance() {
+		return distance;
+	}
+	public void setDistance(DoubleField distance) {
+		this.distance = distance;
 	}
 }

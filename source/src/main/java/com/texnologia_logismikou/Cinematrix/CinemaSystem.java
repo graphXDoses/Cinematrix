@@ -105,34 +105,6 @@ public class CinemaSystem {
 			"An epic that details the chequered rise and fall of French Emperor Napoleon Bonaparte and his relentless journey to power through the prism of his addictive, volatile relationship with his wife, Josephine.",
 			"Ridley Scott"
 		));
-		
-		// Screenings
-		cinemas.get(0).setMovieScreening(
-				movies.get(0),
-				null,
-				null,
-				new ArrayList<>(Arrays.asList("10:25p", "9:30a"))
-		);
-		cinemas.get(1).setMovieScreening(
-				movies.get(1),
-				null,
-				null,
-				new ArrayList<>(Arrays.asList("6:30p", "9:00p", "10:00p", "11:00p"))
-		);
-	}
-	
-	public void fetchCinemasFromDatabase()
-	{
-		cinemas.add(new Cinema(
-			"Regal Gallery Place & 4DX",
-			"701 Seventh Street NW, Washington, DC 20001",
-			0.81f
-		));
-		cinemas.add(new Cinema(
-			"Cinema Vakoura",
-			"Michail Ioannou 8, Thessaloniki 546 22",
-			1.2f
-		));
 	}
 
 	public void userSignUp(String name, String email, String password) throws SignUpException {
@@ -399,5 +371,28 @@ public class CinemaSystem {
 			}
 		}
 	}
-
+	
+	public void fetchAllCinemas() {
+		
+		ListCinemasResponseBody cinemasList = new ListCinemasResponseBody();
+		
+		try {
+			cinemasList = RequestHandler.getInstance().fetchAllCinemasRequest();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		if(cinemasList.getError() != null) {
+			System.out.println(cinemasList.getError().getMessage());
+		}
+		
+		for(CinemaDocument cinema: cinemasList.getDocuments()) {
+			
+			cinemas.add(new Cinema(cinema));
+		}
+	}
 }

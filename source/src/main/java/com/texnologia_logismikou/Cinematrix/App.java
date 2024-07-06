@@ -27,22 +27,11 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         
-        CinemaSystem.getInstance().fetchCinemasFromDatabase();
         CinemaSystem.getInstance().fetchMoviesFromDatabase();
         CinemaSystem.getInstance().getMainDisplay().refresh();
         
-        try {
-			RequestHandler.getInstance().fetchAllCinemaRooms("Village");
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        CinemaSystem.getInstance().fetchAllCinemas();
+        System.out.println(CinemaSystem.getInstance().getCinemas());
     }
 
     static void setRoot(String fxml) throws IOException {

@@ -33,9 +33,9 @@ public class CinemaModalController {
     	System.out.println("SET DATA");
     	associateCinema = cinema;
     	
-    	cinema_name.setText(cinema.getName());
-    	cinema_address.setText(cinema.getAddress());
-    	cinema_rel_distance.setText(cinema.getDistance() + " km");
+    	cinema_name.setText(cinema.getDoc().getFields().getName().getStringValue());
+    	cinema_address.setText(cinema.getDoc().getFields().getAddress().getStringValue());
+    	cinema_rel_distance.setText(cinema.getDoc().getFields().getDistance().getDoubleValue() + " km");
     	hoursContainer.setVisible(false);
     }
 

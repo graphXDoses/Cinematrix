@@ -32,7 +32,7 @@ public class NearCinemasView extends View<NearCinemasViewController> {
 			CinemaSystem.getInstance()
 			.getCinemas()
 			.stream().filter(cinema->{
-				return(cinema.isScreeningTheMovie(thisMovie));
+				return(false);
 			}).forEach(cinema->{
 				getController().appendCinemaModal(cinema.getModal());
 			});
