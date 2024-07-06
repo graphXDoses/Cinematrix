@@ -358,7 +358,7 @@ public class RequestHandler {
 		return response;
 	}
 	
-	public RoomDocument updateRoomDocumentRequest(String firebaseId, RoomFields fields) throws URISyntaxException, IOException, InterruptedException {
+	public RoomDocument updateRoomDocumentRequest(String firebaseId, RoomFields fields, String cinemaName, String roomName) throws URISyntaxException, IOException, InterruptedException {
 		
 		String queryParameter = UpdateMaskQuery.createUpdateAllFieldsQuery(UpdateMaskQuery.roomFieldNames);
 		
@@ -370,7 +370,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/Vakoura/Venues/Room1?" + queryParameter))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + cinemaName + "/Venues/" + roomName + "?" + queryParameter))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -402,5 +402,27 @@ public class RequestHandler {
 		case 200: System.out.println("Room document deleted succsefully."); break;
 		default: System.out.println("Couldn't delete room document.");
 		}
+	}
+	
+	public CinemaDocument createCinemaDocumentRequest(String name, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
+		
+		CinemaDocument response = new CinemaDocument();
+		
+		Gson gson = new Gson();
+		
+		HttpRequest postRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas?documentId=" + name))
+				.POST(BodyPublishers.ofString(""))
+				.setHeader("Authorization", "Bearer " + firebaseId)
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> postResponse = client.send(postRequest, BodyHandlers.ofString());
+		
+		response = gson.fromJson(postResponse.body(), CinemaDocument.class);
+		
+		System.out.println(postResponse.body());
+		
+		return response;
 	}
 }

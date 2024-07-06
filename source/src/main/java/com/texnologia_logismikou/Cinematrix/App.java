@@ -29,6 +29,13 @@ public class App extends Application {
         CinemaSystem.getInstance().fetchCinemasFromDatabase();
         CinemaSystem.getInstance().fetchMoviesFromDatabase();
         CinemaSystem.getInstance().getMainDisplay().refresh();
+        
+        try {
+			String id = CinemaSystem.getInstance().userSignIn("phoebuspetsi@gmail.com", "myPassword123");
+	        CinemaSystem.getInstance().createCinemaDocument("Village", id, 5);
+		} catch (SignInException e) {
+			e.printStackTrace();
+		}
     }
 
     static void setRoot(String fxml) throws IOException {

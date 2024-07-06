@@ -359,4 +359,44 @@ public class CinemaSystem {
 			e.printStackTrace();
 		}
 	}
+	
+	public void createCinemaDocument(String cinemaName, String firebaseId, int numOfRooms) {
+		
+		CinemaDocument response = new CinemaDocument();
+		
+		try {
+			response = RequestHandler.getInstance().createCinemaDocumentRequest(cinemaName, firebaseId);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		if(response.getError() != null) {
+			System.out.println("Error creating Cinema document. Error details: " + response.getError().getMessage());
+			return;
+		}
+		
+		for(int i = 0; i < numOfRooms; i++) {
+			
+			RoomDocument createRoomResponse = new RoomDocument();
+			String roomName = "Room" + (i+1);
+			try {
+				RequestHandler.getInstance().createRoomDocumentRequest(firebaseId, roomName, cinemaName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			if(createRoomResponse.getError() != null) {
+				System.out.println("Error creating room document. Error details: " + createRoomResponse.getError().getMessage());
+				return;
+			}
+		}
+	}
 }
