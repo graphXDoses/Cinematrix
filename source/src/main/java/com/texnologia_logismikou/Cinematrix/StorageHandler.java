@@ -17,6 +17,20 @@ public class StorageHandler {
 	private final String projectId = "fir-test-java-1d671";
 	private final String credentialsPath = "C:/Users/petsi/University/TexLog/cinematrix_creds.json";
 	
+	private static StorageHandler instance = null;
+	
+	private StorageHandler() {
+		
+	}
+	
+	public static StorageHandler getInstance() {
+		
+		if(instance==null) {
+			instance = new StorageHandler();
+		}
+		return instance;
+	}
+	
 	public void downloadMovieImage(String movieName) throws FileNotFoundException, Exception {
 		// The ID of your GCP project
 		// String projectId = "your-project-id";

@@ -54,7 +54,7 @@ public class App extends Application {
 			
 			//CinemaSystem.getInstance().updateMovieDocument(fields, id);
 			response = CinemaSystem.getInstance().getMovieDocument("Spirited Away");
-			StorageHandler temp = new StorageHandler();
+			StorageHandler temp = StorageHandler.getInstance();
 			try {
 				temp.downloadMovieImage(response.getFields().getTitle().getStringValue());
 			} catch (FileNotFoundException e) {
