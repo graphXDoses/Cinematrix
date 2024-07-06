@@ -12,6 +12,7 @@ module Cinematrix {
 	requires google.cloud.core;
 	requires com.google.auth.oauth2;
 	requires com.google.auth;
+	requires gax;
 	
 	// Requirements for HttpRequests.
 	requires java.desktop;
