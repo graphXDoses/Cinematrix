@@ -19,25 +19,22 @@ public class RequestHandler {
 
 	private static RequestHandler instance = null;
 	
-	private final String webKey;
-	
 	private final String documentsPath = "projects/fir-test-java-1d671/databases/(default)/documents";
 	
-	private RequestHandler(String webKey) {
+	private RequestHandler() {
 		
-		this.webKey = webKey;
 	}
 	
-	public static RequestHandler getInstance(String webKey) {
+	public static RequestHandler getInstance() {
 		
 		if(instance == null) {
-			instance = new RequestHandler(webKey);
+			instance = new RequestHandler();
 		}
 		
 		return instance;
 	}
 	
-	public SignInResponseBody signInRequest(String email, String password) throws URISyntaxException, IOException, InterruptedException {
+	public SignInResponseBody signInRequest(String email, String password, String webKey) throws URISyntaxException, IOException, InterruptedException {
 		
 		/*
 		 *  Common Errors
@@ -69,7 +66,7 @@ public class RequestHandler {
 		return response;
 	}
 	
-	public SignUpResponseBody SignUpRequest(String email, String password) throws URISyntaxException, InterruptedException, IOException {
+	public SignUpResponseBody SignUpRequest(String email, String password, String webKey) throws URISyntaxException, InterruptedException, IOException {
 		
 		/*
 		 * 	Common Errors
@@ -98,7 +95,7 @@ public class RequestHandler {
 		return response;
 	}
 	
-	public void resetPasswordRequest(String email) throws IOException, URISyntaxException, InterruptedException {
+	public void resetPasswordRequest(String email, String webKey) throws IOException, URISyntaxException, InterruptedException {
 		
 		ResetPasswordRequestBody request = new ResetPasswordRequestBody(email);
 		
@@ -121,7 +118,7 @@ public class RequestHandler {
 		}
 	}
 
-	public void deleteUserAccountRequest(String firebaseId) throws URISyntaxException, IOException, InterruptedException {
+	public void deleteUserAccountRequest(String firebaseId, String webKey) throws URISyntaxException, IOException, InterruptedException {
 		
 		DeleteAccountRequestBody request = new DeleteAccountRequestBody();
 		request.setIdToken(firebaseId);

@@ -21,7 +21,7 @@ public class StringField {
 	/**
 	 * Turns a string array into a string field array.
 	 * @author Phoebus
-	 * @param array a string array
+	 * @param array A string array.
 	 * @return StringField[] the string field array created from the strings of the parameter.
 	 */
 	public static StringField[] toStringFieldArray(String[] array) {
@@ -36,6 +36,12 @@ public class StringField {
 		return fieldArray;
 	}
 	
+	/**
+	 * Turns a string into PascalCase format.
+	 * @author Phoebus
+	 * @param String The string to be formatted.
+	 * @return String The formatted string in PascalCase.
+	 */
 	public static String toPascalCase(String string) {
 		
 		string = string.replaceAll("[^A-Za-z]+", "");

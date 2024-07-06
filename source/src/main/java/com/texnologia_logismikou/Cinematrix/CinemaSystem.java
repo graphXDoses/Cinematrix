@@ -145,7 +145,7 @@ public class CinemaSystem {
 		
 		// Return on exception and send user back to home screen?
 		try {
-			signUpResponse = RequestHandler.getInstance(webKey).SignUpRequest(email, password);
+			signUpResponse = RequestHandler.getInstance().SignUpRequest(email, password, webKey);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			throw new SignUpException("Internal error occured. Please try again later.", e);
@@ -171,7 +171,7 @@ public class CinemaSystem {
 		UserDocument createDocResponse = new UserDocument();
 		
 		try {
-			createDocResponse = RequestHandler.getInstance(webKey).createUserDocumentRequest(signUpResponse.getLocalId(), signUpResponse.getIdToken());
+			createDocResponse = RequestHandler.getInstance().createUserDocumentRequest(signUpResponse.getLocalId(), signUpResponse.getIdToken());
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			throw new SignUpException("Internal error occured. Please try again later.", e);
@@ -186,7 +186,7 @@ public class CinemaSystem {
 		if(createDocResponse.getError() != null) {
 			try {
 				// Delete the user account.
-				RequestHandler.getInstance(webKey).deleteUserAccountRequest(signUpResponse.getIdToken());
+				RequestHandler.getInstance().deleteUserAccountRequest(signUpResponse.getIdToken(), webKey);
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new SignUpException("Internal error occured. Please try again later.", e);
@@ -202,7 +202,7 @@ public class CinemaSystem {
 		System.out.println("User admin field is: " + fields.getAdmin().getBooleanValue());
 		
 		try {
-			initializeDocResponse = RequestHandler.getInstance(webKey).updateUserDocumentRequest(signUpResponse.getLocalId(), signUpResponse.getIdToken(), fields);
+			initializeDocResponse = RequestHandler.getInstance().updateUserDocumentRequest(signUpResponse.getLocalId(), signUpResponse.getIdToken(), fields);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			throw new SignUpException("Internal error occured. Please try again later.", e);
@@ -217,8 +217,8 @@ public class CinemaSystem {
 		if(initializeDocResponse.getError() != null) {
 			try {
 				// Delete the user account.
-				RequestHandler.getInstance(webKey).deleteUserAccountRequest(signUpResponse.getIdToken());
-				RequestHandler.getInstance(webKey).deleteUserDocumentRequest(signUpResponse.getIdToken(), signUpResponse.getLocalId());
+				RequestHandler.getInstance().deleteUserAccountRequest(signUpResponse.getIdToken(), webKey);
+				RequestHandler.getInstance().deleteUserDocumentRequest(signUpResponse.getIdToken(), signUpResponse.getLocalId());
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new SignUpException("Internal error occured. Please try again later.", e);
@@ -233,9 +233,10 @@ public class CinemaSystem {
 	public String userSignIn(String email, String password) throws SignInException {
 		
 		SignInResponseBody signInResponse = new SignInResponseBody();
+		UserDocument userDoc = new UserDocument();
 		
 		try {
-			signInResponse = RequestHandler.getInstance(webKey).signInRequest(email, password);
+			signInResponse = RequestHandler.getInstance().signInRequest(email, password, webKey);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			throw new SignInException("Internal error occured. Please try again later.", e);
@@ -251,6 +252,16 @@ public class CinemaSystem {
 			throw new SignInException(signInResponse.getError().getMessage(), null);
 		}
 		
+		try {
+			userDoc = RequestHandler.getInstance().getUserDocumentRequest(signInResponse.getLocalId(), signInResponse.getIdToken());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		/*
 		 *  Store the Firebase ID, User ID and other useful information for later use.
 		 */
@@ -263,7 +274,7 @@ public class CinemaSystem {
 		MovieDocument createResponse = new MovieDocument();
 		
 		try {
-			createResponse = RequestHandler.getInstance(webKey).createMovieDocumentRequest(name, firebaseId);
+			createResponse = RequestHandler.getInstance().createMovieDocumentRequest(name, firebaseId);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			// return;
@@ -283,12 +294,34 @@ public class CinemaSystem {
 		}
 	}
 	
+	public MovieDocument getMovieDocument(String name) {
+		
+		MovieDocument response = new MovieDocument();
+		
+		try {
+			response = RequestHandler.getInstance().getMovieDocumentRequest(name);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		
+		if(response.getError() != null) {
+			System.out.println("Error retrieving movie doc. Error details: " + response.getError().getMessage());
+			return null;
+		} 
+		
+		return response;
+	}
+
 	public void updateMovieDocument(MovieFields fields, String firebaseId) {
 		
 		MovieDocument updateResponse = new MovieDocument();
 		
 		try {
-			updateResponse = RequestHandler.getInstance(webKey).updateMovieDocumentRequest(fields, firebaseId);
+			updateResponse = RequestHandler.getInstance().updateMovieDocumentRequest(fields, firebaseId);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			// return;
@@ -307,34 +340,12 @@ public class CinemaSystem {
 		}
 	}
 	
-	public MovieDocument getMovieDocument(String name) {
-		
-		MovieDocument response = new MovieDocument();
-		
-		try {
-			response = RequestHandler.getInstance(webKey).getMovieDocumentRequest(name);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		
-		if(response.getError() != null) {
-			System.out.println("Error retrieving movie doc. Error details: " + response.getError().getMessage());
-			return null;
-		} 
-		
-		return response;
-	}
-	
 	public void deleteMovieDocument(String name) {
 		
 		int statusCode;
 		
 		try {
-			statusCode = RequestHandler.getInstance(webKey).deleteMovieDocumentRequest(name);
+			statusCode = RequestHandler.getInstance().deleteMovieDocumentRequest(name);
 			System.out.println("STATUS CODE: " + statusCode);
 			switch(statusCode) {
 			case 200: System.out.println("Movie document deleted succsefully."); break;
