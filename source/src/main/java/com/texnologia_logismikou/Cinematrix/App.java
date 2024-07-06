@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URISyntaxException;
@@ -40,35 +41,13 @@ public class App extends Application {
         CinemaSystem.getInstance().fetchMoviesFromDatabase();
         CinemaSystem.getInstance().getMainDisplay().refresh();
         
-        String id = "";
-        
+        StorageHandler temp = new StorageHandler();
         try {
-			id = CinemaSystem.getInstance().userSignIn("phoebuspetsi@gmail.com", "myPassword123");
-			
-			String time1 = TimestampField.toTimestamp("2024", "07", "05", "21", "00");
-			String time2 = TimestampField.toTimestamp("2024", "07", "05", "16", "30");
-			String time3 = TimestampField.toTimestamp("2024", "07", "06", "15", "00");
-			
-			ScreeningFields screenFields = new ScreeningFields("Interstellar", time1);
-			ScreeningFields screenFields2 = new ScreeningFields("Rush-Hour", time2);
-			ScreeningFields screenFields3 = new ScreeningFields("Spiritied-Away", time3);
-			
-			ScreeningFields[] array = {screenFields, screenFields2, screenFields3};
-			
-			RoomFields fields = new RoomFields("room1", array, 50);
-			try {
-				RequestHandler.getInstance("AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU").updateRoomDocumentRequest(id, fields);
-			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (SignInException e) {
+			temp.downloadObject();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

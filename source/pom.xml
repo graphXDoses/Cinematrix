@@ -76,6 +76,21 @@
 		    <version>9.0.0</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/com.google.cloud/google-cloud-core -->
+		<dependency>
+		    <groupId>com.google.cloud</groupId>
+		    <artifactId>google-cloud-core</artifactId>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.google.cloud</groupId>
+    		<artifactId>google-cloud-storage</artifactId>
+  		</dependency>
+  		<dependency>
+    		<groupId>com.google.cloud</groupId>
+    		<artifactId>google-cloud-storage-control</artifactId>
+  		</dependency>
+		
 		<!-- TESTING THE REST API METHOD-->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>

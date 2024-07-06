@@ -7,6 +7,12 @@ module Cinematrix {
 	requires java.net.http;
 	requires com.google.gson;
 	
+	//	related to cloud storage
+	requires google.cloud.storage;
+	requires google.cloud.core;
+	requires com.google.auth.oauth2;
+	requires com.google.auth;
+	
 	// Requirements for HttpRequests.
 	requires java.desktop;
 	requires javafx.base;
