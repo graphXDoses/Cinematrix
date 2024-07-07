@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -19,6 +20,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+    	
+    	CinematrixAPI.getInstance().makeCinematrixDir();
+    	
         scene = new Scene(loadFXML("Main"));
         scene.getStylesheets().add(getClass().getResource("styles/styles.css").toExternalForm());
         
@@ -47,5 +51,4 @@ public class App extends Application {
     public static void main(String[] args) {
     	launch();
     }
-
 }

@@ -1,6 +1,10 @@
 package com.texnologia_logismikou.Cinematrix.Managers;
 
+import java.io.File;
+import java.nio.file.Path;
+
 import com.texnologia_logismikou.Cinematrix.App;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.Controllers.MovieModalController;
 
 import javafx.scene.image.Image;
@@ -10,14 +14,16 @@ public class MovieModal extends Manager<MovieModalController> {
 	private String url = null;
 	private Image cover_img = null;
 	
-	public MovieModal(String url)
+	public MovieModal(String movieName)
 	{
 		super.loadFXML("MovieModal");
 		try {			
-			this.setUrl(url);
-			cover_img = new Image(App.class.getResource(getUrl()).toExternalForm());
+			this.setUrl(movieName);
+			
+			Path path = Path.of(CinematrixAPI.imagesPath + url);
+			cover_img = new Image(path.toUri().toString());
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
@@ -25,10 +31,10 @@ public class MovieModal extends Manager<MovieModalController> {
 		return url;
 	}
 
-	public void setUrl(String url) throws NullPointerException {
-		if(url == null)
+	public void setUrl(String movieName) throws NullPointerException {
+		if(movieName == null)
 			throw new NullPointerException();
-		this.url = "images/_" + url + "_Cover.jpg";
+		this.url = "/_" + movieName + "_Cover.jpg";
 		//getController().setData(this);
 	}
 

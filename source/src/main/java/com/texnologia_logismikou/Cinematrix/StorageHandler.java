@@ -14,6 +14,7 @@ import com.google.cloud.storage.transfermanager.DownloadResult;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import com.google.cloud.storage.BlobInfo;
 import java.nio.file.Path;
@@ -46,10 +47,9 @@ public class StorageHandler {
 	 * @param String The movie's name.
 	 * @return String The image name in PascalCase.
 	 */
-	public String downloadMovieImage(String movieName) throws FileNotFoundException, IOException {
-
-		movieName = StringField.toPascalCase(movieName);
-		String imageName = "_" + movieName + "_Cover.jpg";
+	public void downloadMovieImage(String movieName) throws FileNotFoundException, IOException, URISyntaxException {
+		
+		String imagePath = "_" + movieName + "_Cover.jpg";
 		
 		FileInputStream creds = new FileInputStream(credentialsPath); // <--- Path to credentials.
 		
@@ -59,11 +59,10 @@ public class StorageHandler {
 				.build()
 				.getService();
 
-		Blob blob = storage.get(BlobId.of(bucketName, imageName));
-		Path path = Paths.get(App.class.getResource("/images/" + imageName).toExternalForm());
-		blob.downloadTo(path);
-		
-		return movieName;
+		Blob blob = storage.get(BlobId.of(bucketName, imagePath));
+		Path path = Path.of(CinematrixAPI.imagesPath, "/", imagePath);
+		blob.downloadTo(path);	
+		System.out.println("Movie image downloaded!");
 	}
 	
 	/**

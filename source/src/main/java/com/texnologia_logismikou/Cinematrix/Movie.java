@@ -8,11 +8,11 @@ public class Movie {
 	private MovieDocument doc;
 	private final MovieModal modal;
 	
-	public Movie(MovieDocument doc, String imagePath) {
+	public Movie(MovieDocument doc, String movieName) {
 		
 		this.doc = doc;
 		
-		this.modal = new MovieModal(imagePath);
+		this.modal = new MovieModal(movieName);
 		this.modal.getController().setData(this);
 	}
 	

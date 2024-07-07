@@ -1,5 +1,6 @@
 package com.texnologia_logismikou.Cinematrix;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -30,6 +31,7 @@ public class CinematrixAPI {
 	private static CinematrixAPI instance = null;
 	
 	private final String webKey = "AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU";
+	public final static String imagesPath = System.getenv("APPDATA") + "/Cinematrix/images";
 	
 	private static UserCore currentUser;
 	private static MainDisplay mD;
@@ -56,6 +58,23 @@ public class CinematrixAPI {
 	public List<Cinema> getCinemas() { return(instance.cinemas); }
 	public List<Context> getContexts() { return(instance.contexts); }
 	public Context     getActiveContext() { return(instance.activeContext); }
+	
+	public void makeCinematrixDir() {
+    	
+    	File dir = new File(CinematrixAPI.imagesPath);
+    	
+    	if(dir.isDirectory()) {
+    		System.out.println("Good to go.");
+    		return;
+    	}
+    	
+    	boolean dirCreated = dir.mkdir();
+    	if(dirCreated) {
+    		System.out.println("Succesfully created directory.");
+    	} else {
+    		System.out.println("Error.");
+    	}
+    }
 	
 	public void setActiveContext(Context ctx)
 	{
@@ -386,21 +405,26 @@ public class CinematrixAPI {
 			System.out.println(moviesList.getError().getMessage());
 		}
 		
-		StorageHandler storage = StorageHandler.getInstance();
-		
 		for(MovieDocument movie: moviesList.getDocuments()) {
-						
-			String imageName = "";
 			
-			try {
-				imageName = storage.downloadMovieImage(movie.getFields().getTitle().getStringValue());
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			String movieName = StringField.toPascalCase(movie.getFields().getTitle().getStringValue());
+			String imagePath = "/_" + movieName + "_Cover.jpg";
+			File image = new File(CinematrixAPI.imagesPath + imagePath);
 			
-			movies.add(new Movie(movie, imageName));
+			if(!image.exists()) {
+				
+				try {
+					StorageHandler.getInstance().downloadMovieImage(movieName);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (URISyntaxException e) {
+					e.printStackTrace();
+				}
+			} 
+			movies.add(new Movie(movie, movieName));
+			System.out.println("Have the image!");
 		}
 	}
 }
