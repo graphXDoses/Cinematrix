@@ -492,4 +492,23 @@ public class RequestHandler {
 				
 		return response;
 	}
+	
+	public ListMoviesResponseBody fetchAllMovies() throws URISyntaxException, IOException, InterruptedException {
+		
+		ListMoviesResponseBody response = new ListMoviesResponseBody();
+		Gson gson = new Gson();
+		
+		HttpRequest getRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas"))
+				.GET()
+				.setHeader("Content-Type", "application/json")
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
+		
+		response = gson.fromJson(getResponse.body(), ListMoviesResponseBody.class);
+				
+		return response;
+	}
 }

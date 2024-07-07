@@ -19,7 +19,7 @@ public class MovieFields extends Fields {
 	private StringField description;
 	private StringField director;
 	
-	public MovieFields(String title, double releaseYear, String mpRating, double duration,
+	public MovieFields(String title, int releaseYear, String mpRating, int duration,
 			String ytTrailerUrl, String[] categories, String[] cinemas,
 			String description, String director, String id) {
 		

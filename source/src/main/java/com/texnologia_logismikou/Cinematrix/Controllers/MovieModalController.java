@@ -33,7 +33,7 @@ public class MovieModalController {
 		associateMovie = movie;
 		
 		mdl_cover.setImage(movie.getModal().getCoverImage());
-		mdl_button.setTooltip(new Tooltip(movie.getFullName()));
+		mdl_button.setTooltip(new Tooltip(movie.getDoc().getFields().getTitle().getStringValue()));
 		edit_btn.setVisible(false);
 		mdl_cover.setOpacity(1);
 	}

@@ -41,7 +41,12 @@ public class StorageHandler {
 		return instance;
 	}
 	
-	public void downloadMovieImage(String movieName) throws FileNotFoundException, IOException {
+	/**
+	 * 	Download a movie image.
+	 * @param String The movie's name.
+	 * @return Path The path to the image.
+	 */
+	public Path downloadMovieImage(String movieName) throws FileNotFoundException, IOException {
 
 		movieName = StringField.toPascalCase(movieName);
 		String imageName = "_" + movieName + "_Cover.jpg";
@@ -55,7 +60,10 @@ public class StorageHandler {
 				.getService();
 
 		Blob blob = storage.get(BlobId.of(bucketName, imageName));
-		blob.downloadTo(Paths.get("src/main/resources/com/texnologia_logismikou/Cinematrix/images/" + imageName));
+		Path path = Paths.get("src/main/resources/com/texnologia_logismikou/Cinematrix/images/" + imageName);
+		blob.downloadTo(path);
+		
+		return path;
 	}
 	
 	/**

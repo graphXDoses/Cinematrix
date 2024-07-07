@@ -27,7 +27,6 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         
-        CinemaSystem.getInstance().fetchMoviesFromDatabase();
         CinemaSystem.getInstance().getMainDisplay().refresh();
         
         CinemaSystem.getInstance().fetchAllCinemas();

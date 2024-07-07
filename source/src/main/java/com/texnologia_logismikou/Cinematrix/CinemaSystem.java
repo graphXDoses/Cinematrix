@@ -1,5 +1,6 @@
 package com.texnologia_logismikou.Cinematrix;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ import com.texnologia_logismikou.Cinematrix.Views.SeatSelectionView;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
 import com.texnologia_logismikou.Cinematrix.Views.UserDashboardView;
 import com.texnologia_logismikou.Cinematrix.Views.View;
+
+import java.nio.file.Path;
 import com.texnologia_logismikou.Cinematrix.Views.LoginView;
 
 public class CinemaSystem {
@@ -72,40 +75,6 @@ public class CinemaSystem {
 	}
 
 	public UserCore getCurrentUser() { return(currentUser); }
-	
-	public void fetchMoviesFromDatabase()
-	{
-		movies.add(new Movie(
-			"Perfect Blue",
-			"PerfectBlue",
-			1997,
-			"R",
-			81,
-			"https://www.youtube.com/embed/BD8I4v9U4mw?si=3g8BfKh8nhHoXL0U",
-			"A pop singer gives up her career to become an actress, but she slowly goes insane when she starts being stalked by an obsessed fan and what seems to be a ghost of her past.",
-			"Satoshi Kon"
-		));
-		movies.add(new Movie(
-			"Rush Hour",
-			"RushHour",
-			1998,
-			"PG-13",
-			98,
-			"https://www.youtube.com/embed/JMiFsFQcFLE?si=2u52cDgmAiSpxO1-",
-			"A loyal and dedicated Hong Kong Inspector teams up with a reckless and loudmouthed L.A.P.D. detective to rescue the Chinese Consul's kidnapped daughter, while trying to arrest a dangerous crime lord along the way.",
-			"Brett Ratner"
-		));
-		movies.add(new Movie(
-			"Napoleon",
-			"Napoleon",
-			2023,
-			"R",
-			158,
-			"https://www.youtube.com/embed/OAZWXUkrjPc?si=apRRZD9yjPYtIZQ3",
-			"An epic that details the chequered rise and fall of French Emperor Napoleon Bonaparte and his relentless journey to power through the prism of his addictive, volatile relationship with his wife, Josephine.",
-			"Ridley Scott"
-		));
-	}
 
 	public void userSignUp(String name, String email, String password) throws SignUpException {
 		
@@ -393,6 +362,43 @@ public class CinemaSystem {
 		for(CinemaDocument cinema: cinemasList.getDocuments()) {
 			
 			cinemas.add(new Cinema(cinema));
+		}
+	}
+	
+	public void fetchAllMovies() {
+		
+		ListMoviesResponseBody moviesList = new ListMoviesResponseBody();
+		
+		try {
+			moviesList = RequestHandler.getInstance().fetchAllMovies();
+		} catch (URISyntaxException e) {			
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		if(moviesList.getError() != null) {
+			System.out.println(moviesList.getError().getMessage());
+		}
+		
+		StorageHandler storage = StorageHandler.getInstance();
+		
+		for(MovieDocument movie: moviesList.getDocuments()) {
+			
+			String imagePath = "";
+			
+			try {
+				Path path = storage.downloadMovieImage(movie.getFields().getTitle().getStringValue());
+				imagePath = path.toString();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			movies.add(new Movie(movie, imagePath));
 		}
 	}
 }

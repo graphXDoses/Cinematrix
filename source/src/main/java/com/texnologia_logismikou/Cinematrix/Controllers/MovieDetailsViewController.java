@@ -1,6 +1,7 @@
 package com.texnologia_logismikou.Cinematrix.Controllers;
 
 import com.texnologia_logismikou.Cinematrix.Movie;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.MovieFields;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,17 +50,19 @@ public class MovieDetailsViewController {
 		more_details_container.getChildren().forEach(node->node.setVisible(true));
     }
     
-    public void setMovieDetailData(Movie movie)
+	public void setMovieDetailData(Movie movie)
 	{
+    	MovieFields fields = movie.getDoc().getFields();
+    	
     	if(movie != null)
     	{    		
     		mdl_cover.setImage(movie.getModal().getCoverImage());
-    		mdl_title.setText(movie.getFullName());
-    		MPArating_label.setText(movie.getMPArating());
+    		mdl_title.setText(fields.getTitle().getStringValue());
+    		MPArating_label.setText(fields.getMpRating().getStringValue());
     		duration_label.setText(movie.getDuration());
-    		ytTrailerPlayerArea.getEngine().load(movie.getYtTrailerURL());
-    		description_label.setText(movie.getDescription());
-    		director_label.setText(movie.getDirector());
+    		ytTrailerPlayerArea.getEngine().load(fields.getYtTrailerUrl().getStringValue());
+    		description_label.setText(fields.getDescription().getStringValue());
+    		director_label.setText(fields.getDirector().getStringValue());
     	} else {
     		mdl_cover.setImage(blankCover);
     		mdl_title.setText(defaultText);

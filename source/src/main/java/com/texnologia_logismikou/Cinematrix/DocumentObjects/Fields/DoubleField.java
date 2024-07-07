@@ -2,9 +2,9 @@ package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
 public class DoubleField {
 
-	private double doubleValue;
+	private int doubleValue;
 
-	public DoubleField(double doubleValue) {
+	public DoubleField(int doubleValue) {
 		this.doubleValue = doubleValue;
 	}
 
@@ -12,7 +12,7 @@ public class DoubleField {
 		return doubleValue;
 	}
 
-	public void setDoubleValue(double doubleValue) {
+	public void setDoubleValue(int doubleValue) {
 		this.doubleValue = doubleValue;
 	}
 }
