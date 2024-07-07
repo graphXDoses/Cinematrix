@@ -1,5 +1,10 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.texnologia_logismikou.Cinematrix.Cinema;
+
 public class MovieFields extends Fields {
 
 	/*
@@ -18,7 +23,7 @@ public class MovieFields extends Fields {
 	private StringField director;
 	
 	public MovieFields(String title, int releaseYear, String mpRating, int duration,
-			String ytTrailerUrl, String[] categories, String[] cinemas,
+			String ytTrailerUrl, String[] categories, Cinema[] cinemas,
 			String description, String director) {
 		
 		this.uid = new StringField(title + "_" + System.currentTimeMillis());
@@ -29,7 +34,12 @@ public class MovieFields extends Fields {
 		this.ytTrailerUrl = new StringField(ytTrailerUrl);
 		
 		this.categories = new ArrayField<StringField>(StringField.toStringFieldArray(categories));
-		this.cinemas = new ArrayField<StringField>(StringField.toStringFieldArray(cinemas));
+		
+		List<String> cinemaUids = new ArrayList<String>();
+		for(Cinema i: cinemas) {
+			cinemaUids.add(i.getDoc().getFields().getUid().getStringValue());
+		}
+		this.cinemas = new ArrayField<StringField>(StringField.toStringFieldArray((String[]) cinemaUids.toArray()));
 		this.description = new StringField(description);
 		this.director = new StringField(director);
 	}
