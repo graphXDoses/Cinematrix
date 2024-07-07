@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 
 import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.Movie;
+import com.texnologia_logismikou.Cinematrix.Screening;
 import com.texnologia_logismikou.Cinematrix.Views.SeatSelectionView;
 
 import javafx.event.ActionEvent;
@@ -14,20 +15,22 @@ public class ReservationButtonController {
 
     @FXML
     private Button root;
+    
+    private Screening screening;
 
     @FXML
     void makeReservationCallback(ActionEvent event)
     {
-    	Movie referenceMovie = CinematrixAPI.MOVIE_CONTEXT.MOVIE_DETAILS_VIEW.getSelectedMovie();
-    	CinematrixAPI.MOVIE_CONTEXT.SEAT_SELECTION_VIEW = new SeatSelectionView(referenceMovie);
+    	CinematrixAPI.MOVIE_CONTEXT.SEAT_SELECTION_VIEW = new SeatSelectionView(screening, root.getText());
     	CinematrixAPI.getInstance()
     				.getActiveContext()
     				.promiseRedirectTo(CinematrixAPI.MOVIE_CONTEXT.SEAT_SELECTION_VIEW);
     	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
     
-    public void setHour(String hour)
+    public void setData(Screening screening, String hour)
     {
+    	this.screening = screening;
     	root.setText(hour);
     }
 

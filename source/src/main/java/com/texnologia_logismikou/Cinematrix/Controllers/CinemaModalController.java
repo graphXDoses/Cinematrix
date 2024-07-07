@@ -46,8 +46,10 @@ public class CinemaModalController {
 //    	System.out.println("SCREEN");
     	associateMovie = screening.getMovie();
     	
+//    	sound_system_label.setText(screening.getVenue().getSystem().toString());
+    	
     	for(String h: screening.getHours())
-    		addReservationButton(new ReservationButton(h));
+    		addReservationButton(new ReservationButton(screening, h));
     }
 
 	public void addReservationButton(ReservationButton reservationButton)

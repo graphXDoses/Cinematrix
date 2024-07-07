@@ -18,4 +18,16 @@ public class Venue
 	{
 		this.cinema = cinema;
 	}
+
+	public VenueTopdownType getTopdown() {
+		return topdown_t;
+	}
+
+	public VenueSoundSystem getSystem() {
+		return system_s;
+	}
+
+	public VenueTraits getTraits() {
+		return traits;
+	}
 }
