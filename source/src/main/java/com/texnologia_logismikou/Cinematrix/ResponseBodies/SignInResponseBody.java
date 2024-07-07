@@ -6,6 +6,7 @@ public class SignInResponseBody {
 	// Check com.texnologia_logismikou.Cinematrix.Requests.SignInRequest for the request body.
 	
 	private ErrorResponseBody error;
+	
 	private String kind;
 	private String localId;
 	private String email;

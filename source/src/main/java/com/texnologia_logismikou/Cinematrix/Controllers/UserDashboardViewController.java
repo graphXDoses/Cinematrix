@@ -2,7 +2,7 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 
 import java.io.FileNotFoundException;
 
-import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.Views.LoginView;
 
 import javafx.event.Event;
@@ -23,12 +23,12 @@ public class UserDashboardViewController
     @FXML
     void signOutCallback(Event event)
     {
-    	LoginView view = (LoginView)CinemaSystem.getInstance().getActiveContext().getViews().get(0);
+    	LoginView view = (LoginView)CinematrixAPI.getInstance().getActiveContext().getViews().get(0);
     	tabpane.getSelectionModel().select(0);
     	
     	try {
-			CinemaSystem.getInstance().getActiveContext().goToView(view);
-			CinemaSystem.getInstance().getMainDisplay().refresh();
+			CinematrixAPI.getInstance().getActiveContext().goToView(view);
+			CinematrixAPI.getInstance().getMainDisplay().refresh();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -60,7 +60,7 @@ public class StorageHandler {
 				.getService();
 
 		Blob blob = storage.get(BlobId.of(bucketName, imageName));
-		Path path = Paths.get("src/main/resources/com/texnologia_logismikou/Cinematrix/images/" + imageName);
+		Path path = Paths.get(App.class.getResource("/images/" + imageName).toExternalForm());
 		blob.downloadTo(path);
 		
 		return movieName;

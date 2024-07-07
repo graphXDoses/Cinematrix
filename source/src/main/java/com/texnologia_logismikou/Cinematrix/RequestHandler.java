@@ -229,6 +229,9 @@ public class RequestHandler {
 		}
 	}
 
+	/**
+	 * @deprecated Use updateMovieDocumentRequest instead.
+	 */
 	public MovieDocument createMovieDocumentRequest(String name, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
 		name = StringField.toPascalCase(name);
@@ -279,7 +282,6 @@ public class RequestHandler {
 		 * 	If a value doesn't get updated upon request and no errors occur check the UpdateMaskQuery.java class. 
 		 */
 		
-		String name = StringField.toPascalCase(fields.getTitle().getStringValue());
 		String queryParameter = UpdateMaskQuery.createUpdateAllFieldsQuery(UpdateMaskQuery.movieFieldNames);
 		
 		MovieDocument request = new MovieDocument();
@@ -290,7 +292,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + name + "?" + queryParameter))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getUid().getStringValue() + "?" + queryParameter))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -404,14 +406,18 @@ public class RequestHandler {
 		}
 	}
 	
+	/**
+	 *  @deprecated Use updateCinemaDocumentRequest instead.
+	 */
 	public CinemaDocument createCinemaDocumentRequest(String name, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
 		
+		name = StringField.toPascalCase(name);
 		CinemaDocument response = new CinemaDocument();
 		
 		Gson gson = new Gson();
 		
 		HttpRequest postRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas?documentId=" + name))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas?documentId=" + name ))
 				.POST(BodyPublishers.ofString(""))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -438,7 +444,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + fields.getName().getStringValue() + "?" + queryParameter))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + fields.getUid().getStringValue() + "?" + queryParameter))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -453,13 +459,13 @@ public class RequestHandler {
 		return response;
 	}
 	
-	public ListRoomsResponseBody fetchAllCinemaRoomsRequest(String cinemaName) throws URISyntaxException, IOException, InterruptedException {
+	public ListRoomsResponseBody fetchAllCinemaRoomsRequest(Long uid) throws URISyntaxException, IOException, InterruptedException {
 		
 		ListRoomsResponseBody response = new ListRoomsResponseBody();
 		Gson gson = new Gson();
 		
 		HttpRequest getRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + cinemaName + "/Venues"))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + uid + "/Venues"))
 				.GET()
 				.setHeader("Content-Type", "application/json")
 				.build();

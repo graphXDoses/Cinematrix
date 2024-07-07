@@ -2,7 +2,7 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 
 import java.io.FileNotFoundException;
 
-import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.SignUpException;
 import com.texnologia_logismikou.Cinematrix.ResponseBodies.ErrorResponseBody;
 import com.texnologia_logismikou.Cinematrix.Views.LoginView;
@@ -93,14 +93,14 @@ public class SignUpViewController
     @FXML
     void signupCallback(ActionEvent event)
     {
-    	UserDashboardView view = (UserDashboardView)CinemaSystem.getInstance().getActiveContext().getViews().get(2);
+    	UserDashboardView view = (UserDashboardView)CinematrixAPI.getInstance().getActiveContext().getViews().get(2);
     	
     	/*
     	 * 	For each error case instead of printing the message to the console create a small box to display the message to the user.
     	 * 	Also we can clear the fields (or the fields that produced the error) so that the user can re-enter them.
     	 */
     	try {
-			CinemaSystem.getInstance().userSignUp(name_inputfield.getText(), email_inputfield.getText(), pass_inputfield.getText());
+			CinematrixAPI.getInstance().userSignUp(name_inputfield.getText(), email_inputfield.getText(), pass_inputfield.getText());
 		} catch (SignUpException e) {
 			// e.printStackTrace();
 			switch(e.getMessage()) {
@@ -114,8 +114,8 @@ public class SignUpViewController
 			return;
 		}
     	try {
-			CinemaSystem.getInstance().getActiveContext().goToView(view);
-			CinemaSystem.getInstance().getMainDisplay().refresh();
+			CinematrixAPI.getInstance().getActiveContext().goToView(view);
+			CinematrixAPI.getInstance().getMainDisplay().refresh();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,11 +125,11 @@ public class SignUpViewController
     @FXML
     void switchToLoginCallback(ActionEvent event)
     {
-    	LoginView view = (LoginView)CinemaSystem.getInstance().getActiveContext().getViews().get(0);
+    	LoginView view = (LoginView)CinematrixAPI.getInstance().getActiveContext().getViews().get(0);
     	
     	try {
-			CinemaSystem.getInstance().getActiveContext().goToView(view);
-			CinemaSystem.getInstance().getMainDisplay().refresh();
+			CinematrixAPI.getInstance().getActiveContext().goToView(view);
+			CinematrixAPI.getInstance().getMainDisplay().refresh();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,6 +1,6 @@
 package com.texnologia_logismikou.Cinematrix.Controllers;
 
-import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.PropertiesReader;
 
 import javafx.fxml.FXML;
@@ -14,7 +14,7 @@ public class FooterBarController {
     @FXML
     void initialize()
     {
-    	userT_lbl.setText("[ " + CinemaSystem.getInstance().getCurrentUser() + " ]");
+    	userT_lbl.setText("[ " + CinematrixAPI.getInstance().getCurrentUser() + " ]");
 		version_lbl.setText(PropertiesReader.getProperty("AppVersion"));
     }
 }

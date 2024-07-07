@@ -26,8 +26,8 @@ import com.texnologia_logismikou.Cinematrix.Views.View;
 import java.nio.file.Path;
 import com.texnologia_logismikou.Cinematrix.Views.LoginView;
 
-public class CinemaSystem {
-	private static CinemaSystem instance = null;
+public class CinematrixAPI {
+	private static CinematrixAPI instance = null;
 	
 	private final String webKey = "AIzaSyDTn8MSxkAuIX-sH-_I_vwAwVqIt77sORU";
 	
@@ -38,7 +38,7 @@ public class CinemaSystem {
 	private static List<Context> contexts = new ArrayList<>();
 	private static Context activeContext;
 	
-	private CinemaSystem()
+	private CinematrixAPI()
 	{
 //		currentUser = new Admin();
 		currentUser = new Guest();
@@ -67,10 +67,10 @@ public class CinemaSystem {
 		getMainDisplay().refresh();
 	}
 	
-	public static CinemaSystem getInstance()
+	public static CinematrixAPI getInstance()
 	{
 		if(instance == null)
-			instance = new CinemaSystem();
+			instance = new CinematrixAPI();
 		return(instance);
 	}
 
@@ -210,6 +210,9 @@ public class CinemaSystem {
 		return signInResponse.getIdToken();
 	}
 	
+	/** 
+	 * @deprecated Use createMovie instead.
+	 */
 	public void createMovieDocument(String name, String firebaseId) {
 		
 		MovieDocument createResponse = new MovieDocument();
@@ -257,7 +260,7 @@ public class CinemaSystem {
 		return response;
 	}
 
-	public void updateMovieDocument(MovieFields fields, String firebaseId) {
+	public void createMovie(MovieFields fields, String firebaseId) {
 		
 		MovieDocument updateResponse = new MovieDocument();
 		
@@ -301,7 +304,7 @@ public class CinemaSystem {
 		}
 	}
 	
-	public void createCinemaDocument(String firebaseId, int numOfRooms, CinemaFields fields) {
+	public void createCinema(String firebaseId, int numOfRooms, CinemaFields fields) {
 		
 		CinemaDocument response = new CinemaDocument();
 		

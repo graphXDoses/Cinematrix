@@ -1,6 +1,6 @@
 package com.texnologia_logismikou.Cinematrix.Controllers;
 
-import com.texnologia_logismikou.Cinematrix.CinemaSystem;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.Context;
 import com.texnologia_logismikou.Cinematrix.Managers.ContextButtonContainer;
 import com.texnologia_logismikou.Cinematrix.Managers.MainDisplay;
@@ -26,10 +26,10 @@ public class MainUIController {
         header_bar.getChildren().add(0, new LogoButton().getParent());
         header_bar.getChildren().add(2, new ContextButtonContainer().getParent());
         
-        Context movieContext = CinemaSystem.getInstance().getContexts().get(0);
-        CinemaSystem.getInstance().setActiveContext(movieContext);
+        Context movieContext = CinematrixAPI.getInstance().getContexts().get(0);
+        CinematrixAPI.getInstance().setActiveContext(movieContext);
         
-        root.setCenter(CinemaSystem.getInstance().getMainDisplay().getParent());
+        root.setCenter(CinematrixAPI.getInstance().getMainDisplay().getParent());
         root.setBottom(new FooterBar().getParent());
     }
 

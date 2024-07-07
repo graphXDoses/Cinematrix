@@ -1,14 +1,12 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
-import com.texnologia_logismikou.Cinematrix.ResponseBodies.ErrorResponseBody;
-
 public class MovieFields extends Fields {
 
 	/*
 	 * 	If you add a new field remember to update the QueryParameter.
 	 */
 	
-	private StringField id;
+	private StringField uid;
 	private StringField title;
 	private DoubleField releaseYear;
 	private StringField mpRating;
@@ -21,9 +19,9 @@ public class MovieFields extends Fields {
 	
 	public MovieFields(String title, int releaseYear, String mpRating, int duration,
 			String ytTrailerUrl, String[] categories, String[] cinemas,
-			String description, String director, String id) {
+			String description, String director) {
 		
-		this.id = new StringField(id);
+		this.uid = new StringField(title + "_" + System.currentTimeMillis());
 		this.title = new StringField(title);
 		this.releaseYear = new DoubleField(releaseYear);
 		this.mpRating = new StringField(mpRating);
@@ -90,10 +88,10 @@ public class MovieFields extends Fields {
 	public void setDirector(StringField director) {
 		this.director = director;
 	}
-	public StringField getId() {
-		return id;
+	public StringField getUid() {
+		return uid;
 	}
-	public void setId(StringField id) {
-		this.id = id;
+	public void setUid(StringField uid) {
+		this.uid = uid;
 	}
 }

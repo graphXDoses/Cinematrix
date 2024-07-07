@@ -7,15 +7,15 @@ public class CinemaFields {
 	 */
 	
 	private StringField name;
-	private StringField id;
+	private StringField uid;
 	private StringField address;
 	private StringField openHours;
 	private DoubleField distance;
 	
-	public CinemaFields(String name, String id, String address, String openHours, double distance) {
+	public CinemaFields(String name, String address, String openHours, double distance) {
 		
 		this.name = new StringField(name);
-		this.id = new StringField(id);
+		this.uid = new StringField(name + "_" + System.currentTimeMillis());
 		this.address = new StringField(address);
 		this.openHours = new StringField(openHours);
 		this.distance = new DoubleField(distance);
@@ -27,11 +27,11 @@ public class CinemaFields {
 	public void setName(StringField name) {
 		this.name = name;
 	}
-	public StringField getId() {
-		return id;
+	public StringField getUid() {
+		return uid;
 	}
-	public void setId(StringField id) {
-		this.id = id;
+	public void setUid(StringField uid) {
+		this.uid = uid;
 	}
 	public StringField getAddress() {
 		return address;

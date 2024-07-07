@@ -16,7 +16,9 @@ public class MovieModal extends Manager<MovieModalController> {
 		try {			
 			this.setUrl(url);
 			cover_img = new Image(App.class.getResource(getUrl()).toExternalForm());
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			//e.printStackTrace();
+		}
 	}
 
 	public String getUrl() {
