@@ -301,12 +301,12 @@ public class CinemaSystem {
 		}
 	}
 	
-	public void createCinemaDocument(String cinemaName, String firebaseId, int numOfRooms) {
+	public void createCinemaDocument(String firebaseId, int numOfRooms, CinemaFields fields) {
 		
 		CinemaDocument response = new CinemaDocument();
 		
 		try {
-			response = RequestHandler.getInstance().createCinemaDocumentRequest(cinemaName, firebaseId);
+			response = RequestHandler.getInstance().updateCinemaDocumentRequest(fields, firebaseId);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -325,7 +325,7 @@ public class CinemaSystem {
 			RoomDocument createRoomResponse = new RoomDocument();
 			String roomName = "Room" + (i+1);
 			try {
-				RequestHandler.getInstance().createRoomDocumentRequest(firebaseId, roomName, cinemaName);
+				RequestHandler.getInstance().createRoomDocumentRequest(firebaseId, roomName, fields.getName().getStringValue());
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (URISyntaxException e) {
@@ -386,19 +386,18 @@ public class CinemaSystem {
 		StorageHandler storage = StorageHandler.getInstance();
 		
 		for(MovieDocument movie: moviesList.getDocuments()) {
-			
-			String imagePath = "";
+						
+			String imageName = "";
 			
 			try {
-				Path path = storage.downloadMovieImage(movie.getFields().getTitle().getStringValue());
-				imagePath = path.toString();
+				imageName = storage.downloadMovieImage(movie.getFields().getTitle().getStringValue());
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			
-			movies.add(new Movie(movie, imagePath));
+			movies.add(new Movie(movie, imageName));
 		}
 	}
 }

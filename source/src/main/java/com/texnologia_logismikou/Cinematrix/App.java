@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.CinemaFields;
+
 /**
  * JavaFX App
  */
@@ -27,6 +29,8 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         
+        CinemaSystem.getInstance().fetchAllCinemas();
+        CinemaSystem.getInstance().fetchAllMovies();
         CinemaSystem.getInstance().getMainDisplay().refresh();
         
         CinemaSystem.getInstance().fetchAllCinemas();

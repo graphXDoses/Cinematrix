@@ -12,7 +12,7 @@ public class CinemaFields {
 	private StringField openHours;
 	private DoubleField distance;
 	
-	public CinemaFields(String name, String id, String address, String openHours, int distance) {
+	public CinemaFields(String name, String id, String address, String openHours, double distance) {
 		
 		this.name = new StringField(name);
 		this.id = new StringField(id);

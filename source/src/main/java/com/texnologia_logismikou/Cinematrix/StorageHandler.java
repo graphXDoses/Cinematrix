@@ -44,9 +44,9 @@ public class StorageHandler {
 	/**
 	 * 	Download a movie image.
 	 * @param String The movie's name.
-	 * @return Path The path to the image.
+	 * @return String The image name in PascalCase.
 	 */
-	public Path downloadMovieImage(String movieName) throws FileNotFoundException, IOException {
+	public String downloadMovieImage(String movieName) throws FileNotFoundException, IOException {
 
 		movieName = StringField.toPascalCase(movieName);
 		String imageName = "_" + movieName + "_Cover.jpg";
@@ -63,7 +63,7 @@ public class StorageHandler {
 		Path path = Paths.get("src/main/resources/com/texnologia_logismikou/Cinematrix/images/" + imageName);
 		blob.downloadTo(path);
 		
-		return path;
+		return movieName;
 	}
 	
 	/**

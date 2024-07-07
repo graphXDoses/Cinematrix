@@ -499,7 +499,7 @@ public class RequestHandler {
 		Gson gson = new Gson();
 		
 		HttpRequest getRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas"))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies"))
 				.GET()
 				.setHeader("Content-Type", "application/json")
 				.build();
@@ -508,7 +508,7 @@ public class RequestHandler {
 		HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
 		
 		response = gson.fromJson(getResponse.body(), ListMoviesResponseBody.class);
-				
+						
 		return response;
 	}
 }

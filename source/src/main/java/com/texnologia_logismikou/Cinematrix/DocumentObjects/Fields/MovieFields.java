@@ -35,6 +35,7 @@ public class MovieFields extends Fields {
 		this.description = new StringField(description);
 		this.director = new StringField(director);
 	}
+	
 	public StringField getTitle() {
 		return title;
 	}
