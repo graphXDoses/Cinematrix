@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.texnologia_logismikou.Cinematrix.Cinema;
 import com.texnologia_logismikou.Cinematrix.Movie;
+import com.texnologia_logismikou.Cinematrix.Screening;
 import com.texnologia_logismikou.Cinematrix.Managers.ReservationButton;
 
 import javafx.fxml.FXML;
@@ -13,10 +14,11 @@ import javafx.scene.layout.HBox;
 
 public class CinemaModalController {
 
-	@FXML private Label cinema_address;
-	@FXML private Label cinema_name;
-	@FXML private Label cinema_rel_distance;
-	@FXML private HBox  hoursContainer;
+	@FXML private Label cinema_address_label;
+	@FXML private Label cinema_name_label;
+	@FXML private Label cinema_rel_distance_label;
+	@FXML private Label sound_system_label;
+	@FXML private HBox  hours_container;
 	
 	private Cinema associateCinema = null;
 	private Movie  associateMovie  = null;
@@ -24,13 +26,13 @@ public class CinemaModalController {
 	@FXML
 	void initialize()
 	{
-		System.out.println("INIT");
-		hoursContainer.setVisible(false);
+//		System.out.println("INIT");
+		hours_container.setVisible(false);
 	}
 	
     public void setData(Cinema cinema)
     {
-    	System.out.println("SET DATA");
+//    	System.out.println("SET DATA");
     	associateCinema = cinema;
     	
     	cinema_name.setText(cinema.getDoc().getFields().getName().getStringValue());
@@ -39,19 +41,21 @@ public class CinemaModalController {
     	hoursContainer.setVisible(false);
     }
 
-    public void setScreeningData(Movie movie, String soundSystem, List<Date> dates, List<String> hours)
+    public void setScreeningData(Screening screening)
     {
-    	System.out.println("SCREEN");
-    	associateMovie = movie;
+//    	System.out.println("SCREEN");
+    	associateMovie = screening.getMovie();
     	
-    	for(String h: hours)
-    		addReservationButton(new ReservationButton(h));
+//    	sound_system_label.setText(screening.getVenue().getSystem().toString());
+    	
+    	for(String h: screening.getHours())
+    		addReservationButton(new ReservationButton(screening, h));
     }
 
 	public void addReservationButton(ReservationButton reservationButton)
 	{
-		System.out.println("RESERVE");
-		hoursContainer.setVisible(true);
-		hoursContainer.getChildren().add(reservationButton.getParent());
+//		System.out.println("RESERVE");
+		hours_container.setVisible(true);
+		hours_container.getChildren().add(reservationButton.getParent());
 	}
 }

@@ -3,8 +3,13 @@ package com.texnologia_logismikou.Cinematrix.Views;
 import com.texnologia_logismikou.Cinematrix.Movie;
 import com.texnologia_logismikou.Cinematrix.Controllers.MovieDetailsViewController;
 import com.texnologia_logismikou.Cinematrix.Managers.AvailableCinemasDisplay;
+import com.texnologia_logismikou.Cinematrix.Users.VisibilityPolicies.VisibleUnderAdmin;
+import com.texnologia_logismikou.Cinematrix.Users.VisibilityPolicies.VisibleUnderGuest;
+import com.texnologia_logismikou.Cinematrix.Users.VisibilityPolicies.VisibleUnderUser;
 
-public class MovieDetailsView extends View<MovieDetailsViewController>
+public class MovieDetailsView
+extends View<MovieDetailsViewController>
+implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 {
 	private Movie selectedMovie = null;
 	private AvailableCinemasDisplay cinemasDisplay;
@@ -16,9 +21,9 @@ public class MovieDetailsView extends View<MovieDetailsViewController>
 		cinemasDisplay = new AvailableCinemasDisplay();
 	}
 
-	@Override
-	public void prepare()
+	void standardPrepare()
 	{
+		getController().setLikable(false);
 		getController().setMovieDetailData(selectedMovie);
 		getController().setCinemaDisplay(cinemasDisplay.getParent());
 		
@@ -33,5 +38,24 @@ public class MovieDetailsView extends View<MovieDetailsViewController>
 	public Movie getSelectedMovie()
 	{
 		return(selectedMovie);
+	}
+
+	@Override
+	public void showToAdmin()
+	{
+		standardPrepare();
+	}
+
+	@Override
+	public void showToUser()
+	{
+		standardPrepare();
+		getController().setLikable(true);
+	}
+
+	@Override
+	public void showToGuest()
+	{
+		standardPrepare();
 	}
 }

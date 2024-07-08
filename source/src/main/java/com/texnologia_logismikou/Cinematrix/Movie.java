@@ -8,6 +8,13 @@ public class Movie {
 	private MovieDocument doc;
 	private final MovieModal modal;
 	
+	private ArrayList<Screening> screenings = new ArrayList<Screening>();
+
+	public Movie() {
+		this.modal = new MovieModal("BLANK");
+		this.modal.getController().setData(this);
+	}
+
 	public Movie(MovieDocument doc, String movieName) {
 		
 		this.doc = doc;
@@ -37,5 +44,15 @@ public class Movie {
 
 	public void setDoc(MovieDocument doc) {
 		this.doc = doc;
+	}
+
+	public void associateScreening(Screening screening) {
+		if(!this.screenings.contains(screening))
+			this.screenings.add(screening);
+	}
+	
+	public ArrayList<Screening> getAssociateScreenings()
+	{
+		return(this.screenings);
 	}
 }

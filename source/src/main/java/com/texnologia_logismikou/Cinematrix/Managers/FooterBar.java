@@ -8,4 +8,9 @@ public class FooterBar extends Manager<FooterBarController>
 	{
 		super.loadFXML("FooterBar");
 	}
+	
+	public void updateUserTypeDisplay()
+	{
+		getController().setData();
+	}
 }

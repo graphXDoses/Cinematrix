@@ -34,28 +34,31 @@ public class CinematrixAPI {
 	public final static String imagesPath = System.getenv("APPDATA") + "/Cinematrix/images";
 	
 	private static UserCore currentUser;
-	private static MainDisplay mD;
+	private static MainUI UI;
 	private static List<Movie>   movies   = new ArrayList<>();
 	private static List<Cinema>  cinemas  = new ArrayList<>();
+	private static List<Screening>  screenings  = new ArrayList<>();
 	private static List<Context> contexts = new ArrayList<>();
 	private static Context activeContext;
 	
+	public static final MovieContext   MOVIE_CONTEXT   = new MovieContext();
+	public static final CinemaContext  CINEMA_CONTEXT  = new CinemaContext();
+	public static final AccountContext ACCOUNT_CONTEXT = new AccountContext();
+
 	private CinematrixAPI()
 	{
-//		currentUser = new Admin();
 		currentUser = new Guest();
 		
-		mD = new MainDisplay();
-		
-		contexts.add(new Context("Movies", "images/movie.png", new AllMoviesView(), new MovieDetailsView(), new SeatSelectionView()));
-		contexts.add(new Context("Cinemas", "images/theater.png", new NearCinemasView()));
-		contexts.add(new Context("Account", "images/account.png", new LoginView(), new SignUpView(), new UserDashboardView()));
+		contexts.add(MOVIE_CONTEXT);
+		contexts.add(CINEMA_CONTEXT);
+		contexts.add(ACCOUNT_CONTEXT);
 		
 	}
 	
 	public MainDisplay getMainDisplay() { return(instance.mD); }
 	public List<Movie> getMovies() { return(instance.movies); }
 	public List<Cinema> getCinemas() { return(instance.cinemas); }
+	public List<Screening> getScreenings() { return(instance.screenings); }
 	public List<Context> getContexts() { return(instance.contexts); }
 	public Context     getActiveContext() { return(instance.activeContext); }
 	
@@ -83,6 +86,8 @@ public class CinematrixAPI {
 		contexts.forEach(context->{ context.getButton().getController().deactivate(); });
 		activeContext.getButton().getController().activate();
 		
+		if(UI != null)
+			UI.reemplaceSearchBar();
 		getMainDisplay().refresh();
 	}
 	
@@ -94,6 +99,15 @@ public class CinematrixAPI {
 	}
 
 	public UserCore getCurrentUser() { return(currentUser); }
+
+	public void setCurrentUser(UserCore user)
+	{
+		if(user != null)
+		{
+			currentUser = user;
+			UI.FOOTERBAR.updateUserTypeDisplay();
+		}
+	}
 
 	public void userSignUp(String name, String email, String password) throws SignUpException {
 		
@@ -363,7 +377,7 @@ public class CinematrixAPI {
 		}
 	}
 	
-	public void fetchAllCinemas() {
+	public void fetchCinemasFromDatabase() {
 		
 		ListCinemasResponseBody cinemasList = new ListCinemasResponseBody();
 		
@@ -387,7 +401,7 @@ public class CinematrixAPI {
 		}
 	}
 	
-	public void fetchAllMovies() {
+	public void fetchMoviesFromDatabase() {
 		
 		ListMoviesResponseBody moviesList = new ListMoviesResponseBody();
 		
@@ -426,5 +440,13 @@ public class CinematrixAPI {
 			movies.add(new Movie(movie, movieName));
 			System.out.println("Have the image!");
 		}
+	}
+
+	public void placeUIOnStage(Stage stage) {
+		UI = new MainUI();
+		stage.setTitle("Cinematrix");
+        stage.getIcons().add(new Image(getClass().getResource("images/CinematrixIcon.png").toExternalForm()));
+        stage.setScene(UI.getScene());
+        stage.show();
 	}
 }

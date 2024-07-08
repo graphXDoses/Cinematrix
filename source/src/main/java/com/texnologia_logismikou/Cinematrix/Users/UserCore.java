@@ -1,6 +1,9 @@
 package com.texnologia_logismikou.Cinematrix.Users;
 
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.UserDocument;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.UserFields;
+import com.texnologia_logismikou.Cinematrix.Views.AllMoviesView;
 
 public class UserCore {
 	
@@ -8,9 +11,10 @@ public class UserCore {
 
 	protected UserCore() {}
 	
-	protected UserCore(UserFields userFields) {
-		
+	protected UserCore(UserFields userFields)
+	{	
 		this.userFields = userFields;
+		CinematrixAPI.getInstance().MOVIE_CONTEXT.ALL_MOVIES_VIEW = new AllMoviesView();
 	}
 	
 	public UserFields getUserFields() {
@@ -19,5 +23,19 @@ public class UserCore {
 
 	public void setUserFields(UserFields userFields) {
 		this.userFields = userFields;
+	}
+
+	public static UserCore createUser(UserDocument userDocument) {
+		// TODO Auto-generated method stub
+		User user;
+		
+		if(userDocument.getFields().getAdmin().getBooleanValue())
+			user = new Admin();
+		else
+			user = new User();
+		
+		user.setUserFields(userDocument.getFields());
+		user.setAccountCreationDate(userDocument.getCreateTime());
+		return(user);
 	}
 }

@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class SignUpViewController
@@ -35,6 +36,9 @@ public class SignUpViewController
     @FXML private Pane name_label_obs;
     
     @FXML private Button signup_button;
+    
+    @FXML private AnchorPane error_message_container;
+	@FXML private Label error_message_label;
 	
 	private int YOffset = 20;
 
@@ -44,6 +48,7 @@ public class SignUpViewController
     	toggleActiveHighlighted(name_inputfield, name_label, name_label_obs, false);
     	toggleActiveHighlighted(email_inputfield, email_label, email_label_obs, false);
     	toggleActiveHighlighted(pass_inputfield, pass_label, pass_label_obs, false);
+    	hideErrorMessageContainer();
     	
     	name_inputfield.focusedProperty().addListener(new ChangeListener<Boolean>()
     	{
@@ -72,6 +77,13 @@ public class SignUpViewController
     		}
     	});
     }
+    
+    void hideErrorMessageContainer() { error_message_container.setVisible(false); }
+    void revealErrorMessageContainer(String error_message)
+    {
+    	error_message_container.setVisible(true);
+    	error_message_label.setText(error_message);
+	}
     
     void toggleActiveHighlighted(TextField referenceElement, Label lbl, Pane obs, boolean isFocused)
     {
@@ -125,15 +137,16 @@ public class SignUpViewController
     @FXML
     void switchToLoginCallback(ActionEvent event)
     {
-    	LoginView view = (LoginView)CinematrixAPI.getInstance().getActiveContext().getViews().get(0);
-    	
-    	try {
-			CinematrixAPI.getInstance().getActiveContext().goToView(view);
-			CinematrixAPI.getInstance().getMainDisplay().refresh();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	CinematrixAPI.getInstance()
+    				.getActiveContext()
+    				.promiseRedirectTo(null);
+    	CinematrixAPI.getInstance().getMainDisplay().refresh();
+    }
+    
+    @FXML
+    void closeErrorMessageCallback(ActionEvent event)
+    {
+    	hideErrorMessageContainer();
     }
 
 }

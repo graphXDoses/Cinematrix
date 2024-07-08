@@ -1,10 +1,35 @@
 package com.texnologia_logismikou.Cinematrix.Users;
 
-import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.UserFields;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 
-public class User extends UserCore {
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
+
+public class User
+extends Guest
+{
+	private String accountCreationDate; 
 	
-	public User(UserFields fields) {
-		super(fields);
+	public User()
+	{
+		CinematrixAPI.ACCOUNT_CONTEXT
+					 .setDefaultView(CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW);
+	}
+	
+	protected void setAccountCreationDate(String date)
+	{
+		accountCreationDate = date;
+	}
+	
+	public String getAccountCreationDate()
+	{
+		// Parse the input date string
+        OffsetDateTime dateTime = OffsetDateTime.parse(accountCreationDate);
+        
+        // Define the desired output format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
+        
+        // Format the parsed date
+        return (dateTime.format(formatter));
 	}
 }

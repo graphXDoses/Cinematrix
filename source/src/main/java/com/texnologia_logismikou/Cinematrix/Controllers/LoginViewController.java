@@ -15,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 public class LoginViewController
@@ -26,6 +28,9 @@ public class LoginViewController
 	@FXML private PasswordField pass_inputfield;
 	@FXML private Label pass_label;
 	@FXML private Pane pass_label_obs;
+	@FXML private HBox forgot_password_link;
+	@FXML private AnchorPane error_message_container;
+	@FXML private Label error_message_label;
 	
 	@FXML private Button login_button;
 	
@@ -36,6 +41,7 @@ public class LoginViewController
     {
     	toggleActiveHighlighted(email_inputfield, email_label, email_label_obs, false);
     	toggleActiveHighlighted(pass_inputfield, pass_label, pass_label_obs, false);
+    	hideErrorMessageContainer();
     	
     	email_inputfield.focusedProperty().addListener(new ChangeListener<Boolean>()
     	{
@@ -55,6 +61,13 @@ public class LoginViewController
     		}
     	});
     }
+    
+    void hideErrorMessageContainer() { error_message_container.setVisible(false); }
+    void revealErrorMessageContainer(String error_message)
+    {
+    	error_message_container.setVisible(true);
+    	error_message_label.setText(error_message);
+	}
     
     void toggleActiveHighlighted(TextField referenceElement, Label lbl, Pane obs, boolean isFocused)
     {
@@ -108,15 +121,27 @@ public class LoginViewController
     @FXML
     void switchToSignupCallback(ActionEvent event)
     {
-    	SignUpView view = (SignUpView)CinematrixAPI.getInstance().getActiveContext().getViews().get(1);
-    	
-    	try {
-			CinematrixAPI.getInstance().getActiveContext().goToView(view);
-			CinematrixAPI.getInstance().getMainDisplay().refresh();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	CinematrixAPI.ACCOUNT_CONTEXT.SIGNUP_VIEW = new SignUpView();
+		CinematrixAPI.getInstance()
+    				.getActiveContext()
+    				.promiseRedirectTo(CinematrixAPI.ACCOUNT_CONTEXT.SIGNUP_VIEW);
+    	CinematrixAPI.getInstance().getMainDisplay().refresh();
+    }
+    
+    @FXML
+    void forgotPasswordCallback(ActionEvent event)
+    {	
+    	CinematrixAPI.ACCOUNT_CONTEXT.FORGOT_PASSWORD_VIEW = new ForgotPasswordView();
+    	CinematrixAPI.getInstance()
+    				.getActiveContext()
+    				.promiseRedirectTo(CinematrixAPI.ACCOUNT_CONTEXT.FORGOT_PASSWORD_VIEW);
+    	CinematrixAPI.getInstance().getMainDisplay().refresh();
+    }
+    
+    @FXML
+    void closeErrorMessageCallback(ActionEvent event)
+    {
+    	hideErrorMessageContainer();
     }
 
 }

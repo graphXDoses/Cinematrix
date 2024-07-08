@@ -53,16 +53,25 @@
                                                       </ImageView>
                                                       <VBox>
                                                          <children>
-                                                            <Label text="SAROJCT006" textFill="#dedede">
+                                                            <Label fx:id="user_name_label" text="&lt;UserName&gt;" textFill="#dedede">
                                                                <font>
                                                                   <Font name="System Bold" size="18.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label text="Joined Oct 13, 2023" textFill="#dedede">
-                                                               <font>
-                                                                  <Font name="System Italic" size="12.0" />
-                                                               </font>
-                                                            </Label>
+                                                            <HBox>
+                                                               <children>
+                                                                  <Label text="Joined " textFill="#dedede">
+                                                                     <font>
+                                                                        <Font name="System Italic" size="12.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label fx:id="account_create_date" text="&lt;MMM, d, yyyy&gt;" textFill="#dedede">
+                                                                     <font>
+                                                                        <Font name="System Italic" size="12.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -207,7 +216,7 @@
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" />
                      </content>
                   </Tab>
-                <Tab closable="false" onSelectionChanged="#signOutCallback" text="SIGN OUT">
+                <Tab closable="false" onSelectionChanged="#logOutCallback" text="LOGOUT">
                   <content>
                     <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" />
                   </content>
@@ -218,6 +227,6 @@
       </VBox>
    </children>
    <padding>
-      <Insets left="30.0" right="30.0" />
+      <Insets left="30.0" right="30.0" top="10.0" />
    </padding>
 </HBox>
