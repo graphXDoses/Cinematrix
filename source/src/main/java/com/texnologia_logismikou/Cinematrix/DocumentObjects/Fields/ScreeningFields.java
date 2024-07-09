@@ -1,5 +1,7 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
+import java.time.LocalDateTime;
+
 public class ScreeningFields extends Fields {
 
 	/*
@@ -10,15 +12,18 @@ public class ScreeningFields extends Fields {
 	private StringField movieUid;
 	private StringField cinemaUid;
 	private StringField venueUid;
-	private StringField time;
+	private TimestampField date;
 	
-	public ScreeningFields(String movieUid, String cinemaUid, String venueUid, String time) {
+	public ScreeningFields(String movieUid, String cinemaUid, String venueUid, LocalDateTime date) {
 		
 		this.uid = new StringField("screening_" + System.currentTimeMillis());
 		this.movieUid = new StringField(movieUid);
 		this.cinemaUid = new StringField(cinemaUid);
 		this.venueUid = new StringField(venueUid);
-		this.time = new StringField(time);
+		
+		String dateString = date.getYear() + "-" + date.getMonth() + "-" + date.getDayOfMonth() 
+							+ "T" + date.getHour() + ":" + date.getMinute() + ":00Z";
+		this.date = new TimestampField(dateString);
 	}
 	
 	public StringField getUid() {
@@ -45,10 +50,12 @@ public class ScreeningFields extends Fields {
 	public void setVenueUid(StringField venueUid) {
 		this.venueUid = venueUid;
 	}
-	public StringField getTime() {
-		return time;
+
+	public TimestampField getDate() {
+		return date;
 	}
-	public void setTime(StringField time) {
-		this.time = time;
+
+	public void setDate(TimestampField date) {
+		this.date = date;
 	}
 }

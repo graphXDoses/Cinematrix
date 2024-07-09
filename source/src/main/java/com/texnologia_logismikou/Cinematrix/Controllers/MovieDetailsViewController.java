@@ -144,11 +144,11 @@ public class MovieDetailsViewController {
 	public List<ScreeningDaySelectionButtonWidget> setAvailableDays(List<Screening> associateScreenings)
 	{
 		List<LocalDateTime> uniHours = new ArrayList<>();
-		associateScreenings.forEach(s->{
+		/*associateScreenings.forEach(s->{
 			s.getHours().forEach(h->{
 				uniHours.add(h);
 			});
-		});
+		});*/ // TODO remove comment
 		
 		Set<LocalDate> uniqueDays = uniHours.stream()
                 .map(LocalDateTime::toLocalDate)

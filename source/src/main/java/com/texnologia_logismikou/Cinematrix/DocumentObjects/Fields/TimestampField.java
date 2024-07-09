@@ -1,5 +1,7 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
+import java.time.LocalDateTime;
+
 public class TimestampField {
 
 	private String timestampValue;
@@ -9,27 +11,37 @@ public class TimestampField {
 		this.timestampValue = timestamp;
 	}
 	
-	public static String toTimestamp(String timestamp) {
+	public static LocalDateTime toLocalDateTime(String value) {
 		
-		String regex = "[\\s]";
-		String[] array = timestamp.split(regex);
-		String timestampFormatted = "";
+		int year = 0;
+		int month = 0;
+		int day = 0;
+		int hour = 0;
+		int minute = 0;
 		
-		int i = 0;
-		for(String field: array) {
-			timestampFormatted += field;
-			switch(i) {
-			case 0, 1: timestampFormatted += "-"; break;
-			case 2: timestampFormatted += "T"; break;
-			case 3, 4: timestampFormatted += ":"; break;
-			case 5: timestampFormatted += "Z"; break;
+		String[] temp = value.split("T");
+		String[] temp2 = temp[0].split("-");
+		int counter = 0;
+		for(String j: temp2) {
+			switch(counter) {
+			case 0: year = Integer.parseInt(j);
+			case 1: month = Integer.parseInt(j);
+			case 2: day = Integer.parseInt(j);
 			}
-			i++;
+			counter++;
+		}
+		counter = 0;
+		String temp3 = temp[1].substring(0, temp[1].length() -1);
+		temp2 = temp3.split(":");
+		for(String j: temp2) {
+			switch(counter) {
+			case 0: hour = Integer.parseInt(j);
+			case 1: minute = Integer.parseInt(j);
+			}
+			counter++;
 		}
 		
-		System.out.println(timestampFormatted);
-		
-		return timestampFormatted;
+		return LocalDateTime.of(year, month, day, hour, minute);
 	}
 	
 	public String getTimestampValue() {

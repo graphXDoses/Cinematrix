@@ -9,14 +9,14 @@ public class Screening
 	private Movie movie;
 	private Cinema cinema;
 	private Venue venue;
-	private List<LocalDateTime> hours = new ArrayList<>();
+	private LocalDateTime date;
 	
-	public Screening(Movie movie, Cinema cinema, Venue venue, List<LocalDateTime> hours)
+	public Screening(Movie movie, Cinema cinema, Venue venue, LocalDateTime date)
 	{
 		this.movie = movie;
 		this.cinema = cinema;
 		this.venue = venue;
-		this.hours = hours;
+		this.date = date;
 		
 		this.movie.associateScreening(this);
 	}
@@ -45,11 +45,11 @@ public class Screening
 		this.venue = venue;
 	}
 
-	public List<LocalDateTime> getHours() {
-		return hours;
+	public LocalDateTime getDate() {
+		return date;
 	}
 
-	public void setHours(List<LocalDateTime> hours) {
-		this.hours = hours;
+	public void setDate(LocalDateTime date) {
+		this.date = date;
 	}
 }

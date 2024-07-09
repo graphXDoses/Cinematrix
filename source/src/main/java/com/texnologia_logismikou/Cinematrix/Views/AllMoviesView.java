@@ -34,7 +34,7 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 		if(!screenings.isEmpty())
 		{
 			// Fill NowFeaturing container
-			screenings.stream().filter(screening->{
+			/*screenings.stream().filter(screening->{
 				return(screening.getHours().stream().filter(hour->{
 					return(hour.isAfter(LocalDateTime.of(2024, 7, 14, 0, 0)));
 				}).toList().isEmpty());
@@ -49,7 +49,7 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 				}).toList().isEmpty());
 			}).forEach(screening->{
 				getController().appendUpcomming(screening.getMovie().getModal());
-			});
+			});*/ // TODO remove comment.
 		}
 	}
 

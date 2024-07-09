@@ -4,6 +4,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.TimestampField;
 
 /**
  * JavaFX App

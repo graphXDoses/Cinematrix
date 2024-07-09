@@ -56,8 +56,8 @@ public class CinemaModalController {
     		main_vbox_container.getChildren().add(venue_info_container);
 //    	sound_system_label.setText(screening.getVenue().getSystem().toString());
     	
-    	for(LocalDateTime h: screening.getHours())
-    		addReservationButton(new ReservationButton(screening, h));
+    	/*for(LocalDateTime h: screening.getHours())
+    		addReservationButton(new ReservationButton(screening, h));*/ // TODO remove comment
     }
 
 	public void addReservationButton(ReservationButton reservationButton)

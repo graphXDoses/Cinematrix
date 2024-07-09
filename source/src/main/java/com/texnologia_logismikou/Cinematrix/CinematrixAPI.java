@@ -490,47 +490,6 @@ public class CinematrixAPI {
 			movies.add(new Movie(movie, movieName));
 			System.out.println("Have the image!");
 		}
-		
-		screenings.add(new Screening(
-				movies.get(0),
-				cinemas.get(1),
-				new Venue(VenueTopdownType.TYPE_A, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.ACCESSIBILLITY_DEVICES_AVAILABLE),
-				new ArrayList<>(Arrays.asList(
-						LocalDateTime.of(2024, 7, 10, 20, 25),
-						LocalDateTime.of(2024, 7, 10, 9, 30)
-				))
-		));
-		screenings.add(new Screening(
-				movies.get(1),
-				cinemas.get(1),
-				new Venue(VenueTopdownType.TYPE_B, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
-				new ArrayList<>(Arrays.asList(
-						LocalDateTime.of(2024, 7, 12, 18, 30),
-						LocalDateTime.of(2024, 7, 12, 21, 0),
-						LocalDateTime.of(2024, 7, 13, 22, 0),
-						LocalDateTime.of(2024, 7, 13, 23, 0)
-				))
-		));
-		screenings.add(new Screening(
-				movies.get(2),
-				cinemas.get(1),
-				new Venue(VenueTopdownType.TYPE_B, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
-				new ArrayList<>(Arrays.asList(
-						LocalDateTime.of(2024, 9, 12, 18, 30),
-						LocalDateTime.of(2024, 9, 12, 21, 0),
-						LocalDateTime.of(2024, 9, 13, 22, 0)
-				))
-		));
-		screenings.add(new Screening(
-				movies.get(2),
-				cinemas.get(0),
-				new Venue(VenueTopdownType.TYPE_B, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
-				new ArrayList<>(Arrays.asList(
-						LocalDateTime.of(2024, 9, 12, 18, 30),
-						LocalDateTime.of(2024, 9, 12, 21, 0),
-						LocalDateTime.of(2024, 9, 13, 22, 0)
-				))
-		));
 	}
 	
 	public void fetchScreeningsFromDatabase() {
@@ -556,6 +515,7 @@ public class CinematrixAPI {
 			Cinema theCinema = cinemas.stream().filter(cinema -> cinema.getDoc().getFields().getUid().getStringValue().equals(doc.getFields().getCinemaUid().getStringValue())).toList().get(0);
 			Movie theMovie = movies.stream().filter(movie -> movie.getDoc().getFields().getUid().getStringValue().equals(doc.getFields().getMovieUid().getStringValue())).toList().get(0);
 			Venue theVenue = null;
+			LocalDateTime date = TimestampField.toLocalDateTime(doc.getFields().getDate().getTimestampValue());
 			
 			for(Venue i: theCinema.getVenues()) {
 				if(i.getDoc().getFields().getUid().getStringValue().equals(doc.getFields().getVenueUid().getStringValue())) {
@@ -565,9 +525,10 @@ public class CinematrixAPI {
 			
 			System.out.println("The screening corresponds to Cinema: " + theCinema.getDoc().getFields().getName().getStringValue()
 					+ " | and movie: " + theMovie.getDoc().getFields().getTitle().getStringValue()
-					+ " | and venue: " + theVenue.getDoc().getFields().getName().getStringValue());
+					+ " | and venue: " + theVenue.getDoc().getFields().getName().getStringValue()
+					+ " | and date: " + date);
 			
-			//screenings.add(new Screening(theMovie, theCinema, theVenue, Arrays.asList("16", "30")));
+			screenings.add(new Screening(theMovie, theCinema, theVenue, date));
 		}
 	}
 	
