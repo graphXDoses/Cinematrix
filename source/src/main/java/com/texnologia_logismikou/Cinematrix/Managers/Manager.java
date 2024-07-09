@@ -20,7 +20,6 @@ public class Manager<T> {
 			root = fxmlLoader.load();
 			controller = fxmlLoader.getController();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

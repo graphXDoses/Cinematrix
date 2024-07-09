@@ -18,6 +18,7 @@ public class App extends Application
     	
     	CinematrixAPI.getInstance().fetchCinemasFromDatabase();
     	CinematrixAPI.getInstance().fetchMoviesFromDatabase();
+    	CinematrixAPI.getInstance().fetchScreeningsFromDatabase();
 
     	CinematrixAPI.getInstance().placeUIOnStage(stage);
         CinematrixAPI.getInstance().getMainDisplay().refresh();

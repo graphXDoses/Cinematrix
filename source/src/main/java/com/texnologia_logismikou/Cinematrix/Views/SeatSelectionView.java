@@ -29,14 +29,14 @@ implements VisibleUnderGuest, VisibleUnderUser
 	@Override
 	public void showToUser()
 	{
-		// TODO Auto-generated method stub
+		// TODO showToUser implementation.
 		
 	}
 
 	@Override
 	public void showToGuest()
 	{
-		// TODO Auto-generated method stub
+		// TODO showToGuest implementation.
 		
 	}
 

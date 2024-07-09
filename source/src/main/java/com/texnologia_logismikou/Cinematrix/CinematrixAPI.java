@@ -71,8 +71,6 @@ public class CinematrixAPI {
 	public Context     getActiveContext() { return(instance.activeContext); }
 	
 	public void makeCinematrixDir() {
-    	
-		// TODO make folders correctly, one after the other.
 		
 		File cinematrixDir = new File(System.getenv("APPDATA") + "/Cinematrix");
 		
@@ -310,28 +308,6 @@ public class CinematrixAPI {
 		}
 	}
 
-	public MovieDocument getMovieDocument(String name) {
-		
-		MovieDocument response = new MovieDocument();
-		
-		try {
-			response = RequestHandler.getInstance().getMovieDocumentRequest(name);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		
-		if(response.getError() != null) {
-			System.out.println("Error retrieving movie doc. Error details: " + response.getError().getMessage());
-			return null;
-		} 
-		
-		return response;
-	}
-
 	public void deleteMovieDocument(String name) {
 		
 		int statusCode;
@@ -397,6 +373,36 @@ public class CinematrixAPI {
 		} else {
 			System.out.println("Venue doc created!");
 		}
+		
+		Venue venue = new Venue(response);
+		
+		for(Cinema i: cinemas) {
+			if(i.getDoc().getFields().getName().getStringValue().equals(cinemaName)) {
+				i.getVenues().add(venue);
+			}
+		}
+	}
+
+	public void createScreening(ScreeningFields fields, String firebaseId) {
+		
+		ScreeningDocument response = new ScreeningDocument();
+		
+		try {
+			response = RequestHandler.getInstance().createScreeningDocumentRequest(firebaseId, fields);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		if(response.getError() != null) {
+			System.out.println(response.getError().getMessage());
+		} else {
+			System.out.println("Screening doc created at: " + response.getCreateTime());
+		}
+		
 	}
 
 	public void fetchCinemasFromDatabase() {
@@ -416,10 +422,30 @@ public class CinematrixAPI {
 		if(cinemasList.getError() != null) {
 			System.out.println(cinemasList.getError().getMessage());
 		}
-		
-		for(CinemaDocument cinema: cinemasList.getDocuments()) {
 			
-			cinemas.add(new Cinema(cinema));
+		for(CinemaDocument cinema: cinemasList.getDocuments()) {
+		
+			ListVenuesResponseBody venuesList = new ListVenuesResponseBody();
+			try {
+				venuesList = RequestHandler.getInstance().fetchAllCinemaVenuesRequest(StringField.toPascalCase(cinema.getFields().getName().getStringValue()));
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			
+			ArrayList<Venue> list = new ArrayList<Venue>();
+			
+			for(VenueDocument i: venuesList.getDocuments()) {
+				
+				Venue v = new Venue(i);
+				list.add(v);
+			}
+			
+			cinemas.add(new Cinema(cinema, list));
 		}
 	}
 	
@@ -442,7 +468,7 @@ public class CinematrixAPI {
 		}
 		
 		for(MovieDocument movie: moviesList.getDocuments()) {
-			
+						
 			String movieName = StringField.toPascalCase(movie.getFields().getTitle().getStringValue());
 			String imagePath = "/_" + movieName + "_Cover.jpg";
 			File image = new File(CinematrixAPI.imagesPath + imagePath);
@@ -461,6 +487,44 @@ public class CinematrixAPI {
 			} 
 			movies.add(new Movie(movie, movieName));
 			System.out.println("Have the image!");
+		}
+	}
+	
+	public void fetchScreeningsFromDatabase() {
+		
+		ListScreeningsResponseBody response = new ListScreeningsResponseBody();
+		
+		try {
+			response = RequestHandler.getInstance().fetchAllScreenings();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		if(response.getError() != null) {
+			System.out.println(response.getError().getMessage());
+		}
+		
+		for(ScreeningDocument doc: response.getDocuments()) {
+			
+			Cinema theCinema = cinemas.stream().filter(cinema -> cinema.getDoc().getFields().getUid().getStringValue().equals(doc.getFields().getCinemaUid().getStringValue())).toList().get(0);
+			Movie theMovie = movies.stream().filter(movie -> movie.getDoc().getFields().getUid().getStringValue().equals(doc.getFields().getMovieUid().getStringValue())).toList().get(0);
+			Venue theVenue = null;
+			
+			for(Venue i: theCinema.getVenues()) {
+				if(i.getDoc().getFields().getUid().getStringValue().equals(doc.getFields().getVenueUid().getStringValue())) {
+					theVenue = i;
+				}
+			}
+			
+			System.out.println("The screening corresponds to Cinema: " + theCinema.getDoc().getFields().getName().getStringValue()
+					+ " | and movie: " + theMovie.getDoc().getFields().getTitle().getStringValue()
+					+ " | and venue: " + theVenue.getDoc().getFields().getName().getStringValue());
+			
+			screenings.add(new Screening(theMovie, theCinema, theVenue, Arrays.asList("16", "30")));
 		}
 	}
 	

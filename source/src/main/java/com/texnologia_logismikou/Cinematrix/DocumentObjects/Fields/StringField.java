@@ -36,12 +36,6 @@ public class StringField {
 		return fieldArray;
 	}
 	
-	/**
-	 * Turns a string into PascalCase format.
-	 * @author Phoebus
-	 * @param String The string to be formatted.
-	 * @return String The formatted string in PascalCase.
-	 */
 	public static String toPascalCase(String string) {
 		
 		string = string.replaceAll("[^A-Za-z]+", "");

@@ -1,10 +1,6 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
 public class MovieFields extends Fields {
-
-	/*
-	 * 	If you add a new field remember to update the QueryParameter.
-	 */
 	
 	private StringField uid;
 	private StringField title;
@@ -15,22 +11,25 @@ public class MovieFields extends Fields {
 	private ArrayField<StringField> categories;
 	private StringField description;
 	private StringField director;
+	private StringField fullName;
 	
 	public MovieFields(String title, int releaseYear, String mpRating, int duration,
 			String ytTrailerUrl, String[] categories,
 			String description, String director) {
 		
-		this.uid = new StringField(title.toLowerCase() + "_" + System.currentTimeMillis());
 		this.title = new StringField(title);
+		title = StringField.toPascalCase(title);
+		String uid = title.toLowerCase() + "_" + System.currentTimeMillis();
+		this.uid = new StringField(uid);
 		this.releaseYear = new DoubleField(releaseYear);
 		this.mpRating = new StringField(mpRating);
 		this.duration = new DoubleField(duration);
 		this.ytTrailerUrl = new StringField(ytTrailerUrl);
-		
 		this.categories = new ArrayField<StringField>(StringField.toStringFieldArray(categories));
-		
 		this.description = new StringField(description);
 		this.director = new StringField(director);
+		
+		this.fullName = new StringField(this.title + ", " + this.releaseYear);
 	}
 	
 	public StringField getTitle() {
@@ -86,5 +85,13 @@ public class MovieFields extends Fields {
 	}
 	public void setUid(StringField uid) {
 		this.uid = uid;
+	}
+
+	public StringField getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(StringField fullName) {
+		this.fullName = fullName;
 	}
 }

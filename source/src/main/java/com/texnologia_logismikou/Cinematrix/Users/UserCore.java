@@ -26,7 +26,6 @@ public class UserCore {
 	}
 
 	public static UserCore createUser(UserDocument userDocument) {
-		// TODO Auto-generated method stub
 		User user;
 		
 		if(userDocument.getFields().getAdmin().getBooleanValue())

@@ -17,7 +17,10 @@ public class CinemaFields extends Fields {
 	public CinemaFields(String name, String address, String openHours, double distance) {
 		
 		this.name = new StringField(name);
-		this.uid = new StringField(name.toLowerCase() + "_" + System.currentTimeMillis());
+		
+		name = StringField.toPascalCase(name);
+		String uid = name.toLowerCase() + "_" + System.currentTimeMillis();
+		this.uid = new StringField(uid);
 		this.address = new StringField(address);
 		this.openHours = new StringField(openHours);
 		this.distance = new DoubleField(distance);

@@ -2,7 +2,7 @@ package com.texnologia_logismikou.Cinematrix.ResponseBodies;
 
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.VenueDocument;
 
-public class ListRoomsResponseBody {
+public class ListVenuesResponseBody {
 	
 	private ErrorResponseBody error;
 	

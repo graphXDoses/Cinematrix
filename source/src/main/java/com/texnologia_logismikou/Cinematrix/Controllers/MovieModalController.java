@@ -1,20 +1,14 @@
 package com.texnologia_logismikou.Cinematrix.Controllers;
 
-import java.io.FileNotFoundException;
-
-import com.texnologia_logismikou.Cinematrix.App;
 import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.Movie;
-import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
 import com.texnologia_logismikou.Cinematrix.Views.MovieDetailsView;
-import com.texnologia_logismikou.Cinematrix.Views.View;
 
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
@@ -33,7 +27,7 @@ public class MovieModalController {
 		associateMovie = movie;
 		
 		modal_cover.setImage(movie.getModal().getCoverImage());
-		//modal_button.setTooltip(new Tooltip(movie.getFullName())); // TODO Add full name to movie fields.
+		modal_button.setTooltip(new Tooltip(movie.getDoc().getFields().getFullName().getStringValue()));
 		edit_button.setVisible(false);
 		modal_cover.setOpacity(1);
 	}

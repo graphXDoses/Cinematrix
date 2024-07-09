@@ -20,7 +20,9 @@ public class VenueFields extends Fields {
 			, VenueSoundSystem soundSystem) {
 		
 		this.name = new StringField(name);
-		this.uid = new StringField(name.toLowerCase() + "_" + System.currentTimeMillis());
+		name = StringField.toPascalCase(name);
+		String uid = name.toLowerCase() + "_" + System.currentTimeMillis();
+		this.uid = new StringField(uid);
 		this.topDownType = new StringField(topdownType.name());
 		this.soundSystem = new StringField(soundSystem.name());
 		this.traits = new StringField(traits.name());
