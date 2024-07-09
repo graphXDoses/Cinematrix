@@ -8,6 +8,7 @@ import java.util.Locale;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 public class ScreeningDaySelectionButtonWidgetController
@@ -17,11 +18,28 @@ public class ScreeningDaySelectionButtonWidgetController
 	@FXML private Label day_label;
 	@FXML private Label month_label;
 	@FXML private Pane root;
+	
+	private static final String INACTIVE_STATE = "movie_details_button_inactive";
+	private static final String ACTIVE_STATE   = "movie_details_button_active";
 
     @FXML
     void selectScreeningDayCallback(ActionEvent event)
     {
-    	System.out.println("Date Selected!");
+    	setActiveState(root, ACTIVE_STATE);
+    	if(root.getParent() != null && root.getParent() instanceof HBox)
+    	{
+    		((HBox)root.getParent()).getChildren().filtered(button->{
+    			return(!button.equals(root));
+    		}).forEach(button->{
+    			setActiveState((Pane)button, INACTIVE_STATE);
+    		});
+    	}
+    }
+    
+    private void setActiveState(Pane rootNode, String state)
+    {
+    	rootNode.getStyleClass().clear();
+    	rootNode.getStyleClass().add(state);
     }
 
 	public void setData(LocalDate date)
