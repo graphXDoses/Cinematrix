@@ -1,5 +1,7 @@
 package com.texnologia_logismikou.Cinematrix;
 
+import java.util.ArrayList;
+
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.MovieDocument;
 import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
 

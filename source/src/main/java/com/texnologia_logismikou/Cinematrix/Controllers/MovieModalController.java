@@ -33,7 +33,7 @@ public class MovieModalController {
 		associateMovie = movie;
 		
 		modal_cover.setImage(movie.getModal().getCoverImage());
-		modal_button.setTooltip(new Tooltip(movie.getFullName())); // Add full name to movie fields.
+		//modal_button.setTooltip(new Tooltip(movie.getFullName())); // TODO Add full name to movie fields.
 		edit_button.setVisible(false);
 		modal_cover.setOpacity(1);
 	}

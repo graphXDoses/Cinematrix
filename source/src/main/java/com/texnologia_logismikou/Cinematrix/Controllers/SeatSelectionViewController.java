@@ -22,8 +22,8 @@ public class SeatSelectionViewController
 	public void setData(Screening screening, String hour)
 	{
 		this.screening = screening;
-		cinema_name_label.setText(screening.getCinema().getName());
-		movie_title_label.setText(screening.getMovie().getFullName());
+		cinema_name_label.setText(screening.getCinema().getDoc().getFields().getName().getStringValue());
+		movie_title_label.setText(screening.getMovie().getDoc().getFields().getTitle().getStringValue());
 		cover_image.setImage(screening.getMovie().getModal().getCoverImage());
 	}
 	

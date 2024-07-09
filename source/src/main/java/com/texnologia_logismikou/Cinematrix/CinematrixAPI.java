@@ -8,10 +8,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.texnologia_logismikou.Cinematrix.Contexts.AccountContext;
+import com.texnologia_logismikou.Cinematrix.Contexts.CinemaContext;
+import com.texnologia_logismikou.Cinematrix.Contexts.Context;
+import com.texnologia_logismikou.Cinematrix.Contexts.MovieContext;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.*;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.*;
 import com.texnologia_logismikou.Cinematrix.ResponseBodies.*;
 import com.texnologia_logismikou.Cinematrix.Managers.MainDisplay;
+import com.texnologia_logismikou.Cinematrix.Managers.MainUI;
 import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
 import com.texnologia_logismikou.Cinematrix.Users.Admin;
 import com.texnologia_logismikou.Cinematrix.Users.Guest;
@@ -23,6 +28,9 @@ import com.texnologia_logismikou.Cinematrix.Views.SeatSelectionView;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
 import com.texnologia_logismikou.Cinematrix.Views.UserDashboardView;
 import com.texnologia_logismikou.Cinematrix.Views.View;
+
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 import java.nio.file.Path;
 import com.texnologia_logismikou.Cinematrix.Views.LoginView;
@@ -55,7 +63,7 @@ public class CinematrixAPI {
 		
 	}
 	
-	public MainDisplay getMainDisplay() { return(instance.mD); }
+	public MainDisplay getMainDisplay() { return(instance.UI.MAIN_DISPLAY); }
 	public List<Movie> getMovies() { return(instance.movies); }
 	public List<Cinema> getCinemas() { return(instance.cinemas); }
 	public List<Screening> getScreenings() { return(instance.screenings); }

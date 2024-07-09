@@ -104,9 +104,7 @@ public class SignUpViewController
     
     @FXML
     void signupCallback(ActionEvent event)
-    {
-    	UserDashboardView view = (UserDashboardView)CinematrixAPI.getInstance().getActiveContext().getViews().get(2);
-    	
+    {    	
     	/*
     	 * 	For each error case instead of printing the message to the console create a small box to display the message to the user.
     	 * 	Also we can clear the fields (or the fields that produced the error) so that the user can re-enter them.
@@ -125,13 +123,12 @@ public class SignUpViewController
 			}
 			return;
 		}
-    	try {
-			CinematrixAPI.getInstance().getActiveContext().goToView(view);
-			CinematrixAPI.getInstance().getMainDisplay().refresh();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	
+		CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW = new UserDashboardView();
+	    CinematrixAPI.getInstance()
+	        			.getActiveContext()
+	        			.promiseRedirectTo(CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW);			
+	    CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
     
     @FXML

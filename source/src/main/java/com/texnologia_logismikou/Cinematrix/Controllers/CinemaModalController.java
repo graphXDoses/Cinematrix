@@ -35,10 +35,10 @@ public class CinemaModalController {
 //    	System.out.println("SET DATA");
     	associateCinema = cinema;
     	
-    	cinema_name.setText(cinema.getDoc().getFields().getName().getStringValue());
-    	cinema_address.setText(cinema.getDoc().getFields().getAddress().getStringValue());
-    	cinema_rel_distance.setText(cinema.getDoc().getFields().getDistance().getDoubleValue() + " km");
-    	hoursContainer.setVisible(false);
+    	cinema_name_label.setText(cinema.getDoc().getFields().getName().getStringValue());
+    	cinema_address_label.setText(cinema.getDoc().getFields().getAddress().getStringValue());
+    	cinema_rel_distance_label.setText(cinema.getDoc().getFields().getDistance().getDoubleValue() + " km");
+    	hours_container.setVisible(false);
     }
 
     public void setScreeningData(Screening screening)

@@ -58,15 +58,16 @@ public class MovieDetailsViewController {
     
 	public void setMovieDetailData(Movie movie)
 	{
-    	MovieFields fields = movie.getDoc().getFields();
     	
     	if(movie != null)
     	{    		
-    		mdl_cover.setImage(movie.getModal().getCoverImage());
-    		mdl_title.setText(fields.getTitle().getStringValue());
+    		MovieFields fields = movie.getDoc().getFields();
+    		
+    		modal_cover.setImage(movie.getModal().getCoverImage());
+    		modal_title_label.setText(fields.getTitle().getStringValue());
     		MPArating_label.setText(fields.getMpRating().getStringValue());
     		duration_label.setText(movie.getDuration());
-    		ytTrailerPlayerArea.getEngine().load(fields.getYtTrailerUrl().getStringValue());
+    		yt_trailer_player_area.getEngine().load(fields.getYtTrailerUrl().getStringValue());
     		description_label.setText(fields.getDescription().getStringValue());
     		director_label.setText(fields.getDirector().getStringValue());
     	} else {

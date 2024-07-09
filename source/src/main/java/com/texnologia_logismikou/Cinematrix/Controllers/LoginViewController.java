@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 
 import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.SignInException;
+import com.texnologia_logismikou.Cinematrix.Views.ForgotPasswordView;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
 import com.texnologia_logismikou.Cinematrix.Views.UserDashboardView;
 
@@ -89,12 +90,12 @@ public class LoginViewController
     @FXML
     void loginCallback(ActionEvent event)
     {
-    	UserDashboardView view = (UserDashboardView)CinematrixAPI.getInstance().getActiveContext().getViews().get(2);
+    	/*UserDashboardView view = (UserDashboardView)CinematrixAPI.getInstance().getActiveContext().getViews().get(2);
     	
-    	/*
+    	 *
     	 * 	Add a text box that shows the error message to the user.
     	 * 	We could also clear the fields so that the users can retry immediately.
-    	 */
+    	 *
     	
     	try {
 			CinematrixAPI.getInstance().userSignIn(email_inputfield.getText(), pass_inputfield.getText());
@@ -115,7 +116,7 @@ public class LoginViewController
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
     }
     
     @FXML
