@@ -9,7 +9,7 @@ public class CinemaFields extends Fields {
 	private StringField name;
 	private StringField uid;
 	private StringField address;
-	private StringField openHours;
+	private StringField openHours; // TODO replace with a better timestamp-like value intsead of a string.
 	private DoubleField distance;
 	
 	public CinemaFields() {}

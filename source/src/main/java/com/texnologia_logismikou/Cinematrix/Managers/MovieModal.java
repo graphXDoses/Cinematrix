@@ -1,9 +1,6 @@
 package com.texnologia_logismikou.Cinematrix.Managers;
 
-import java.io.File;
 import java.nio.file.Path;
-
-import com.texnologia_logismikou.Cinematrix.App;
 import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.Controllers.MovieModalController;
 

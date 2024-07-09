@@ -1,10 +1,5 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.texnologia_logismikou.Cinematrix.Cinema;
-
 public class MovieFields extends Fields {
 
 	/*

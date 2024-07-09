@@ -72,6 +72,8 @@ public class CinematrixAPI {
 	
 	public void makeCinematrixDir() {
     	
+		// TODO make folders correctly, one after the other.
+		
     	File dir = new File(CinematrixAPI.imagesPath);
     	
     	if(dir.isDirectory()) {
@@ -279,6 +281,30 @@ public class CinematrixAPI {
 		}
 	}
 	
+	public void createMovie(MovieFields fields, String firebaseId) {
+		
+		MovieDocument response = new MovieDocument();
+		
+		try {
+			response = RequestHandler.getInstance().updateMovieDocumentRequest(fields, firebaseId);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			// return;
+		} catch (IOException e) {
+			e.printStackTrace();
+			// return;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			// return;
+		}
+		
+		if(response.getError() != null) {
+			System.out.println(response.getError().getMessage());
+		} else {
+			System.out.println("Movie Document succesfully updated at: " + response.getUpdateTime());
+		}
+	}
+
 	public MovieDocument getMovieDocument(String name) {
 		
 		MovieDocument response = new MovieDocument();
@@ -301,30 +327,6 @@ public class CinematrixAPI {
 		return response;
 	}
 
-	public void createMovie(MovieFields fields, String firebaseId) {
-		
-		MovieDocument updateResponse = new MovieDocument();
-		
-		try {
-			updateResponse = RequestHandler.getInstance().updateMovieDocumentRequest(fields, firebaseId);
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-			// return;
-		} catch (IOException e) {
-			e.printStackTrace();
-			// return;
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-			// return;
-		}
-		
-		if(updateResponse.getError() != null) {
-			System.out.println(updateResponse.getError().getMessage());
-		} else {
-			System.out.println("Movie Document succesfully updated at: " + updateResponse.getUpdateTime());
-		}
-	}
-	
 	public void deleteMovieDocument(String name) {
 		
 		int statusCode;
@@ -344,8 +346,8 @@ public class CinematrixAPI {
 			e.printStackTrace();
 		}
 	}
-	
-	public void createCinema(String firebaseId, int numOfRooms, CinemaFields fields) {
+
+	public void createCinema(String firebaseId, CinemaFields fields) {
 		
 		CinemaDocument response = new CinemaDocument();
 		
@@ -364,27 +366,34 @@ public class CinematrixAPI {
 			return;
 		}
 		
-		for(int i = 0; i < numOfRooms; i++) {
-			
-			RoomDocument createRoomResponse = new RoomDocument();
-			String roomName = "Room" + (i+1);
-			try {
-				RequestHandler.getInstance().createRoomDocumentRequest(firebaseId, roomName, fields.getName().getStringValue());
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (URISyntaxException e) {
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			if(createRoomResponse.getError() != null) {
-				System.out.println("Error creating room document. Error details: " + createRoomResponse.getError().getMessage());
-				return;
-			}
+		if(response.getError() != null) {
+			System.out.println(response.getError().getMessage());
+		} else {
+			System.out.println("Cinema Document succesfully updated at: " + response.getUpdateTime());
 		}
 	}
-	
+
+	public void createVenue(String firebaseId, VenueFields fields, String cinemaName) {
+		
+		VenueDocument response = new VenueDocument();
+		
+		try {
+			response = RequestHandler.getInstance().updateVenueDocumentRequest(firebaseId, fields, cinemaName);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		if(response.getError() != null) {
+			System.out.println(response.getError().getMessage());
+		} else {
+			System.out.println("Venue doc created!");
+		}
+	}
+
 	public void fetchCinemasFromDatabase() {
 		
 		ListCinemasResponseBody cinemasList = new ListCinemasResponseBody();
@@ -449,7 +458,7 @@ public class CinematrixAPI {
 			System.out.println("Have the image!");
 		}
 	}
-
+	
 	public void placeUIOnStage(Stage stage) {
 		UI = new MainUI();
 		stage.setTitle("Cinematrix");

@@ -1,13 +1,13 @@
 package com.texnologia_logismikou.Cinematrix.ResponseBodies;
 
-import com.texnologia_logismikou.Cinematrix.DocumentObjects.RoomDocument;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.VenueDocument;
 
 public class ListRoomsResponseBody {
 	
 	private ErrorResponseBody error;
 	
 	private String nextPageToken;
-	private RoomDocument[] documents;
+	private VenueDocument[] documents;
 	
 	public String getNextPageToken() {
 		return nextPageToken;
@@ -15,10 +15,10 @@ public class ListRoomsResponseBody {
 	public void setNextPageToken(String nextPageToken) {
 		this.nextPageToken = nextPageToken;
 	}
-	public RoomDocument[] getDocuments() {
+	public VenueDocument[] getDocuments() {
 		return documents;
 	}
-	public void setDocuments(RoomDocument[] documents) {
+	public void setDocuments(VenueDocument[] documents) {
 		this.documents = documents;
 	}
 	public ErrorResponseBody getError() {

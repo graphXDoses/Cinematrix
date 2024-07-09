@@ -1,16 +1,16 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects;
 
-import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.RoomFields;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.VenueFields;
 import com.texnologia_logismikou.Cinematrix.ResponseBodies.ErrorResponseBody;
 
-public class RoomDocument {
+public class VenueDocument {
 
 	private ErrorResponseBody error;
 	
 	private String name;
 	private String createTime;
 	private String updateTime;
-	private RoomFields fields;
+	private VenueFields fields;
 	
 	public ErrorResponseBody getError() {
 		return error;
@@ -36,10 +36,10 @@ public class RoomDocument {
 	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
-	public RoomFields getFields() {
+	public VenueFields getFields() {
 		return fields;
 	}
-	public void setFields(RoomFields fields) {
+	public void setFields(VenueFields fields) {
 		this.fields = fields;
 	}
 }

@@ -288,7 +288,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getUid().getStringValue() + "?" + fields.createQueryParameter()))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getTitle().getStringValue() + "?" + fields.createQueryParameter()))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -318,9 +318,12 @@ public class RequestHandler {
 		return deleteResponse.statusCode();
 	}
 
-	public RoomDocument createRoomDocumentRequest(String firebaseId, String roomId, String cinemaName) throws IOException, URISyntaxException, InterruptedException {
+	/**
+	 * @deprecated Use updateVenueDocumentRequest instead.
+	 */
+	public VenueDocument createVenueDocumentRequest(String firebaseId, String roomId, String cinemaName) throws IOException, URISyntaxException, InterruptedException {
 		
-		RoomDocument response = new RoomDocument();
+		VenueDocument response = new VenueDocument();
 		
 		Gson gson = new Gson();
 		
@@ -333,14 +336,14 @@ public class RequestHandler {
 		HttpClient client = HttpClient.newHttpClient();
 		HttpResponse<String> postResponse = client.send(postRequest, BodyHandlers.ofString());
 		
-		response = gson.fromJson(postResponse.body(), RoomDocument.class);
+		response = gson.fromJson(postResponse.body(), VenueDocument.class);
 		
 		return response;
 	}
 	
-	public RoomDocument getRoomDocumentRequest(String roomId, String cinemaName) throws IOException, URISyntaxException, InterruptedException {
+	public VenueDocument getVenueDocumentRequest(String roomId, String cinemaName) throws IOException, URISyntaxException, InterruptedException {
 		
-		RoomDocument response = new RoomDocument();
+		VenueDocument response = new VenueDocument();
 		Gson gson = new Gson();
 		
 		HttpRequest getRequest = HttpRequest.newBuilder()
@@ -352,21 +355,21 @@ public class RequestHandler {
 		HttpClient client = HttpClient.newHttpClient();
 		HttpResponse<String> getResponse = client.send(getRequest, BodyHandlers.ofString());
 		
-		response = gson.fromJson(getResponse.body(), RoomDocument.class);
+		response = gson.fromJson(getResponse.body(), VenueDocument.class);
 		return response;
 	}
 	
-	public RoomDocument updateRoomDocumentRequest(String firebaseId, RoomFields fields, String cinemaName, String roomName) throws URISyntaxException, IOException, InterruptedException {
+	public VenueDocument updateVenueDocumentRequest(String firebaseId, VenueFields fields, String cinemaName) throws URISyntaxException, IOException, InterruptedException {
 				
-		RoomDocument request = new RoomDocument();
-		RoomDocument response = new RoomDocument();
+		VenueDocument request = new VenueDocument();
+		VenueDocument response = new VenueDocument();
 		request.setFields(fields);
 		
 		Gson gson = new Gson();
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + cinemaName + "/Venues/" + roomName + "?" + fields.createQueryParameter()))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + cinemaName + "/Venues/" + fields.getName().getStringValue() + "?" + fields.createQueryParameter()))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -376,14 +379,14 @@ public class RequestHandler {
 		
 		//System.out.println(patchResponse.body());
 		
-		response = gson.fromJson(patchResponse.body(), RoomDocument.class);
+		response = gson.fromJson(patchResponse.body(), VenueDocument.class);
 		
 		System.out.println(patchResponse.body());
 		
 		return response;
 	}
 	
-	public void deleteRoomDocumentRequest(String cinemaName, String roomId) throws URISyntaxException, IOException, InterruptedException {
+	public void deleteVenueDocumentRequest(String cinemaName, String roomId) throws URISyntaxException, IOException, InterruptedException {
 		
 		HttpRequest deleteRequest = HttpRequest.newBuilder()
 				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + cinemaName + "/Venues/" + roomId))
@@ -436,7 +439,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + fields.getUid().getStringValue() + "?" + fields.createQueryParameter()))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + fields.getName().getStringValue() + "?" + fields.createQueryParameter()))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
