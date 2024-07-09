@@ -1,6 +1,6 @@
 package com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields;
 
-public class CinemaFields {
+public class CinemaFields extends Fields {
 
 	/*
 	 *  If you ever change the fields remember to update the QueryParameter!
@@ -12,10 +12,12 @@ public class CinemaFields {
 	private StringField openHours;
 	private DoubleField distance;
 	
+	public CinemaFields() {}
+	
 	public CinemaFields(String name, String address, String openHours, double distance) {
 		
 		this.name = new StringField(name);
-		this.uid = new StringField(name + "_" + System.currentTimeMillis());
+		this.uid = new StringField(name.toLowerCase() + "_" + System.currentTimeMillis());
 		this.address = new StringField(address);
 		this.openHours = new StringField(openHours);
 		this.distance = new DoubleField(distance);

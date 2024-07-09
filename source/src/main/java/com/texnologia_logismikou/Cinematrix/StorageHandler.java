@@ -45,7 +45,7 @@ public class StorageHandler {
 	/**
 	 * 	Download a movie image.
 	 * @param String The movie's name.
-	 * @return String The image name in PascalCase.
+	 * @return String The movie's name in PascalCase.
 	 */
 	public void downloadMovieImage(String movieName) throws FileNotFoundException, IOException, URISyntaxException {
 		
@@ -69,7 +69,7 @@ public class StorageHandler {
 	 *	This method doesn't work for some reason. Placing as deprecated until we find a fix.
 	 *  @deprecated
 	 */
-	public void downloadAllMovieImages() throws FileNotFoundException, IOException {
+	public void downloadAllMovieImages() throws IOException {
 		 
 		 Path dir = Paths.get("src/main/resources/com/texnologia_logismikou/Cinematrix/images/");
 		 FileInputStream creds = new FileInputStream(credentialsPath); // <--- Path to credentials.
@@ -95,31 +95,7 @@ public class StorageHandler {
 		 List<DownloadResult> results = transferManager.downloadBlobs(blobs, parallelDownloadConfig).getDownloadResults();
 		 
 		 for (DownloadResult result : results) {
-		      System.out.println(
-		          "Download of "
-		              + result.getInput().getName()
-		              + " completed with status "
-		              + result.getStatus() + " "
-		              + result.getException() + " ");
+		      result.getException().printStackTrace();
 		 }
-	}
-	 
-	public void downloadMovieImages(String[] movieNames) throws IOException {
-		 
-		for(String movieName: movieNames) {
-			movieName = StringField.toPascalCase(movieName);
-			String imageName = "_" + movieName + "_Cover.jpg";
-				
-			FileInputStream creds = new FileInputStream(credentialsPath); // <--- Path to credentials.
-				
-			Storage storage = StorageOptions.newBuilder()
-					.setProjectId(projectId)
-					.setCredentials(GoogleCredentials.fromStream(creds))
-					.build()
-					.getService();
-
-			Blob blob = storage.get(BlobId.of(bucketName, imageName));
-			blob.downloadTo(Paths.get("src/main/resources/com/texnologia_logismikou/Cinematrix/images/" + imageName));
-		}
 	}
 }

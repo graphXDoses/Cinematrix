@@ -187,9 +187,7 @@ public class RequestHandler {
 	}
 
 	public UserDocument updateUserDocumentRequest(String uid, String firebaseId, UserFields fields) throws URISyntaxException, InterruptedException, IOException {
-		
-		String queryParameters = UpdateMaskQuery.createUpdateAllFieldsQuery(UpdateMaskQuery.userFieldNames);
-		
+				
 		UserDocument request = new UserDocument();
 		UserDocument response = new UserDocument();
 		
@@ -199,7 +197,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1beta1/" + documentsPath +"/Users/" + uid + "?" + queryParameters))
+				.uri(new URI("https://firestore.googleapis.com/v1beta1/" + documentsPath +"/Users/" + uid + "?" + fields.createQueryParameter()))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -281,9 +279,7 @@ public class RequestHandler {
 		/*
 		 * 	If a value doesn't get updated upon request and no errors occur check the UpdateMaskQuery.java class. 
 		 */
-		
-		String queryParameter = UpdateMaskQuery.createUpdateAllFieldsQuery(UpdateMaskQuery.movieFieldNames);
-		
+				
 		MovieDocument request = new MovieDocument();
 		MovieDocument response = new MovieDocument();
 		request.setFields(fields);
@@ -292,7 +288,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getUid().getStringValue() + "?" + queryParameter))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Movies/" + fields.getUid().getStringValue() + "?" + fields.createQueryParameter()))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -361,9 +357,7 @@ public class RequestHandler {
 	}
 	
 	public RoomDocument updateRoomDocumentRequest(String firebaseId, RoomFields fields, String cinemaName, String roomName) throws URISyntaxException, IOException, InterruptedException {
-		
-		String queryParameter = UpdateMaskQuery.createUpdateAllFieldsQuery(UpdateMaskQuery.roomFieldNames);
-		
+				
 		RoomDocument request = new RoomDocument();
 		RoomDocument response = new RoomDocument();
 		request.setFields(fields);
@@ -372,7 +366,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + cinemaName + "/Venues/" + roomName + "?" + queryParameter))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + cinemaName + "/Venues/" + roomName + "?" + fields.createQueryParameter()))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();
@@ -433,9 +427,7 @@ public class RequestHandler {
 	}
 	
 	public CinemaDocument updateCinemaDocumentRequest(CinemaFields fields, String firebaseId) throws URISyntaxException, IOException, InterruptedException {
-		
-		String queryParameter = UpdateMaskQuery.createUpdateAllFieldsQuery(UpdateMaskQuery.cinemaFieldNames);
-		
+				
 		CinemaDocument request = new CinemaDocument();
 		CinemaDocument response = new CinemaDocument();
 		request.setFields(fields);
@@ -444,7 +436,7 @@ public class RequestHandler {
 		String jsonRequest = gson.toJson(request);
 		
 		HttpRequest patchRequest = HttpRequest.newBuilder()
-				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + fields.getUid().getStringValue() + "?" + queryParameter))
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Cinemas/" + fields.getUid().getStringValue() + "?" + fields.createQueryParameter()))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
 				.setHeader("Authorization", "Bearer " + firebaseId)
 				.build();

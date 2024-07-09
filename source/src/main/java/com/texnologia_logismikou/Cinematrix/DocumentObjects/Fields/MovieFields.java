@@ -18,15 +18,14 @@ public class MovieFields extends Fields {
 	private DoubleField duration;
 	private StringField ytTrailerUrl;
 	private ArrayField<StringField> categories;
-	private ArrayField<StringField> cinemas;
 	private StringField description;
 	private StringField director;
 	
 	public MovieFields(String title, int releaseYear, String mpRating, int duration,
-			String ytTrailerUrl, String[] categories, Cinema[] cinemas,
+			String ytTrailerUrl, String[] categories,
 			String description, String director) {
 		
-		this.uid = new StringField(title + "_" + System.currentTimeMillis());
+		this.uid = new StringField(title.toLowerCase() + "_" + System.currentTimeMillis());
 		this.title = new StringField(title);
 		this.releaseYear = new DoubleField(releaseYear);
 		this.mpRating = new StringField(mpRating);
@@ -35,11 +34,6 @@ public class MovieFields extends Fields {
 		
 		this.categories = new ArrayField<StringField>(StringField.toStringFieldArray(categories));
 		
-		List<String> cinemaUids = new ArrayList<String>();
-		for(Cinema i: cinemas) {
-			cinemaUids.add(i.getDoc().getFields().getUid().getStringValue());
-		}
-		this.cinemas = new ArrayField<StringField>(StringField.toStringFieldArray((String[]) cinemaUids.toArray()));
 		this.description = new StringField(description);
 		this.director = new StringField(director);
 	}
@@ -79,12 +73,6 @@ public class MovieFields extends Fields {
 	}
 	public void setCategories(ArrayField<StringField> categories) {
 		this.categories = categories;
-	}
-	public ArrayField<StringField> getCinemas() {
-		return cinemas;
-	}
-	public void setCinemas(ArrayField<StringField> cinemas) {
-		this.cinemas = cinemas;
 	}
 	public StringField getDescription() {
 		return description;
