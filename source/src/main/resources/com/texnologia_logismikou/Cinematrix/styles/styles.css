@@ -12,6 +12,10 @@
 
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+
+    -fx-act-usr-GUEST: yellow;
+    -fx-act-usr-USER:  green;
+    -fx-act-usr-ADMIN: red;
 }
 
 @font-face {

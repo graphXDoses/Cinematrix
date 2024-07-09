@@ -1,8 +1,12 @@
 package com.texnologia_logismikou.Cinematrix.Views;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.texnologia_logismikou.Cinematrix.Movie;
 import com.texnologia_logismikou.Cinematrix.Controllers.MovieDetailsViewController;
 import com.texnologia_logismikou.Cinematrix.Managers.AvailableCinemasDisplay;
+import com.texnologia_logismikou.Cinematrix.Managers.ScreeningDaySelectionButtonWidget;
 import com.texnologia_logismikou.Cinematrix.Users.VisibilityPolicies.VisibleUnderAdmin;
 import com.texnologia_logismikou.Cinematrix.Users.VisibilityPolicies.VisibleUnderGuest;
 import com.texnologia_logismikou.Cinematrix.Users.VisibilityPolicies.VisibleUnderUser;
@@ -13,6 +17,7 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 {
 	private Movie selectedMovie = null;
 	private AvailableCinemasDisplay cinemasDisplay;
+	private List<ScreeningDaySelectionButtonWidget> buttons = new ArrayList<ScreeningDaySelectionButtonWidget>();
 	
 	public MovieDetailsView()
 	{
@@ -25,10 +30,17 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 	{
 		getController().setLikable(false);
 		getController().setMovieDetailData(selectedMovie);
-		getController().setAvailableDays(selectedMovie.getAssociateScreenings());
+		buttons = getController().setAvailableDays(selectedMovie.getAssociateScreenings());
 		getController().setCinemaDisplay(cinemasDisplay.getParent());
+		defaultSelectFilters();
 		
 		cinemasDisplay.refresh();
+	}
+	
+	public void defaultSelectFilters()
+	{
+		buttons.get(0).getController().selectThis();
+		getController().enforceDefaultFiltering();
 	}
 	
 	public void setSelectedMovie(Movie movie)

@@ -25,6 +25,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 
@@ -56,6 +57,9 @@ public class MovieDetailsViewController {
 	private final String[]  detailsText    = {"MORE DETAILS", "LESS DETAILS"};
 	private final int[]     modalMaxSize   = {430, 900};
 	private int             expantionState = 0;
+	
+	private static final String INACTIVE_STATE = "movie_details_button_inactive";
+	private static final String ACTIVE_STATE   = "movie_details_button_active";
 
     @FXML
     void initialize() {
@@ -110,6 +114,11 @@ public class MovieDetailsViewController {
     	}
     }
     
+    public void enforceDefaultFiltering()
+    {
+    	filterButtonsCommonRoutine(filter_all_button);
+    }
+    
     @FXML
     void likeMovieCallback(ActionEvent event) {
 		System.out.println((Node)event.getSource());
@@ -125,19 +134,41 @@ public class MovieDetailsViewController {
     	more_details_container.setVisible(expantionState == 1);
     }
     
+    private void setActiveState(Button rootNode, String state)
+    {
+    	rootNode.getStyleClass().clear();
+    	rootNode.getStyleClass().add(state);
+    }
+    
+    void filterButtonsCommonRoutine(Button root)
+    {
+    	setActiveState(root, ACTIVE_STATE);
+    	if(root.getParent() != null && root.getParent() instanceof HBox)
+    	{
+    		((HBox)root.getParent()).getChildren().filtered(button->{
+    			return(!button.equals(root));
+    		}).forEach(button->{
+    			setActiveState((Button)button, INACTIVE_STATE);
+    		});
+    	}
+    }
+    
     @FXML
-    void filterAllCallback(ActionEvent event) {
-
+    void filterAllCallback(ActionEvent event)
+    {
+    	filterButtonsCommonRoutine((Button)event.getSource());
     }
 
     @FXML
-    void filterDolbyCallback(ActionEvent event) {
-
+    void filterDolbyCallback(ActionEvent event)
+    {
+    	filterButtonsCommonRoutine((Button)event.getSource());
     }
 
     @FXML
-    void filterStandardCallback(ActionEvent event) {
-
+    void filterStandardCallback(ActionEvent event)
+    {
+    	filterButtonsCommonRoutine((Button)event.getSource());
     }
 
     // TODO: Work on this first thing in the morning!
@@ -157,7 +188,6 @@ public class MovieDetailsViewController {
 		List<ScreeningDaySelectionButtonWidget> buttons = new ArrayList<ScreeningDaySelectionButtonWidget>();
 		days_available_container.getChildren().clear();
 		uniqueDays.stream().sorted().forEach(day->{
-//			System.out.println(day.format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
 			ScreeningDaySelectionButtonWidget button = new ScreeningDaySelectionButtonWidget(day);
 			days_available_container.getChildren().add(button.getParent());
 			buttons.add(button);
@@ -165,20 +195,6 @@ public class MovieDetailsViewController {
 		
 		
 		return(buttons);
-		
-		/*
-		associateScreenings.stream().filter(screening->{
-			List<LocalDateTime> dates = screening.getHours().stream().filter(hour->{
-				hour.getDayOfMonth();
-			});
-			
-			return(!dates.isEmpty());
-		});
-		days_available_container.getChildren().clear();
-		associateScreenings.forEach(screening->{
-			days_available_container.getChildren().add(screening.);
-		});
-		*/
 	}
 
 }

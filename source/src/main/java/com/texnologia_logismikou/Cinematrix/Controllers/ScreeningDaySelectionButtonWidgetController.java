@@ -21,11 +21,10 @@ public class ScreeningDaySelectionButtonWidgetController
 	
 	private static final String INACTIVE_STATE = "movie_details_button_inactive";
 	private static final String ACTIVE_STATE   = "movie_details_button_active";
-
-    @FXML
-    void selectScreeningDayCallback(ActionEvent event)
-    {
-    	setActiveState(root, ACTIVE_STATE);
+	
+	public void selectThis()
+	{
+		setActiveState(root, ACTIVE_STATE);
     	if(root.getParent() != null && root.getParent() instanceof HBox)
     	{
     		((HBox)root.getParent()).getChildren().filtered(button->{
@@ -34,6 +33,12 @@ public class ScreeningDaySelectionButtonWidgetController
     			setActiveState((Pane)button, INACTIVE_STATE);
     		});
     	}
+	}
+
+    @FXML
+    void selectScreeningDayCallback(ActionEvent event)
+    {
+    	selectThis();
     }
     
     private void setActiveState(Pane rootNode, String state)
