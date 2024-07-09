@@ -13,7 +13,7 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.SeatSelectionViewController">
    <children>
-      <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="seat_selection_panel" stylesheets="@../styles/styles.css">
+      <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../styles/styles.css">
          <children>
             <VBox alignment="TOP_CENTER" maxWidth="-Infinity" HBox.hgrow="ALWAYS">
                <children>
@@ -49,7 +49,7 @@
                               <Insets bottom="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <Label text="Sunday, Oct 15 at 6:15 PM" textFill="#dedede">
+                        <Label fx:id="datetime_label" text="Sunday, Oct 15 at 6:15 PM" textFill="#dedede">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -119,7 +119,4 @@
          </padding>
       </HBox>
    </children>
-   <padding>
-      <Insets top="60.0" />
-   </padding>
 </VBox>

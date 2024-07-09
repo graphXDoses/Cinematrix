@@ -14,8 +14,22 @@
 
 <Pane fx:id="root" maxHeight="1.7976931348623157E308" styleClass="scroll-pane-background" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.AllMoviesViewController">
    <children>
-      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="10.0">
+      <VBox fx:id="main_vbox_container" alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
+            <VBox fx:id="admin_vbox_container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+               <children>
+                  <Label text="Add New Movie" textFill="#dedede">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <HBox fx:id="add_new_movie_container" alignment="CENTER_LEFT" spacing="20.0">
+                     <padding>
+                        <Insets bottom="100.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label text="Now Featuring" textFill="#dedede">

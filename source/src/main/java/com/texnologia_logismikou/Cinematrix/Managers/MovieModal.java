@@ -31,11 +31,11 @@ public class MovieModal extends Manager<MovieModalController> {
 		return url;
 	}
 
-	public void setUrl(String movieName) throws NullPointerException {
+	public void setUrl(String movieName){
 		if(movieName == null)
-			throw new NullPointerException();
-		this.url = "/_" + movieName + "_Cover.jpg";
-		//getController().setData(this);
+			this.url = "/_BLANK_Cover.jpg";
+		else
+			this.url = "/_" + movieName + "_Cover.jpg";
 	}
 
 	public Image getCoverImage() { return(cover_img); }

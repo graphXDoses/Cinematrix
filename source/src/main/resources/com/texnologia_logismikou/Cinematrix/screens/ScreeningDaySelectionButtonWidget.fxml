@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane fx:id="root" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" prefHeight="80.0" prefWidth="80.0" styleClass="movie_details_button_inactive" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.ScreeningDaySelectionButtonWidgetController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="17.0" prefWidth="80.0">
+         <children>
+            <Label fx:id="day_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="movie_details_datepick_modal" stylesheets="@../styles/styles.css" text="TODAY" textFill="#dedede" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Oswald" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="month_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="movie_details_datepick_modal" stylesheets="@../styles/styles.css" text="OCT" textFill="#dedede">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="date_number_label" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="movie_details_datepick_modal" stylesheets="@../styles/styles.css" text="13" textFill="#dedede">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <Button mnemonicParsing="false" onAction="#selectScreeningDayCallback" prefHeight="80.0" prefWidth="80.0" styleClass="invisible-button" stylesheets="@../styles/styles.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</Pane>

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -114,7 +115,7 @@ public class CinematrixAPI {
 		{
 			currentUser = user;
 			UI.FOOTERBAR.updateUserTypeDisplay();
-		}
+		}	
 	}
 
 	public void userSignUp(String name, String email, String password) throws SignUpException {
@@ -247,6 +248,7 @@ public class CinematrixAPI {
 		/*
 		 *  Store the Firebase ID, User ID and other useful information for later use.
 		 */
+		CinematrixAPI.getInstance().setCurrentUser(UserCore.createUser(userDoc));
 		
 		return signInResponse.getIdToken();
 	}
@@ -448,6 +450,47 @@ public class CinematrixAPI {
 			movies.add(new Movie(movie, movieName));
 			System.out.println("Have the image!");
 		}
+		
+		screenings.add(new Screening(
+				movies.get(0),
+				cinemas.get(1),
+				new Venue(VenueTopdownType.TYPE_A, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.ACCESSIBILLITY_DEVICES_AVAILABLE),
+				new ArrayList<>(Arrays.asList(
+						LocalDateTime.of(2024, 7, 10, 20, 25),
+						LocalDateTime.of(2024, 7, 10, 9, 30)
+				))
+		));
+		screenings.add(new Screening(
+				movies.get(1),
+				cinemas.get(1),
+				new Venue(VenueTopdownType.TYPE_B, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
+				new ArrayList<>(Arrays.asList(
+						LocalDateTime.of(2024, 7, 12, 18, 30),
+						LocalDateTime.of(2024, 7, 12, 21, 0),
+						LocalDateTime.of(2024, 7, 13, 22, 0),
+						LocalDateTime.of(2024, 7, 13, 23, 0)
+				))
+		));
+		screenings.add(new Screening(
+				movies.get(2),
+				cinemas.get(1),
+				new Venue(VenueTopdownType.TYPE_B, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
+				new ArrayList<>(Arrays.asList(
+						LocalDateTime.of(2024, 9, 12, 18, 30),
+						LocalDateTime.of(2024, 9, 12, 21, 0),
+						LocalDateTime.of(2024, 9, 13, 22, 0)
+				))
+		));
+		screenings.add(new Screening(
+				movies.get(2),
+				cinemas.get(0),
+				new Venue(VenueTopdownType.TYPE_B, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
+				new ArrayList<>(Arrays.asList(
+						LocalDateTime.of(2024, 9, 12, 18, 30),
+						LocalDateTime.of(2024, 9, 12, 21, 0),
+						LocalDateTime.of(2024, 9, 13, 22, 0)
+				))
+		));
 	}
 
 	public void placeUIOnStage(Stage stage) {

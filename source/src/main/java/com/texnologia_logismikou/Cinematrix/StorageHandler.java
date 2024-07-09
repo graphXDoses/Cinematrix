@@ -14,6 +14,7 @@ import com.google.cloud.storage.transfermanager.DownloadResult;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import com.google.cloud.storage.BlobInfo;
@@ -26,7 +27,6 @@ public class StorageHandler {
 	
 	private final String bucketName = "cinematrix_movie_images";
 	private final String projectId = "fir-test-java-1d671";
-	private final String credentialsPath = "C:/Users/petsi/University/TexLog/cinematrix_creds.json";
 	
 	private static StorageHandler instance = null;
 	
@@ -50,8 +50,8 @@ public class StorageHandler {
 	public void downloadMovieImage(String movieName) throws FileNotFoundException, IOException, URISyntaxException {
 		
 		String imagePath = "_" + movieName + "_Cover.jpg";
-		
-		FileInputStream creds = new FileInputStream(credentialsPath); // <--- Path to credentials.
+
+		InputStream creds = App.class.getResourceAsStream("cinematrix_creds.json"); // <--- Path to credentials.
 		
 		Storage storage = StorageOptions.newBuilder()
 				.setProjectId(projectId)
@@ -72,7 +72,7 @@ public class StorageHandler {
 	public void downloadAllMovieImages() throws FileNotFoundException, IOException {
 		 
 		 Path dir = Paths.get("src/main/resources/com/texnologia_logismikou/Cinematrix/images/");
-		 FileInputStream creds = new FileInputStream(credentialsPath); // <--- Path to credentials.
+		 InputStream creds = App.class.getResourceAsStream("cinematrix_creds.json"); // <--- Path to credentials.
 		 
 		 Storage storage = StorageOptions.newBuilder()
 				 .setProjectId(projectId)
@@ -110,7 +110,7 @@ public class StorageHandler {
 			movieName = StringField.toPascalCase(movieName);
 			String imageName = "_" + movieName + "_Cover.jpg";
 				
-			FileInputStream creds = new FileInputStream(credentialsPath); // <--- Path to credentials.
+			InputStream creds = App.class.getResourceAsStream("cinematrix_creds.json"); // <--- Path to credentials.
 				
 			Storage storage = StorageOptions.newBuilder()
 					.setProjectId(projectId)

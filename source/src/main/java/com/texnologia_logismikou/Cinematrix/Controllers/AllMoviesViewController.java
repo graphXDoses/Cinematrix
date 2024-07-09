@@ -1,6 +1,8 @@
 package com.texnologia_logismikou.Cinematrix.Controllers;
 
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.Managers.MovieModal;
+import com.texnologia_logismikou.Cinematrix.Users.Admin;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -11,11 +13,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class AllMoviesViewController{
 
 	@FXML private Pane root;
+	
+	@FXML private VBox main_vbox_container;
     
+	@FXML private HBox add_new_movie_container;
+    @FXML private VBox admin_vbox_container;
+	
 	@FXML private ScrollPane now_featuring_carousel;
 	@FXML private HBox now_featuring_container;
 	@FXML private Button now_featuring_carousel_end_button;
@@ -30,7 +38,9 @@ public class AllMoviesViewController{
 	
 	@FXML void initialize()
 	{
-//		Parent hBar = null;
+		add_new_movie_container.getChildren().add(new MovieModal(null).getParent());
+		((VBox)admin_vbox_container.getParent()).getChildren().remove(admin_vbox_container);
+		
 		root.widthProperty().addListener(new ChangeListener<Number>() {
 	        @Override
 	        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -131,20 +141,34 @@ public class AllMoviesViewController{
 	
 	public void clearAll()
 	{
+		main_vbox_container.getChildren().remove(add_new_movie_container);
 		now_featuring_container.getChildren().clear();
 		upcomming_container.getChildren().clear();
 	}
 	
 	public void appendNowFeaturing(MovieModal movie)
 	{
-		now_featuring_container.getChildren().add(movie.getParent());
+		if(!now_featuring_container.getChildren().contains(movie.getParent()))
+			now_featuring_container.getChildren().add(movie.getParent());
 		now_featuring_carousel.setHvalue(0);
 	}
 	
 	public void appendUpcomming(MovieModal movie)
 	{
-		upcomming_container.getChildren().add(movie.getParent());
-		now_featuring_carousel.setHvalue(0);
+		if(!upcomming_container.getChildren().contains(movie.getParent()))
+			upcomming_container.getChildren().add(movie.getParent());
+		upcomming_carousel.setHvalue(0);
+	}
+	
+	public void revealAdminSection()
+	{
+		if(CinematrixAPI.getInstance().getCurrentUser() instanceof Admin)
+		{
+			if(!main_vbox_container.getChildren().contains(admin_vbox_container))
+				main_vbox_container.getChildren().add(0, admin_vbox_container);
+		}
+		else
+			main_vbox_container.getChildren().remove(admin_vbox_container);
 	}
 
 }
