@@ -74,18 +74,23 @@ public class CinematrixAPI {
     	
 		// TODO make folders correctly, one after the other.
 		
-    	File dir = new File(CinematrixAPI.imagesPath);
+		File cinematrixDir = new File(System.getenv("APPDATA") + "/Cinematrix");
+		
+		if(!cinematrixDir.isDirectory()) {
+			boolean temp = cinematrixDir.mkdir();
+			if(!temp) {
+				System.out.println("Error creating cinematrix folder!");
+				return;
+			}
+		}
+		
+    	File imagesDir = new File(CinematrixAPI.imagesPath);
     	
-    	if(dir.isDirectory()) {
-    		System.out.println("Good to go.");
-    		return;
-    	}
-    	
-    	boolean dirCreated = dir.mkdir();
-    	if(dirCreated) {
-    		System.out.println("Succesfully created directory.");
-    	} else {
-    		System.out.println("Error.");
+    	if(!imagesDir.isDirectory()) {
+    		boolean temp = imagesDir.mkdir();
+    		if(!temp) {
+    			System.out.println("Error creating images folder!");
+    		}
     	}
     }
 	

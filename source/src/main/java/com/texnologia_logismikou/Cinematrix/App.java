@@ -13,6 +13,9 @@ public class App extends Application
 
     @Override
     public void start(Stage stage) throws IOException {
+
+    	CinematrixAPI.getInstance().makeCinematrixDir();
+    	
     	CinematrixAPI.getInstance().fetchCinemasFromDatabase();
     	CinematrixAPI.getInstance().fetchMoviesFromDatabase();
 
