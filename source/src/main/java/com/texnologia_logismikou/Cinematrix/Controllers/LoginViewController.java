@@ -90,6 +90,20 @@ public class LoginViewController
     @FXML
     void loginCallback(ActionEvent event)
     {
+    	try {
+			CinematrixAPI.getInstance().userSignIn(email_inputfield.getText(), pass_inputfield.getText());
+			CinematrixAPI.ACCOUNT_CONTEXT.promiseRedirectTo(new UserDashboardView());
+			CinematrixAPI.getInstance().getMainDisplay().refresh();
+		} catch (SignInException e) {
+			// e.printStackTrace();
+			switch(e.getMessage()) {
+			case "INVALID_LOGIN_CREDENTIALS": System.out.println("Email or Password are incorrect!"); break;
+			case "MISSING_PASSWORD": System.out.println("Password cannot be empty!"); break;
+			case "INVALID_EMAIL": System.out.println("Please provide a valid email address."); break;
+			default: System.out.println("Internal error occured. Please try again!");
+			}
+			return;
+		}
     	/*UserDashboardView view = (UserDashboardView)CinematrixAPI.getInstance().getActiveContext().getViews().get(2);
     	
     	 *

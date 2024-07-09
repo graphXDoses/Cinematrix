@@ -1,5 +1,6 @@
 package com.texnologia_logismikou.Cinematrix;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +9,9 @@ public class Screening
 	private Movie movie;
 	private Cinema cinema;
 	private Venue venue;
-	private List<String> hours = new ArrayList<>();
+	private List<LocalDateTime> hours = new ArrayList<>();
 	
-	public Screening(Movie movie, Cinema cinema, Venue venue, List<String> hours)
+	public Screening(Movie movie, Cinema cinema, Venue venue, List<LocalDateTime> hours)
 	{
 		this.movie = movie;
 		this.cinema = cinema;
@@ -44,11 +45,11 @@ public class Screening
 		this.venue = venue;
 	}
 
-	public List<String> getHours() {
+	public List<LocalDateTime> getHours() {
 		return hours;
 	}
 
-	public void setHours(List<String> hours) {
+	public void setHours(List<LocalDateTime> hours) {
 		this.hours = hours;
 	}
 }

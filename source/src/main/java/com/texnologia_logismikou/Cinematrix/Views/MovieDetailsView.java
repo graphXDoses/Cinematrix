@@ -25,6 +25,7 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 	{
 		getController().setLikable(false);
 		getController().setMovieDetailData(selectedMovie);
+		getController().setAvailableDays(selectedMovie.getAssociateScreenings());
 		getController().setCinemaDisplay(cinemasDisplay.getParent());
 		
 		cinemasDisplay.refresh();

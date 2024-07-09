@@ -1,7 +1,19 @@
 package com.texnologia_logismikou.Cinematrix.Controllers;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.texnologia_logismikou.Cinematrix.Movie;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.MovieFields;
+import com.texnologia_logismikou.Cinematrix.Managers.ScreeningDaySelectionButtonWidget;
+import com.texnologia_logismikou.Cinematrix.Screening;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +41,10 @@ public class MovieDetailsViewController {
 	@FXML private VBox more_details_container;
 	@FXML private VBox vbox_accordion_container;
 	@FXML private WebView yt_trailer_player_area;
+	@FXML private HBox like_hbox_container;
 	@FXML private AnchorPane like_movie_container;
+
+	@FXML private HBox days_available_container;
 
     @FXML private Button filter_all_button;
     @FXML private Button filter_dolby_button;
@@ -85,7 +100,14 @@ public class MovieDetailsViewController {
     
     public void setLikable(boolean value)
     {
-    	like_movie_container.setVisible(value);
+    	if(value)
+    	{
+    		if(!like_hbox_container.getChildren().contains(like_movie_container))
+				like_hbox_container.getChildren().add(0, like_movie_container);
+    	} else {
+    		if(like_movie_container.getParent() != null)
+    			((HBox)like_movie_container.getParent()).getChildren().remove(like_movie_container);
+    	}
     }
     
     @FXML
@@ -117,5 +139,46 @@ public class MovieDetailsViewController {
     void filterStandardCallback(ActionEvent event) {
 
     }
+
+    // TODO: Work on this first thing in the morning!
+	public List<ScreeningDaySelectionButtonWidget> setAvailableDays(List<Screening> associateScreenings)
+	{
+		List<LocalDateTime> uniHours = new ArrayList<>();
+		associateScreenings.forEach(s->{
+			s.getHours().forEach(h->{
+				uniHours.add(h);
+			});
+		});
+		
+		Set<LocalDate> uniqueDays = uniHours.stream()
+                .map(LocalDateTime::toLocalDate)
+                .collect(Collectors.toCollection(HashSet::new));
+		
+		List<ScreeningDaySelectionButtonWidget> buttons = new ArrayList<ScreeningDaySelectionButtonWidget>();
+		days_available_container.getChildren().clear();
+		uniqueDays.stream().sorted().forEach(day->{
+//			System.out.println(day.format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+			ScreeningDaySelectionButtonWidget button = new ScreeningDaySelectionButtonWidget(day);
+			days_available_container.getChildren().add(button.getParent());
+			buttons.add(button);
+		});
+		
+		
+		return(buttons);
+		
+		/*
+		associateScreenings.stream().filter(screening->{
+			List<LocalDateTime> dates = screening.getHours().stream().filter(hour->{
+				hour.getDayOfMonth();
+			});
+			
+			return(!dates.isEmpty());
+		});
+		days_available_container.getChildren().clear();
+		associateScreenings.forEach(screening->{
+			days_available_container.getChildren().add(screening.);
+		});
+		*/
+	}
 
 }

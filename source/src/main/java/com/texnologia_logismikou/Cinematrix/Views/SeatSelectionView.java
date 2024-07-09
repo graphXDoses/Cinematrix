@@ -1,5 +1,7 @@
 package com.texnologia_logismikou.Cinematrix.Views;
 
+import java.time.LocalDateTime;
+
 import com.texnologia_logismikou.Cinematrix.Movie;
 import com.texnologia_logismikou.Cinematrix.Screening;
 import com.texnologia_logismikou.Cinematrix.Controllers.SeatSelectionViewController;
@@ -13,7 +15,7 @@ implements VisibleUnderGuest, VisibleUnderUser
 	private Screening screening = null;
 //	private Movie selectedMovie = null;
 
-	public SeatSelectionView(Screening screening, String hour)
+	public SeatSelectionView(Screening screening, LocalDateTime hour)
 	{
 		super.loadFXML("SeatSelectionView");
 		this.screening = screening;
