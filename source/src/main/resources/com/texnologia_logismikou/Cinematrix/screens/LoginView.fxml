@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.LoginViewController">
@@ -126,6 +127,33 @@
             </DropShadow>
          </effect>
       </Pane>
+      <AnchorPane fx:id="error_message_container" maxHeight="100.0" maxWidth="1.7976931348623157E308" styleClass="form_input_warning_dialog_box" stylesheets="@../styles/styles.css">
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label fx:id="error_message_label" maxWidth="700.0" text="Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project." textFill="#dedede" wrapText="true" />
+                  <VBox alignment="TOP_CENTER">
+                     <children>
+                        <Button maxHeight="10.0" maxWidth="10.0" minHeight="10.0" minWidth="10.0" mnemonicParsing="false" onAction="#closeErrorMessageCallback" styleClass="invisible-button" stylesheets="@../styles/styles.css">
+                           <graphic>
+                              <SVGPath content="M 10.278 4.518 c 0.375 -0.375 0.375 -0.984 0 -1.359 s -0.984 -0.375 -1.359 0 L 5.76 6.321 L 2.598 3.162 c -0.375 -0.375 -0.984 -0.375 -1.359 0 s -0.375 0.984 0 1.359 L 4.401 7.68 L 1.242 10.842 c -0.375 0.375 -0.375 0.984 0 1.359 s 0.984 0.375 1.359 0 L 5.76 9.039 L 8.922 12.198 c 0.375 0.375 0.984 0.375 1.359 0 s 0.375 -0.984 0 -1.359 L 7.119 7.68 L 10.278 4.518 z" fill="#792e2e" />
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </AnchorPane>
    </children>
    <padding>
       <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />

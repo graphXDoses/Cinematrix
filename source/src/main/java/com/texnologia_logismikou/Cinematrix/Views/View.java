@@ -25,7 +25,6 @@ public abstract class View<T> {
 			root = fxmlLoader.load();
 			controller = fxmlLoader.getController();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -49,13 +48,10 @@ public abstract class View<T> {
 					try {
 						m.invoke(this);
 					} catch (IllegalAccessException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (IllegalArgumentException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (InvocationTargetException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

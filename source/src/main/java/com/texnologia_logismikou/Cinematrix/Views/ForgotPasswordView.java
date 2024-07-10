@@ -15,7 +15,7 @@ implements VisibleUnderGuest
 	@Override
 	public void showToGuest()
 	{
-		// TODO Auto-generated method stub
+		
 		
 	}
 

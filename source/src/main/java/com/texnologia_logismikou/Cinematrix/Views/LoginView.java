@@ -16,7 +16,7 @@ implements VisibleUnderGuest
 	@Override
 	public void showToGuest()
 	{
-		System.out.println("SHOWING TO GUEST METHOD");
+//		System.out.println("SHOWING TO GUEST METHOD");
 	}
 
 }

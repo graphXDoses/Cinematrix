@@ -1,10 +1,6 @@
 package com.texnologia_logismikou.Cinematrix;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,15 +13,18 @@ public class App extends Application
 
     @Override
     public void start(Stage stage) throws IOException {
+
+    	CinematrixAPI.getInstance().makeCinematrixDir();
+    	
     	CinematrixAPI.getInstance().fetchCinemasFromDatabase();
     	CinematrixAPI.getInstance().fetchMoviesFromDatabase();
-
+//    	CinematrixAPI.getInstance().fetchScreeningsFromDatabase();
+        
     	CinematrixAPI.getInstance().placeUIOnStage(stage);
-        CinematrixAPI.getInstance().getMainDisplay().refresh();
+    	CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
 
     public static void main(String[] args) {
     	launch();
     }
-
 }

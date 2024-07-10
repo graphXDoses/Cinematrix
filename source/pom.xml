@@ -4,9 +4,9 @@
     <groupId>com.texnologia_logismikou</groupId>
     <artifactId>Cinematrix</artifactId>
     <name>Cinematrix</name>
-    <version>0.7.5</version>
+    <version>0.8.9</version>
     <packaging>jar</packaging>
-    
+        
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
@@ -83,6 +83,21 @@
 		    <version>9.0.0</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/com.google.cloud/google-cloud-core -->
+		<dependency>
+		    <groupId>com.google.cloud</groupId>
+		    <artifactId>google-cloud-core</artifactId>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.google.cloud</groupId>
+    		<artifactId>google-cloud-storage</artifactId>
+  		</dependency>
+  		<dependency>
+    		<groupId>com.google.cloud</groupId>
+    		<artifactId>google-cloud-storage-control</artifactId>
+  		</dependency>
+		
 		<!-- TESTING THE REST API METHOD-->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
@@ -92,6 +107,7 @@
 
     </dependencies>
     <build>
+		
 		<testResources>
             <testResource>
                 <directory>src/test/java</directory>

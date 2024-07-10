@@ -81,10 +81,8 @@ public class LicenseScrollPaneController {
     	try {
 			Desktop.getDesktop().browse(new URI(github_repo_link));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }

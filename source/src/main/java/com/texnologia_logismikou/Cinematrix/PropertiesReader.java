@@ -21,7 +21,6 @@ public class PropertiesReader {
 			try {
 				instance = new PropertiesReader("properties-from-pom.properties");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}

@@ -13,7 +13,6 @@ public class AvailableCinemasDisplay extends DisplayManager
 			view.prepare();
 			getController().setContent(view.getParent());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

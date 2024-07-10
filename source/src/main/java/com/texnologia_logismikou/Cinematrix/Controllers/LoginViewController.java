@@ -3,12 +3,7 @@ package com.texnologia_logismikou.Cinematrix.Controllers;
 import java.io.FileNotFoundException;
 
 import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
-import com.texnologia_logismikou.Cinematrix.RequestHandler;
-import com.texnologia_logismikou.Cinematrix.DocumentObjects.UserDocument;
-import com.texnologia_logismikou.Cinematrix.ResponseBodies.AuthResponseBody;
-import com.texnologia_logismikou.Cinematrix.Users.Admin;
-import com.texnologia_logismikou.Cinematrix.Users.User;
-import com.texnologia_logismikou.Cinematrix.Users.UserCore;
+import com.texnologia_logismikou.Cinematrix.SignInException;
 import com.texnologia_logismikou.Cinematrix.Views.ForgotPasswordView;
 import com.texnologia_logismikou.Cinematrix.Views.SignUpView;
 import com.texnologia_logismikou.Cinematrix.Views.UserDashboardView;
@@ -21,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
@@ -34,6 +30,8 @@ public class LoginViewController
 	@FXML private Label pass_label;
 	@FXML private Pane pass_label_obs;
 	@FXML private HBox forgot_password_link;
+	@FXML private AnchorPane error_message_container;
+	@FXML private Label error_message_label;
 	
 	@FXML private Button login_button;
 	
@@ -44,6 +42,7 @@ public class LoginViewController
     {
     	toggleActiveHighlighted(email_inputfield, email_label, email_label_obs, false);
     	toggleActiveHighlighted(pass_inputfield, pass_label, pass_label_obs, false);
+    	hideErrorMessageContainer();
     	
     	email_inputfield.focusedProperty().addListener(new ChangeListener<Boolean>()
     	{
@@ -63,6 +62,13 @@ public class LoginViewController
     		}
     	});
     }
+    
+    void hideErrorMessageContainer() { error_message_container.setVisible(false); }
+    void revealErrorMessageContainer(String error_message)
+    {
+    	error_message_container.setVisible(true);
+    	error_message_label.setText(error_message);
+	}
     
     void toggleActiveHighlighted(TextField referenceElement, Label lbl, Pane obs, boolean isFocused)
     {
@@ -84,20 +90,46 @@ public class LoginViewController
     @FXML
     void loginCallback(ActionEvent event)
     {
-    	UserDocument userDocument = CinematrixAPI.getInstance()
-    											 .userLogin(email_inputfield.getText(), pass_inputfield.getText());
-		if(userDocument != null)
-    	{
-			CinematrixAPI.getInstance().setCurrentUser(UserCore.createUser(userDocument));
-			
-			CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW = new UserDashboardView();
-			CinematrixAPI.getInstance()
-			.getActiveContext()
-			.promiseRedirectTo(CinematrixAPI.ACCOUNT_CONTEXT.USER_DASHBOARD_VIEW);
+    	try {
+			CinematrixAPI.getInstance().userSignIn(email_inputfield.getText(), pass_inputfield.getText());
+			CinematrixAPI.ACCOUNT_CONTEXT.promiseRedirectTo(new UserDashboardView());
 			CinematrixAPI.getInstance().getMainDisplay().refresh();
-    	}
-    	else
-    		System.out.println("Failed to authenticate user.");
+		} catch (SignInException e) {
+			// e.printStackTrace();
+			switch(e.getMessage()) {
+			case "INVALID_LOGIN_CREDENTIALS": System.out.println("Email or Password are incorrect!"); break;
+			case "MISSING_PASSWORD": System.out.println("Password cannot be empty!"); break;
+			case "INVALID_EMAIL": System.out.println("Please provide a valid email address."); break;
+			default: System.out.println("Internal error occured. Please try again!");
+			}
+			return;
+		}
+    	/*UserDashboardView view = (UserDashboardView)CinematrixAPI.getInstance().getActiveContext().getViews().get(2);
+    	
+    	 *
+    	 * 	Add a text box that shows the error message to the user.
+    	 * 	We could also clear the fields so that the users can retry immediately.
+    	 *
+    	
+    	try {
+			CinematrixAPI.getInstance().userSignIn(email_inputfield.getText(), pass_inputfield.getText());
+		} catch (SignInException e) {
+			// e.printStackTrace();
+			switch(e.getMessage()) {
+			case "INVALID_LOGIN_CREDENTIALS": System.out.println("Email or Password are incorrect!"); break;
+			case "MISSING_PASSWORD": System.out.println("Password cannot be empty!"); break;
+			case "INVALID_EMAIL": System.out.println("Please provide a valid email address."); break;
+			default: System.out.println("Internal error occured. Please try again!");
+			}
+			return;
+		}
+    	
+    	try {
+			CinematrixAPI.getInstance().getActiveContext().goToView(view);
+			CinematrixAPI.getInstance().getMainDisplay().refresh();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}*/
     }
     
     @FXML
@@ -118,6 +150,12 @@ public class LoginViewController
     				.getActiveContext()
     				.promiseRedirectTo(CinematrixAPI.ACCOUNT_CONTEXT.FORGOT_PASSWORD_VIEW);
     	CinematrixAPI.getInstance().getMainDisplay().refresh();
+    }
+    
+    @FXML
+    void closeErrorMessageCallback(ActionEvent event)
+    {
+    	hideErrorMessageContainer();
     }
 
 }

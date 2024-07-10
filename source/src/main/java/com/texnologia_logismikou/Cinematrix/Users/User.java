@@ -4,6 +4,8 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
+import com.texnologia_logismikou.Cinematrix.Views.AllMoviesView;
+import com.texnologia_logismikou.Cinematrix.Views.NearCinemasView;
 
 public class User
 extends Guest

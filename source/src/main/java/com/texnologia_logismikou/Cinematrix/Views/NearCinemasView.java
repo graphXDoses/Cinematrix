@@ -25,22 +25,21 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 	
 	void standardPrepare()
 	{
-		Context cinemas = CinematrixAPI.getInstance().getActiveContext();
-		if(cinemas.equals(CinematrixAPI.getInstance().getContexts().get(1)))
-		{			
-			CinematrixAPI.getInstance().getCinemas().forEach(cinema->
-			{
-				getController().appendCinemaModal(cinema.getModal());			
-			});
-		} else {
+		if(CinematrixAPI.getInstance().getActiveContext().equals(CinematrixAPI.MOVIE_CONTEXT))
+		{
 			Movie thisMovie = ((MovieDetailsView)CinematrixAPI.getInstance()
 					.getActiveContext().getActiveView()).getSelectedMovie();
-			CinematrixAPI.getInstance()
-			.getCinemas()
-			.stream().filter(cinema->{
-				return(cinema.isScreeningTheMovie(thisMovie));
-			}).forEach(cinema->{
-				getController().appendCinemaModal(cinema.getModal());
+			thisMovie.getAssociateScreenings().forEach(screening->{
+				CinemaModal modal = new CinemaModal();
+				modal.getController().setData(screening.getCinema());
+				modal.getController().setScreeningData(screening);
+				getController().appendCinemaModal(modal);
+			});
+		} else {
+			CinematrixAPI.getInstance().getCinemas().forEach(cinema->
+			{
+				cinema.getModal().getController().disableEditorButton();
+				getController().appendCinemaModal(cinema.getModal());			
 			});
 		}
 	}
@@ -50,6 +49,9 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 	public void showToAdmin()
 	{
 		standardPrepare();
+		CinematrixAPI.getInstance().getCinemas().forEach(cinema->{
+			cinema.getModal().getController().enableEditorButton();
+		});
 	}
 
 
