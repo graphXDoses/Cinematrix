@@ -33,23 +33,35 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 		
 		if(!screenings.isEmpty())
 		{
-			// Fill NowFeaturing container
-			/*screenings.stream().filter(screening->{
-				return(screening.getHours().stream().filter(hour->{
+			/*// Fill NowFeaturing container
+			screenings.stream().filter(screening->{
+				return(screening.getDate().stream().filter(hour->{
 					return(hour.isAfter(LocalDateTime.of(2024, 7, 14, 0, 0)));
 				}).toList().isEmpty());
 			}).forEach(screening->{
 				getController().appendNowFeaturing(screening.getMovie().getModal());
-			});
+			});*/
+			
+			List<Screening> featuringScreenings = screenings.stream().filter(scrs->scrs.getDate().isBefore(LocalDateTime.of(2024, 7, 14, 0, 0))).toList();
 
-			// Fill Upcomming container
+			for(Screening i: featuringScreenings) {
+				getController().appendNowFeaturing(i.getMovie().getModal());
+			}
+			
+			List<Screening> upcomingScreenings = screenings.stream().filter(scrs->scrs.getDate().isAfter(LocalDateTime.of(2024, 7, 14, 0, 0))).toList();
+			
+			for(Screening i: upcomingScreenings) {
+				getController().appendUpcomming(i.getMovie().getModal());
+			}
+			
+			/*// Fill Upcomming container
 			screenings.stream().filter(screening->{
 				return(screening.getHours().stream().filter(hour->{
 					return(hour.isBefore(LocalDateTime.of(2024, 7, 14, 0, 0)));
 				}).toList().isEmpty());
 			}).forEach(screening->{
 				getController().appendUpcomming(screening.getMovie().getModal());
-			});*/ // TODO remove comment.
+			});*/ // TODO check!.
 		}
 	}
 

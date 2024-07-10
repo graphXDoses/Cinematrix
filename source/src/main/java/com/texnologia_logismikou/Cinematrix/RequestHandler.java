@@ -466,7 +466,7 @@ public class RequestHandler {
 		HttpRequest patchRequest = HttpRequest.newBuilder()
 				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Screenings/" + fields.getUid().getStringValue()))
 				.method("PATCH", BodyPublishers.ofString(jsonRequest))
-				.setHeader("Authorization", "Bearer " + firebaseId)
+				//.setHeader("Authorization", "Bearer " + firebaseId)
 				.setHeader("Content-Type", "application/json")
 				.build();
 		

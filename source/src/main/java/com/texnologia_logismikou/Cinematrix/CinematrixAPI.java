@@ -216,6 +216,7 @@ public class CinematrixAPI {
 			System.out.println("User document succesfully initialized at: " + initializeDocResponse.getUpdateTime());
 		}
 		
+		CinematrixAPI.getInstance().setCurrentUser(UserCore.createUser(initializeDocResponse, signUpResponse.getLocalId(), signUpResponse.getIdToken()));
 	}
 	
 	public String userSignIn(String email, String password) throws SignInException {
@@ -548,10 +549,10 @@ public class CinematrixAPI {
 				}
 			}
 			
-			System.out.println("The screening corresponds to Cinema: " + theCinema.getDoc().getFields().getName().getStringValue()
+			/*System.out.println("The screening corresponds to Cinema: " + theCinema.getDoc().getFields().getName().getStringValue()
 					+ " | and movie: " + theMovie.getDoc().getFields().getTitle().getStringValue()
 					+ " | and venue: " + theVenue.getDoc().getFields().getName().getStringValue()
-					+ " | and date: " + date);
+					+ " | and date: " + date);*/
 			
 			screenings.add(new Screening(theMovie, theCinema, theVenue, date));
 		}

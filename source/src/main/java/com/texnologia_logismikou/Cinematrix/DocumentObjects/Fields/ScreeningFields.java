@@ -21,8 +21,9 @@ public class ScreeningFields extends Fields {
 		this.cinemaUid = new StringField(cinemaUid);
 		this.venueUid = new StringField(venueUid);
 		
-		String dateString = date.getYear() + "-" + date.getMonth() + "-" + date.getDayOfMonth() 
+		String dateString = date.getYear() + "-" + date.getMonth().getValue() + "-" + date.getDayOfMonth() 
 							+ "T" + date.getHour() + ":" + date.getMinute() + ":00Z";
+		System.out.println(dateString);
 		this.date = new TimestampField(dateString);
 	}
 	

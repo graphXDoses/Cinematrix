@@ -1,10 +1,12 @@
 package com.texnologia_logismikou.Cinematrix.Controllers;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.texnologia_logismikou.Cinematrix.Cinema;
+import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.Movie;
 import com.texnologia_logismikou.Cinematrix.Screening;
 import com.texnologia_logismikou.Cinematrix.Managers.ReservationButton;
@@ -49,6 +51,8 @@ public class CinemaModalController {
     {
 //    	System.out.println("SCREEN");
     	associateMovie = screening.getMovie();
+    	String movieuUid = screening.getMovie().getDoc().getFields().getUid().getStringValue();
+    	String cinemaUid = screening.getCinema().getDoc().getFields().getUid().getStringValue();
     	
     	/*
     	 */
@@ -57,7 +61,14 @@ public class CinemaModalController {
 //    	sound_system_label.setText(screening.getVenue().getSystem().toString());
     	
     	/*for(LocalDateTime h: screening.getHours())
-    		addReservationButton(new ReservationButton(screening, h));*/ // TODO remove comment
+    		addReservationButton(new ReservationButton(screening, h));*/
+    	
+    	List<Screening> movieScreenings = CinematrixAPI.getInstance().getScreenings().stream().filter(scrs -> scrs.getMovie().getDoc().getFields().getUid().getStringValue().equals(movieuUid)).toList();
+    	movieScreenings = movieScreenings.stream().filter(scrs->scrs.getCinema().getDoc().getFields().getUid().getStringValue().equals(cinemaUid)).toList();
+    	
+    	for(Screening i: movieScreenings) {
+    		addReservationButton(new ReservationButton(i, i.getDate())); // TODO check!
+    	}
     }
 
 	public void addReservationButton(ReservationButton reservationButton)

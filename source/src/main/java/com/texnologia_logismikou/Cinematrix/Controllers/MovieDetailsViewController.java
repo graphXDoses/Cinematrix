@@ -143,7 +143,7 @@ public class MovieDetailsViewController {
     // TODO: Work on this first thing in the morning!
 	public List<ScreeningDaySelectionButtonWidget> setAvailableDays(List<Screening> associateScreenings)
 	{
-		List<LocalDateTime> uniHours = new ArrayList<>();
+		List<LocalDateTime> uniHours = new ArrayList<>(); // uniHours stores all the hours of the movie's screenings.
 		/*associateScreenings.forEach(s->{
 			s.getHours().forEach(h->{
 				uniHours.add(h);
