@@ -5,13 +5,12 @@ public class MovieFields extends Fields {
 	private StringField uid;
 	private StringField title;
 	private DoubleField releaseYear;
-	private StringField mpRating;
+	private StringField mpaRating;
 	private DoubleField duration;
 	private StringField ytTrailerUrl;
 	private ArrayField<StringField> categories;
 	private StringField description;
 	private StringField director;
-	private StringField fullName;
 	
 	public MovieFields(String title, int releaseYear, String mpRating, int duration,
 			String ytTrailerUrl, String[] categories,
@@ -22,14 +21,13 @@ public class MovieFields extends Fields {
 		String uid = title.toLowerCase() + "_" + System.currentTimeMillis();
 		this.uid = new StringField(uid);
 		this.releaseYear = new DoubleField(releaseYear);
-		this.mpRating = new StringField(mpRating);
+		this.mpaRating = new StringField(mpRating);
 		this.duration = new DoubleField(duration);
 		this.ytTrailerUrl = new StringField(ytTrailerUrl);
 		this.categories = new ArrayField<StringField>(StringField.toStringFieldArray(categories));
 		this.description = new StringField(description);
 		this.director = new StringField(director);
 		
-		this.fullName = new StringField(this.title + ", " + this.releaseYear);
 	}
 	
 	public StringField getTitle() {
@@ -44,11 +42,11 @@ public class MovieFields extends Fields {
 	public void setReleaseYear(DoubleField releaseYear) {
 		this.releaseYear = releaseYear;
 	}
-	public StringField getMpRating() {
-		return mpRating;
+	public StringField getMpaRating() {
+		return mpaRating;
 	}
-	public void setMpRating(StringField mpRating) {
-		this.mpRating = mpRating;
+	public void setMpaRating(StringField mpRating) {
+		this.mpaRating = mpRating;
 	}
 	public DoubleField getDuration() {
 		return duration;
@@ -85,13 +83,5 @@ public class MovieFields extends Fields {
 	}
 	public void setUid(StringField uid) {
 		this.uid = uid;
-	}
-
-	public StringField getFullName() {
-		return fullName;
-	}
-
-	public void setFullName(StringField fullName) {
-		this.fullName = fullName;
 	}
 }

@@ -249,11 +249,8 @@ public class CinematrixAPI {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
-		/*
-		 *  Store the Firebase ID, User ID and other useful information for later use.
-		 */
-		CinematrixAPI.getInstance().setCurrentUser(UserCore.createUser(userDoc));
+ 
+		CinematrixAPI.getInstance().setCurrentUser(UserCore.createUser(userDoc, signInResponse.getLocalId(), signInResponse.getIdToken()));
 		
 		return signInResponse.getIdToken();
 	}
@@ -405,6 +402,34 @@ public class CinematrixAPI {
 			System.out.println("Screening doc created at: " + response.getCreateTime());
 		}
 		
+	}
+	
+	public void createTicket(UserCore user, Screening screening, int seatNumber) {
+		
+		TicketDocument response = new TicketDocument();
+		TicketFields fields = new TicketFields(screening.getMovie().getDoc().getFields().getTitle().getStringValue(),
+				screening.getMovie().getDoc().getFields().getDuration().getDoubleValue(), 
+				screening.getMovie().getDoc().getFields().getMpaRating().getStringValue(), 
+				screening.getCinema().getDoc().getFields().getName().getStringValue(), 
+				screening.getCinema().getDoc().getFields().getAddress().getStringValue(), 
+				screening.getVenue().getDoc().getFields().getName().getStringValue(), 
+				seatNumber, screening.getDate());
+		
+		try {
+			response = RequestHandler.getInstance().createTicketDocument(user.getFirebaseId(), fields, user.getUid());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		if(response.getError() != null) {
+			System.out.println(response.getError().getMessage());
+		} else {
+			System.out.println("Ticket created at: " + response.getCreateTime());
+		}
 	}
 
 	public void fetchCinemasFromDatabase() {

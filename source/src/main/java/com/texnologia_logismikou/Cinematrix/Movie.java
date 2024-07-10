@@ -9,6 +9,7 @@ public class Movie {
 	
 	private MovieDocument doc;
 	private final MovieModal modal;
+	private String fullName;
 	
 	private ArrayList<Screening> screenings = new ArrayList<Screening>();
 
@@ -23,6 +24,8 @@ public class Movie {
 		
 		this.modal = new MovieModal(movieName);
 		this.modal.getController().setData(this);
+		
+		this.fullName = doc.getFields().getTitle().getStringValue() + " (" + doc.getFields().getReleaseYear().getDoubleValue() + ")";
 	}
 	
 	public String getDuration()
@@ -56,5 +59,13 @@ public class Movie {
 	public ArrayList<Screening> getAssociateScreenings()
 	{
 		return(this.screenings);
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 }

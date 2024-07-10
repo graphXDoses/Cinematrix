@@ -480,6 +480,29 @@ public class RequestHandler {
 		return response;
 	}
 
+	public TicketDocument createTicketDocument(String firebaseId, TicketFields fields, String uid) throws URISyntaxException, IOException, InterruptedException {
+		
+		TicketDocument request = new TicketDocument();
+		TicketDocument response = new TicketDocument();
+		request.setFields(fields);
+		
+		Gson gson = new Gson();
+		String jsonRequest = gson.toJson(request);
+		
+		HttpRequest patchRequest = HttpRequest.newBuilder()
+				.uri(new URI("https://firestore.googleapis.com/v1/" + documentsPath + "/Users/" + uid + "/Tickets/" + fields.getUid().getStringValue()))
+				.method("PATCH", BodyPublishers.ofString(jsonRequest))
+				.setHeader("Authorization", "Bearer " + firebaseId)
+				.setHeader("Content-Type", "application/json")
+				.build();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpResponse<String> patchResponse = client.send(patchRequest, BodyHandlers.ofString());
+		
+		response = gson.fromJson(patchResponse.body(), TicketDocument.class);
+		return response;
+	}
+	
 	public ListVenuesResponseBody fetchAllCinemaVenuesRequest(String cinemaName) throws URISyntaxException, IOException, InterruptedException {
 		
 		ListVenuesResponseBody response = new ListVenuesResponseBody();

@@ -8,6 +8,8 @@ import com.texnologia_logismikou.Cinematrix.Views.AllMoviesView;
 public class UserCore {
 	
 	protected UserFields userFields;
+	protected String uid;
+	protected String firebaseId;
 
 	protected UserCore() {}
 	
@@ -25,7 +27,23 @@ public class UserCore {
 		this.userFields = userFields;
 	}
 
-	public static UserCore createUser(UserDocument userDocument) {
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
+	public String getFirebaseId() {
+		return firebaseId;
+	}
+
+	public void setFirebaseId(String firebaseId) {
+		this.firebaseId = firebaseId;
+	}
+
+	public static UserCore createUser(UserDocument userDocument, String firebaseId, String uid) {
 		User user;
 		
 		if(userDocument.getFields().getAdmin().getBooleanValue())
@@ -35,6 +53,8 @@ public class UserCore {
 		
 		user.setUserFields(userDocument.getFields());
 		user.setAccountCreationDate(userDocument.getCreateTime());
+		user.setUid(uid);
+		user.setFirebaseId(firebaseId);
 		return(user);
 	}
 }

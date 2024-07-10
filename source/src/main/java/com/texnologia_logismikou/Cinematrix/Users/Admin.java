@@ -4,6 +4,7 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
+import com.texnologia_logismikou.Cinematrix.DocumentObjects.UserDocument;
 
 public class Admin
 extends User

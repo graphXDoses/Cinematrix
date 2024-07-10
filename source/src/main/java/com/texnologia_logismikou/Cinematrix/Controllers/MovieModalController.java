@@ -27,7 +27,7 @@ public class MovieModalController {
 		associateMovie = movie;
 		
 		modal_cover.setImage(movie.getModal().getCoverImage());
-		modal_button.setTooltip(new Tooltip(movie.getDoc().getFields().getFullName().getStringValue()));
+		modal_button.setTooltip(new Tooltip(movie.getFullName()));
 		edit_button.setVisible(false);
 		modal_cover.setOpacity(1);
 	}

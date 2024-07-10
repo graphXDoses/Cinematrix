@@ -80,7 +80,7 @@ public class MovieDetailsViewController {
     		
     		modal_cover.setImage(movie.getModal().getCoverImage());
     		modal_title_label.setText(fields.getTitle().getStringValue());
-    		MPArating_label.setText(fields.getMpRating().getStringValue());
+    		MPArating_label.setText(fields.getMpaRating().getStringValue());
     		duration_label.setText(movie.getDuration());
     		yt_trailer_player_area.getEngine().load(fields.getYtTrailerUrl().getStringValue());
     		description_label.setText(fields.getDescription().getStringValue());
