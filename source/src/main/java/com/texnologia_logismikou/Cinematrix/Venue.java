@@ -23,9 +23,9 @@ public class Venue
 				VenueSoundSystem standardSystem,
 				VenueTraits reservedSeating) {
 		
-		this.topdown_t = topdown_t;
-        this.system_s = system_s;
-        this.traits = traits;
+		this.topdown_t = typeA;
+        this.system_s = standardSystem;
+        this.traits = reservedSeating;
 	}
 
 	public VenueDocument getDoc() {

@@ -18,7 +18,7 @@ public class App extends Application
     	
     	CinematrixAPI.getInstance().fetchCinemasFromDatabase();
     	CinematrixAPI.getInstance().fetchMoviesFromDatabase();
-    	CinematrixAPI.getInstance().fetchScreeningsFromDatabase();
+//    	CinematrixAPI.getInstance().fetchScreeningsFromDatabase();
 
     	try {
     		CinematrixAPI.getInstance().userSignIn("austinnaley@vasilis.karas.gr", "hs$98xuu");
