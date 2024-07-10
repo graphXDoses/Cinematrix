@@ -38,6 +38,7 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 		} else {
 			CinematrixAPI.getInstance().getCinemas().forEach(cinema->
 			{
+				cinema.getModal().getController().disableEditorButton();
 				getController().appendCinemaModal(cinema.getModal());			
 			});
 		}
@@ -48,6 +49,9 @@ implements VisibleUnderGuest, VisibleUnderUser, VisibleUnderAdmin
 	public void showToAdmin()
 	{
 		standardPrepare();
+		CinematrixAPI.getInstance().getCinemas().forEach(cinema->{
+			cinema.getModal().getController().enableEditorButton();
+		});
 	}
 
 

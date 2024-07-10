@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 import com.texnologia_logismikou.Cinematrix.Movie;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.MovieFields;
+import com.texnologia_logismikou.Cinematrix.Managers.CategoryBubbleWidget;
 import com.texnologia_logismikou.Cinematrix.Managers.ScreeningDaySelectionButtonWidget;
 import com.texnologia_logismikou.Cinematrix.Screening;
 
@@ -44,6 +46,7 @@ public class MovieDetailsViewController {
 	@FXML private WebView yt_trailer_player_area;
 	@FXML private HBox like_hbox_container;
 	@FXML private AnchorPane like_movie_container;
+	@FXML private HBox category_container;
 
 	@FXML private HBox days_available_container;
 
@@ -84,11 +87,20 @@ public class MovieDetailsViewController {
     		
     		modal_cover.setImage(movie.getModal().getCoverImage());
     		modal_title_label.setText(fields.getTitle().getStringValue());
-    		MPArating_label.setText(fields.getMpRating().getStringValue());
+    		MPArating_label.setText(fields.getMpaRating().getStringValue());
     		duration_label.setText(movie.getDuration());
     		yt_trailer_player_area.getEngine().load(fields.getYtTrailerUrl().getStringValue());
     		description_label.setText(fields.getDescription().getStringValue());
     		director_label.setText(fields.getDirector().getStringValue());
+    		
+    		List<CategoryBubbleWidget> category_bubbles = new ArrayList<CategoryBubbleWidget>();
+			
+			Arrays.asList(fields.getCategories().getArrayValue().getValues()).forEach(cat_name->{
+				category_bubbles.add(new CategoryBubbleWidget(cat_name.getStringValue()));
+			});
+			category_bubbles.forEach(bubble->{
+				category_container.getChildren().add(bubble.getParent());
+			});
     	} else {
     		modal_cover.setImage(blankCover);
     		modal_title_label.setText(defaultText);
@@ -174,14 +186,14 @@ public class MovieDetailsViewController {
     // TODO: Work on this first thing in the morning!
 	public List<ScreeningDaySelectionButtonWidget> setAvailableDays(List<Screening> associateScreenings)
 	{
-		List<LocalDateTime> uniHours = new ArrayList<>();
+		List<LocalDateTime> uniqueHours = new ArrayList<>();
 		associateScreenings.forEach(s->{
 			s.getHours().forEach(h->{
-				uniHours.add(h);
+				uniqueHours.add(h);
 			});
 		});
 		
-		Set<LocalDate> uniqueDays = uniHours.stream()
+		Set<LocalDate> uniqueDays = uniqueHours.stream()
                 .map(LocalDateTime::toLocalDate)
                 .collect(Collectors.toCollection(HashSet::new));
 		

@@ -4,6 +4,8 @@
     -fx-fg: #676767;
     -fx-txtColor: #dedede;
     -fx-c1: #337cf2;
+    -fx-c1-light: #35bcf0;
+    -fx-c1-dark: #1e3847;
     -fx-c2: #68d7e0;
     -fx-c3: #f28033;
     -fx-subtleBorderColor: #444444;
@@ -396,4 +398,20 @@
 
 .tab-label {
     -fx-text-fill: -fx-fg;
+}
+
+.category_modal
+{
+    -fx-background-color: -fx-c1-dark;
+    -fx-border-width: 1;
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-border-color: -fx-c1-light;
+    -fx-text-fill: -fx-c1-light;
+}
+
+.venue_trait
+{
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-c1;
 }

@@ -4,6 +4,7 @@ import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.UserDocument;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.UserFields;
 import com.texnologia_logismikou.Cinematrix.Views.AllMoviesView;
+import com.texnologia_logismikou.Cinematrix.Views.NearCinemasView;
 
 public class UserCore {
 	
@@ -15,6 +16,7 @@ public class UserCore {
 	{	
 		this.userFields = userFields;
 		CinematrixAPI.getInstance().MOVIE_CONTEXT.ALL_MOVIES_VIEW = new AllMoviesView();
+		CinematrixAPI.getInstance().CINEMA_CONTEXT.NEAR_CINEMAS_VIEW = new NearCinemasView();
 	}
 	
 	public UserFields getUserFields() {

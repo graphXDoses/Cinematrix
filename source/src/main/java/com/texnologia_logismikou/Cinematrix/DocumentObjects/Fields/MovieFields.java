@@ -5,7 +5,7 @@ public class MovieFields extends Fields {
 	private StringField uid;
 	private StringField title;
 	private DoubleField releaseYear;
-	private StringField mpRating;
+	private StringField mpaRating;
 	private DoubleField duration;
 	private StringField ytTrailerUrl;
 	private ArrayField<StringField> categories;
@@ -13,7 +13,7 @@ public class MovieFields extends Fields {
 	private StringField director;
 	private StringField fullName;
 	
-	public MovieFields(String title, int releaseYear, String mpRating, int duration,
+	public MovieFields(String title, int releaseYear, String mpaRating, int duration,
 			String ytTrailerUrl, String[] categories,
 			String description, String director) {
 		
@@ -22,7 +22,7 @@ public class MovieFields extends Fields {
 		String uid = title.toLowerCase() + "_" + System.currentTimeMillis();
 		this.uid = new StringField(uid);
 		this.releaseYear = new DoubleField(releaseYear);
-		this.mpRating = new StringField(mpRating);
+		this.mpaRating = new StringField(mpaRating);
 		this.duration = new DoubleField(duration);
 		this.ytTrailerUrl = new StringField(ytTrailerUrl);
 		this.categories = new ArrayField<StringField>(StringField.toStringFieldArray(categories));
@@ -44,11 +44,11 @@ public class MovieFields extends Fields {
 	public void setReleaseYear(DoubleField releaseYear) {
 		this.releaseYear = releaseYear;
 	}
-	public StringField getMpRating() {
-		return mpRating;
+	public StringField getMpaRating() {
+		return mpaRating;
 	}
 	public void setMpRating(StringField mpRating) {
-		this.mpRating = mpRating;
+		this.mpaRating = mpRating;
 	}
 	public DoubleField getDuration() {
 		return duration;

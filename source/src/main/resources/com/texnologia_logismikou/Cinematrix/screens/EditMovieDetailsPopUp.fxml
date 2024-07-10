@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-border-color: -fx-fg; -fx-border-width: 1 0 0 0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.texnologia_logismikou.Cinematrix.Controllers.EditMovieDetailsPopUpContoller">
+   <children>
+      <ScrollPane fx:id="scroller" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" hvalue="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="crank" stylesheets="@../styles/styles.css" HBox.hgrow="ALWAYS">
+         <opaqueInsets>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </opaqueInsets>
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </HBox.margin>
+         <content>
+            <VBox spacing="10.0">
+               <children>
+                  <AnchorPane maxHeight="696.0" styleClass="movie_details_modal" stylesheets="@../styles/styles.css">
+                     <children>
+                        <VBox fx:id="vbox_accordion_container" maxHeight="900.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox spacing="20.0">
+                                 <children>
+                                    <ImageView fx:id="modal_cover" fitHeight="300.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/_BLANK_Cover.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <WebView fx:id="yt_trailer_player_area" prefHeight="-1.0" prefWidth="565.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <HBox spacing="10.0" HBox.hgrow="NEVER">
+                                       <children>
+                                          <VBox>
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+                                                   <children>
+                                                      <TextField fx:id="title_field" promptText="&lt;Movie Title Goes Here&gt;">
+                                                         <font>
+                                                            <Font name="System Bold" size="18.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <Label text=" (" textFill="#dedede">
+                                                         <font>
+                                                            <Font name="System Bold" size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="release_year_field" maxWidth="65.0" promptText="YYYY">
+                                                         <font>
+                                                            <Font name="System Bold" size="18.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <Label text=")" textFill="#dedede">
+                                                         <font>
+                                                            <Font name="System Bold" size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                   <children>
+                                                      <Label text="MPA Rating:" textFill="#dedede" />
+                                                      <ChoiceBox fx:id="rating_combo" prefWidth="70.0" />
+                                                      <Label text="Duration:" textFill="#dedede" />
+                                                      <TextField fx:id="duration_field" prefWidth="50.0" promptText="MMM" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <Pane prefHeight="40.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <TextField fx:id="trailer_URL_field" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="345.0" promptText="&lt;Trailer URL&gt;">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="20.0" right="20.0" />
+                                       </HBox.margin>
+                                    </Pane>
+                                    <HBox alignment="TOP_RIGHT" spacing="3.0" HBox.hgrow="NEVER">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/tomato.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label prefHeight="25.0" text="80%" textFill="#dedede" />
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/popcorn.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label prefHeight="25.0" text="90%" textFill="#dedede" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <Pane maxHeight="15.0" minHeight="15.0" prefHeight="15.0" />
+                              <TextArea fx:id="description_textarea" maxHeight="100.0" maxWidth="600.0" wrapText="true" />
+                              <VBox fx:id="more_details_container" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <HBox minHeight="0.0" styleClass="seat_selection_panel" stylesheets="@../styles/styles.css">
+                                       <children>
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="600.0" text="Director: " textFill="#dedede">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="director_field" promptText="&lt;Directors Name&gt;" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" minHeight="0.0" spacing="5.0" styleClass="seat_selection_panel" stylesheets="@../styles/styles.css">
+                                       <children>
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="600.0" text="Categories:" textFill="#dedede">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                             <children>
+                                                <HBox fx:id="category_container" alignment="CENTER_LEFT" spacing="5.0" />
+                                                <Button fx:id="add_category_button" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="invisible-button" stylesheets="@../styles/styles.css">
+                                                   <graphic>
+                                                      <SVGPath content="M 12.56 22.765 A 10.205 10.205 90 1 1 22.765 12.56 A 10.205 10.205 90 0 1 12.56 22.765 Z M 12.56 3.925 A 8.635 8.635 90 1 0 21.195 12.56 A 8.635 8.635 90 0 0 12.56 3.925 Z M 12.56 18.055 a 0.785 0.785 90 0 1 -0.785 -0.785 V 7.85 a 0.785 0.785 90 0 1 1.57 0 V 17.27 A 0.785 0.785 90 0 1 12.56 18.055 Z M 17.27 13.345 H 7.85 a 0.785 0.785 90 0 1 0 -1.57 H 17.27 a 0.785 0.785 90 0 1 0 1.57 ZM 12.56 22.765 A 10.205 10.205 90 1 1 22.765 12.56 A 10.205 10.205 90 0 1 12.56 22.765 Z M 12.56 3.925 A 8.635 8.635 90 1 0 21.195 12.56 A 8.635 8.635 90 0 0 12.56 3.925 Z M 12.56 18.055 a 0.785 0.785 90 0 1 -0.785 -0.785 V 7.85 a 0.785 0.785 90 0 1 1.57 0 V 17.27 A 0.785 0.785 90 0 1 12.56 18.055 Z M 17.27 13.345 H 7.85 a 0.785 0.785 90 0 1 0 -1.57 H 17.27 a 0.785 0.785 90 0 1 0 1.57 Z" fill="#dedede" />
+                                                   </graphic>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <VBox />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+   <padding>
+      <Insets left="20.0" right="20.0" />
+   </padding>
+</HBox>

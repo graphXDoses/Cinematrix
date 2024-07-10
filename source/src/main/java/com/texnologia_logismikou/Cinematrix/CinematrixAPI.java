@@ -503,7 +503,7 @@ public class CinematrixAPI {
 		screenings.add(new Screening(
 				movies.get(1),
 				cinemas.get(1),
-				new Venue(VenueTopdownType.TYPE_B, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
+				new Venue(VenueTopdownType.TYPE_A, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
 				new ArrayList<>(Arrays.asList(
 						LocalDateTime.of(2024, 7, 12, 18, 30),
 						LocalDateTime.of(2024, 7, 12, 21, 0),
@@ -514,7 +514,7 @@ public class CinematrixAPI {
 		screenings.add(new Screening(
 				movies.get(2),
 				cinemas.get(1),
-				new Venue(VenueTopdownType.TYPE_B, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
+				new Venue(VenueTopdownType.TYPE_A, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
 				new ArrayList<>(Arrays.asList(
 						LocalDateTime.of(2024, 9, 12, 18, 30),
 						LocalDateTime.of(2024, 9, 12, 21, 0),
@@ -524,7 +524,7 @@ public class CinematrixAPI {
 		screenings.add(new Screening(
 				movies.get(2),
 				cinemas.get(0),
-				new Venue(VenueTopdownType.TYPE_B, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
+				new Venue(VenueTopdownType.TYPE_A, VenueSoundSystem.STANDARD_SYSTEM, VenueTraits.RESERVED_SEATING),
 				new ArrayList<>(Arrays.asList(
 						LocalDateTime.of(2024, 9, 12, 18, 30),
 						LocalDateTime.of(2024, 9, 12, 21, 0),

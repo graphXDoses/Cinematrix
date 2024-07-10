@@ -97,7 +97,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Button maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" styleClass="register_decision_button" stylesheets="@../styles/styles.css" text="SELECT UP TO 9 SEATS" textFill="#dedede">
+                  <Button maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" mnemonicParsing="false" onAction="#confirmSeatSelectionCallback" prefHeight="40.0" prefWidth="300.0" styleClass="register_decision_button" stylesheets="@../styles/styles.css" text="SELECT UP TO 9 SEATS" textFill="#dedede">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
