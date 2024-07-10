@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import com.texnologia_logismikou.Cinematrix.CinematrixAPI;
 import com.texnologia_logismikou.Cinematrix.Screening;
+import com.texnologia_logismikou.Cinematrix.Views.TicketRevisionView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,6 +41,15 @@ public class SeatSelectionViewController
 		CinematrixAPI.getInstance()
 		.getActiveContext()
 		.promiseRedirectTo(CinematrixAPI.MOVIE_CONTEXT.MOVIE_DETAILS_VIEW);
+		CinematrixAPI.getInstance().getMainDisplay().refresh();
+    }
+	
+	@FXML
+    void confirmSeatSelectionCallback(ActionEvent event)
+	{
+		CinematrixAPI.getInstance()
+		.getActiveContext()
+		.promiseRedirectTo(CinematrixAPI.MOVIE_CONTEXT.TICKET_REVISION_VIEW = new TicketRevisionView());
 		CinematrixAPI.getInstance().getMainDisplay().refresh();
     }
 }

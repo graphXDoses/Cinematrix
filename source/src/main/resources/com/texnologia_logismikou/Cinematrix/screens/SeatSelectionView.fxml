@@ -15,7 +15,7 @@
    <children>
       <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../styles/styles.css">
          <children>
-            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER_LEFT" maxWidth="-Infinity" HBox.hgrow="ALWAYS">
                <children>
                   <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#backToMovieDetailsCallback" styleClass="invisible-button" stylesheets="@../styles/styles.css">
                      <graphic>
@@ -97,7 +97,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Button maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" styleClass="register_decision_button" stylesheets="@../styles/styles.css" text="SELECT UP TO 9 SEATS" textFill="#dedede">
+                  <Button maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" mnemonicParsing="false" onAction="#confirmSeatSelectionCallback" prefHeight="40.0" prefWidth="300.0" styleClass="register_decision_button" stylesheets="@../styles/styles.css" text="SELECT UP TO 9 SEATS" textFill="#dedede">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

@@ -12,7 +12,7 @@ public class MovieFields extends Fields {
 	private StringField description;
 	private StringField director;
 	
-	public MovieFields(String title, int releaseYear, String mpRating, int duration,
+	public MovieFields(String title, int releaseYear, String mpaRating, int duration,
 			String ytTrailerUrl, String[] categories,
 			String description, String director) {
 		
@@ -21,7 +21,7 @@ public class MovieFields extends Fields {
 		String uid = title.toLowerCase() + "_" + System.currentTimeMillis();
 		this.uid = new StringField(uid);
 		this.releaseYear = new DoubleField(releaseYear);
-		this.mpaRating = new StringField(mpRating);
+		this.mpaRating = new StringField(mpaRating);
 		this.duration = new DoubleField(duration);
 		this.ytTrailerUrl = new StringField(ytTrailerUrl);
 		this.categories = new ArrayField<StringField>(StringField.toStringFieldArray(categories));
@@ -45,7 +45,7 @@ public class MovieFields extends Fields {
 	public StringField getMpaRating() {
 		return mpaRating;
 	}
-	public void setMpaRating(StringField mpRating) {
+	public void setMpaRating(StringField mpaRating) {
 		this.mpaRating = mpRating;
 	}
 	public DoubleField getDuration() {

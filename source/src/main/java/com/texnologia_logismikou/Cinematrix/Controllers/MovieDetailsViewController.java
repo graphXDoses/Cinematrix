@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 import com.texnologia_logismikou.Cinematrix.Movie;
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.Fields.MovieFields;
+import com.texnologia_logismikou.Cinematrix.Managers.CategoryBubbleWidget;
 import com.texnologia_logismikou.Cinematrix.Managers.ScreeningDaySelectionButtonWidget;
 import com.texnologia_logismikou.Cinematrix.Screening;
 
@@ -25,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 
@@ -43,6 +46,7 @@ public class MovieDetailsViewController {
 	@FXML private WebView yt_trailer_player_area;
 	@FXML private HBox like_hbox_container;
 	@FXML private AnchorPane like_movie_container;
+	@FXML private HBox category_container;
 
 	@FXML private HBox days_available_container;
 
@@ -56,6 +60,9 @@ public class MovieDetailsViewController {
 	private final String[]  detailsText    = {"MORE DETAILS", "LESS DETAILS"};
 	private final int[]     modalMaxSize   = {430, 900};
 	private int             expantionState = 0;
+	
+	private static final String INACTIVE_STATE = "movie_details_button_inactive";
+	private static final String ACTIVE_STATE   = "movie_details_button_active";
 
     @FXML
     void initialize() {
@@ -85,6 +92,15 @@ public class MovieDetailsViewController {
     		yt_trailer_player_area.getEngine().load(fields.getYtTrailerUrl().getStringValue());
     		description_label.setText(fields.getDescription().getStringValue());
     		director_label.setText(fields.getDirector().getStringValue());
+    		
+    		List<CategoryBubbleWidget> category_bubbles = new ArrayList<CategoryBubbleWidget>();
+			
+			Arrays.asList(fields.getCategories().getArrayValue().getValues()).forEach(cat_name->{
+				category_bubbles.add(new CategoryBubbleWidget(cat_name.getStringValue()));
+			});
+			category_bubbles.forEach(bubble->{
+				category_container.getChildren().add(bubble.getParent());
+			});
     	} else {
     		modal_cover.setImage(blankCover);
     		modal_title_label.setText(defaultText);
@@ -110,6 +126,11 @@ public class MovieDetailsViewController {
     	}
     }
     
+    public void enforceDefaultFiltering()
+    {
+    	filterButtonsCommonRoutine(filter_all_button);
+    }
+    
     @FXML
     void likeMovieCallback(ActionEvent event) {
 		System.out.println((Node)event.getSource());
@@ -125,19 +146,41 @@ public class MovieDetailsViewController {
     	more_details_container.setVisible(expantionState == 1);
     }
     
+    private void setActiveState(Button rootNode, String state)
+    {
+    	rootNode.getStyleClass().clear();
+    	rootNode.getStyleClass().add(state);
+    }
+    
+    void filterButtonsCommonRoutine(Button root)
+    {
+    	setActiveState(root, ACTIVE_STATE);
+    	if(root.getParent() != null && root.getParent() instanceof HBox)
+    	{
+    		((HBox)root.getParent()).getChildren().filtered(button->{
+    			return(!button.equals(root));
+    		}).forEach(button->{
+    			setActiveState((Button)button, INACTIVE_STATE);
+    		});
+    	}
+    }
+    
     @FXML
-    void filterAllCallback(ActionEvent event) {
-
+    void filterAllCallback(ActionEvent event)
+    {
+    	filterButtonsCommonRoutine((Button)event.getSource());
     }
 
     @FXML
-    void filterDolbyCallback(ActionEvent event) {
-
+    void filterDolbyCallback(ActionEvent event)
+    {
+    	filterButtonsCommonRoutine((Button)event.getSource());
     }
 
     @FXML
-    void filterStandardCallback(ActionEvent event) {
-
+    void filterStandardCallback(ActionEvent event)
+    {
+    	filterButtonsCommonRoutine((Button)event.getSource());
     }
 
     // TODO: Work on this first thing in the morning!
@@ -146,18 +189,17 @@ public class MovieDetailsViewController {
 		List<LocalDateTime> uniHours = new ArrayList<>(); // uniHours stores all the hours of the movie's screenings.
 		/*associateScreenings.forEach(s->{
 			s.getHours().forEach(h->{
-				uniHours.add(h);
+				uniqueHours.add(h);
 			});
 		});*/ // TODO remove comment
 		
-		Set<LocalDate> uniqueDays = uniHours.stream()
+		Set<LocalDate> uniqueDays = uniqueHours.stream()
                 .map(LocalDateTime::toLocalDate)
                 .collect(Collectors.toCollection(HashSet::new));
 		
 		List<ScreeningDaySelectionButtonWidget> buttons = new ArrayList<ScreeningDaySelectionButtonWidget>();
 		days_available_container.getChildren().clear();
 		uniqueDays.stream().sorted().forEach(day->{
-//			System.out.println(day.format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
 			ScreeningDaySelectionButtonWidget button = new ScreeningDaySelectionButtonWidget(day);
 			days_available_container.getChildren().add(button.getParent());
 			buttons.add(button);
@@ -165,20 +207,6 @@ public class MovieDetailsViewController {
 		
 		
 		return(buttons);
-		
-		/*
-		associateScreenings.stream().filter(screening->{
-			List<LocalDateTime> dates = screening.getHours().stream().filter(hour->{
-				hour.getDayOfMonth();
-			});
-			
-			return(!dates.isEmpty());
-		});
-		days_available_container.getChildren().clear();
-		associateScreenings.forEach(screening->{
-			days_available_container.getChildren().add(screening.);
-		});
-		*/
 	}
 
 }

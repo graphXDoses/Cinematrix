@@ -2,6 +2,8 @@ package com.texnologia_logismikou.Cinematrix;
 
 import java.util.ArrayList;
 
+import java.util.ArrayList;
+
 import com.texnologia_logismikou.Cinematrix.DocumentObjects.VenueDocument;
 
 public class Venue
@@ -10,6 +12,7 @@ public class Venue
 	private VenueDocument doc;
 	private VenueTopdownType topdown_t;
 	private VenueSoundSystem system_s;
+//	private List<VenueTraits> traits;
 	private VenueTraits traits;
 	private ArrayList<Integer> reservedSeats = new ArrayList<Integer>();
 	//private Cinema cinema = null;
@@ -20,7 +23,9 @@ public class Venue
 		this.doc = doc;
 	}
 
-	public Venue(VenueTopdownType typeA, VenueSoundSystem standardSystem, VenueTraits accessibillityDevicesAvailable) {
+	public Venue(VenueTopdownType typeA,
+				VenueSoundSystem standardSystem,
+				VenueTraits reservedSeating) {
 		
 		this.topdown_t = topdown_t;
         this.system_s = system_s;
